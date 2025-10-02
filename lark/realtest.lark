@@ -1,0 +1,185 @@
+// Top level
+start: (section | note_section)*
+
+section: import_section
+       | data_section
+       | testdata_section
+       | stratdata_section
+       | scan_section
+       | testscan_section
+       | settings_section
+       | library_section
+       | parameters_section
+       | results_section
+       | graphs_section
+       | trades_section
+       | charts_section
+       | strategy_section
+       | benchmark_section
+       | templ_strategy_section
+       | statsgroup_section
+       | ordersettings_section
+       | scansettings_section
+       | testsettings_section
+       | namespace_section
+       | walkforward_section
+
+note_section: "Notes" ":" NOTE_TEXT (note_line*)?
+            | "Notes" ":" note_line*
+            | "Notes" ":"
+
+note_line: NOTE_TEXT
+         |
+
+// Sections with user-defined items (name: formula/value)
+named_items_body: item_def*
+item_def: identifier ":" item_value
+item_value: ITEM_VALUE
+
+// Sections
+import_section: "Import" ":" import_item*
+import_item: import_key ":" item_value
+
+data_section: "Data" ":" named_items_body
+testdata_section: "TestData" ":" named_items_body
+stratdata_section: "StratData" ":" named_items_body
+
+scan_section: "Scan" ":" scan_item*
+scan_item: ("Filter" ":" formula | "Sort" ":" sort_spec | item_def)
+sort_spec: identifier ("," identifier)*
+
+testscan_section: "TestScan" ":" scan_item*
+
+settings_section: "Settings" ":" setting_item*
+setting_item: settings_key ":" (number | identifier | path | formula | string)
+
+library_section: "Library" ":" named_items_body
+
+parameters_section: "Parameters" ":" param_def*
+param_def: identifier ":" formula_series
+formula_series: formula ("," formula)*
+
+results_section: "Results" ":" named_items_body
+graphs_section: "Graphs" ":" named_items_body
+trades_section: "Trades" ":" named_items_body
+charts_section: "Charts" ":" named_items_body
+
+strategy_section: "Strategy" ":" identifier strategy_element*
+benchmark_section: "Benchmark" ":" identifier strategy_element*
+templ_strategy_section: "Template" ":" identifier item_def*
+statsgroup_section: "StatsGroup" ":" identifier strategy_statsgroup_element*
+
+strategy_element: strategy_key ":" (formula | number | string | identifier)
+strategy_statsgroup_element: ("Using" ":" id_list
+                           | "Allocation" ":" formula
+                           | "MaxEntries" ":" number
+                           | "MaxExposure" ":" formula
+                           | "MaxInvestment" ":" formula
+                           | "MaxPositions" ":" number
+                           | "MaxSameCat" ":" number
+                           | "MaxSetups" ":" number)
+id_list: identifier ("," identifier)*
+
+include_section: "Include" ":" path
+scaninclude_section: "ScanInclude" ":" path
+testinclude_section: "TestInclude" ":" path
+ordersinclude_section: "OrdersInclude" ":" path
+
+ordersettings_section: "OrderSettings" ":" setting_item*
+scansettings_section: "ScanSettings" ":" setting_item*
+testsettings_section: "TestSettings" ":" setting_item*
+
+namespace_section: "Namespace" ":" identifier
+walkforward_section: "WalkForward" ":" named_items_body
+
+// Identifiers, names, symbols
+identifier: IDENTIFIER
+symbol_const: "$" symbol_name
+symbol_name: SYMBOL_NAME
+string: SINGLE_QUOTED_STRING | DOUBLE_QUOTED_STRING
+
+// Paths (no quotes; may contain spaces). May embed tokens like ?date?, ?scriptname?, etc.
+path: PATH_STRING
+
+// Numbers
+number: SIGNED_NUMBER
+
+// Formulas
+formula: expr FORMAT_COMMENT?
+
+expr: or_expr
+or_expr: and_expr (("OR" | "||") and_expr)*
+and_expr: rel_expr (("AND" | "&&") rel_expr)*
+rel_expr: add_expr (rel_op add_expr)*
+rel_op: "=" | "==" | "<>" | "!=" | "<" | "<=" | ">" | ">="
+add_expr: mul_expr (("+" | "-") mul_expr)*
+mul_expr: pow_expr (("*" | "/" | "MOD" | "%") pow_expr)*
+pow_expr: unary_expr ("^" unary_expr)*
+unary_expr: ("+" | "-" | "NOT" | "!")? primary
+?primary: number
+        | string
+        | symbol_const
+        | function_call
+        | "(" expr ")"
+
+function_call: identifier args? bar_offset?
+
+args: "(" arg_list? ")"
+arg_list: expr ("," expr)*
+
+bar_offset: "[" expr "]"   // e.g., Close[1], any expr per recursive rules 
+
+// Special tokens usable inside paths
+path_token: "?" token_name "?"
+token_name: "date" | "time" | "orderdate" | "ocfolder" | "scriptpath" | "scriptname"
+          | "testname" | "desktop" | "realtest" | "data" | "output" | "scripts" | env_name
+env_name: LETTER (LETTER | DIGIT | "_")*
+
+// Comments - defined as terminals for proper ignoring
+COMMENT_BLOCK_C: /\/\*.*?\*\//s
+COMMENT_LINE_CPP: /\/\/[^\r\n]*/
+COMMENT_BLOCK_PAS: /\{[^}]*\}/
+
+// Conditional compilation (kept as rules since they might be part of the AST)
+conditional_comment: cond_define | cond_undef | cond_if | cond_ifndef | cond_else | cond_endif
+cond_define: "#define" identifier
+cond_undef: "#undef" identifier
+cond_if: "#ifdef" identifier
+cond_ifndef: "#ifndef" identifier
+cond_else: "#else"
+cond_endif: "#endif"
+
+// Whitespace & layout
+
+// Reserved/known section keys (non-exhaustive, indicative)
+import_key: "DataSource" | "DataPath" | "IncludeList" | "StartDate" | "EndDate"
+          | "SaveAs" | "Padding" | "KeepAdjusted" | "DataFile" | identifier
+settings_key: "AccountSize" | "AccountType" | "AllowSameName" | "AlwaysImport" | "BarSize"
+            | "CashIntPct" | "Currency" | "DataFile" | "DateDisplay" | "DateInput"
+            | "StartDate" | "EndDate" | "NoWeekends" | "Namespace" | identifier
+strategy_key: "Using" | "EntrySetup" | "EntryRule" | "ExitRule" | "EntryStop" | "ExitStop"
+            | "EntryLimit" | "ExitLimit" | "Quantity" | "Allocation" | "MaxEntries"
+            | "MaxExposure" | "MaxPositions" | "Side" | "Benchmark" | "Parameters"
+            | "StartDate" | "EndDate" | "Reduce" | "Targets" | "Stops" | identifier
+
+// Terminals
+ITEM_VALUE: /[^\r\n]+/
+IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_.]*/
+SYMBOL_NAME: /[a-zA-Z0-9_.$]+/
+SINGLE_QUOTED_STRING: /'[^']*'/
+DOUBLE_QUOTED_STRING: /"[^"]*"/
+FORMAT_COMMENT: /\{[^}]*\}/
+NOTE_TEXT: /(?!\s*(?:Import|Data|TestData|StratData|Scan|TestScan|Settings|Library|Parameters|Results|Graphs|Trades|Charts|Strategy|Benchmark|Template|StatsGroup|Include|ScanInclude|TestInclude|OrdersInclude|OrderSettings|ScanSettings|TestSettings|Namespace|WalkForward|Notes)\s*:)[^\r\n]+/
+SIGNED_NUMBER: /[+-]?(\d+\.?\d*|\.\d+)/
+PATH_STRING: /[^\s][a-zA-Z0-9_.\s\-?:]*([\\\/][a-zA-Z0-9_.\s\-?:]+)+/
+LETTER: /[a-zA-Z]/
+DIGIT: /[0-9]/
+NEWLINE: /\r?\n/
+
+// Import common tokens and ignore inline whitespace
+%import common.WS_INLINE
+%ignore WS_INLINE
+%ignore COMMENT_BLOCK_C
+%ignore COMMENT_LINE_CPP
+%ignore COMMENT_BLOCK_PAS
+%ignore NEWLINE
