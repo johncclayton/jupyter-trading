@@ -1,6 +1,84 @@
 // realtest2.lark - A new grammar for RealTest scripts
+// RealTest supports user-defined item names only in the following sections: Charts, Data, Graphs, Library, Parameters, Results, Scan, StratData, TestData, TestScan, Trades
 
-start:
+start: section*
 
-%import common.WS
-%ignore WS
+section: notes_section
+       | import_section
+       | data_section
+       | parameters_section
+       | named_section
+       | settings_section
+       | library_section
+       | scan_section
+
+notes_section: "Notes"i ":" note_body
+note_body: (NOTE_TEXT | NEWLINE)*
+
+// --- Section Implementations ---
+
+import_section: "Import"i ":" (import_item | NEWLINE)*
+import_item: import_key ":" value
+
+data_section: "Data"i ":" (key_value_item | NEWLINE)*
+parameters_section: "Parameters"i ":" (key_value_item | NEWLINE)*
+
+named_section: ("Template"i | "Strategy"i) ":" IDENTIFIER (key_value_item | NEWLINE)*
+
+settings_section: "Settings"i ":" (key_value_item | NEWLINE)*
+library_section: "Library"i ":" (key_value_item | NEWLINE)*
+scan_section: "Scan"i ":" (key_value_item | NEWLINE)*
+
+
+// --- Rule Components ---
+
+key_value_item: IDENTIFIER ":" value
+
+value: VALUE
+
+?import_key: "Adjustment"i
+          | "CIIFamily"i
+          | "CIILevel"i
+          | "Classification"i
+          | "Constituency"i
+          | "CSVDateFmt"i
+          | "CSVDelim"i
+          | "CSVFields"i
+          | "CSVFile"i
+          | "CSVNumFmt"i
+          | "DataPath"i
+          | "DataSource"i
+          | "EndDate"i
+          | "EventListFile"i
+          | "ExcludeIf"i
+          | "ExcludeList"i
+          | "Fundamentals"i
+          | "KeepAdjusted"i
+          | "KeepNonIncluded"i
+          | "KeepRedundant"i
+          | "IncludeList"i
+          | "LogFile"i
+          | "NoWeekends"i
+          | "Padding"i
+          | "RemoveLatest"i
+          | "SaveAs"i
+          | "StartDate"i
+          | "SymInfoFile"i
+          | "Update"i
+
+
+// --- Terminals ---
+
+IDENTIFIER: /[a-zA-Z_][a-zA-Z0-9_.]*/
+
+// Matches any line that does NOT start with a known section name.
+NOTE_TEXT: /(?!(Notes|Import|Data|Parameters|Template|Strategy|Settings|Library|Scan):i)[^\r\n]+/
+
+// This VALUE terminal matches everything (including newlines due to the 's' flag)
+// until it sees what's next is an IDENTIFIER followed by a colon, or a new section header.
+VALUE: /(.|\n)+?(?=\s*([a-zA-Z_][a-zA-Z0-9_.]*\s*:|(Notes|Import|Data|Parameters|Template|Strategy|Settings|Library|Scan)\s*:))/s
+
+NEWLINE: /(\r?\n)+/
+
+%import common.WS_INLINE
+%ignore WS_INLINE
