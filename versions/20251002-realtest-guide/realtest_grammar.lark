@@ -1,0 +1,22 @@
+%import common.NEWLINE
+%ignore /\r/
+
+start: (line)*
+
+line: statement? NEWLINE
+
+?statement: comment
+          | keyvalue
+          | keyonly
+          | textline
+
+keyvalue: WS? KEY ":" WS? VALUE?
+keyonly: WS? KEY ":"
+comment: WS? COMMENT
+textline: WS? TEXT
+
+KEY: /[A-Za-z][A-Za-z0-9_.?]*/
+VALUE: /[^\n]+/
+TEXT: /[^:\n][^\n]*/
+WS: /[ \t]+/
+COMMENT: /\/\/[^\n]*/

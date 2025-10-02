@@ -1,0 +1,564 @@
+{
+  "results": [
+    {
+      "file": "samples/actual_trades.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/anchored_vwap.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/annual_taxes.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/bensdorp_book.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/beta_indicator.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/breadth.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/cii_rotate.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/cl_term_structure.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/clenow_stocks_on_move.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/clenow_stocks_on_move_dynamic.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/combined.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/combined_multi_bar_size.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/combined_rebalance.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/correl_multi.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/dalio_all_weather.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/dalio_all_weather_maxdiff.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/dividend_capture.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/dividend_yield_series.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/djia_earnings.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/djia_make_syminfo.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/djia_use_syminfo.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ehlers_windows.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/es_compare.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/flipper.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/fundamentals.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/futures_calendar_spread.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/futures_trend_follow_csi.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/futures_trend_follow_simple.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/futures_volume_rank.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/gc_kelly.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/gics_indu_rank.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/goal_30_15.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/goal_30_15_asx.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/goal_30_15_tsx.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/higher_lows.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/hybrid_asset_allocation.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/hybrid_asset_allocation_dynamic.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ibd_rs.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_csv.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_ms.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_multi.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_norgate.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_tiingo.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/import_yahoo.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/index_breadth.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/industry_indices.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/keller_baa.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/keltner_pullback.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/management_fees.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/martingale.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mhp_classic.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_benchmark.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_common.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_debug.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_hedged.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_long_only.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_orders.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_orders_alera.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_orders_basket.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_scan.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_short_only.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_test_scan.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_tracking.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_tracking_alloc.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/mr_sample_tradelist.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/multi_filter_scan.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/multi_moc_top_down.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_plus_wtf_script.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_plus_wtf_tradelists.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_rotate.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_rotate_factor_test.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_rotate_make_tradelist.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_rotate_rebalance.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/ndx_rotate_weekly_reduce.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/oc_all_actual.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/oex_tf_auto_track.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/oex_tf_fresh_signal.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/oex_tf_top_down.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/opex_and_vxex.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/optimal_diversity.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/radge_bbo.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/Sample1.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/Sample2.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/Sample2a.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/sample_scan.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/scale_in.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/sctr.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/sector_etfs.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/sector_etfs_breadth.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/simple_day_trade.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/simple_day_trade_basket_orders.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/simple_day_trade_basket_scan.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/spy_tlt_uis.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/stockbee_mm.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/supertrend.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/tf_dynamic_size.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/tf_sell_half_at_1R.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/trend_following_basics.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/turtles.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/two_accounts.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/two_accounts_rebalance.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/vigilant_asset_allocation.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/vx_futures.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/vx_term_structure.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/vxx_long_short.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/weekly_moc_asx.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/weekly_moc_asx_daily_daily.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/weekly_moc_asx_daily_weekly.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/weekly_trend_follow.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/weekly_trend_follow_make_tradelist.rts",
+      "valid": true,
+      "error": null
+    },
+    {
+      "file": "samples/yield_rank.rts",
+      "valid": true,
+      "error": null
+    }
+  ]
+}

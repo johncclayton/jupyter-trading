@@ -1,0 +1,4516 @@
+{
+  "sections": [
+    {
+      "order": 1,
+      "heading": "1",
+      "title": "Welcome!",
+      "source_line": 3
+    },
+    {
+      "order": 2,
+      "heading": "142",
+      "title": "Computer Requirements",
+      "source_line": 6
+    },
+    {
+      "order": 3,
+      "heading": "153",
+      "title": "File Types",
+      "source_line": 9
+    },
+    {
+      "order": 4,
+      "heading": "164",
+      "title": "File Paths",
+      "source_line": 12
+    },
+    {
+      "order": 5,
+      "heading": "175",
+      "title": "Backups",
+      "source_line": 15
+    },
+    {
+      "order": 6,
+      "heading": "186",
+      "title": "Examples and Tutorials",
+      "source_line": 18
+    },
+    {
+      "order": 7,
+      "heading": "196.1",
+      "title": "Tutorial 1 - SPY Crossover",
+      "source_line": 21
+    },
+    {
+      "order": 8,
+      "heading": "236.2",
+      "title": "Tutorial 2 - Simple Optimization",
+      "source_line": 24
+    },
+    {
+      "order": 9,
+      "heading": "296.3",
+      "title": "Tutorial 3 - Simple Scan",
+      "source_line": 27
+    },
+    {
+      "order": 10,
+      "heading": "366.4",
+      "title": "Tutorial 4 - ETF Rotation",
+      "source_line": 30
+    },
+    {
+      "order": 11,
+      "heading": "397",
+      "title": "Software User Interface",
+      "source_line": 33
+    },
+    {
+      "order": 12,
+      "heading": "457.1",
+      "title": "Common Menus",
+      "source_line": 36
+    },
+    {
+      "order": 13,
+      "heading": "467.1.1",
+      "title": "File Menu",
+      "source_line": 39
+    },
+    {
+      "order": 14,
+      "heading": "467.1.2",
+      "title": "Edit Menu",
+      "source_line": 42
+    },
+    {
+      "order": 15,
+      "heading": "487.1.3",
+      "title": "View Menu",
+      "source_line": 45
+    },
+    {
+      "order": 16,
+      "heading": "507.1.4",
+      "title": "Data Menu",
+      "source_line": 48
+    },
+    {
+      "order": 17,
+      "heading": "517.1.5",
+      "title": "Run Menu",
+      "source_line": 51
+    },
+    {
+      "order": 18,
+      "heading": "527.1.6",
+      "title": "Window Menu",
+      "source_line": 54
+    },
+    {
+      "order": 19,
+      "heading": "537.1.7",
+      "title": "Help Menu",
+      "source_line": 57
+    },
+    {
+      "order": 20,
+      "heading": "537.2",
+      "title": "Child Window Menus",
+      "source_line": 60
+    },
+    {
+      "order": 21,
+      "heading": "547.2.1",
+      "title": "Chart Menu",
+      "source_line": 63
+    },
+    {
+      "order": 22,
+      "heading": "547.2.2",
+      "title": "Graph Menu",
+      "source_line": 66
+    },
+    {
+      "order": 23,
+      "heading": "567.2.3",
+      "title": "List Menu",
+      "source_line": 69
+    },
+    {
+      "order": 24,
+      "heading": "577.2.4",
+      "title": "Log Menu",
+      "source_line": 72
+    },
+    {
+      "order": 25,
+      "heading": "587.2.5",
+      "title": "Plot Menu",
+      "source_line": 75
+    },
+    {
+      "order": 26,
+      "heading": "587.2.6",
+      "title": "ResGraph Menu",
+      "source_line": 78
+    },
+    {
+      "order": 27,
+      "heading": "597.2.7",
+      "title": "Results Menu",
+      "source_line": 81
+    },
+    {
+      "order": 28,
+      "heading": "617.2.8",
+      "title": "Scan Menu",
+      "source_line": 84
+    },
+    {
+      "order": 29,
+      "heading": "627.2.9",
+      "title": "Script Menu",
+      "source_line": 87
+    },
+    {
+      "order": 30,
+      "heading": "637.2.10",
+      "title": "Compare Menu",
+      "source_line": 90
+    },
+    {
+      "order": 31,
+      "heading": "647.2.11",
+      "title": "Trades Menu",
+      "source_line": 93
+    },
+    {
+      "order": 32,
+      "heading": "657.3",
+      "title": "Bars and Panels",
+      "source_line": 96
+    },
+    {
+      "order": 33,
+      "heading": "667.3.1",
+      "title": "Tool Bar",
+      "source_line": 99
+    },
+    {
+      "order": 34,
+      "heading": "667.3.2",
+      "title": "Status Bar",
+      "source_line": 102
+    },
+    {
+      "order": 35,
+      "heading": "677.3.3",
+      "title": "Settings Panel",
+      "source_line": 105
+    },
+    {
+      "order": 36,
+      "heading": "687.3.4",
+      "title": "Debug Panel",
+      "source_line": 108
+    },
+    {
+      "order": 37,
+      "heading": "707.4",
+      "title": "Text Editor Windows",
+      "source_line": 111
+    },
+    {
+      "order": 38,
+      "heading": "737.4.1",
+      "title": "Script Windows",
+      "source_line": 114
+    },
+    {
+      "order": 39,
+      "heading": "737.4.2",
+      "title": "Log Windows",
+      "source_line": 117
+    },
+    {
+      "order": 40,
+      "heading": "747.5",
+      "title": "List Windows",
+      "source_line": 120
+    },
+    {
+      "order": 41,
+      "heading": "757.5.1",
+      "title": "Results Windows",
+      "source_line": 123
+    },
+    {
+      "order": 42,
+      "heading": "777.5.2",
+      "title": "Trade List Windows",
+      "source_line": 126
+    },
+    {
+      "order": 43,
+      "heading": "787.5.3",
+      "title": "Scan Windows",
+      "source_line": 129
+    },
+    {
+      "order": 44,
+      "heading": "817.5.4",
+      "title": "Trade Comparison Windows",
+      "source_line": 132
+    },
+    {
+      "order": 45,
+      "heading": "837.5.5",
+      "title": "Other List Windows",
+      "source_line": 135
+    },
+    {
+      "order": 46,
+      "heading": "857.6",
+      "title": "Graphical Windows",
+      "source_line": 138
+    },
+    {
+      "order": 47,
+      "heading": "857.6.1",
+      "title": "Daily Stats Graphs",
+      "source_line": 141
+    },
+    {
+      "order": 48,
+      "heading": "857.6.2",
+      "title": "Optimization Results Graphs",
+      "source_line": 144
+    },
+    {
+      "order": 49,
+      "heading": "897.6.3",
+      "title": "Candlestick/Bar Charts",
+      "source_line": 147
+    },
+    {
+      "order": 50,
+      "heading": "907.6.4",
+      "title": "Trade Plots and Analysis",
+      "source_line": 150
+    },
+    {
+      "order": 51,
+      "heading": "937.7",
+      "title": "Program Options Dialog",
+      "source_line": 153
+    },
+    {
+      "order": 52,
+      "heading": "1037.8",
+      "title": "Report Options Dialog",
+      "source_line": 156
+    },
+    {
+      "order": 53,
+      "heading": "1067.9",
+      "title": "RealTest Function Key Reference",
+      "source_line": 159
+    },
+    {
+      "order": 54,
+      "heading": "1078",
+      "title": "Importing Bar Data",
+      "source_line": 162
+    },
+    {
+      "order": 55,
+      "heading": "1108.1",
+      "title": "Norgate Data Import",
+      "source_line": 165
+    },
+    {
+      "order": 56,
+      "heading": "1108.2",
+      "title": "CSI Futures Import",
+      "source_line": 168
+    },
+    {
+      "order": 57,
+      "heading": "18.3",
+      "title": "CSI Stocks Import",
+      "source_line": 172
+    },
+    {
+      "order": 58,
+      "heading": "1188.4",
+      "title": "CSV Import",
+      "source_line": 175
+    },
+    {
+      "order": 59,
+      "heading": "1228.5",
+      "title": "MetaStock Import",
+      "source_line": 178
+    },
+    {
+      "order": 60,
+      "heading": "1228.6",
+      "title": "Tiingo Import",
+      "source_line": 181
+    },
+    {
+      "order": 61,
+      "heading": "1238.7",
+      "title": "Yahoo Import",
+      "source_line": 184
+    },
+    {
+      "order": 62,
+      "heading": "1248.8",
+      "title": "Multi-Source Import",
+      "source_line": 187
+    },
+    {
+      "order": 63,
+      "heading": "1258.9",
+      "title": "Symbol Information Files",
+      "source_line": 190
+    },
+    {
+      "order": 64,
+      "heading": "1278.10",
+      "title": "Futures Symbol Information",
+      "source_line": 193
+    },
+    {
+      "order": 65,
+      "heading": "1288.11",
+      "title": "Event List Files",
+      "source_line": 196
+    },
+    {
+      "order": 66,
+      "heading": "1298.12",
+      "title": "Dividend and Constituency Events",
+      "source_line": 199
+    },
+    {
+      "order": 67,
+      "heading": "1299",
+      "title": "Running Scans",
+      "source_line": 202
+    },
+    {
+      "order": 68,
+      "heading": "13110",
+      "title": "Running Tests",
+      "source_line": 205
+    },
+    {
+      "order": 69,
+      "heading": "13210.1",
+      "title": "Multiple Tests and Optimization",
+      "source_line": 208
+    },
+    {
+      "order": 70,
+      "heading": "13210.2",
+      "title": "Walk-Forward Tests",
+      "source_line": 211
+    },
+    {
+      "order": 71,
+      "heading": "13411",
+      "title": "Using an Imported Trade List",
+      "source_line": 214
+    },
+    {
+      "order": 72,
+      "heading": "13812",
+      "title": "Using Command Line Mode",
+      "source_line": 217
+    },
+    {
+      "order": 73,
+      "heading": "14213",
+      "title": "Using Multiple Instances",
+      "source_line": 220
+    },
+    {
+      "order": 74,
+      "heading": "14414",
+      "title": "Analyzing Test Results",
+      "source_line": 223
+    },
+    {
+      "order": 75,
+      "heading": "14514.1",
+      "title": "Test Summary Report",
+      "source_line": 226
+    },
+    {
+      "order": 76,
+      "heading": "14614.2",
+      "title": "Test Details Log",
+      "source_line": 229
+    },
+    {
+      "order": 77,
+      "heading": "14715",
+      "title": "Trading Your System",
+      "source_line": 232
+    },
+    {
+      "order": 78,
+      "heading": "14915.1",
+      "title": "Tomorrow's Orders",
+      "source_line": 235
+    },
+    {
+      "order": 79,
+      "heading": "14915.2",
+      "title": "Generated Order Types",
+      "source_line": 238
+    },
+    {
+      "order": 80,
+      "heading": "15215.3",
+      "title": "OrderClerk",
+      "source_line": 241
+    },
+    {
+      "order": 81,
+      "heading": "15415.4",
+      "title": "CSV Order Baskets",
+      "source_line": 244
+    },
+    {
+      "order": 82,
+      "heading": "15415.5",
+      "title": "IB Rebalance Tool",
+      "source_line": 247
+    },
+    {
+      "order": 83,
+      "heading": "15715.6",
+      "title": "Multi-Row Scan",
+      "source_line": 250
+    },
+    {
+      "order": 84,
+      "heading": "15815.7",
+      "title": "Test Output Scan",
+      "source_line": 253
+    },
+    {
+      "order": 85,
+      "heading": "15916",
+      "title": "Backtest Engine Details",
+      "source_line": 256
+    },
+    {
+      "order": 86,
+      "heading": "16116.1",
+      "title": "Asset Allocation and Position Sizing",
+      "source_line": 259
+    },
+    {
+      "order": 87,
+      "heading": "16216.2",
+      "title": "Capacity Constraints",
+      "source_line": 262
+    },
+    {
+      "order": 88,
+      "heading": "16316.3",
+      "title": "Compounding",
+      "source_line": 265
+    },
+    {
+      "order": 89,
+      "heading": "16516.4",
+      "title": "Split Handling",
+      "source_line": 268
+    },
+    {
+      "order": 90,
+      "heading": "16816.5",
+      "title": "Dividend Handling",
+      "source_line": 271
+    },
+    {
+      "order": 91,
+      "heading": "17016.6",
+      "title": "Intraday Fills With Daily Bars",
+      "source_line": 274
+    },
+    {
+      "order": 92,
+      "heading": "17416.7",
+      "title": "Intraday Fill Sequence Assumptions",
+      "source_line": 277
+    },
+    {
+      "order": 93,
+      "heading": "17516.8",
+      "title": "Bar Sizes and Multiple Timeframes",
+      "source_line": 280
+    },
+    {
+      "order": 94,
+      "heading": "17516.9",
+      "title": "Calendar Alignment",
+      "source_line": 283
+    },
+    {
+      "order": 95,
+      "heading": "17616.10",
+      "title": "Calculation of Trade Excursions",
+      "source_line": 286
+    },
+    {
+      "order": 96,
+      "heading": "17716.11",
+      "title": "The Current Bar in Formula Evaluation",
+      "source_line": 289
+    },
+    {
+      "order": 97,
+      "heading": "17716.12",
+      "title": "Specifying a Time Stop",
+      "source_line": 292
+    },
+    {
+      "order": 98,
+      "heading": "17816.13",
+      "title": "Number of Bars Required for Functions and Indicators",
+      "source_line": 295
+    },
+    {
+      "order": 99,
+      "heading": "17816.14",
+      "title": "Scaling In or Out of Positions",
+      "source_line": 298
+    },
+    {
+      "order": 100,
+      "heading": "18016.15",
+      "title": "Referring to Past Trades in Strategy Formulas",
+      "source_line": 301
+    },
+    {
+      "order": 101,
+      "heading": "18316.16",
+      "title": "Testing Multi-Currency Strategies",
+      "source_line": 304
+    },
+    {
+      "order": 102,
+      "heading": "18316.17",
+      "title": "Using CSI Futures Data",
+      "source_line": 307
+    },
+    {
+      "order": 103,
+      "heading": "18617",
+      "title": "Realtest Script Language",
+      "source_line": 310
+    },
+    {
+      "order": 104,
+      "heading": "19017.1",
+      "title": "Bar Offsets",
+      "source_line": 313
+    },
+    {
+      "order": 105,
+      "heading": "19117.2",
+      "title": "Date Constants",
+      "source_line": 316
+    },
+    {
+      "order": 106,
+      "heading": "19217.3",
+      "title": "Other Constants",
+      "source_line": 319
+    },
+    {
+      "order": 107,
+      "heading": "19317.4",
+      "title": "Symbol References",
+      "source_line": 322
+    },
+    {
+      "order": 108,
+      "heading": "19317.5",
+      "title": "String Values",
+      "source_line": 325
+    },
+    {
+      "order": 109,
+      "heading": "19317.6",
+      "title": "User-Defined Item Names",
+      "source_line": 328
+    },
+    {
+      "order": 110,
+      "heading": "19417.7",
+      "title": "Item Name Overrides",
+      "source_line": 331
+    },
+    {
+      "order": 111,
+      "heading": "19517.8",
+      "title": "Script Comments",
+      "source_line": 334
+    },
+    {
+      "order": 112,
+      "heading": "19517.9",
+      "title": "Conditional Comments",
+      "source_line": 337
+    },
+    {
+      "order": 113,
+      "heading": "19617.10",
+      "title": "File Path Syntax",
+      "source_line": 340
+    },
+    {
+      "order": 114,
+      "heading": "19717.11",
+      "title": "Output Format Specification",
+      "source_line": 343
+    },
+    {
+      "order": 115,
+      "heading": "19817.12",
+      "title": "New Script Template",
+      "source_line": 346
+    },
+    {
+      "order": 116,
+      "heading": "217.13",
+      "title": "Combining Scripts",
+      "source_line": 350
+    },
+    {
+      "order": 117,
+      "heading": "19917.14",
+      "title": "Default Scripts",
+      "source_line": 353
+    },
+    {
+      "order": 118,
+      "heading": "20017.15",
+      "title": "Script Sections",
+      "source_line": 356
+    },
+    {
+      "order": 119,
+      "heading": "20117.15.1",
+      "title": "Import Section",
+      "source_line": 359
+    },
+    {
+      "order": 120,
+      "heading": "20217.15.2",
+      "title": "Data Section",
+      "source_line": 362
+    },
+    {
+      "order": 121,
+      "heading": "20217.15.2.1",
+      "title": "One-Pass Data Formulas",
+      "source_line": 365
+    },
+    {
+      "order": 122,
+      "heading": "20317.15.2.2",
+      "title": "Self-Referential Items",
+      "source_line": 368
+    },
+    {
+      "order": 123,
+      "heading": "20517.15.2.3",
+      "title": "Bar-Size-Specific Items",
+      "source_line": 371
+    },
+    {
+      "order": 124,
+      "heading": "20617.15.3",
+      "title": "TestData and StratData Sections",
+      "source_line": 374
+    },
+    {
+      "order": 125,
+      "heading": "20817.15.4",
+      "title": "Scan and TestScan Sections",
+      "source_line": 377
+    },
+    {
+      "order": 126,
+      "heading": "21217.15.5",
+      "title": "Settings Sections",
+      "source_line": 380
+    },
+    {
+      "order": 127,
+      "heading": "21317.15.6",
+      "title": "Library Section",
+      "source_line": 383
+    },
+    {
+      "order": 128,
+      "heading": "21517.15.7",
+      "title": "Strategy Section",
+      "source_line": 386
+    },
+    {
+      "order": 129,
+      "heading": "21617.15.7.1",
+      "title": "Strategy Names",
+      "source_line": 389
+    },
+    {
+      "order": 130,
+      "heading": "21717.15.7.2",
+      "title": "Special Strategy Types",
+      "source_line": 392
+    },
+    {
+      "order": 131,
+      "heading": "21717.15.7.3",
+      "title": "Strategy Elements",
+      "source_line": 395
+    },
+    {
+      "order": 132,
+      "heading": "21817.15.7.4",
+      "title": "Strategy Element Value Types and Defaults",
+      "source_line": 398
+    },
+    {
+      "order": 133,
+      "heading": "21917.15.8",
+      "title": "Parameters Section",
+      "source_line": 401
+    },
+    {
+      "order": 134,
+      "heading": "22117.15.9",
+      "title": "Results Section",
+      "source_line": 404
+    },
+    {
+      "order": 135,
+      "heading": "22317.15.10",
+      "title": "Graphs Section",
+      "source_line": 407
+    },
+    {
+      "order": 136,
+      "heading": "22317.15.11",
+      "title": "Trades Section",
+      "source_line": 410
+    },
+    {
+      "order": 137,
+      "heading": "22517.15.12",
+      "title": "Charts Section",
+      "source_line": 413
+    },
+    {
+      "order": 138,
+      "heading": "22617.15.13",
+      "title": "Include Section",
+      "source_line": 416
+    },
+    {
+      "order": 139,
+      "heading": "22717.16",
+      "title": "Formula Syntax",
+      "source_line": 419
+    },
+    {
+      "order": 140,
+      "heading": "22817.16.1",
+      "title": "Operators",
+      "source_line": 422
+    },
+    {
+      "order": 141,
+      "heading": "22917.16.2",
+      "title": "Formula Evaluation",
+      "source_line": 425
+    },
+    {
+      "order": 142,
+      "heading": "23017.16.3",
+      "title": "Breadth Tags / Cross-Sectional Functions",
+      "source_line": 428
+    },
+    {
+      "order": 143,
+      "heading": "23117.16.4",
+      "title": "Special Syntax for Individual Futures Contract Testing",
+      "source_line": 431
+    },
+    {
+      "order": 144,
+      "heading": "23217.16.5",
+      "title": "Statistics Values in Formulas",
+      "source_line": 434
+    },
+    {
+      "order": 145,
+      "heading": "23417.17",
+      "title": "Syntax Element Categories",
+      "source_line": 437
+    },
+    {
+      "order": 146,
+      "heading": "23517.17.2",
+      "title": "Settings",
+      "source_line": 443
+    },
+    {
+      "order": 147,
+      "heading": "23617.17.3",
+      "title": "Import Specification",
+      "source_line": 446
+    },
+    {
+      "order": 148,
+      "heading": "23917.17.5",
+      "title": "Bar Data Values",
+      "source_line": 452
+    },
+    {
+      "order": 149,
+      "heading": "24117.17.6",
+      "title": "Indicator Functions",
+      "source_line": 455
+    },
+    {
+      "order": 150,
+      "heading": "24217.17.7",
+      "title": "Multi-Bar Functions",
+      "source_line": 458
+    },
+    {
+      "order": 151,
+      "heading": "24317.17.8",
+      "title": "Cross-Sectional Functions",
+      "source_line": 461
+    },
+    {
+      "order": 152,
+      "heading": "24417.17.9",
+      "title": "General-Purpose Functions",
+      "source_line": 464
+    },
+    {
+      "order": 153,
+      "heading": "24517.17.10",
+      "title": "String Functions",
+      "source_line": 467
+    },
+    {
+      "order": 154,
+      "heading": "24717.17.11",
+      "title": "Stock/Contract Information",
+      "source_line": 470
+    },
+    {
+      "order": 155,
+      "heading": "24717.17.12",
+      "title": "Current Position Information",
+      "source_line": 473
+    },
+    {
+      "order": 156,
+      "heading": "24817.17.13",
+      "title": "Current Strategy Information",
+      "source_line": 476
+    },
+    {
+      "order": 157,
+      "heading": "24917.17.14",
+      "title": "Test Statistics Arrays",
+      "source_line": 479
+    },
+    {
+      "order": 158,
+      "heading": "24917.17.15",
+      "title": "Trade Record Values",
+      "source_line": 482
+    },
+    {
+      "order": 159,
+      "heading": "25117.17.16",
+      "title": "Trade Statistics Functions",
+      "source_line": 485
+    },
+    {
+      "order": 160,
+      "heading": "25217.18",
+      "title": "Syntax Element Details",
+      "source_line": 488
+    },
+    {
+      "order": 161,
+      "heading": "25217.18.1",
+      "title": "#Avg",
+      "source_line": 491
+    },
+    {
+      "order": 162,
+      "heading": "25217.18.2",
+      "title": "#ByCII",
+      "source_line": 494
+    },
+    {
+      "order": 163,
+      "heading": "25317.18.3",
+      "title": "#ByEcon",
+      "source_line": 497
+    },
+    {
+      "order": 164,
+      "heading": "25317.18.4",
+      "title": "#ByGroup",
+      "source_line": 500
+    },
+    {
+      "order": 165,
+      "heading": "25317.18.5",
+      "title": "#ByIndu",
+      "source_line": 503
+    },
+    {
+      "order": 166,
+      "heading": "25417.18.6",
+      "title": "#ByListNum",
+      "source_line": 506
+    },
+    {
+      "order": 167,
+      "heading": "25417.18.7",
+      "title": "#ByMkt",
+      "source_line": 509
+    },
+    {
+      "order": 168,
+      "heading": "25517.18.8",
+      "title": "#BySect",
+      "source_line": 512
+    },
+    {
+      "order": 169,
+      "heading": "25517.18.9",
+      "title": "#Count",
+      "source_line": 515
+    },
+    {
+      "order": 170,
+      "heading": "25517.18.10",
+      "title": "#DenseRank",
+      "source_line": 518
+    },
+    {
+      "order": 171,
+      "heading": "25617.18.11",
+      "title": "#Highest",
+      "source_line": 521
+    },
+    {
+      "order": 172,
+      "heading": "25617.18.12",
+      "title": "#Lowest",
+      "source_line": 524
+    },
+    {
+      "order": 173,
+      "heading": "317.18.13",
+      "title": "#Median",
+      "source_line": 528
+    },
+    {
+      "order": 174,
+      "heading": "25717.18.14",
+      "title": "#OnePerDate",
+      "source_line": 531
+    },
+    {
+      "order": 175,
+      "heading": "25717.18.15",
+      "title": "#OnePerSym",
+      "source_line": 534
+    },
+    {
+      "order": 176,
+      "heading": "25817.18.16",
+      "title": "#PercentRank",
+      "source_line": 537
+    },
+    {
+      "order": 177,
+      "heading": "25817.18.17",
+      "title": "#Rank",
+      "source_line": 540
+    },
+    {
+      "order": 178,
+      "heading": "25917.18.18",
+      "title": "#SlowCalc",
+      "source_line": 543
+    },
+    {
+      "order": 179,
+      "heading": "25917.18.19",
+      "title": "#StdDev",
+      "source_line": 546
+    },
+    {
+      "order": 180,
+      "heading": "25917.18.20",
+      "title": "#Sum",
+      "source_line": 549
+    },
+    {
+      "order": 181,
+      "heading": "26017.18.21",
+      "title": "?CII",
+      "source_line": 552
+    },
+    {
+      "order": 182,
+      "heading": "26017.18.22",
+      "title": "?Currency",
+      "source_line": 555
+    },
+    {
+      "order": 183,
+      "heading": "26017.18.23",
+      "title": "?Domicile",
+      "source_line": 558
+    },
+    {
+      "order": 184,
+      "heading": "26017.18.24",
+      "title": "?EconSect",
+      "source_line": 561
+    },
+    {
+      "order": 185,
+      "heading": "26117.18.25",
+      "title": "?EndDate",
+      "source_line": 564
+    },
+    {
+      "order": 186,
+      "heading": "26117.18.26",
+      "title": "?EquityType",
+      "source_line": 567
+    },
+    {
+      "order": 187,
+      "heading": "26117.18.27",
+      "title": "?Exchange",
+      "source_line": 570
+    },
+    {
+      "order": 188,
+      "heading": "26217.18.28",
+      "title": "?IndGroup",
+      "source_line": 573
+    },
+    {
+      "order": 189,
+      "heading": "26217.18.29",
+      "title": "?Industry",
+      "source_line": 576
+    },
+    {
+      "order": 190,
+      "heading": "26217.18.30",
+      "title": "?ListingType",
+      "source_line": 579
+    },
+    {
+      "order": 191,
+      "heading": "26217.18.31",
+      "title": "?LocalTime",
+      "source_line": 582
+    },
+    {
+      "order": 192,
+      "heading": "26317.18.32",
+      "title": "?Name",
+      "source_line": 585
+    },
+    {
+      "order": 193,
+      "heading": "26317.18.33",
+      "title": "?ReportingCurrency",
+      "source_line": 588
+    },
+    {
+      "order": 194,
+      "heading": "26317.18.34",
+      "title": "?RunMode",
+      "source_line": 591
+    },
+    {
+      "order": 195,
+      "heading": "26317.18.35",
+      "title": "?ScriptName",
+      "source_line": 594
+    },
+    {
+      "order": 196,
+      "heading": "26417.18.36",
+      "title": "?Sector",
+      "source_line": 597
+    },
+    {
+      "order": 197,
+      "heading": "26417.18.37",
+      "title": "?Strategy",
+      "source_line": 600
+    },
+    {
+      "order": 198,
+      "heading": "26417.18.38",
+      "title": "?StratType",
+      "source_line": 603
+    },
+    {
+      "order": 199,
+      "heading": "26417.18.39",
+      "title": "?StartDate",
+      "source_line": 606
+    },
+    {
+      "order": 200,
+      "heading": "26517.18.40",
+      "title": "?Symbol",
+      "source_line": 609
+    },
+    {
+      "order": 201,
+      "heading": "26517.18.41",
+      "title": "?Type",
+      "source_line": 612
+    },
+    {
+      "order": 202,
+      "heading": "26517.18.42",
+      "title": "Abs",
+      "source_line": 615
+    },
+    {
+      "order": 203,
+      "heading": "26617.18.43",
+      "title": "AccountSize",
+      "source_line": 618
+    },
+    {
+      "order": 204,
+      "heading": "26617.18.44",
+      "title": "AccountType",
+      "source_line": 621
+    },
+    {
+      "order": 205,
+      "heading": "26617.18.45",
+      "title": "Adjustment",
+      "source_line": 624
+    },
+    {
+      "order": 206,
+      "heading": "26717.18.46",
+      "title": "ADX",
+      "source_line": 627
+    },
+    {
+      "order": 207,
+      "heading": "26717.18.47",
+      "title": "AEMA",
+      "source_line": 630
+    },
+    {
+      "order": 208,
+      "heading": "26817.18.48",
+      "title": "AESD",
+      "source_line": 633
+    },
+    {
+      "order": 209,
+      "heading": "26817.18.49",
+      "title": "Allocation",
+      "source_line": 636
+    },
+    {
+      "order": 210,
+      "heading": "26917.18.50",
+      "title": "AllowMissingBar",
+      "source_line": 639
+    },
+    {
+      "order": 211,
+      "heading": "27017.18.51",
+      "title": "AllowNoVolume",
+      "source_line": 642
+    },
+    {
+      "order": 212,
+      "heading": "27017.18.52",
+      "title": "AllowSameName",
+      "source_line": 645
+    },
+    {
+      "order": 213,
+      "heading": "27117.18.53",
+      "title": "AlwaysImport",
+      "source_line": 648
+    },
+    {
+      "order": 214,
+      "heading": "27117.18.54",
+      "title": "Ambiguity",
+      "source_line": 651
+    },
+    {
+      "order": 215,
+      "heading": "27117.18.55",
+      "title": "ArcCos",
+      "source_line": 654
+    },
+    {
+      "order": 216,
+      "heading": "27217.18.56",
+      "title": "ArcSin",
+      "source_line": 657
+    },
+    {
+      "order": 217,
+      "heading": "27217.18.57",
+      "title": "ArcTan",
+      "source_line": 660
+    },
+    {
+      "order": 218,
+      "heading": "27217.18.58",
+      "title": "Arg1-Arg9",
+      "source_line": 663
+    },
+    {
+      "order": 219,
+      "heading": "27317.18.59",
+      "title": "Assert",
+      "source_line": 666
+    },
+    {
+      "order": 220,
+      "heading": "27317.18.60",
+      "title": "ATR",
+      "source_line": 669
+    },
+    {
+      "order": 221,
+      "heading": "27417.18.61",
+      "title": "BarDate",
+      "source_line": 672
+    },
+    {
+      "order": 222,
+      "heading": "27517.18.62",
+      "title": "BarNum",
+      "source_line": 675
+    },
+    {
+      "order": 223,
+      "heading": "27517.18.63",
+      "title": "BarsHeld",
+      "source_line": 678
+    },
+    {
+      "order": 224,
+      "heading": "27517.18.64",
+      "title": "BarsLeft",
+      "source_line": 681
+    },
+    {
+      "order": 225,
+      "heading": "27517.18.65",
+      "title": "BarSize",
+      "source_line": 684
+    },
+    {
+      "order": 226,
+      "heading": "27617.18.66",
+      "title": "BarStart",
+      "source_line": 687
+    },
+    {
+      "order": 227,
+      "heading": "27617.18.67",
+      "title": "BBBot",
+      "source_line": 690
+    },
+    {
+      "order": 228,
+      "heading": "27617.18.68",
+      "title": "BBBotF",
+      "source_line": 693
+    },
+    {
+      "order": 229,
+      "heading": "27717.18.69",
+      "title": "BBPct",
+      "source_line": 696
+    },
+    {
+      "order": 230,
+      "heading": "27717.18.70",
+      "title": "BBPctF",
+      "source_line": 699
+    },
+    {
+      "order": 231,
+      "heading": "27817.18.71",
+      "title": "BBTop",
+      "source_line": 702
+    },
+    {
+      "order": 232,
+      "heading": "417.18.72",
+      "title": "BBTopF",
+      "source_line": 706
+    },
+    {
+      "order": 233,
+      "heading": "27917.18.73",
+      "title": "BBTrend",
+      "source_line": 709
+    },
+    {
+      "order": 234,
+      "heading": "27917.18.74",
+      "title": "BBTrendF",
+      "source_line": 712
+    },
+    {
+      "order": 235,
+      "heading": "28017.18.75",
+      "title": "BBWidth",
+      "source_line": 715
+    },
+    {
+      "order": 236,
+      "heading": "28017.18.76",
+      "title": "BBWidthF",
+      "source_line": 718
+    },
+    {
+      "order": 237,
+      "heading": "28117.18.77",
+      "title": "Benchmark",
+      "source_line": 721
+    },
+    {
+      "order": 238,
+      "heading": "28117.18.78",
+      "title": "Bound",
+      "source_line": 724
+    },
+    {
+      "order": 239,
+      "heading": "28117.18.79",
+      "title": "CalendarSym",
+      "source_line": 727
+    },
+    {
+      "order": 240,
+      "heading": "28217.18.80",
+      "title": "CashInOut",
+      "source_line": 730
+    },
+    {
+      "order": 241,
+      "heading": "28217.18.81",
+      "title": "CashIntPct",
+      "source_line": 733
+    },
+    {
+      "order": 242,
+      "heading": "28317.18.82",
+      "title": "CashList",
+      "source_line": 736
+    },
+    {
+      "order": 243,
+      "heading": "28317.18.83",
+      "title": "Category (definition)",
+      "source_line": 739
+    },
+    {
+      "order": 244,
+      "heading": "28417.18.84",
+      "title": "Category (reference)",
+      "source_line": 742
+    },
+    {
+      "order": 245,
+      "heading": "28517.18.85",
+      "title": "CCI",
+      "source_line": 745
+    },
+    {
+      "order": 246,
+      "heading": "28517.18.86",
+      "title": "CDF",
+      "source_line": 748
+    },
+    {
+      "order": 247,
+      "heading": "28517.18.87",
+      "title": "Charts",
+      "source_line": 751
+    },
+    {
+      "order": 248,
+      "heading": "28617.18.88",
+      "title": "CIIFamily",
+      "source_line": 754
+    },
+    {
+      "order": 249,
+      "heading": "28617.18.89",
+      "title": "CIILevel",
+      "source_line": 757
+    },
+    {
+      "order": 250,
+      "heading": "28617.18.90",
+      "title": "Classification",
+      "source_line": 760
+    },
+    {
+      "order": 251,
+      "heading": "28717.18.91",
+      "title": "Close or C",
+      "source_line": 763
+    },
+    {
+      "order": 252,
+      "heading": "28717.18.92",
+      "title": "CloseSlip",
+      "source_line": 766
+    },
+    {
+      "order": 253,
+      "heading": "28717.18.93",
+      "title": "Combined (function)",
+      "source_line": 769
+    },
+    {
+      "order": 254,
+      "heading": "28817.18.94",
+      "title": "Combined (section)",
+      "source_line": 772
+    },
+    {
+      "order": 255,
+      "heading": "28817.18.95",
+      "title": "CommCurrency",
+      "source_line": 775
+    },
+    {
+      "order": 256,
+      "heading": "28817.18.96",
+      "title": "Commission",
+      "source_line": 778
+    },
+    {
+      "order": 257,
+      "heading": "28917.18.97",
+      "title": "Compounded",
+      "source_line": 781
+    },
+    {
+      "order": 258,
+      "heading": "28917.18.98",
+      "title": "Constituency",
+      "source_line": 784
+    },
+    {
+      "order": 259,
+      "heading": "29017.18.99",
+      "title": "Correl",
+      "source_line": 787
+    },
+    {
+      "order": 260,
+      "heading": "29117.18.100",
+      "title": "CorrelAvg",
+      "source_line": 790
+    },
+    {
+      "order": 261,
+      "heading": "29217.18.101",
+      "title": "CorrelMed",
+      "source_line": 793
+    },
+    {
+      "order": 262,
+      "heading": "29217.18.102",
+      "title": "CorrelMin",
+      "source_line": 796
+    },
+    {
+      "order": 263,
+      "heading": "29317.18.103",
+      "title": "CorrMinSym",
+      "source_line": 799
+    },
+    {
+      "order": 264,
+      "heading": "29317.18.104",
+      "title": "CorrelMax",
+      "source_line": 802
+    },
+    {
+      "order": 265,
+      "heading": "29417.18.105",
+      "title": "CorrelMaxSym",
+      "source_line": 805
+    },
+    {
+      "order": 266,
+      "heading": "29417.18.106",
+      "title": "Cosine",
+      "source_line": 808
+    },
+    {
+      "order": 267,
+      "heading": "29517.18.107",
+      "title": "Cross",
+      "source_line": 811
+    },
+    {
+      "order": 268,
+      "heading": "29517.18.108",
+      "title": "CountTrue",
+      "source_line": 814
+    },
+    {
+      "order": 269,
+      "heading": "29517.18.109",
+      "title": "CRSI",
+      "source_line": 817
+    },
+    {
+      "order": 270,
+      "heading": "29617.18.110",
+      "title": "CSVDateFmt",
+      "source_line": 820
+    },
+    {
+      "order": 271,
+      "heading": "29617.18.111",
+      "title": "CSVDelim",
+      "source_line": 823
+    },
+    {
+      "order": 272,
+      "heading": "29717.18.112",
+      "title": "CSVFields",
+      "source_line": 826
+    },
+    {
+      "order": 273,
+      "heading": "29717.18.113",
+      "title": "CSVFile",
+      "source_line": 829
+    },
+    {
+      "order": 274,
+      "heading": "29817.18.114",
+      "title": "CSVNumFmt",
+      "source_line": 832
+    },
+    {
+      "order": 275,
+      "heading": "29817.18.115",
+      "title": "Currency",
+      "source_line": 835
+    },
+    {
+      "order": 276,
+      "heading": "29917.18.116",
+      "title": "Data",
+      "source_line": 838
+    },
+    {
+      "order": 277,
+      "heading": "29917.18.117",
+      "title": "DataFile",
+      "source_line": 841
+    },
+    {
+      "order": 278,
+      "heading": "29917.18.118",
+      "title": "DataPath",
+      "source_line": 844
+    },
+    {
+      "order": 279,
+      "heading": "30017.18.119",
+      "title": "DataSource",
+      "source_line": 847
+    },
+    {
+      "order": 280,
+      "heading": "30017.18.120",
+      "title": "DataType",
+      "source_line": 850
+    },
+    {
+      "order": 281,
+      "heading": "30017.18.121",
+      "title": "Date",
+      "source_line": 853
+    },
+    {
+      "order": 282,
+      "heading": "30117.18.122",
+      "title": "DateBars",
+      "source_line": 856
+    },
+    {
+      "order": 283,
+      "heading": "30117.18.123",
+      "title": "DateDay",
+      "source_line": 859
+    },
+    {
+      "order": 284,
+      "heading": "30217.18.124",
+      "title": "DateDisplay",
+      "source_line": 862
+    },
+    {
+      "order": 285,
+      "heading": "30217.18.125",
+      "title": "DateInput",
+      "source_line": 865
+    },
+    {
+      "order": 286,
+      "heading": "30217.18.126",
+      "title": "DateMonth",
+      "source_line": 868
+    },
+    {
+      "order": 287,
+      "heading": "30317.18.127",
+      "title": "DateSym",
+      "source_line": 871
+    },
+    {
+      "order": 288,
+      "heading": "30317.18.128",
+      "title": "DateYear",
+      "source_line": 874
+    },
+    {
+      "order": 289,
+      "heading": "30317.18.129",
+      "title": "Day",
+      "source_line": 877
+    },
+    {
+      "order": 290,
+      "heading": "30417.18.130",
+      "title": "DayOfWeek",
+      "source_line": 880
+    },
+    {
+      "order": 291,
+      "heading": "517.18.131",
+      "title": "DayOfYear",
+      "source_line": 884
+    },
+    {
+      "order": 292,
+      "heading": "30417.18.132",
+      "title": "Days",
+      "source_line": 887
+    },
+    {
+      "order": 293,
+      "heading": "30517.18.133",
+      "title": "DaysPerYear",
+      "source_line": 890
+    },
+    {
+      "order": 294,
+      "heading": "30517.18.134",
+      "title": "DebugEntry",
+      "source_line": 893
+    },
+    {
+      "order": 295,
+      "heading": "30617.18.135",
+      "title": "DebugEval",
+      "source_line": 896
+    },
+    {
+      "order": 296,
+      "heading": "30617.18.136",
+      "title": "DebugExit",
+      "source_line": 899
+    },
+    {
+      "order": 297,
+      "heading": "30717.18.137",
+      "title": "DebugTargetStop",
+      "source_line": 902
+    },
+    {
+      "order": 298,
+      "heading": "30717.18.138",
+      "title": "DEMA",
+      "source_line": 905
+    },
+    {
+      "order": 299,
+      "heading": "30817.18.139",
+      "title": "Dividend",
+      "source_line": 908
+    },
+    {
+      "order": 300,
+      "heading": "30817.18.140",
+      "title": "DllDataCalc",
+      "source_line": 911
+    },
+    {
+      "order": 301,
+      "heading": "30917.18.141",
+      "title": "DynamicSizing",
+      "source_line": 914
+    },
+    {
+      "order": 302,
+      "heading": "30917.18.142",
+      "title": "EMA or XAvg",
+      "source_line": 917
+    },
+    {
+      "order": 303,
+      "heading": "31017.18.143",
+      "title": "EndDate (Import)",
+      "source_line": 920
+    },
+    {
+      "order": 304,
+      "heading": "31017.18.144",
+      "title": "EndDate (Setting)",
+      "source_line": 923
+    },
+    {
+      "order": 305,
+      "heading": "31117.18.145",
+      "title": "EndOfMonth",
+      "source_line": 926
+    },
+    {
+      "order": 306,
+      "heading": "31117.18.146",
+      "title": "EndOfQuarter",
+      "source_line": 929
+    },
+    {
+      "order": 307,
+      "heading": "31117.18.147",
+      "title": "EndOfTestExits",
+      "source_line": 932
+    },
+    {
+      "order": 308,
+      "heading": "31217.18.148",
+      "title": "EndOfWeek",
+      "source_line": 935
+    },
+    {
+      "order": 309,
+      "heading": "31217.18.149",
+      "title": "EndOfYear",
+      "source_line": 938
+    },
+    {
+      "order": 310,
+      "heading": "31317.18.150",
+      "title": "EntryDate",
+      "source_line": 941
+    },
+    {
+      "order": 311,
+      "heading": "31317.18.151",
+      "title": "EntryLimit",
+      "source_line": 944
+    },
+    {
+      "order": 312,
+      "heading": "31317.18.152",
+      "title": "EntryRank",
+      "source_line": 947
+    },
+    {
+      "order": 313,
+      "heading": "31417.18.153",
+      "title": "EntryScore",
+      "source_line": 950
+    },
+    {
+      "order": 314,
+      "heading": "31417.18.154",
+      "title": "EntrySetup",
+      "source_line": 953
+    },
+    {
+      "order": 315,
+      "heading": "31517.18.155",
+      "title": "EntrySkip",
+      "source_line": 956
+    },
+    {
+      "order": 316,
+      "heading": "31517.18.156",
+      "title": "EntryStop",
+      "source_line": 959
+    },
+    {
+      "order": 317,
+      "heading": "31617.18.157",
+      "title": "EntryTime",
+      "source_line": 962
+    },
+    {
+      "order": 318,
+      "heading": "31617.18.158",
+      "title": "EntryTradeValue",
+      "source_line": 965
+    },
+    {
+      "order": 319,
+      "heading": "31717.18.159",
+      "title": "ESD",
+      "source_line": 968
+    },
+    {
+      "order": 320,
+      "heading": "31817.18.160",
+      "title": "Event",
+      "source_line": 971
+    },
+    {
+      "order": 321,
+      "heading": "31817.18.161",
+      "title": "EventListFile",
+      "source_line": 974
+    },
+    {
+      "order": 322,
+      "heading": "31917.18.162",
+      "title": "ExchangeMap",
+      "source_line": 977
+    },
+    {
+      "order": 323,
+      "heading": "31917.18.163",
+      "title": "ExcludeIf",
+      "source_line": 980
+    },
+    {
+      "order": 324,
+      "heading": "32117.18.164",
+      "title": "ExcludeList",
+      "source_line": 983
+    },
+    {
+      "order": 325,
+      "heading": "32117.18.165",
+      "title": "ExitLimit",
+      "source_line": 986
+    },
+    {
+      "order": 326,
+      "heading": "32217.18.166",
+      "title": "ExitLimitQty",
+      "source_line": 989
+    },
+    {
+      "order": 327,
+      "heading": "32217.18.167",
+      "title": "ExitLimitTime",
+      "source_line": 992
+    },
+    {
+      "order": 328,
+      "heading": "32317.18.168",
+      "title": "ExitNum",
+      "source_line": 995
+    },
+    {
+      "order": 329,
+      "heading": "32317.18.169",
+      "title": "ExitQty",
+      "source_line": 998
+    },
+    {
+      "order": 330,
+      "heading": "32417.18.170",
+      "title": "ExitRank",
+      "source_line": 1001
+    },
+    {
+      "order": 331,
+      "heading": "32417.18.171",
+      "title": "ExitRule",
+      "source_line": 1004
+    },
+    {
+      "order": 332,
+      "heading": "32517.18.172",
+      "title": "ExitScore",
+      "source_line": 1007
+    },
+    {
+      "order": 333,
+      "heading": "32617.18.173",
+      "title": "ExitStop",
+      "source_line": 1010
+    },
+    {
+      "order": 334,
+      "heading": "32617.18.174",
+      "title": "ExitStopQty",
+      "source_line": 1013
+    },
+    {
+      "order": 335,
+      "heading": "32617.18.175",
+      "title": "ExitStopTime",
+      "source_line": 1016
+    },
+    {
+      "order": 336,
+      "heading": "32717.18.176",
+      "title": "ExitTime",
+      "source_line": 1019
+    },
+    {
+      "order": 337,
+      "heading": "32817.18.177",
+      "title": "ExitTradeValue",
+      "source_line": 1022
+    },
+    {
+      "order": 338,
+      "heading": "32817.18.178",
+      "title": "Exp",
+      "source_line": 1025
+    },
+    {
+      "order": 339,
+      "heading": "32817.18.179",
+      "title": "Extern",
+      "source_line": 1028
+    },
+    {
+      "order": 340,
+      "heading": "32917.18.180",
+      "title": "Extra",
+      "source_line": 1031
+    },
+    {
+      "order": 341,
+      "heading": "32917.18.181",
+      "title": "F.xxx / F.xxx.Date",
+      "source_line": 1034
+    },
+    {
+      "order": 342,
+      "heading": "33017.18.182",
+      "title": "FeesInOut",
+      "source_line": 1037
+    },
+    {
+      "order": 343,
+      "heading": "33117.18.183",
+      "title": "FeesList",
+      "source_line": 1040
+    },
+    {
+      "order": 344,
+      "heading": "33217.18.184",
+      "title": "FillFraction",
+      "source_line": 1043
+    },
+    {
+      "order": 345,
+      "heading": "33217.18.185",
+      "title": "FillPrice",
+      "source_line": 1046
+    },
+    {
+      "order": 346,
+      "heading": "33317.18.186",
+      "title": "FillPriceAvg",
+      "source_line": 1049
+    },
+    {
+      "order": 347,
+      "heading": "33317.18.187",
+      "title": "FillPriceMax",
+      "source_line": 1052
+    },
+    {
+      "order": 348,
+      "heading": "33317.18.188",
+      "title": "FillPriceMin",
+      "source_line": 1055
+    },
+    {
+      "order": 349,
+      "heading": "33417.18.189",
+      "title": "FillQty",
+      "source_line": 1058
+    },
+    {
+      "order": 350,
+      "heading": "617.18.190",
+      "title": "FillValue",
+      "source_line": 1062
+    },
+    {
+      "order": 351,
+      "heading": "33417.18.191",
+      "title": "FilterNum",
+      "source_line": 1065
+    },
+    {
+      "order": 352,
+      "heading": "33517.18.192",
+      "title": "Find",
+      "source_line": 1068
+    },
+    {
+      "order": 353,
+      "heading": "33517.18.193",
+      "title": "Format",
+      "source_line": 1071
+    },
+    {
+      "order": 354,
+      "heading": "33517.18.194",
+      "title": "FormatDate",
+      "source_line": 1074
+    },
+    {
+      "order": 355,
+      "heading": "33617.18.195",
+      "title": "Fundamentals",
+      "source_line": 1077
+    },
+    {
+      "order": 356,
+      "heading": "33617.18.196",
+      "title": "FunBar",
+      "source_line": 1080
+    },
+    {
+      "order": 357,
+      "heading": "33717.18.197",
+      "title": "FunStat",
+      "source_line": 1083
+    },
+    {
+      "order": 358,
+      "heading": "33817.18.198",
+      "title": "FuturesMargin",
+      "source_line": 1086
+    },
+    {
+      "order": 359,
+      "heading": "33817.18.199",
+      "title": "FxRatio",
+      "source_line": 1089
+    },
+    {
+      "order": 360,
+      "heading": "33917.18.200",
+      "title": "GetField",
+      "source_line": 1092
+    },
+    {
+      "order": 361,
+      "heading": "33917.18.201",
+      "title": "GreedyScoring",
+      "source_line": 1095
+    },
+    {
+      "order": 362,
+      "heading": "34017.18.202",
+      "title": "Graphs",
+      "source_line": 1098
+    },
+    {
+      "order": 363,
+      "heading": "34017.18.203",
+      "title": "High or H",
+      "source_line": 1101
+    },
+    {
+      "order": 364,
+      "heading": "34117.18.204",
+      "title": "Highest or HHV",
+      "source_line": 1104
+    },
+    {
+      "order": 365,
+      "heading": "34117.18.205",
+      "title": "HMA or HAvg",
+      "source_line": 1107
+    },
+    {
+      "order": 366,
+      "heading": "34117.18.206",
+      "title": "HolidayList",
+      "source_line": 1110
+    },
+    {
+      "order": 367,
+      "heading": "34217.18.207",
+      "title": "HVOL",
+      "source_line": 1113
+    },
+    {
+      "order": 368,
+      "heading": "34217.18.208",
+      "title": "ICDF",
+      "source_line": 1116
+    },
+    {
+      "order": 369,
+      "heading": "34317.18.209",
+      "title": "IF",
+      "source_line": 1119
+    },
+    {
+      "order": 370,
+      "heading": "34317.18.210",
+      "title": "IgnoreDividends",
+      "source_line": 1122
+    },
+    {
+      "order": 371,
+      "heading": "34417.18.211",
+      "title": "Import",
+      "source_line": 1125
+    },
+    {
+      "order": 372,
+      "heading": "34417.18.212",
+      "title": "Include",
+      "source_line": 1128
+    },
+    {
+      "order": 373,
+      "heading": "34417.18.213",
+      "title": "IncludeList",
+      "source_line": 1131
+    },
+    {
+      "order": 374,
+      "heading": "34517.18.214",
+      "title": "InXXX",
+      "source_line": 1134
+    },
+    {
+      "order": 375,
+      "heading": "34617.18.215",
+      "title": "InfoID",
+      "source_line": 1137
+    },
+    {
+      "order": 376,
+      "heading": "34617.18.216",
+      "title": "InfoDelist / InfoExpiry",
+      "source_line": 1140
+    },
+    {
+      "order": 377,
+      "heading": "34717.18.217",
+      "title": "InfoFloat",
+      "source_line": 1143
+    },
+    {
+      "order": 378,
+      "heading": "34717.18.218",
+      "title": "InfoGICS",
+      "source_line": 1146
+    },
+    {
+      "order": 379,
+      "heading": "34717.18.219",
+      "title": "InfoMargin",
+      "source_line": 1149
+    },
+    {
+      "order": 380,
+      "heading": "34817.18.220",
+      "title": "InfoShares",
+      "source_line": 1152
+    },
+    {
+      "order": 381,
+      "heading": "34817.18.221",
+      "title": "InfoTRBC",
+      "source_line": 1155
+    },
+    {
+      "order": 382,
+      "heading": "34817.18.222",
+      "title": "InList",
+      "source_line": 1158
+    },
+    {
+      "order": 383,
+      "heading": "34917.18.223",
+      "title": "InSet",
+      "source_line": 1161
+    },
+    {
+      "order": 384,
+      "heading": "34917.18.224",
+      "title": "IsExit",
+      "source_line": 1164
+    },
+    {
+      "order": 385,
+      "heading": "35017.18.225",
+      "title": "IsNan",
+      "source_line": 1167
+    },
+    {
+      "order": 386,
+      "heading": "35017.18.226",
+      "title": "IsOrder",
+      "source_line": 1170
+    },
+    {
+      "order": 387,
+      "heading": "35217.18.227",
+      "title": "IsSetup",
+      "source_line": 1173
+    },
+    {
+      "order": 388,
+      "heading": "35217.18.228",
+      "title": "IsTracker",
+      "source_line": 1176
+    },
+    {
+      "order": 389,
+      "heading": "35217.18.229",
+      "title": "Item",
+      "source_line": 1179
+    },
+    {
+      "order": 390,
+      "heading": "35317.18.230",
+      "title": "KAMA",
+      "source_line": 1182
+    },
+    {
+      "order": 391,
+      "heading": "35317.18.231",
+      "title": "KBBot",
+      "source_line": 1185
+    },
+    {
+      "order": 392,
+      "heading": "35417.18.232",
+      "title": "KBTop",
+      "source_line": 1188
+    },
+    {
+      "order": 393,
+      "heading": "35417.18.233",
+      "title": "KeepAdjusted",
+      "source_line": 1191
+    },
+    {
+      "order": 394,
+      "heading": "35517.18.234",
+      "title": "KeepNonIncluded",
+      "source_line": 1194
+    },
+    {
+      "order": 395,
+      "heading": "35517.18.235",
+      "title": "KeepRedundant",
+      "source_line": 1197
+    },
+    {
+      "order": 396,
+      "heading": "35617.18.236",
+      "title": "KeepTrades",
+      "source_line": 1200
+    },
+    {
+      "order": 397,
+      "heading": "35717.18.237",
+      "title": "Kurtosis",
+      "source_line": 1203
+    },
+    {
+      "order": 398,
+      "heading": "35717.18.238",
+      "title": "Left",
+      "source_line": 1206
+    },
+    {
+      "order": 399,
+      "heading": "35717.18.239",
+      "title": "Length",
+      "source_line": 1209
+    },
+    {
+      "order": 400,
+      "heading": "35817.18.240",
+      "title": "Library",
+      "source_line": 1212
+    },
+    {
+      "order": 401,
+      "heading": "35817.18.241",
+      "title": "LimitExtra",
+      "source_line": 1215
+    },
+    {
+      "order": 402,
+      "heading": "35817.18.242",
+      "title": "LimitSlip",
+      "source_line": 1218
+    },
+    {
+      "order": 403,
+      "heading": "35917.18.243",
+      "title": "LinReg",
+      "source_line": 1221
+    },
+    {
+      "order": 404,
+      "heading": "35917.18.244",
+      "title": "ListNum",
+      "source_line": 1224
+    },
+    {
+      "order": 405,
+      "heading": "36017.18.245",
+      "title": "Log",
+      "source_line": 1227
+    },
+    {
+      "order": 406,
+      "heading": "36017.18.246",
+      "title": "LogFile",
+      "source_line": 1230
+    },
+    {
+      "order": 407,
+      "heading": "36117.18.247",
+      "title": "Logit",
+      "source_line": 1233
+    },
+    {
+      "order": 408,
+      "heading": "36217.18.248",
+      "title": "Low or L",
+      "source_line": 1236
+    },
+    {
+      "order": 409,
+      "heading": "717.18.249",
+      "title": "Lowest or LLV",
+      "source_line": 1240
+    },
+    {
+      "order": 410,
+      "heading": "36217.18.250",
+      "title": "MA or Avg",
+      "source_line": 1243
+    },
+    {
+      "order": 411,
+      "heading": "36317.18.251",
+      "title": "MACD",
+      "source_line": 1246
+    },
+    {
+      "order": 412,
+      "heading": "36317.18.252",
+      "title": "MACDH",
+      "source_line": 1249
+    },
+    {
+      "order": 413,
+      "heading": "36317.18.253",
+      "title": "MACDS",
+      "source_line": 1252
+    },
+    {
+      "order": 414,
+      "heading": "36417.18.254",
+      "title": "MarginIntPct",
+      "source_line": 1255
+    },
+    {
+      "order": 415,
+      "heading": "36417.18.255",
+      "title": "MarkToMarket",
+      "source_line": 1258
+    },
+    {
+      "order": 416,
+      "heading": "36517.18.256",
+      "title": "Match",
+      "source_line": 1261
+    },
+    {
+      "order": 417,
+      "heading": "36517.18.257",
+      "title": "Max",
+      "source_line": 1264
+    },
+    {
+      "order": 418,
+      "heading": "36617.18.258",
+      "title": "MaxN",
+      "source_line": 1267
+    },
+    {
+      "order": 419,
+      "heading": "36717.18.259",
+      "title": "MaxCatExp",
+      "source_line": 1270
+    },
+    {
+      "order": 420,
+      "heading": "36717.18.260",
+      "title": "MaxCatInv",
+      "source_line": 1273
+    },
+    {
+      "order": 421,
+      "heading": "36717.18.261",
+      "title": "MaxEntries",
+      "source_line": 1276
+    },
+    {
+      "order": 422,
+      "heading": "36817.18.262",
+      "title": "MaxExposure",
+      "source_line": 1279
+    },
+    {
+      "order": 423,
+      "heading": "36817.18.263",
+      "title": "MaxInvested",
+      "source_line": 1282
+    },
+    {
+      "order": 424,
+      "heading": "36917.18.264",
+      "title": "MaxLongExp",
+      "source_line": 1285
+    },
+    {
+      "order": 425,
+      "heading": "37017.18.265",
+      "title": "MaxLongInv",
+      "source_line": 1288
+    },
+    {
+      "order": 426,
+      "heading": "37017.18.266",
+      "title": "MaxNetExp",
+      "source_line": 1291
+    },
+    {
+      "order": 427,
+      "heading": "37117.18.267",
+      "title": "MaxNetInv",
+      "source_line": 1294
+    },
+    {
+      "order": 428,
+      "heading": "37117.18.268",
+      "title": "MaxNewExp",
+      "source_line": 1297
+    },
+    {
+      "order": 429,
+      "heading": "37217.18.269",
+      "title": "MaxNewInv",
+      "source_line": 1300
+    },
+    {
+      "order": 430,
+      "heading": "37217.18.270",
+      "title": "MaxNewPos",
+      "source_line": 1303
+    },
+    {
+      "order": 431,
+      "heading": "37217.18.271",
+      "title": "MaxPerTurn",
+      "source_line": 1306
+    },
+    {
+      "order": 432,
+      "heading": "37317.18.272",
+      "title": "MaxPositions",
+      "source_line": 1309
+    },
+    {
+      "order": 433,
+      "heading": "37317.18.273",
+      "title": "MaxSameCat",
+      "source_line": 1312
+    },
+    {
+      "order": 434,
+      "heading": "37417.18.274",
+      "title": "MaxSameSym",
+      "source_line": 1315
+    },
+    {
+      "order": 435,
+      "heading": "37417.18.275",
+      "title": "MaxSetups",
+      "source_line": 1318
+    },
+    {
+      "order": 436,
+      "heading": "37517.18.276",
+      "title": "MaxShortExp",
+      "source_line": 1321
+    },
+    {
+      "order": 437,
+      "heading": "37517.18.277",
+      "title": "MaxShortInv",
+      "source_line": 1324
+    },
+    {
+      "order": 438,
+      "heading": "37617.18.278",
+      "title": "MaxSymExp",
+      "source_line": 1327
+    },
+    {
+      "order": 439,
+      "heading": "37617.18.279",
+      "title": "MaxSymInv",
+      "source_line": 1330
+    },
+    {
+      "order": 440,
+      "heading": "37717.18.280",
+      "title": "MDI",
+      "source_line": 1333
+    },
+    {
+      "order": 441,
+      "heading": "37717.18.281",
+      "title": "Median",
+      "source_line": 1336
+    },
+    {
+      "order": 442,
+      "heading": "37817.18.282",
+      "title": "Mid",
+      "source_line": 1339
+    },
+    {
+      "order": 443,
+      "heading": "37817.18.283",
+      "title": "Min",
+      "source_line": 1342
+    },
+    {
+      "order": 444,
+      "heading": "37817.18.284",
+      "title": "MinN",
+      "source_line": 1345
+    },
+    {
+      "order": 445,
+      "heading": "37917.18.285",
+      "title": "MinFreeCash",
+      "source_line": 1348
+    },
+    {
+      "order": 446,
+      "heading": "37917.18.286",
+      "title": "MinNetExp",
+      "source_line": 1351
+    },
+    {
+      "order": 447,
+      "heading": "38017.18.287",
+      "title": "MinNetInv",
+      "source_line": 1354
+    },
+    {
+      "order": 448,
+      "heading": "38017.18.288",
+      "title": "MissingBars",
+      "source_line": 1357
+    },
+    {
+      "order": 449,
+      "heading": "38117.18.289",
+      "title": "Month",
+      "source_line": 1360
+    },
+    {
+      "order": 450,
+      "heading": "38117.18.290",
+      "title": "Namespace",
+      "source_line": 1363
+    },
+    {
+      "order": 451,
+      "heading": "38217.18.291",
+      "title": "NextOpen",
+      "source_line": 1366
+    },
+    {
+      "order": 452,
+      "heading": "38317.18.292",
+      "title": "NoNan",
+      "source_line": 1369
+    },
+    {
+      "order": 453,
+      "heading": "38317.18.293",
+      "title": "Notes",
+      "source_line": 1372
+    },
+    {
+      "order": 454,
+      "heading": "38317.18.294",
+      "title": "NoWeekends",
+      "source_line": 1375
+    },
+    {
+      "order": 455,
+      "heading": "38417.18.295",
+      "title": "NthOfMonth",
+      "source_line": 1378
+    },
+    {
+      "order": 456,
+      "heading": "38417.18.296",
+      "title": "NumBars",
+      "source_line": 1381
+    },
+    {
+      "order": 457,
+      "heading": "38517.18.297",
+      "title": "OBV",
+      "source_line": 1384
+    },
+    {
+      "order": 458,
+      "heading": "38517.18.298",
+      "title": "Open or O",
+      "source_line": 1387
+    },
+    {
+      "order": 459,
+      "heading": "38617.18.299",
+      "title": "OpenSlip",
+      "source_line": 1390
+    },
+    {
+      "order": 460,
+      "heading": "38617.18.300",
+      "title": "OptimizeSettings",
+      "source_line": 1393
+    },
+    {
+      "order": 461,
+      "heading": "38617.18.301",
+      "title": "OrderClerkFolder",
+      "source_line": 1396
+    },
+    {
+      "order": 462,
+      "heading": "38717.18.302",
+      "title": "OrderNote / OrderExtra",
+      "source_line": 1399
+    },
+    {
+      "order": 463,
+      "heading": "38817.18.303",
+      "title": "OrderPrice",
+      "source_line": 1402
+    },
+    {
+      "order": 464,
+      "heading": "38917.18.304",
+      "title": "OrderRank",
+      "source_line": 1405
+    },
+    {
+      "order": 465,
+      "heading": "38917.18.305",
+      "title": "OrdersComment",
+      "source_line": 1408
+    },
+    {
+      "order": 466,
+      "heading": "39017.18.306",
+      "title": "OrderSettings",
+      "source_line": 1411
+    },
+    {
+      "order": 467,
+      "heading": "39017.18.307",
+      "title": "OrdersFile",
+      "source_line": 1414
+    },
+    {
+      "order": 468,
+      "heading": "817.18.308",
+      "title": "OrdersFreeCash",
+      "source_line": 1418
+    },
+    {
+      "order": 469,
+      "heading": "39117.18.309",
+      "title": "OrdersInclude",
+      "source_line": 1421
+    },
+    {
+      "order": 470,
+      "heading": "39117.18.310",
+      "title": "OrdersLiveData",
+      "source_line": 1424
+    },
+    {
+      "order": 471,
+      "heading": "39117.18.311",
+      "title": "OrdersMktAsLmtPct",
+      "source_line": 1427
+    },
+    {
+      "order": 472,
+      "heading": "39217.18.312",
+      "title": "OrdersMode",
+      "source_line": 1430
+    },
+    {
+      "order": 473,
+      "heading": "39217.18.313",
+      "title": "OrdersNetLiq",
+      "source_line": 1433
+    },
+    {
+      "order": 474,
+      "heading": "39317.18.314",
+      "title": "OrdersTemplate",
+      "source_line": 1436
+    },
+    {
+      "order": 475,
+      "heading": "39417.18.315",
+      "title": "OrdersUseQtyIn",
+      "source_line": 1439
+    },
+    {
+      "order": 476,
+      "heading": "39517.18.316",
+      "title": "OrderSum",
+      "source_line": 1442
+    },
+    {
+      "order": 477,
+      "heading": "39517.18.317",
+      "title": "PadAlignSym",
+      "source_line": 1445
+    },
+    {
+      "order": 478,
+      "heading": "39517.18.318",
+      "title": "Padding",
+      "source_line": 1448
+    },
+    {
+      "order": 479,
+      "heading": "39617.18.319",
+      "title": "Parameters",
+      "source_line": 1451
+    },
+    {
+      "order": 480,
+      "heading": "39617.18.320",
+      "title": "PDI",
+      "source_line": 1454
+    },
+    {
+      "order": 481,
+      "heading": "39717.18.321",
+      "title": "Peak",
+      "source_line": 1457
+    },
+    {
+      "order": 482,
+      "heading": "39717.18.322",
+      "title": "PeakBars",
+      "source_line": 1460
+    },
+    {
+      "order": 483,
+      "heading": "39817.18.323",
+      "title": "PercentRank",
+      "source_line": 1463
+    },
+    {
+      "order": 484,
+      "heading": "39817.18.324",
+      "title": "PercentRankN",
+      "source_line": 1466
+    },
+    {
+      "order": 485,
+      "heading": "39917.18.325",
+      "title": "PointValue",
+      "source_line": 1469
+    },
+    {
+      "order": 486,
+      "heading": "39917.18.326",
+      "title": "PrevExitLimit",
+      "source_line": 1472
+    },
+    {
+      "order": 487,
+      "heading": "40017.18.327",
+      "title": "PrevExitStop",
+      "source_line": 1475
+    },
+    {
+      "order": 488,
+      "heading": "40017.18.328",
+      "title": "Product",
+      "source_line": 1478
+    },
+    {
+      "order": 489,
+      "heading": "40117.18.329",
+      "title": "PositionSum",
+      "source_line": 1481
+    },
+    {
+      "order": 490,
+      "heading": "40117.18.330",
+      "title": "PriceRound",
+      "source_line": 1484
+    },
+    {
+      "order": 491,
+      "heading": "40217.18.331",
+      "title": "QtyFinal",
+      "source_line": 1487
+    },
+    {
+      "order": 492,
+      "heading": "40217.18.332",
+      "title": "QtyPrice",
+      "source_line": 1490
+    },
+    {
+      "order": 493,
+      "heading": "40317.18.333",
+      "title": "QtyRound",
+      "source_line": 1493
+    },
+    {
+      "order": 494,
+      "heading": "40417.18.334",
+      "title": "QtyType",
+      "source_line": 1496
+    },
+    {
+      "order": 495,
+      "heading": "40417.18.335",
+      "title": "Quantity",
+      "source_line": 1499
+    },
+    {
+      "order": 496,
+      "heading": "40517.18.336",
+      "title": "Random",
+      "source_line": 1502
+    },
+    {
+      "order": 497,
+      "heading": "40517.18.337",
+      "title": "RandomSeed",
+      "source_line": 1505
+    },
+    {
+      "order": 498,
+      "heading": "40617.18.338",
+      "title": "Range or R",
+      "source_line": 1508
+    },
+    {
+      "order": 499,
+      "heading": "40617.18.339",
+      "title": "Rank",
+      "source_line": 1511
+    },
+    {
+      "order": 500,
+      "heading": "40717.18.340",
+      "title": "RankN",
+      "source_line": 1514
+    },
+    {
+      "order": 501,
+      "heading": "40717.18.341",
+      "title": "Reason",
+      "source_line": 1517
+    },
+    {
+      "order": 502,
+      "heading": "40717.18.342",
+      "title": "Reduce",
+      "source_line": 1520
+    },
+    {
+      "order": 503,
+      "heading": "40817.18.343",
+      "title": "RemoveLatest",
+      "source_line": 1523
+    },
+    {
+      "order": 504,
+      "heading": "40817.18.344",
+      "title": "Replace",
+      "source_line": 1526
+    },
+    {
+      "order": 505,
+      "heading": "40917.18.345",
+      "title": "ReportContent",
+      "source_line": 1529
+    },
+    {
+      "order": 506,
+      "heading": "40917.18.346",
+      "title": "ReportsFolder",
+      "source_line": 1532
+    },
+    {
+      "order": 507,
+      "heading": "40917.18.347",
+      "title": "Rescale",
+      "source_line": 1535
+    },
+    {
+      "order": 508,
+      "heading": "41017.18.348",
+      "title": "Results",
+      "source_line": 1538
+    },
+    {
+      "order": 509,
+      "heading": "41017.18.349",
+      "title": "ResultsFile",
+      "source_line": 1541
+    },
+    {
+      "order": 510,
+      "heading": "41017.18.350",
+      "title": "Right",
+      "source_line": 1544
+    },
+    {
+      "order": 511,
+      "heading": "41117.18.351",
+      "title": "RiskFreeRateSym",
+      "source_line": 1547
+    },
+    {
+      "order": 512,
+      "heading": "41117.18.352",
+      "title": "ROC or PctChg",
+      "source_line": 1550
+    },
+    {
+      "order": 513,
+      "heading": "41217.18.353",
+      "title": "RollCost",
+      "source_line": 1553
+    },
+    {
+      "order": 514,
+      "heading": "41217.18.354",
+      "title": "Round",
+      "source_line": 1556
+    },
+    {
+      "order": 515,
+      "heading": "41317.18.355",
+      "title": "RSI",
+      "source_line": 1559
+    },
+    {
+      "order": 516,
+      "heading": "41317.18.356",
+      "title": "RRSI",
+      "source_line": 1562
+    },
+    {
+      "order": 517,
+      "heading": "41417.18.357",
+      "title": "RsiF",
+      "source_line": 1565
+    },
+    {
+      "order": 518,
+      "heading": "41417.18.358",
+      "title": "S.Alloc",
+      "source_line": 1568
+    },
+    {
+      "order": 519,
+      "heading": "41517.18.359",
+      "title": "S.BPx",
+      "source_line": 1571
+    },
+    {
+      "order": 520,
+      "heading": "41517.18.360",
+      "title": "S.CashInOut",
+      "source_line": 1574
+    },
+    {
+      "order": 521,
+      "heading": "41617.18.361",
+      "title": "S.Comms",
+      "source_line": 1577
+    },
+    {
+      "order": 522,
+      "heading": "41617.18.362",
+      "title": "S.Compounded",
+      "source_line": 1580
+    },
+    {
+      "order": 523,
+      "heading": "41617.18.363",
+      "title": "S.Date",
+      "source_line": 1583
+    },
+    {
+      "order": 524,
+      "heading": "41717.18.364",
+      "title": "S.DDBars",
+      "source_line": 1586
+    },
+    {
+      "order": 525,
+      "heading": "41717.18.365",
+      "title": "S.DDDlr",
+      "source_line": 1589
+    },
+    {
+      "order": 526,
+      "heading": "41717.18.366",
+      "title": "S.DDPct",
+      "source_line": 1592
+    },
+    {
+      "order": 527,
+      "heading": "917.18.367",
+      "title": "S.Dividends",
+      "source_line": 1596
+    },
+    {
+      "order": 528,
+      "heading": "41817.18.368",
+      "title": "S.Entries",
+      "source_line": 1599
+    },
+    {
+      "order": 529,
+      "heading": "41817.18.369",
+      "title": "S.EntryOrders",
+      "source_line": 1602
+    },
+    {
+      "order": 530,
+      "heading": "41817.18.370",
+      "title": "S.Equity",
+      "source_line": 1605
+    },
+    {
+      "order": 531,
+      "heading": "41817.18.371",
+      "title": "S.Exits",
+      "source_line": 1608
+    },
+    {
+      "order": 532,
+      "heading": "41917.18.372",
+      "title": "S.Exposure",
+      "source_line": 1611
+    },
+    {
+      "order": 533,
+      "heading": "41917.18.373",
+      "title": "S.FeesInOut",
+      "source_line": 1614
+    },
+    {
+      "order": 534,
+      "heading": "41917.18.374",
+      "title": "S.First",
+      "source_line": 1617
+    },
+    {
+      "order": 535,
+      "heading": "42017.18.375",
+      "title": "S.FreeCash",
+      "source_line": 1620
+    },
+    {
+      "order": 536,
+      "heading": "42017.18.376",
+      "title": "S.FuturesMargin",
+      "source_line": 1623
+    },
+    {
+      "order": 537,
+      "heading": "42117.18.377",
+      "title": "S.Interest",
+      "source_line": 1626
+    },
+    {
+      "order": 538,
+      "heading": "42117.18.378",
+      "title": "S.Invested",
+      "source_line": 1629
+    },
+    {
+      "order": 539,
+      "heading": "42117.18.379",
+      "title": "S.LongExp",
+      "source_line": 1632
+    },
+    {
+      "order": 540,
+      "heading": "42217.18.380",
+      "title": "S.LongInv",
+      "source_line": 1635
+    },
+    {
+      "order": 541,
+      "heading": "42217.18.381",
+      "title": "S.LossAmt",
+      "source_line": 1638
+    },
+    {
+      "order": 542,
+      "heading": "42217.18.382",
+      "title": "S.LossBars",
+      "source_line": 1641
+    },
+    {
+      "order": 543,
+      "heading": "42217.18.383",
+      "title": "S.Losses",
+      "source_line": 1644
+    },
+    {
+      "order": 544,
+      "heading": "42317.18.384",
+      "title": "S.LossPct",
+      "source_line": 1647
+    },
+    {
+      "order": 545,
+      "heading": "42317.18.385",
+      "title": "S.LossPctAlloc",
+      "source_line": 1650
+    },
+    {
+      "order": 546,
+      "heading": "42317.18.386",
+      "title": "S.M2M",
+      "source_line": 1653
+    },
+    {
+      "order": 547,
+      "heading": "42317.18.387",
+      "title": "S.MAE",
+      "source_line": 1656
+    },
+    {
+      "order": 548,
+      "heading": "42317.18.388",
+      "title": "S.MFE",
+      "source_line": 1659
+    },
+    {
+      "order": 549,
+      "heading": "42417.18.389",
+      "title": "S.MarginReq",
+      "source_line": 1662
+    },
+    {
+      "order": 550,
+      "heading": "42417.18.390",
+      "title": "S.MaxAlloc",
+      "source_line": 1665
+    },
+    {
+      "order": 551,
+      "heading": "42417.18.391",
+      "title": "S.MaxDDBars",
+      "source_line": 1668
+    },
+    {
+      "order": 552,
+      "heading": "42417.18.392",
+      "title": "S.MaxDDDlr",
+      "source_line": 1671
+    },
+    {
+      "order": 553,
+      "heading": "42517.18.393",
+      "title": "S.MaxDDPct",
+      "source_line": 1674
+    },
+    {
+      "order": 554,
+      "heading": "42517.18.394",
+      "title": "S.MaxEquity",
+      "source_line": 1677
+    },
+    {
+      "order": 555,
+      "heading": "42517.18.395",
+      "title": "S.MinAlloc",
+      "source_line": 1680
+    },
+    {
+      "order": 556,
+      "heading": "42517.18.396",
+      "title": "S.MinEquity",
+      "source_line": 1683
+    },
+    {
+      "order": 557,
+      "heading": "42517.18.397",
+      "title": "S.NetDlr",
+      "source_line": 1686
+    },
+    {
+      "order": 558,
+      "heading": "42617.18.398",
+      "title": "S.NetFx",
+      "source_line": 1689
+    },
+    {
+      "order": 559,
+      "heading": "42617.18.399",
+      "title": "S.NetPct",
+      "source_line": 1692
+    },
+    {
+      "order": 560,
+      "heading": "42617.18.400",
+      "title": "S.Number",
+      "source_line": 1695
+    },
+    {
+      "order": 561,
+      "heading": "42617.18.401",
+      "title": "S.Positions",
+      "source_line": 1698
+    },
+    {
+      "order": 562,
+      "heading": "42717.18.402",
+      "title": "S.RiskFreeRate",
+      "source_line": 1701
+    },
+    {
+      "order": 563,
+      "heading": "42717.18.403",
+      "title": "S.RollCosts",
+      "source_line": 1704
+    },
+    {
+      "order": 564,
+      "heading": "42817.18.404",
+      "title": "S.Setups",
+      "source_line": 1707
+    },
+    {
+      "order": 565,
+      "heading": "42817.18.405",
+      "title": "S.ShortExp",
+      "source_line": 1710
+    },
+    {
+      "order": 566,
+      "heading": "42817.18.406",
+      "title": "S.ShortInv",
+      "source_line": 1713
+    },
+    {
+      "order": 567,
+      "heading": "42817.18.407",
+      "title": "S.Slips",
+      "source_line": 1716
+    },
+    {
+      "order": 568,
+      "heading": "42917.18.408",
+      "title": "S.StartEquity",
+      "source_line": 1719
+    },
+    {
+      "order": 569,
+      "heading": "42917.18.409",
+      "title": "S.Stops",
+      "source_line": 1722
+    },
+    {
+      "order": 570,
+      "heading": "42917.18.410",
+      "title": "S.Targets",
+      "source_line": 1725
+    },
+    {
+      "order": 571,
+      "heading": "42917.18.411",
+      "title": "S.TradeBars",
+      "source_line": 1728
+    },
+    {
+      "order": 572,
+      "heading": "43017.18.412",
+      "title": "S.TradeDlr",
+      "source_line": 1731
+    },
+    {
+      "order": 573,
+      "heading": "43017.18.413",
+      "title": "S.TradePct",
+      "source_line": 1734
+    },
+    {
+      "order": 574,
+      "heading": "43017.18.414",
+      "title": "S.TradePctAlloc",
+      "source_line": 1737
+    },
+    {
+      "order": 575,
+      "heading": "43017.18.415",
+      "title": "S.TWEQ",
+      "source_line": 1740
+    },
+    {
+      "order": 576,
+      "heading": "43017.18.416",
+      "title": "S.Usage",
+      "source_line": 1743
+    },
+    {
+      "order": 577,
+      "heading": "43117.18.417",
+      "title": "S.WinAmt",
+      "source_line": 1746
+    },
+    {
+      "order": 578,
+      "heading": "43117.18.418",
+      "title": "S.WinBars",
+      "source_line": 1749
+    },
+    {
+      "order": 579,
+      "heading": "43117.18.419",
+      "title": "S.WinPct",
+      "source_line": 1752
+    },
+    {
+      "order": 580,
+      "heading": "43117.18.420",
+      "title": "S.WinPctAlloc",
+      "source_line": 1755
+    },
+    {
+      "order": 581,
+      "heading": "43217.18.421",
+      "title": "S.Wins",
+      "source_line": 1758
+    },
+    {
+      "order": 582,
+      "heading": "43217.18.422",
+      "title": "SAR",
+      "source_line": 1761
+    },
+    {
+      "order": 583,
+      "heading": "43217.18.423",
+      "title": "SarF",
+      "source_line": 1764
+    },
+    {
+      "order": 584,
+      "heading": "43217.18.424",
+      "title": "SaveAs",
+      "source_line": 1767
+    },
+    {
+      "order": 585,
+      "heading": "43317.18.425",
+      "title": "SaveChartsTo",
+      "source_line": 1770
+    },
+    {
+      "order": 586,
+      "heading": "1017.18.426",
+      "title": "SavePositionsAs",
+      "source_line": 1774
+    },
+    {
+      "order": 587,
+      "heading": "43417.18.427",
+      "title": "SaveScanAs",
+      "source_line": 1777
+    },
+    {
+      "order": 588,
+      "heading": "43417.18.428",
+      "title": "SaveStatsAs",
+      "source_line": 1780
+    },
+    {
+      "order": 589,
+      "heading": "43417.18.429",
+      "title": "SaveTestListAs",
+      "source_line": 1783
+    },
+    {
+      "order": 590,
+      "heading": "43517.18.430",
+      "title": "SaveTradesAs",
+      "source_line": 1786
+    },
+    {
+      "order": 591,
+      "heading": "43517.18.431",
+      "title": "SaveTradesType",
+      "source_line": 1789
+    },
+    {
+      "order": 592,
+      "heading": "43617.18.432",
+      "title": "Scan",
+      "source_line": 1792
+    },
+    {
+      "order": 593,
+      "heading": "43617.18.433",
+      "title": "ScanInclude",
+      "source_line": 1795
+    },
+    {
+      "order": 594,
+      "heading": "43617.18.434",
+      "title": "ScanNoDefCols",
+      "source_line": 1798
+    },
+    {
+      "order": 595,
+      "heading": "43617.18.435",
+      "title": "ScanNoHeader",
+      "source_line": 1801
+    },
+    {
+      "order": 596,
+      "heading": "43717.18.436",
+      "title": "ScanNoWindow",
+      "source_line": 1804
+    },
+    {
+      "order": 597,
+      "heading": "43717.18.437",
+      "title": "ScanSettings",
+      "source_line": 1807
+    },
+    {
+      "order": 598,
+      "heading": "43717.18.438",
+      "title": "Select",
+      "source_line": 1810
+    },
+    {
+      "order": 599,
+      "heading": "43717.18.439",
+      "title": "Sequence",
+      "source_line": 1813
+    },
+    {
+      "order": 600,
+      "heading": "43917.18.441",
+      "title": "SetupRank",
+      "source_line": 1819
+    },
+    {
+      "order": 601,
+      "heading": "43917.18.442",
+      "title": "SetupScore",
+      "source_line": 1822
+    },
+    {
+      "order": 602,
+      "heading": "43917.18.443",
+      "title": "SetupSkip",
+      "source_line": 1825
+    },
+    {
+      "order": 603,
+      "heading": "44017.18.444",
+      "title": "SetupSum",
+      "source_line": 1828
+    },
+    {
+      "order": 604,
+      "heading": "44017.18.445",
+      "title": "Shares or Contracts",
+      "source_line": 1831
+    },
+    {
+      "order": 605,
+      "heading": "44017.18.446",
+      "title": "ShortLoanIntPct",
+      "source_line": 1834
+    },
+    {
+      "order": 606,
+      "heading": "44117.18.447",
+      "title": "ShortPrcdsIntPct",
+      "source_line": 1837
+    },
+    {
+      "order": 607,
+      "heading": "44117.18.448",
+      "title": "Side (position)",
+      "source_line": 1840
+    },
+    {
+      "order": 608,
+      "heading": "44217.18.449",
+      "title": "Side (strategy)",
+      "source_line": 1843
+    },
+    {
+      "order": 609,
+      "heading": "44217.18.450",
+      "title": "Sign",
+      "source_line": 1846
+    },
+    {
+      "order": 610,
+      "heading": "44217.18.451",
+      "title": "SigSpike",
+      "source_line": 1849
+    },
+    {
+      "order": 611,
+      "heading": "44317.18.452",
+      "title": "SinceHigh",
+      "source_line": 1852
+    },
+    {
+      "order": 612,
+      "heading": "44317.18.453",
+      "title": "SinceLow",
+      "source_line": 1855
+    },
+    {
+      "order": 613,
+      "heading": "44317.18.454",
+      "title": "SinceTrue",
+      "source_line": 1858
+    },
+    {
+      "order": 614,
+      "heading": "44417.18.455",
+      "title": "Sine",
+      "source_line": 1861
+    },
+    {
+      "order": 615,
+      "heading": "44417.18.456",
+      "title": "Skewness",
+      "source_line": 1864
+    },
+    {
+      "order": 616,
+      "heading": "44517.18.457",
+      "title": "SkipTestIf",
+      "source_line": 1867
+    },
+    {
+      "order": 617,
+      "heading": "44517.18.458",
+      "title": "Slippage",
+      "source_line": 1870
+    },
+    {
+      "order": 618,
+      "heading": "44617.18.459",
+      "title": "Slope",
+      "source_line": 1873
+    },
+    {
+      "order": 619,
+      "heading": "44717.18.460",
+      "title": "Spearman",
+      "source_line": 1876
+    },
+    {
+      "order": 620,
+      "heading": "44717.18.461",
+      "title": "Split",
+      "source_line": 1879
+    },
+    {
+      "order": 621,
+      "heading": "44717.18.462",
+      "title": "Sqr",
+      "source_line": 1882
+    },
+    {
+      "order": 622,
+      "heading": "44817.18.463",
+      "title": "StartDate (Import)",
+      "source_line": 1885
+    },
+    {
+      "order": 623,
+      "heading": "44817.18.464",
+      "title": "StartDate (Setting)",
+      "source_line": 1888
+    },
+    {
+      "order": 624,
+      "heading": "44917.18.465",
+      "title": "StartPercent",
+      "source_line": 1891
+    },
+    {
+      "order": 625,
+      "heading": "44917.18.466",
+      "title": "StatsGroup",
+      "source_line": 1894
+    },
+    {
+      "order": 626,
+      "heading": "44917.18.467",
+      "title": "StatsIncludeCash",
+      "source_line": 1897
+    },
+    {
+      "order": 627,
+      "heading": "45017.18.468",
+      "title": "StdDev",
+      "source_line": 1900
+    },
+    {
+      "order": 628,
+      "heading": "45017.18.469",
+      "title": "StdErr",
+      "source_line": 1903
+    },
+    {
+      "order": 629,
+      "heading": "45117.18.470",
+      "title": "STOC",
+      "source_line": 1906
+    },
+    {
+      "order": 630,
+      "heading": "45217.18.471",
+      "title": "StopSlip",
+      "source_line": 1909
+    },
+    {
+      "order": 631,
+      "heading": "45317.18.472",
+      "title": "StratData",
+      "source_line": 1912
+    },
+    {
+      "order": 632,
+      "heading": "45317.18.473",
+      "title": "Strategy",
+      "source_line": 1915
+    },
+    {
+      "order": 633,
+      "heading": "45317.18.474",
+      "title": "StrategyScore",
+      "source_line": 1918
+    },
+    {
+      "order": 634,
+      "heading": "45317.18.475",
+      "title": "StratNum",
+      "source_line": 1921
+    },
+    {
+      "order": 635,
+      "heading": "45417.18.476",
+      "title": "StratRef",
+      "source_line": 1924
+    },
+    {
+      "order": 636,
+      "heading": "45417.18.477",
+      "title": "Sum",
+      "source_line": 1927
+    },
+    {
+      "order": 637,
+      "heading": "45517.18.478",
+      "title": "SumSince",
+      "source_line": 1930
+    },
+    {
+      "order": 638,
+      "heading": "45517.18.479",
+      "title": "SumSQ",
+      "source_line": 1933
+    },
+    {
+      "order": 639,
+      "heading": "45617.18.480",
+      "title": "SuperTrend",
+      "source_line": 1936
+    },
+    {
+      "order": 640,
+      "heading": "45617.18.481",
+      "title": "Switch",
+      "source_line": 1939
+    },
+    {
+      "order": 641,
+      "heading": "45717.18.482",
+      "title": "Symbol",
+      "source_line": 1942
+    },
+    {
+      "order": 642,
+      "heading": "45717.18.483",
+      "title": "SymChangeList",
+      "source_line": 1945
+    },
+    {
+      "order": 643,
+      "heading": "45817.18.484",
+      "title": "SymInfoFile",
+      "source_line": 1948
+    },
+    {
+      "order": 644,
+      "heading": "1117.18.485",
+      "title": "SymRef",
+      "source_line": 1952
+    },
+    {
+      "order": 645,
+      "heading": "45917.18.486",
+      "title": "T.Bars",
+      "source_line": 1955
+    },
+    {
+      "order": 646,
+      "heading": "46017.18.487",
+      "title": "T.CommIn",
+      "source_line": 1958
+    },
+    {
+      "order": 647,
+      "heading": "46017.18.488",
+      "title": "T.CommOut",
+      "source_line": 1961
+    },
+    {
+      "order": 648,
+      "heading": "46017.18.489",
+      "title": "T.DateIn",
+      "source_line": 1964
+    },
+    {
+      "order": 649,
+      "heading": "46017.18.490",
+      "title": "T.DateOut",
+      "source_line": 1967
+    },
+    {
+      "order": 650,
+      "heading": "46117.18.491",
+      "title": "T.Div",
+      "source_line": 1970
+    },
+    {
+      "order": 651,
+      "heading": "46117.18.492",
+      "title": "T.Fraction",
+      "source_line": 1973
+    },
+    {
+      "order": 652,
+      "heading": "46117.18.493",
+      "title": "T.FxIn",
+      "source_line": 1976
+    },
+    {
+      "order": 653,
+      "heading": "46117.18.494",
+      "title": "T.FxOut",
+      "source_line": 1979
+    },
+    {
+      "order": 654,
+      "heading": "46217.18.495",
+      "title": "T.Highest",
+      "source_line": 1982
+    },
+    {
+      "order": 655,
+      "heading": "46217.18.496",
+      "title": "T.Lowest",
+      "source_line": 1985
+    },
+    {
+      "order": 656,
+      "heading": "46217.18.497",
+      "title": "T.NetFx",
+      "source_line": 1988
+    },
+    {
+      "order": 657,
+      "heading": "46217.18.498",
+      "title": "T.NetPct",
+      "source_line": 1991
+    },
+    {
+      "order": 658,
+      "heading": "46317.18.499",
+      "title": "T.Points",
+      "source_line": 1994
+    },
+    {
+      "order": 659,
+      "heading": "46317.18.500",
+      "title": "T.PriceIn",
+      "source_line": 1997
+    },
+    {
+      "order": 660,
+      "heading": "46317.18.501",
+      "title": "T.PriceOut",
+      "source_line": 2000
+    },
+    {
+      "order": 661,
+      "heading": "46317.18.502",
+      "title": "T.Profit",
+      "source_line": 2003
+    },
+    {
+      "order": 662,
+      "heading": "46417.18.503",
+      "title": "T.PtVal",
+      "source_line": 2006
+    },
+    {
+      "order": 663,
+      "heading": "46417.18.504",
+      "title": "T.QtyIn",
+      "source_line": 2009
+    },
+    {
+      "order": 664,
+      "heading": "46417.18.505",
+      "title": "T.QtyOut",
+      "source_line": 2012
+    },
+    {
+      "order": 665,
+      "heading": "46417.18.506",
+      "title": "T.Reason",
+      "source_line": 2015
+    },
+    {
+      "order": 666,
+      "heading": "46417.18.507",
+      "title": "T.RollCosts",
+      "source_line": 2018
+    },
+    {
+      "order": 667,
+      "heading": "46617.18.508",
+      "title": "T.Side",
+      "source_line": 2021
+    },
+    {
+      "order": 668,
+      "heading": "46617.18.509",
+      "title": "T.SlipIn",
+      "source_line": 2024
+    },
+    {
+      "order": 669,
+      "heading": "46617.18.510",
+      "title": "T.SlipOut",
+      "source_line": 2027
+    },
+    {
+      "order": 670,
+      "heading": "46617.18.511",
+      "title": "T.SplitIn",
+      "source_line": 2030
+    },
+    {
+      "order": 671,
+      "heading": "46617.18.512",
+      "title": "T.SplitOut",
+      "source_line": 2033
+    },
+    {
+      "order": 672,
+      "heading": "46617.18.513",
+      "title": "T.Strat",
+      "source_line": 2036
+    },
+    {
+      "order": 673,
+      "heading": "46717.18.514",
+      "title": "T.TimeIn",
+      "source_line": 2039
+    },
+    {
+      "order": 674,
+      "heading": "46717.18.515",
+      "title": "T.TimeOut",
+      "source_line": 2042
+    },
+    {
+      "order": 675,
+      "heading": "46717.18.516",
+      "title": "T.ValueIn",
+      "source_line": 2045
+    },
+    {
+      "order": 676,
+      "heading": "46717.18.517",
+      "title": "T.ValueOut",
+      "source_line": 2048
+    },
+    {
+      "order": 677,
+      "heading": "46817.18.518",
+      "title": "Tangent",
+      "source_line": 2051
+    },
+    {
+      "order": 678,
+      "heading": "46817.18.519",
+      "title": "TanH",
+      "source_line": 2054
+    },
+    {
+      "order": 679,
+      "heading": "46817.18.520",
+      "title": "TargetPrice",
+      "source_line": 2057
+    },
+    {
+      "order": 680,
+      "heading": "46917.18.521",
+      "title": "TEMA",
+      "source_line": 2060
+    },
+    {
+      "order": 681,
+      "heading": "46917.18.522",
+      "title": "Template",
+      "source_line": 2063
+    },
+    {
+      "order": 682,
+      "heading": "47017.18.523",
+      "title": "TestInclude",
+      "source_line": 2066
+    },
+    {
+      "order": 683,
+      "heading": "47017.18.524",
+      "title": "TestData",
+      "source_line": 2069
+    },
+    {
+      "order": 684,
+      "heading": "47017.18.525",
+      "title": "TestName",
+      "source_line": 2072
+    },
+    {
+      "order": 685,
+      "heading": "47117.18.526",
+      "title": "TestOutput",
+      "source_line": 2075
+    },
+    {
+      "order": 686,
+      "heading": "47117.18.527",
+      "title": "TestScan",
+      "source_line": 2078
+    },
+    {
+      "order": 687,
+      "heading": "47117.18.528",
+      "title": "TestScanAllDates",
+      "source_line": 2081
+    },
+    {
+      "order": 688,
+      "heading": "47217.18.529",
+      "title": "TestSettings",
+      "source_line": 2084
+    },
+    {
+      "order": 689,
+      "heading": "47217.18.530",
+      "title": "This",
+      "source_line": 2087
+    },
+    {
+      "order": 690,
+      "heading": "47217.18.531",
+      "title": "TickSize",
+      "source_line": 2090
+    },
+    {
+      "order": 691,
+      "heading": "47317.18.532",
+      "title": "TLAdjusted",
+      "source_line": 2093
+    },
+    {
+      "order": 692,
+      "heading": "47317.18.533",
+      "title": "TLAdoptPos",
+      "source_line": 2096
+    },
+    {
+      "order": 693,
+      "heading": "47417.18.534",
+      "title": "TLDateFmt",
+      "source_line": 2099
+    },
+    {
+      "order": 694,
+      "heading": "47417.18.535",
+      "title": "TLDelim",
+      "source_line": 2102
+    },
+    {
+      "order": 695,
+      "heading": "47417.18.536",
+      "title": "TLEndDate",
+      "source_line": 2105
+    },
+    {
+      "order": 696,
+      "heading": "47517.18.537",
+      "title": "TLFields",
+      "source_line": 2108
+    },
+    {
+      "order": 697,
+      "heading": "47517.18.538",
+      "title": "TLNumFmt",
+      "source_line": 2111
+    },
+    {
+      "order": 698,
+      "heading": "47617.18.539",
+      "title": "TLStratName",
+      "source_line": 2114
+    },
+    {
+      "order": 699,
+      "heading": "47717.18.540",
+      "title": "TLTimeShift",
+      "source_line": 2117
+    },
+    {
+      "order": 700,
+      "heading": "47717.18.541",
+      "title": "TLValueIn",
+      "source_line": 2120
+    },
+    {
+      "order": 701,
+      "heading": "47817.18.542",
+      "title": "TLValueOut",
+      "source_line": 2123
+    },
+    {
+      "order": 702,
+      "heading": "47817.18.543",
+      "title": "ToDate",
+      "source_line": 2126
+    },
+    {
+      "order": 703,
+      "heading": "1217.18.544",
+      "title": "ToLower",
+      "source_line": 2130
+    },
+    {
+      "order": 704,
+      "heading": "47917.18.545",
+      "title": "ToNum",
+      "source_line": 2133
+    },
+    {
+      "order": 705,
+      "heading": "47917.18.546",
+      "title": "ToUpper",
+      "source_line": 2136
+    },
+    {
+      "order": 706,
+      "heading": "47917.18.547",
+      "title": "Top",
+      "source_line": 2139
+    },
+    {
+      "order": 707,
+      "heading": "48017.18.548",
+      "title": "Tracker",
+      "source_line": 2142
+    },
+    {
+      "order": 708,
+      "heading": "48017.18.549",
+      "title": "TradeList",
+      "source_line": 2145
+    },
+    {
+      "order": 709,
+      "heading": "48117.18.550",
+      "title": "Trades",
+      "source_line": 2148
+    },
+    {
+      "order": 710,
+      "heading": "48117.18.551",
+      "title": "TradeStatAvg",
+      "source_line": 2151
+    },
+    {
+      "order": 711,
+      "heading": "48117.18.552",
+      "title": "TradeStatMax",
+      "source_line": 2154
+    },
+    {
+      "order": 712,
+      "heading": "48217.18.553",
+      "title": "TradeStatMin",
+      "source_line": 2157
+    },
+    {
+      "order": 713,
+      "heading": "48217.18.554",
+      "title": "TradeStatStdDev",
+      "source_line": 2160
+    },
+    {
+      "order": 714,
+      "heading": "48317.18.555",
+      "title": "TradeStatSum",
+      "source_line": 2163
+    },
+    {
+      "order": 715,
+      "heading": "48317.18.556",
+      "title": "Trough",
+      "source_line": 2166
+    },
+    {
+      "order": 716,
+      "heading": "48317.18.557",
+      "title": "TroughBars",
+      "source_line": 2169
+    },
+    {
+      "order": 717,
+      "heading": "48417.18.558",
+      "title": "TrueInRow",
+      "source_line": 2172
+    },
+    {
+      "order": 718,
+      "heading": "48417.18.559",
+      "title": "TrueRange or TR",
+      "source_line": 2175
+    },
+    {
+      "order": 719,
+      "heading": "48517.18.560",
+      "title": "UntilTrue",
+      "source_line": 2178
+    },
+    {
+      "order": 720,
+      "heading": "48517.18.561",
+      "title": "Update",
+      "source_line": 2181
+    },
+    {
+      "order": 721,
+      "heading": "48617.18.562",
+      "title": "UseAvailableBars",
+      "source_line": 2184
+    },
+    {
+      "order": 722,
+      "heading": "48617.18.563",
+      "title": "Using",
+      "source_line": 2187
+    },
+    {
+      "order": 723,
+      "heading": "48617.18.564",
+      "title": "Volume or V",
+      "source_line": 2190
+    },
+    {
+      "order": 724,
+      "heading": "48717.18.565",
+      "title": "VWMA",
+      "source_line": 2193
+    },
+    {
+      "order": 725,
+      "heading": "48717.18.566",
+      "title": "WalkForward",
+      "source_line": 2196
+    },
+    {
+      "order": 726,
+      "heading": "48817.18.567",
+      "title": "Week",
+      "source_line": 2199
+    },
+    {
+      "order": 727,
+      "heading": "48817.18.568",
+      "title": "WhenTrue",
+      "source_line": 2202
+    },
+    {
+      "order": 728,
+      "heading": "48817.18.569",
+      "title": "WMA or WAvg",
+      "source_line": 2205
+    },
+    {
+      "order": 729,
+      "heading": "48917.18.570",
+      "title": "Year",
+      "source_line": 2208
+    },
+    {
+      "order": 730,
+      "heading": "48917.18.571",
+      "title": "YInt",
+      "source_line": 2211
+    },
+    {
+      "order": 731,
+      "heading": "27",
+      "title": "Click on \"Trades\" to view the detailed trade list:",
+      "source_line": 2261
+    },
+    {
+      "order": 732,
+      "heading": "66",
+      "title": "VS",
+      "source_line": 2416
+    },
+    {
+      "order": 733,
+      "heading": "1",
+      "title": "Click on \"New Portfolio\":",
+      "source_line": 2584
+    },
+    {
+      "order": 734,
+      "heading": "2",
+      "title": "Provide a name and folder location for the portfolio's CSV data files and set some properties of the CSV files to create:",
+      "source_line": 2585
+    },
+    {
+      "order": 735,
+      "heading": "3",
+      "title": "Specify the field-level details of the CSV export files:",
+      "source_line": 2588
+    },
+    {
+      "order": 736,
+      "heading": "4",
+      "title": "Specify the remaining details of your CSV files:",
+      "source_line": 2591
+    },
+    {
+      "order": 737,
+      "heading": "5",
+      "title": "Add symbols to your portfolio:",
+      "source_line": 2593
+    },
+    {
+      "order": 738,
+      "heading": "6",
+      "title": "Once your portfolio is configured, UA will already have exported your CSV data files to your specified folder, and you can now import them into RealTest.",
+      "source_line": 2595
+    },
+    {
+      "order": 739,
+      "heading": "7",
+      "title": "To keep your date up to date every day, simply run the \"CSI EZ Download\" program. It automatically downloads all the latest data to their internal database and then updates all of your portfolio files.",
+      "source_line": 2596
+    },
+    {
+      "order": 740,
+      "heading": "8",
+      "title": "To import your CSI data into RealTest, the Import definition will look like this:",
+      "source_line": 2597
+    },
+    {
+      "order": 741,
+      "heading": "16.13",
+      "title": "Number of Bars Required for Functions and",
+      "source_line": 2875
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Settings",
+      "definition": "Global parameters controlling dates, account configuration, and bar size."
+    },
+    {
+      "term": "Data",
+      "definition": "Section that defines derived series or imported references available to strategies."
+    },
+    {
+      "term": "Strategy",
+      "definition": "Block containing trading rules, universe, sizing, and entry/exit logic for one approach."
+    },
+    {
+      "term": "Library",
+      "definition": "Reusable formulas or helper items shared across strategies."
+    },
+    {
+      "term": "EntrySetup",
+      "definition": "Boolean condition required before a candidate symbol can be considered for entry."
+    },
+    {
+      "term": "EntryScore",
+      "definition": "Ranking metric applied to qualified symbols to determine trade priority."
+    },
+    {
+      "term": "EntrySkip",
+      "definition": "Condition that, when true, blocks new entries (e.g., during market drawdowns)."
+    },
+    {
+      "term": "ExitRule",
+      "definition": "Boolean condition that, when true, triggers exit orders."
+    },
+    {
+      "term": "ExitStop",
+      "definition": "Protective stop price formula applied to open positions."
+    },
+    {
+      "term": "IncludeList",
+      "definition": "Directive that specifies which symbols or symbol lists to include in a test."
+    },
+    {
+      "term": "BarSize",
+      "definition": "Setting that chooses the timeframe aggregation (Daily, Weekly, Monthly, etc.)."
+    },
+    {
+      "term": "Extern",
+      "definition": "Function for referencing data from alternate symbols or bar sizes inside formulas."
+    },
+    {
+      "term": "MaxEntries",
+      "definition": "Cap on the number of simultaneous positions a strategy may open."
+    },
+    {
+      "term": "Universe",
+      "definition": "Specification describing which symbols a strategy trades."
+    },
+    {
+      "term": "PositionSize",
+      "definition": "Expression that sets the sizing of new entries (shares or dollars)."
+    },
+    {
+      "term": "S.Equity",
+      "definition": "Built-in series tracking cumulative equity for the current strategy."
+    }
+  ]
+}
