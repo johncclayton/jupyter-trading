@@ -1,0 +1,51 @@
+Notes:	
+	https://traders.com/Documentation/FEEDbk_docs/2021/09/TradersTips.html
+	import, then "Apply", then open the chart
+
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	SPY
+	StartDate:	2015-01-01
+	EndDate:	Latest
+	SaveAs:	spy.rtd
+	
+Settings:	
+	DataFile:	spy.rtd
+	
+Parameters:	
+	len:	21
+	pedestal:	10
+	
+Library:	
+	trifunc:	if(FunBar <= len/2, FunBar, len+1-FunBar)
+	hammfunc:	Sine(pedestal + (180 - 2 * pedestal) * (FunBar-1) / (len-1))
+	hannfunc:	(1 - Cosine(360 * FunBar / (len+1)))
+	rocmult:	len / 6.28
+
+Data:	
+	deriv:	close - open
+	// sma
+	sma:	avg(deriv, len)
+	smaroc:	rocmult * (sma - sma[1])
+	// triangle
+	triangle:	 sum(deriv * trifunc,len)/sum(trifunc,len)
+	triroc:	rocmult * (triangle - triangle[1])
+	// hamming
+	hamming:	sum(deriv * hammfunc, len)/sum(hammfunc,len)
+	hammroc:	rocmult * (hamming - hamming[1])
+	// hann
+	hann:	sum(deriv * hannfunc, len)/sum(hannfunc,len)
+	hannroc:	rocmult * (hann - hann[1])
+
+Charts:	
+	// lower volume pane
+	sma:	sma {|}
+	triangle:	triangle {|}
+	hamming:	hamming {|}
+	hann:	hann {|}
+	
+	// upper indicator pane
+	smaroc:	smaroc {^}
+	triroc:	triroc {^}
+	hammroc:	hammroc {^}
+	hannroc:	hannroc {^}

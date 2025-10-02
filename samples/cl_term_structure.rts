@@ -1,0 +1,47 @@
+Notes:
+	import all the individual CL futures contracts
+	determins the 8 newest ones for each date
+	charts their closing prices in the volume pane
+
+Import:
+	DataSource:	Norgate	// assumes futures subscription
+	IncludeList:	.@cl	// user-created watchlist of all individual CL contracts
+	IncludeList:	&cl,$cl3M 
+	SaveAs:	cl_term_structure.rtd
+	StartDate:	2010-12-02
+
+Data:	
+	DaysToExp:	Days(BarDate, InfoExpiry)
+	AgeRank:	#Rank if(InList(1), -DaysToExp, nan)
+	CL1:	#Highest if(AgeRank=1, Symbol, 0)
+	CL2:	#Highest if(AgeRank=2, Symbol, 0)
+	CL3:	#Highest if(AgeRank=3, Symbol, 0)
+	CL4:	#Highest if(AgeRank=4, Symbol, 0)
+	CL5:	#Highest if(AgeRank=5, Symbol, 0)
+	CL6:	#Highest if(AgeRank=6, Symbol, 0)
+	CL7:	#Highest if(AgeRank=7, Symbol, 0)
+	CL8:	#Highest if(AgeRank=8, Symbol, 0)
+
+// open a chart of &CL and apply this script to it
+
+Charts:
+	CL1:	Extern(SymNum(CL1), C) {|}
+	CL2:	Extern(SymNum(CL2), C) {|}
+	CL3:	Extern(SymNum(CL3), C) {|}
+	CL4:	Extern(SymNum(CL4), C) {|}
+	CL5:	Extern(SymNum(CL5), C) {|}
+	CL6:	Extern(SymNum(CL6), C) {|}
+	CL7:	Extern(SymNum(CL7), C) {|}
+	CL8:	Extern(SymNum(CL8), C) {|}
+	
+Settings:
+	DataFile:	cl_term_structure.rtd
+	StartDate:	18/10/23
+	EndDate:	23/10/23
+	
+Scan:
+	filter:	agerank <= 12 // there are so many CL contracts!
+	daystoexp:	DaysToExp
+	agerank:	AgeRank
+	expiry:	InfoExpiry {//}
+	price:	close

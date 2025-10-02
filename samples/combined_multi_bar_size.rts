@@ -1,0 +1,64 @@
+Notes: 	example of a script that combines multiple strategies using different include lists (symbol universes) for each one
+	also demonstrates how to use different bar sizes (timeframes) for different strategies and within one strategy
+	see also combined.rts, which implements this same set of strategies using daily bars and EndOfWeek / EndOfMonth signals
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	SPY, GLD, TLT 	// List 1
+	IncludeList:	$VIX, $VIX3M, VIXY 	// VIX strategy
+	IncludeList:	.Dow Jones Industrial Average Current & Past 	// InDJI watchlist
+	IncludeList:	.NASDAQ 100 Current & Past 	// InNDX watchlist
+	StartDate:	2010-01-01 	// no VXX before this date
+	EndDate:	Latest
+	SaveAs:	combined.rtd
+	
+Settings:	
+	DataFile:	combined.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	HolidayList:	?scriptpath?\holidays.us.txt 	// only needed for generating tomorrow's orders
+	BarSize:	Daily 	// default if not otherwise specified
+
+Data:	
+	// just one item needed, for the VIX strategy
+	Contango:	Extern($$VIX, C) < Extern($$VIX3M, C) 	// true if VIX in contango, false otherwise
+	VixFlip:	Contango <> Contango[1]
+	
+Strategy: asset_class // simple weekly rotation into the recently strongest asset -- stocks, bonds, or gold
+	Side:	Long
+	BarSize:	Weekly 	// test interval and bar size for data references
+	Quantity:	30 	// 30% allocation to one ETF 
+	QtyType:	Percent
+	EntrySetup:	InList(1) 	// next day will be a new week and symbol comes from first import list
+	MaxPositions:	1
+	SetupScore:	ROC(C,10) 	// select the single symbol from the list with the highest 5-week ROC
+	ExitRule:	1 	// re-allocate every Monday at the open (in practice you could hold if it didn't change)
+
+Strategy: dow_weekly_pullback // weekly rotation into the 5 DJIA components with the biggest 5-day pullback while still in up-trends
+	Side:	Long
+	BarSize:	Weekly 	// test interval and bar size for data references
+	Quantity:	30 / 5 	// 30% allocation divided among 5 positions
+	QtyType:	Percent
+	EntrySetup:	InDJI and C > MA(C,40) 	// symbol was in the DJIA this day and is in an uptrend (40 weeks ~= 200 days)
+	MaxPositions:	5
+	SetupScore:	C[1] / C 	// select the top 5 ranked by 1-week pullback
+	ExitRule:	1	 // rotate every Monday at the open (in practice you could hold the ones that didn't change)
+	
+Strategy: ndx_momentum // monthly rotation into the 5 NDX components with the strongest IBD RS
+	Side:	Long
+	BarSize:	Monthly 	// test interval and bar size for data references
+	Quantity:	30 / 5 	// 30% allocation divided among 5 positions
+	QtyType:	Percent
+	EntrySetup:	BarNum>12 and InNDX and Extern($SPY, Extern(~Daily, C > MA(C,200))) 
+	// symbol was in the NDX and SPY is in an uptrend (using external bar size here to calculate the 200-day average)
+	MaxPositions:	5
+	SetupScore:	 0.4 * ROC(C,3) + 0.2 * ROC(C,6) + 0.2 * ROC(C,9) + 0.2 * ROC(C,12) // select the top 5 by IBD RS
+	ExitRule:	1 // rotate the first trading day of every month at the open (in practice you could hold the ones that didn't change)
+
+Strategy: vix_long_short
+	Side:	Both 	// long or short
+	Quantity:	if(Contango, -10, 10) 	// 10% allocation, short when in contango, long otherwise
+	QtyType:	Percent
+	EntrySetup:	Symbol = $VIXY and (Shares = 0 or VixFlip)
+	ExitRule:	VixFlip 	// exit when back to contango (or across symbol change date)
+

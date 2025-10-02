@@ -1,0 +1,40 @@
+Notes:	
+	Calculates the number of S&P components that closed outside a 20-day 1-ATR Keltner channel each day
+	Run Import then Scan
+	Results shown via scan output and/or chart
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	SPY
+	IncludeList:	?scriptpath?\spx_syms.txt
+	SymInfoFile:	?scriptpath?\spx_syminfo.csv
+	StartDate:	2015-01-01
+	SaveAs:	YahooSPX.rtd
+	
+Data:	
+	avg20:	avg(c,20)
+	atr20:	avg(tr,20)
+	ob:	c > avg20 + atr20
+	os:	c < avg20 - atr20
+	total:	#count 1
+	numob:	#sum ob
+	numos:	#sum os
+	
+Settings:	
+	DataFile:	YahooSPX.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+
+Scan:	
+	// run this scan to see daily breadth values in a table
+	Filter:	Symbol = $SPY and BarNum > 20
+	Overbought:	numob // total {%}
+	Oversold:	numos // total {%}
+	Diff:	Overbought - Oversold
+	Sort:	-Date
+	
+Charts:	
+	// open a chart of SPY to compare index prices to breadth graph (appears in volume pane)
+	pctobos:	(numob-numos) / total {%|}
+	
+	

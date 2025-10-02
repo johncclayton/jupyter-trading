@@ -1,0 +1,88 @@
+Notes:	
+	Andreas Clenow "Stocks on the Move" strategy
+	This version uses deliberate sub-position entries and exits
+	See clenow_stocks_on_move_dynamic_mode.rts for a simpler and better approach
+	(these two examples produce slightly different results due to the implementation details)
+	
+Import: 
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	IncludeList:	SPY
+	StartDate:	1995-01-01
+	EndDate:	Latest
+	SaveAs:	spx.rtd
+	
+Settings:	
+	DataFile:	spx.rtd
+	StartDate:	1999-01-01
+	EndDate:	2015-01-01
+	AccountSize:	100000
+	BarSize:	Daily
+	
+Parameters:	
+	lookback:	90
+	riskfactor:	0.001
+	rebaldiff:	0.05
+	
+Data:	
+	// ATR
+	atr20:	ATR(20)
+	// AdjSlope calculation (#SlowCalc is required because log(c) of unadjusted prices can't be buffered)
+	ExponentialSlope:	#SlowCalc Slope(Log(C), lookback)
+	AnnualizedSlope:	100 * ((Exp(ExponentialSlope)) ^ 250 - 1)
+	R2:	#SlowCalc Correl(Log(C), FunBar, lookback) ^ 2
+	AdjSlope:	AnnualizedSlope * R2	
+	// Filter
+	CanRank:	InSPX and C > MA(C,100) and CountTrue(ABS(ROC(C,1))>=15, 90) == 0
+	Percentile:	#PercentRank 100 * CanRank + AdjSlope
+	CanHold:	CanRank and Percentile >= 80
+	// Entry and Exit criteria
+	Regime:	Extern($SPY, C > MA(C, 200))
+	TradeDay:	Extern($SPY, DayOfWeek < 3 and  DayOfWeek[-1] >= 3) // Wed. (Thu. if holiday)
+	RebalDay:	TradeDay and Week % 2 = 1 // every other week
+	CanEnter:	TradeDay and CanHold and Regime
+	MustExit:	TradeDay and not CanHold
+
+Library:	
+	posshares:	shares	// this sub-position
+	stratshares:	extern(@clenow_stocks, shares)  // combined position
+
+TestData:
+	// dynamic sizing calculations stored as of prior close
+	curqty:	stratshares 
+	newqty:	round(extern(@clenow_stocks, S.Alloc) * riskfactor / atr20) 
+	pctdiff:	(newqty * c) / (curqty * c) - 1 
+	// ^^^ must remain constant for all sub-positions so cannot use Library for pctdiff
+
+Strategy: clenow_stocks
+	Side:	Long
+	MaxSameSym:	99 // required for adding to a position (not clear whether he does this)
+	MaxExposure:	100
+	Reduce:	True
+	SetupScore:	AdjSlope
+	Quantity:	newqty - curqty
+	EntrySetup:	if(curqty = 0, CanEnter and newqty > 0, RebalDay and pctdiff > rebaldiff)
+	ExitRule:	MustExit or (RebalDay and pctdiff < -rebaldiff)
+	ExitQty:	if(MustExit, posshares, stratshares - newqty) 
+	// ^^^ evaluated for each sub-pos after prior sub-pos exit so cannot use TestData for stratshares
+	ExitScore:	-Shares // exit small sub-positions first to reduce need to divide larger ones
+
+Benchmark: buy_and_hold
+	Side:	Long
+	EntrySetup:	Symbol = $SPY
+	ExitRule:	Dividend	// reinvest
+
+ScanSettings:
+	EndDate:	2023-12-26 // must be a Tuesday (setup day for Wed. entry)
+	NumBars:	1
+	
+Scan:
+	Filter:	InSPX
+	AdjSlope:	AdjSlope
+	Percentile:	Percentile
+	CanEnter:	CanEnter
+	Sort:	-CanEnter,-AdjSlope
+	
+Charts:
+	adjsl: AdjSlope {|}
+	

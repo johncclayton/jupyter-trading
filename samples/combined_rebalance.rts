@@ -1,0 +1,67 @@
+Notes:	
+	version of combined.rts that models running each strategy in its own account with monthly rebalance
+	
+Settings:	
+	DataFile:	combined.rtd	// see combined.rts for Import details
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	
+Data:	
+	// just one item needed, for the VIX strategy   
+	Contango:	Extern($$VIX, C) < Extern($$VIX3M, C) 	// true if VIX in contango, false otherwise
+	VixFlip:	Contango <> Contango[1]
+
+Library: 
+	// functions used by each strategy for Allocation and CashInOut
+	rebalance: if(EndOfMonth, arg1/100 * Combined(S.Alloc) - S.Alloc, 0)
+	// change this ^^^ to: 0 to never revalance, 1 to rebalance daily, or another other condition as desired e.g. EndOfWeek, EndOfMonth and Month %3 = 0, etc.
+	
+Strategy: asset_class
+	// simple weekly rotation into the recently strongest asset -- stocks, bonds, or gold
+	Side:	Long
+	StartPercent:	30
+	CashInOut:	rebalance(30)
+	Quantity:	100 	// 100% per position of this strategy's 30% allocation
+	QtyType:	Percent
+	EntrySetup:	EndOfWeek and InList(1) 	// next day will be a new week and symbol comes from first import list
+	MaxPositions:	1
+	SetupScore:	ROC(C,50) 	// select the single symbol from the list with the highest 50-day ROC
+	ExitRule:	EndOfWeek 	// re-allocate every Monday at the open (in practice you could hold if it didn't change)
+	
+Strategy: dow_weekly_pullback
+	// weekly rotation into the 5 DJIA components with the biggest 5-day pullback while still in up-trends
+	Side:	Long
+	StartPercent:	30
+	CashInOut:	rebalance(30)
+	Quantity:	20 	// 20% per position of this strategy's 30% allocation
+	QtyType:	Percent
+	EntrySetup:	EndOfWeek and InDJI and C > MA(C,200) 	// next day will be a new week and symbol was in the DJIA this day and is in an uptrend
+	MaxPositions:	5
+	SetupScore:	C[5] / C 	// select the top 5 ranked by 5-day pullback
+	ExitRule:	EndOfWeek 	// rotate every Monday at the open (in practice you could hold the ones that didn't change)
+	
+Strategy: ndx_momentum
+	// monthly rotation into the 5 NDX components with the strongest IBD RS
+	Side:	Long
+	StartPercent:	30
+	CashInOut:	rebalance(30)
+	Quantity:	20 	// 20% per position of this strategy's 30% allocation
+	QtyType:	Percent
+	EntrySetup:	EndOfMonth and InNDX and Extern($SPY, C > MA(C,200)) 	// next day will be a new month and symbol was in the NDX and SPY is in an uptrend
+	MaxPositions:	5
+	SetupScore:	 0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) 
+		// ^ select the top 5 by IBD RS
+	ExitRule:	EndOfMonth 	
+		// ^ rotate the first trading day of every month at the open (in practice you could hold the ones that didn't change)
+		// see ndx_rotate.rts for a different way to implement this 
+
+Strategy: vix_long_short
+	Side:	Both	// long or short
+	StartPercent:	10
+	CashInOut:	rebalance(10)
+	Quantity:	if(Contango, -100, 100) 	// 100% per position of this strategy's 10% allocation
+	QtyType:	Percent
+	EntrySetup:	Symbol = $VIXY and VixFlip
+	ExitRule:	VixFlip 	// exit when back to contango (or across symbol change date)

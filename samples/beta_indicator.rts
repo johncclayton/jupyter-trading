@@ -1,0 +1,29 @@
+Notes: 	
+	how to calculate "beta" in RealTest
+
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	?scriptpath?\spx_syms.txt
+	IncludeList:	SPY // index proxy 
+	StartDate:	2020-01-01
+	EndDate:	Latest
+	SaveAs:	spx_spy.rtd
+	
+Parameters:	
+	len:	100 // beta lookback length (arbitrary)
+
+Data:	
+	roc1:	roc(c,1)
+	indroc1:	extern($SPY, roc1)
+	beta:	slope(roc1, indroc1, len)
+	// beta is simply the linear regression slope of a stock's returns vs. index returns
+	
+Settings:	
+	DataFile:	spx_spy.rtd
+	EndDate:	Latest
+	NumBars:	1
+	
+Scan:	
+	// show the current highest-beta members of $SPX
+	beta:	beta
+	sort:	-beta

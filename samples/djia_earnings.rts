@@ -1,0 +1,26 @@
+Notes: 	
+	shows how to use an event list file to backtest earnings events
+	(assumes you have a way to obtain this kind of data)
+	run import, then scan, then flip through charts
+	rightmost bar will always be the ex-earnings date
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	?scriptpath?\djia_syms.txt
+	SymInfoFile:	?scriptpath?\djia_info.csv
+	EventListFile:	?scriptpath?\djia_earnings.csv
+	StartDate:	2019-01-01
+	SaveAs:	djia_earnings.rtd
+	//LogFile:	DJIA.TXT // uncomment to see event counts for each symbol, and any date errors that were found
+
+Settings:	
+	DataFile:	djia_earnings.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Scan:	
+	Filter:	Event(2)  // == 1 if this date had this event, else 0
+	// the 2 above comes from the "Type" column in djia_earnings.csv
+	// this function returns what is in "Value" if the current date had this type of event, otherwise 0
+	
+	

@@ -1,0 +1,34 @@
+Notes:	
+	how to obtain a smooth dividend yield time series
+	works with either Norgate or Yahoo data
+	assumes holidays and weekends are not added as padding bars
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average
+	Adjustment:	CapitalSpecial	// convert special dividends to splits so yield will only include ordinary ones
+	StartDate:	Earliest
+	EndDate:	Latest
+	SaveAs:	djia.rtd
+
+Data:	
+	divs30:	sum(dividend>0,30)
+	sum237:	sum(dividend,237)
+	sum267:	sum(dividend,267)
+	yield:	if(divs30,sum237,sum267)/c
+	
+Settings:	
+	DataFile:	djia.rtd
+	EndDate:	Latest
+	NumBars:	1
+	BarSize:	Daily
+	
+Scan:
+	// run scan for table of current yields, double-click to see historical yield and dividends on chart
+	yield:	yield {%}
+	sort:	-yield
+	
+Charts:	
+	div:	dividend {^}	// specific dividends shown in upper indicator pane on ex-div dates (press i if not visible)
+	yield:	yield {%|}	// historical yield plotted in lower pane (press v if not visible)
+	

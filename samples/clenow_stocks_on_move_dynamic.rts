@@ -1,0 +1,80 @@
+Notes:	
+	Andreas Clenow "Stocks on the Move" strategy
+	This version uses DynamicSizing: True where Quantity does all the work of the strategy
+	See clenow_stocks_on_move.rts for an older and more complex approach
+	(these two examples produce slightly different results due to the implementation details)
+	
+Import: 
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	IncludeList:	SPY
+	StartDate:	1995-01-01
+	EndDate:	Latest
+	SaveAs:	spx.rtd
+	
+Settings:	
+	DataFile:	spx.rtd
+	StartDate:	1999-01-01
+	EndDate:	2015-01-01
+	AccountSize:	100000
+	BarSize:	Daily
+	
+Parameters:	
+	lookback:	90
+	riskfactor:	0.001
+	rebaldiff:	0.05
+	
+Data:	
+	// ATR
+	atr20:	ATR(20)
+	// AdjSlope calculation (#SlowCalc is required because log(c) of unadjusted prices can't be buffered)
+	ExponentialSlope:	#SlowCalc Slope(Log(C), lookback)
+	AnnualizedSlope:	100 * ((Exp(ExponentialSlope)) ^ 250 - 1)
+	R2:	#SlowCalc Correl(Log(C), FunBar, lookback) ^ 2
+	AdjSlope:	AnnualizedSlope * R2	
+	// Filter
+	CanRank:	InSPX and C > MA(C,100) and CountTrue(ABS(ROC(C,1))>=15, 90) == 0
+	Percentile:	#PercentRank 100 * CanRank + AdjSlope
+	CanHold:	CanRank and Percentile >= 80
+	// Entry and Exit criteria
+	Regime:	Extern($SPY, C > MA(C, 200))
+	TradeDay:	Extern($SPY, DayOfWeek < 3 and  DayOfWeek[-1] >= 3) // Wed. (Thu. if holiday)
+	RebalDay:	TradeDay and Week % 2 = 1 // every other week
+	CanEnter:	TradeDay and CanHold and Regime
+	MustExit:	TradeDay and not CanHold
+
+Library:
+	curqty:	shares 
+	// ^^^ in DynamicSizing mode "shares" means "Extern(@this_strat, shares"), i.e., net position in this symbol
+	newqty:	round(S.Alloc * riskfactor / ATR(20)) 
+	pctdiff:	(newqty * c) / (curqty * c) - 1
+	// ^^^ Quantity is only evaluated once per symbol so TestData is not required here
+
+Strategy: clenow_stocks
+	DynamicSizing:	True
+	SetupScore:	AdjSlope
+	Quantity:	Select(curqty = 0 and CanEnter and newqty > 0, newqty, // new position entry
+		curqty > 0 and mustexit, 0, // complete position exit
+		curqty > 0 and rebalday and abs(pctdiff) > rebaldiff, newqty) // position size change
+	MaxExposure:	100
+	Reduce:	True
+
+Benchmark: buy_and_hold
+	Side:	Long
+	EntrySetup:	Symbol = $SPY
+	ExitRule:	Dividend	// reinvest
+
+ScanSettings:
+	EndDate:	2023-12-26 // must be a Tuesday (setup day for Wed. entry)
+	NumBars:	1
+	
+Scan:
+	Filter:	InSPX
+	AdjSlope:	AdjSlope
+	Percentile:	Percentile
+	CanEnter:	CanEnter
+	Sort:	-CanEnter,-AdjSlope
+	
+Charts:
+	adjsl: AdjSlope {|}
+	

@@ -1,0 +1,37 @@
+Notes:
+	Shows one way to mechanize "anchored volume-weighted average price".
+	Typically the anchor is a price pivot selected visually on a chart.
+	Here we use TroughBars to locate the most recent apparent pivot.
+	
+Import:
+	DataSource:	Yahoo
+	IncludeList:	SPY
+	StartDate:	Earliest
+	EndDate:	Latest
+	SaveAs:	spy.rtd
+	
+Settings:
+	DataFile:	spy.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Parameters:
+	trPct:	5
+	
+Data:
+	price:	(O+H+L+C)/4 // typical price
+	pivotPrice:	Trough(price, trPct) // and/or use Peak
+	pivotBars:	TroughBars(price, trPct) // and PeakBars
+	avwap:	VWMA(price, pivotBars)
+
+Charts:
+	avwap:	avwap
+	pivotPrice:	pivotPrice
+	pivotBars:	pivotBars {|}
+
+Strategy: test_avwap
+	Side:	Long
+	EntrySetup:	c > avwap
+	ExitRule:	c < avwap
+
+	

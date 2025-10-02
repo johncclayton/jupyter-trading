@@ -1,0 +1,175 @@
+Notes:	
+	the set of strategies described in "Automated Stock Trading Systems" by Laurens Bensdorp
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.@HistoricalStockUniverse	// dynamic watchlist with all US operating company common stocks (no "Unit" or "PFD")
+	IncludeList:	SPY	// for hedge
+	StartDate:	2014-01-01	// one year earlier than test start date
+	EndDate:	Latest
+	SaveAs:	bensdorp_book.rtd	// local data file to use for tests
+
+Settings:	
+	AccountSize:	100000
+	DataFile:	bensdorp_book.rtd	// use the data file imported above
+	StartDate:	2015-01-01	// one year later than import start date
+	EndDate:	Latest
+	
+Data:	
+	// pre-calculated data arrays -- these calculate very quickly
+	avgc25:	avg(c,25)
+	avgc50:	avg(c,50)
+	avgc100:	avg(c,100)
+	avgc150:	avg(c,150)
+	avgc200:	avg(c,200)
+	avgdv20:	avg(c*v,20)
+	avgv50:	avg(v,50)
+	avgdv50:	avg(c*v,50)
+	hv100:	hvol(100)
+	atr10:	atr(10)
+	atr20:	atr(20)
+	atr40:	atr(40)
+	rsi3:	rsi(3)
+	rsi4:	rsi(4)
+	adx7:	adx(7)
+	
+	// strategy-specific setup criteria are pre-calculated here so tests will run faster
+	
+	ltf1_setup:	// "Long Trend High Momentum" setup criteria
+		c > 5 
+		and avgdv20 > 50000000 
+		and avgc25 > avgc50 
+		and extern($spy,c>avgc100) 
+
+	smr1_setup:	// "Short RSI Thrust"  setup criteria
+		c > 5 
+		and avgdv20 > 25000000 
+		and atr10 > 0.03 * c 
+		and rsi3 > 90 
+		and c > c[1] 
+		and c[1] > c[2]
+		
+	lmr1_setup:	// "Long Mean Reversion Selloff"  setup criteria
+		c > 1 
+		and avgv50 > 1000000 
+		and atr10 > 0.05 * c 
+		and c > avgc150 
+		and  c < c[3] * 0.875
+		
+	ltf2_setup:	// "Long Trend Low Volatility"  setup criteria
+		avgdv50 > 100000000 
+		and hv100 > 10 
+		and hv100 < 40 
+		and c > avgc200 
+		and extern($spy, c > avgc200)
+		
+	lmr2_setup:	// "Long Mean Reversion High ADX Reversal" setup criteria
+		avgv50 > 500000 
+		and avgdv50 > 2500000 
+		and atr10 > 0.04 * c 
+		and c > avgc100 + atr10 
+		and adx7 > 55 
+		and rsi3 < 50
+		
+	smr2_setup:	// "Short Mean Reversion High Six-Day Surge" setup criteria
+		c > 5 
+		and avgdv50 > 10000000 
+		and c > c[6] * 1.2 
+		and c > c[1] 
+		and c[1] > c[2]
+	
+Parameters:	
+	// some of the above constants could also be added here if desired
+	lfrac:	0.25
+	sfrac:	0.4
+	hfrac:	0.2
+	
+Template: common	
+	// elements common to all strategies that "use" this template
+	QtyType:	Shares 
+	MaxPositions:	10
+	Commission:	Max(0.005 * Shares, 1)
+	Slippage:	0.002 * FillPrice	// slippage for non-limit orders
+	LimitSlip:	0	// slippage for limit orders
+
+Strategy: LTF1	
+	// "Long Trend High Momentum" strategy
+	Using:	common
+	Side:	Long
+	Quantity:	lfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(5*atr20))
+	EntrySetup:	ltf1_setup
+	SetupScore:	c/c[200]
+	ExitStop:	Max(FillPrice - 5 * atr20, HHV(C,BarsHeld)*0.75)
+
+Strategy: SMR1	
+	// "Short RSI Thrust" strategy
+	Using:	common
+	Side:	Short
+	Quantity:	sfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(3*atr10))
+	EntrySetup:	smr1_setup
+	SetupScore:	adx7
+	EntryLimit:	c * 1.04
+	ExitStop:	FillPrice + 3 * atr10
+	ExitRule:	 select(BarsHeld = 4, "n-day", BarsHeld > 0 and c < FillPrice * 0.96, "target")
+	ExitTime:	NextClose
+	
+Strategy: LMR1 	
+	// "Long Mean Reversion Selloff" strategy
+	Using:	common
+	Side:	Long
+	Quantity:	lfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(2.5*atr10))
+	EntrySetup:	lmr1_setup
+	SetupScore:	c[3]/c
+	EntryLimit:	c * 0.93
+	ExitStop:	FillPrice - 2.5 * atr10
+	ExitRule:	select(BarsHeld = 5, "n-day", BarsHeld > 0 and c > FillPrice * 1.04, "target")
+	ExitTime:	NextClose
+	
+Strategy: LTF2 	
+	// "Long Trend Low Volatility" strategy
+	Using:	common
+	Side:	Long
+	Quantity:	lfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(1.5*atr40))
+	EntrySetup:	ltf2_setup
+	SetupScore:	100 - rsi4
+	ExitStop:	Max(FillPrice - 1.5 * atr40, HHV(C,BarsHeld)*0.8)
+	
+Strategy: LMR2	
+	// "Long Mean Reversion High ADX Reversal" strategy
+	Using:	common
+	Side:	Long
+	Quantity:	lfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(3*atr10))
+	EntrySetup:	lmr2_setup
+	SetupScore:	adx7
+	EntryLimit:	c * 0.97
+	ExitStop:	FillPrice - 3 * atr10
+	ExitRule:	select(BarsHeld = 6, "n-day", h > FillPrice + atr10, "target")
+	
+Strategy: SMR2	
+	// "Short Mean Reversion High Six-Day Surge" strategy
+	Using:	common
+	Side:	Short
+	Quantity:	sfrac * Min(S.Alloc/10/C, (S.Alloc*0.02)/(3*atr10))
+	EntrySetup:	smr2_setup
+	SetupScore:	c/c[6]
+	EntryLimit:	c * 1.05
+	ExitStop:	FillPrice + 3 * atr10
+	ExitRule:	select(BarsHeld = 4, "n-day", BarsHeld > 0 and c < FillPrice * 0.95, "target")
+	ExitTime:	NextClose 
+	
+Strategy: hedge	
+	// "The Catastrophe Hedge" strategy
+	Using:	common
+	Side:	Short
+	Quantity:	hfrac * S.Alloc / C
+	EntrySetup:	Symbol = $SPY and c = llv(c,50)
+	ExitStop:	FillPrice + 3 * atr40
+	ExitRule:	c = hhv(c,70)
+
+StatsGroup: Longs 	
+	// strategy groups to show combined stats for all longs
+	Using:	LMR1, LMR2, LTF1, LTF2
+	
+StatsGroup: Shorts 	
+	// ditto for shorts
+	Using:	SMR1, SMR2, Hedge

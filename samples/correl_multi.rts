@@ -1,0 +1,43 @@
+Notes:
+	Demonstrates how to use CorrelAvg and related functions
+	Note that these functions can take a long time to calculate
+	It is not recommended to try this on significantly larger datasets
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average Current & Past
+	IncludeList:	$DJI
+	StartDate:	2020-01-01
+	EndDate:	Latest
+	SaveAs:	djia.rtd
+	
+Settings:
+	DataFile:	djia.rtd
+	EndDate:	Latest
+	NumBars:	1
+
+Parameters:
+	len:	20
+	sprmn:	0
+	
+Data:
+	factor:	ROC(C,1)
+	djia:	Extern($$DJI, factor)
+	corr_djia:	if (sprmn, Correl(factor, djia, len), Spearman(factor, djia, len))
+	corr_avg:	CorrelAvg(InDJI, factor, len, sprmn)
+	corr_med:	CorrelMed(InDJI, factor, len, sprmn)
+	corr_min:	CorrelMin(InDJI, factor, len, sprmn)
+	corr_min_sym:	CorrelMinSym(InDJI, factor, len, sprmn)
+	corr_max:	CorrelMax(InDJI, factor, len, sprmn)
+	corr_max_sym:	CorrelMaxSym(InDJI, factor, len, sprmn)
+
+Scan:
+	Filter:	InDJI
+	Sort:	-Date
+	CorrDJI:	corr_djia {%}
+	CorrAvg:	corr_avg {%}
+	CorrMed:	corr_med {%}
+	CorrMin:	corr_min {%}
+	CorrMinSym:	Extern(SymNum(corr_min_sym), ?Symbol)
+	CorrMax:	corr_max {%}
+	CorrMaxSym:	Extern(SymNum(corr_max_sym), ?Symbol)

@@ -1,0 +1,36 @@
+Notes:	
+	Ray Dalio "All Weather Portfolio" with "maxdiff" percent rebalance threshold
+	
+Import:
+	DataSource:	Yahoo
+	IncludeList:	SPY, TLT, IEF, GLD, DBC
+	StartDate:	2006-01-01 // first date of newest ETF above (DBC)
+	EndDate:	Latest
+	SaveAs:	AllWeather.rtd
+
+Settings:
+	DataFile:	AllWeather.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Monthly
+
+Parameters:
+	allocSPY:	30	// keep the symbols in these parameter names 
+	allocTLT:	40	// consistent with the IncludeList above
+	allocIEF:	15
+	allocGLD:	7.5
+	allocDBC:	7.5
+	maxDiff:	5
+
+Library:
+	CurPct:	100 * Shares * Close / S.Alloc
+	TgtPct:	Item("alloc{?}", ?symbol)
+	Diff:	Abs(CurPct - TgtPct)
+	Rebalance:	PositionSum(Diff > maxDiff) > 0
+	
+Strategy: AllWeather
+	Side:	Long
+	EntrySetup:	EndOfMonth
+	ExitRule:	EndOfMonth and rebalance
+	Quantity:	TgtPct
+	QtyType:	Percent

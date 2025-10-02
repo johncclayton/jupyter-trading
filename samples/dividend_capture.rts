@@ -1,0 +1,52 @@
+Notes: 	
+	dividend capture strategy example
+	can either capture the actual dividends, or just the price movement running up to them
+	assumes availability of dividend amounts and ex dates one month in advance (probably not valid)
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.@HistoricalWithLPs	// dynamic watchlist: operating/holding company, common+unit
+	ExcludeIf:	sincetrue(Dividend > 0.2 and C < 100) < 0	// evaluated for latest bar so need explicit split-unadjustment
+	Adjustment:	CapitalSpecial	// convert special dividends to splits, only capture ordinary ones
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	dividend_capture.rtd
+	
+Settings:	
+	DataFile:	dividend_capture.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	AccountSize:	100000
+	
+Data:	
+	Universe:	C >= 5 and C < 55 and LLV(V,10) > 50000
+
+	// look ahead to next ex-div date to find dividend amount (but is this practical?)
+	Bars:	UntilTrue(Dividend > 0, 20) 
+
+	// next dividend amount (per share, unadjusted for splits after ex-div)
+	NextDiv:	Dividend[-Bars] 
+	
+	// focus on dividend amounts between $0.35 and $5 per share
+	Setup:	Universe and  NextDiv > 0.35 and NextDiv < 5
+	
+Parameters:	
+	// the default (1) means exit one day prior to ex-div
+	// so just capture the run-up of other people trying to capture it, don't actually capture it
+	// 2 means exit two days prior to ex-div, 3 means three days prior
+	// 0 means exit on ex-div morning (capture it), and -1 means the morning after that (capture and wait a day)
+	// compare the dividend columns in trade lists for each to see this in action
+	ExitBars:	from -1 to 3 def 1
+	
+Strategy: divcap
+	Side:	Long
+	Allocation:	S.StartEquity // non-compounded
+	Quantity:	1000 // always trade 1000 shares 
+	MaxInvested:	S.Alloc
+	EntrySetup:	Setup and Bars = 9 // always enter 9 bars before ex-div date
+	SetupScore:	NextDiv // rank by highest dividend
+	ExitRule:	Bars = ExitBars + 1 // because NextOpen exit time
+	ExitLimit:	FillPrice + 3 * Dividend[-Bars] // can't use unadjusted prices in strategy price formulas
+	// also set a target at 3x dividend, in case it rallies excessively
+	Commission:	5 // $5 since always 1000 shares
+	

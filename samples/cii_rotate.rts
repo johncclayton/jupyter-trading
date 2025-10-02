@@ -1,0 +1,69 @@
+Notes:	CII Rotate
+	demonstrates multi-level ranking using the Norgate Corresponding Industry Index data
+	see also industry_indexes.rts
+
+	the corresponding industry group ETFs will be automatically added to the import
+	a special ListNum value of 99 is used to identify these ETFs by include list
+	a special symbol number of &99 can be used in Extern to refer to the current stock's corresponding index ETF
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	IncludeList:	SPY
+	CIIFamily:	$SPX 
+	CIILevel:	IndustryGroup
+	StartDate:	1994-01-01
+	EndDate:	Latest
+	SaveAs:	cii_rotate.rtd
+
+Parameters:	
+	topCIIs:	5
+	topStocks:	3
+	
+Data:	
+	ROC30:	ROC(C,30) // a ranking factor (experiment with others!)
+	
+	// ListNum 99 is asigned to the automatically-imported index ETFs
+	InduRank:	#Rank if(ListNum=99, ROC30, nan) // rank the index ETFs by the factor
+
+	// use "Extern(&cii" to refer to the corresponding industry index of any stock
+	StockInduRank:	if(InSPX, Extern(&cii, InduRank), 999) // get the CII ETF's rank for each stock
+	
+	// use "#ByCII" after any breadth tag to calculate separately for each CII group
+	StockRank:	#rank #ByCII if(InSPX, ROC30, nan) // rank stocks within each industry
+	
+	// hold the top three stocks from each of the top five industries
+	CanHold:	StockInduRank <= topCIIs and StockRank <= topStocks
+	
+Settings:	
+	DataFile:	cii_rotate.rtd
+	StartDate:	1995-01-01 // one year later than import start date
+	EndDate:	Latest
+	UseAvailableBars:	False
+
+ScanSettings:	
+	EndDate:	Latest
+	NumBars:	1
+	
+Scan:	
+	// show the top 15 for the current date
+	Filter:	CanHold
+	Sort:	StockInduRank, StockRank
+	Factor:	ROC30
+	Industry:	Extern(&cii,?Name)
+	StockInduRank:	StockInduRank
+	StockRank:	StockRank
+
+Strategy: Ranking // test the rotation strategy
+	Side:	Long
+	Quantity:	100/15
+	QtyType:	Percent
+	MaxPositions:	15
+	EntrySetup:	EndOfMonth and CanHold
+	Exitrule:	EndOfMonth and not CanHold
+	
+Benchmark: SPY // compare to SPY with dividend reinvestement
+	Side:	Long
+	EntrySetup:	Symbol=$SPY
+	ExitRule:	Dividend > 0
+
