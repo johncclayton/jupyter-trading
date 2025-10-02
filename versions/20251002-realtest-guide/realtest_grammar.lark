@@ -1,22 +1,24 @@
 %import common.NEWLINE
 %ignore /\r/
+%ignore /\/\*.*?\*\//s
 
-start: (line)*
+start: element*
 
-line: statement? NEWLINE
+?element: section
+        | commentline
+        | blankline
 
-?statement: comment
-          | keyvalue
-          | keyonly
-          | textline
+section: SECTION_NAME ":" inline_content? NEWLINE section_body?
+inline_content: INLINE_TEXT
 
-keyvalue: WS? KEY ":" WS? VALUE?
-keyonly: WS? KEY ":"
-comment: WS? COMMENT
-textline: WS? TEXT
+section_body: section_line+
+section_line: INDENTED_TEXT NEWLINE
 
-KEY: /[A-Za-z][A-Za-z0-9_.?]*/
-VALUE: /[^\n]+/
-TEXT: /[^:\n][^\n]*/
-WS: /[ \t]+/
-COMMENT: /\/\/[^\n]*/
+commentline: COMMENT_LINE NEWLINE
+blankline: WS_INLINE? NEWLINE
+
+SECTION_NAME: "Benchmark" | "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
+INLINE_TEXT: /[^\r\n]+/
+INDENTED_TEXT: /[ \t]+[^\n]*/
+COMMENT_LINE: /[ \t]*\/\/[^\n]*/
+WS_INLINE: /[ \t]+/

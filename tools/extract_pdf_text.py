@@ -36,6 +36,16 @@ def main(argv: list[str]) -> int:
     )
     args = parser.parse_args(argv)
 
+    repo_root = pathlib.Path.cwd().resolve()
+
+    def to_relative(path: pathlib.Path) -> str:
+        try:
+            return str(path.resolve().relative_to(repo_root))
+        except ValueError:
+            raise SystemExit(
+                f"Path {path} is outside the repository root {repo_root}; cannot emit absolute paths."
+            )
+
     pdf_path = args.pdf.expanduser().resolve()
     if not pdf_path.exists():
         parser.error(f"PDF not found: {pdf_path}")
@@ -50,7 +60,9 @@ def main(argv: list[str]) -> int:
 
     text = extract_text(pdf_path)
     output_path.write_text(text, encoding="utf-8")
-    print(f"Extracted {len(text)} characters from {pdf_path.name} -> {output_path}")
+    print(
+        f"Extracted {len(text)} characters from {to_relative(pdf_path)} -> {to_relative(output_path)}"
+    )
     return 0
 
 

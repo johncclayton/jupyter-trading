@@ -51,6 +51,111 @@ ENTRY_CONFIG = [
         "snippet": "Strategy: TrendFollow\n    EntrySetup: C > MA(C, 200)\n    ExitRule: C < MA(C, 200)"
     },
     {
+        "name": "Scan Section",
+        "type": "section",
+        "pattern": r"^Scan\s*:",
+        "description": "Configures a screening workflow without portfolio simulation.",
+        "snippet": "Scan:\n    Filter: Universe"
+    },
+    {
+        "name": "ScanSettings Section",
+        "type": "section",
+        "pattern": r"^ScanSettings\s*:",
+        "description": "Overrides defaults specifically for scan runs.",
+        "snippet": "ScanSettings:\n    MaxPositions: 50"
+    },
+    {
+        "name": "Template Section",
+        "type": "section",
+        "pattern": r"^Template\s*:",
+        "description": "Defines a reusable block such as a TradeList or shared strategy setup.",
+        "snippet": "Template: trades\n    TradeList: trades.csv"
+    },
+    {
+        "name": "Benchmark Section",
+        "type": "section",
+        "pattern": r"^Benchmark\s*:",
+        "description": "Sets benchmark series used for performance comparison.",
+        "snippet": "Benchmark:\n    Symbol: SPY"
+    },
+    {
+        "name": "Charts Section",
+        "type": "section",
+        "pattern": r"^Charts\s*:",
+        "description": "Configures chart panes for visualization output.",
+        "snippet": "Charts:\n    Price: C"
+    },
+    {
+        "name": "Include Section",
+        "type": "section",
+        "pattern": r"^Include\s*:",
+        "description": "Inserts another script at this location before parsing.",
+        "snippet": "Include: ?scriptpath?\\common.rts"
+    },
+    {
+        "name": "OrderSettings Section",
+        "type": "section",
+        "pattern": r"^OrderSettings\s*:",
+        "description": "Adjusts order generation rules for the test run.",
+        "snippet": "OrderSettings:\n    OrdersMode: Basket"
+    },
+    {
+        "name": "StatsGroup Section",
+        "type": "section",
+        "pattern": r"^StatsGroup\s*:",
+        "description": "Groups related performance statistics for reporting.",
+        "snippet": "StatsGroup: Core\n    Include: CAGR,MaxDD"
+    },
+    {
+        "name": "TestData Section",
+        "type": "section",
+        "pattern": r"^TestData\s*:",
+        "description": "Provides synthetic or cached data feeds for testing.",
+        "snippet": "TestData:\n    Source: cached_results.rtd"
+    },
+    {
+        "name": "TestScan Section",
+        "type": "section",
+        "pattern": r"^TestScan\s*:",
+        "description": "Declares scan inputs used when executing in Test mode.",
+        "snippet": "TestScan:\n    Include: default_scan"
+    },
+    {
+        "name": "TestSettings Section",
+        "type": "section",
+        "pattern": r"^TestSettings\s*:",
+        "description": "Overrides global settings when running Test mode comparisons.",
+        "snippet": "TestSettings:\n    StartDate: 2018-01-01"
+    },
+    {
+        "name": "OptimizeSettings Section",
+        "type": "section",
+        "pattern": r"^OptimizeSettings\s*:",
+        "description": "Configures optimization sweeps and objective ranking.",
+        "snippet": "OptimizeSettings:\n    OptSortResults: Descending"
+    },
+    {
+        "name": "WalkForward Section",
+        "type": "section",
+        "pattern": r"^WalkForward\s*:",
+        "description": "Defines walk-forward evaluation windows and offsets.",
+        "snippet": "WalkForward:\n    Length: 3 Months"
+    },
+    {
+        "name": "StratData Section",
+        "type": "section",
+        "pattern": r"^StratData\s*:",
+        "description": "Declares derived series scoped to a single strategy.",
+        "snippet": "StratData:\n    TrendOk: C > MA(C, 200)"
+    },
+    {
+        "name": "Combined Section",
+        "type": "section",
+        "pattern": r"^Combined\s*:",
+        "description": "Aggregates results from multiple test runs or accounts.",
+        "snippet": "Combined:\n    Include: Core,Edge"
+    },
+    {
         "name": "Library Section",
         "type": "section",
         "pattern": r"^Library\s*:",

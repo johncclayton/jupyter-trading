@@ -1,5 +1,13 @@
 # Plan 1: Extract and Understand RealTest Language
 
+The python code for this is in the tools/ directory - if you find a BETTER WAY then you can update the code there. 
+
+It's important to understand that some of the manual deals with the Real Test UI, and some of it with the Real Test
+Script (.rts) language.  Focus on the language here - and much less on the UI, unless the portions of the UI help provide
+meaning and or context.
+
+In the generated output, never use full path names - always use relative path names.  Where this might be a problem for further processing steps, make sure these steps resolve the relative path names properly.
+
 1. **Prepare Versioned Artifacts**  
    - Input: Repository root containing at least one `RealTest*.pdf`, populated `samples/` with `.rts` examples.  
    - Actions: Identify newest matching PDF by timestamp; derive version name `YYYYMMDD-realtest-guide`; create `versions/<version>/`; move PDF to `versions/<version>/manual.pdf`; ensure `samples/` exists.  

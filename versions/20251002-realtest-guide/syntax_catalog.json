@@ -6,6 +6,9 @@
     "description": "Optional free-form notes block at the top of a script.",
     "snippet": "Notes:\n    Strategy documentation goes here",
     "sources": [
+      "samples/Sample1.rts:1",
+      "samples/Sample2.rts:1",
+      "samples/Sample2a.rts:1",
       "samples/actual_trades.rts:1",
       "samples/anchored_vwap.rts:1",
       "samples/annual_taxes.rts:1",
@@ -87,9 +90,6 @@
       "samples/opex_and_vxex.rts:1",
       "samples/optimal_diversity.rts:1",
       "samples/radge_bbo.rts:1",
-      "samples/Sample1.rts:1",
-      "samples/Sample2.rts:1",
-      "samples/Sample2a.rts:1",
       "samples/sample_scan.rts:1",
       "samples/scale_in.rts:1",
       "samples/sctr.rts:1",
@@ -126,6 +126,7 @@
     "description": "Configures data import sources before testing.",
     "snippet": "Import:\n    DataSource: Yahoo\n    IncludeList: SPY,TLT",
     "sources": [
+      "samples/Sample1.rts:6",
       "samples/actual_trades.rts:7",
       "samples/anchored_vwap.rts:6",
       "samples/bensdorp_book.rts:4",
@@ -190,7 +191,6 @@
       "samples/opex_and_vxex.rts:4",
       "samples/optimal_diversity.rts:9",
       "samples/radge_bbo.rts:5",
-      "samples/Sample1.rts:6",
       "samples/sector_etfs.rts:4",
       "samples/sector_etfs_breadth.rts:4",
       "samples/simple_day_trade.rts:4",
@@ -220,6 +220,9 @@
     "description": "Global defaults for dates, bar size, and files.",
     "snippet": "Settings:\n    StartDate: 2010-01-01\n    EndDate: Latest\n    BarSize: Daily",
     "sources": [
+      "samples/Sample1.rts:12",
+      "samples/Sample2.rts:5",
+      "samples/Sample2a.rts:5",
       "samples/actual_trades.rts:14",
       "samples/anchored_vwap.rts:13",
       "samples/annual_taxes.rts:18",
@@ -290,9 +293,6 @@
       "samples/opex_and_vxex.rts:11",
       "samples/optimal_diversity.rts:16",
       "samples/radge_bbo.rts:13",
-      "samples/Sample1.rts:12",
-      "samples/Sample2.rts:5",
-      "samples/Sample2a.rts:5",
       "samples/sample_scan.rts:4",
       "samples/scale_in.rts:4",
       "samples/sctr.rts:28",
@@ -327,6 +327,8 @@
     "description": "Defines named parameter values for later reference.",
     "snippet": "Parameters:\n    allocSPY: 30\n    allocTLT: 40",
     "sources": [
+      "samples/Sample2.rts:11",
+      "samples/Sample2a.rts:11",
       "samples/anchored_vwap.rts:18",
       "samples/bensdorp_book.rts:81",
       "samples/beta_indicator.rts:12",
@@ -370,8 +372,6 @@
       "samples/oex_tf_top_down.rts:20",
       "samples/optimal_diversity.rts:23",
       "samples/radge_bbo.rts:40",
-      "samples/Sample2.rts:11",
-      "samples/Sample2a.rts:11",
       "samples/scale_in.rts:8",
       "samples/sector_etfs.rts:18",
       "samples/sector_etfs_breadth.rts:35",
@@ -485,6 +485,9 @@
     "description": "Trading rules, universe, and sizing for a given approach.",
     "snippet": "Strategy: TrendFollow\n    EntrySetup: C > MA(C, 200)\n    ExitRule: C < MA(C, 200)",
     "sources": [
+      "samples/Sample1.rts:18",
+      "samples/Sample2.rts:15",
+      "samples/Sample2a.rts:16",
       "samples/actual_trades.rts:24",
       "samples/anchored_vwap.rts:32",
       "samples/annual_taxes.rts:29",
@@ -541,9 +544,6 @@
       "samples/oex_tf_top_down.rts:47",
       "samples/optimal_diversity.rts:34",
       "samples/radge_bbo.rts:43",
-      "samples/Sample1.rts:18",
-      "samples/Sample2.rts:15",
-      "samples/Sample2a.rts:16",
       "samples/scale_in.rts:22",
       "samples/sector_etfs.rts:39",
       "samples/sector_etfs_breadth.rts:59",
@@ -564,6 +564,286 @@
       "samples/weekly_moc_asx_daily_weekly.rts:32",
       "samples/weekly_trend_follow.rts:32",
       "samples/weekly_trend_follow_make_tradelist.rts:36"
+    ]
+  },
+  {
+    "name": "Scan Section",
+    "type": "section",
+    "pattern": "^Scan\\s*:",
+    "description": "Configures a screening workflow without portfolio simulation.",
+    "snippet": "Scan:\n    Filter: Universe",
+    "sources": [
+      "samples/beta_indicator.rts:26",
+      "samples/breadth.rts:28",
+      "samples/cii_rotate.rts:48",
+      "samples/cl_term_structure.rts:42",
+      "samples/clenow_stocks_on_move.rts:79",
+      "samples/clenow_stocks_on_move_dynamic.rts:71",
+      "samples/correl_multi.rts:34",
+      "samples/dividend_yield_series.rts:26",
+      "samples/djia_earnings.rts:21",
+      "samples/djia_make_syminfo.rts:20",
+      "samples/djia_use_syminfo.rts:21",
+      "samples/fundamentals.rts:19",
+      "samples/futures_calendar_spread.rts:28",
+      "samples/futures_volume_rank.rts:31",
+      "samples/gics_indu_rank.rts:23",
+      "samples/hybrid_asset_allocation.rts:56",
+      "samples/ibd_rs.rts:18",
+      "samples/import_norgate.rts:26",
+      "samples/import_tiingo.rts:31",
+      "samples/index_breadth.rts:25",
+      "samples/industry_indices.rts:36",
+      "samples/keltner_pullback.rts:63",
+      "samples/mr_sample_scan.rts:41",
+      "samples/multi_filter_scan.rts:25",
+      "samples/opex_and_vxex.rts:31",
+      "samples/sample_scan.rts:13",
+      "samples/sctr.rts:33",
+      "samples/sector_etfs_breadth.rts:53",
+      "samples/simple_day_trade_basket_scan.rts:18",
+      "samples/stockbee_mm.rts:36",
+      "samples/yield_rank.rts:27"
+    ]
+  },
+  {
+    "name": "ScanSettings Section",
+    "type": "section",
+    "pattern": "^ScanSettings\\s*:",
+    "description": "Overrides defaults specifically for scan runs.",
+    "snippet": "ScanSettings:\n    MaxPositions: 50",
+    "sources": [
+      "samples/cii_rotate.rts:44",
+      "samples/clenow_stocks_on_move.rts:75",
+      "samples/clenow_stocks_on_move_dynamic.rts:67",
+      "samples/futures_volume_rank.rts:27",
+      "samples/gics_indu_rank.rts:11",
+      "samples/hybrid_asset_allocation.rts:52",
+      "samples/keltner_pullback.rts:58",
+      "samples/sector_etfs_breadth.rts:49",
+      "samples/simple_day_trade_basket_scan.rts:7"
+    ]
+  },
+  {
+    "name": "Template Section",
+    "type": "section",
+    "pattern": "^Template\\s*:",
+    "description": "Defines a reusable block such as a TradeList or shared strategy setup.",
+    "snippet": "Template: trades\n    TradeList: trades.csv",
+    "sources": [
+      "samples/actual_trades.rts:20",
+      "samples/bensdorp_book.rts:87",
+      "samples/es_compare.rts:21",
+      "samples/futures_trend_follow_csi.rts:36",
+      "samples/futures_volume_rank.rts:46",
+      "samples/goal_30_15.rts:46",
+      "samples/goal_30_15_asx.rts:47",
+      "samples/goal_30_15_tsx.rts:45",
+      "samples/mhp_classic.rts:32",
+      "samples/mr_sample_common.rts:36",
+      "samples/mr_sample_orders_alera.rts:34",
+      "samples/mr_sample_orders_basket.rts:35",
+      "samples/mr_sample_test_scan.rts:41",
+      "samples/mr_sample_tracking.rts:8",
+      "samples/mr_sample_tradelist.rts:19",
+      "samples/multi_moc_top_down.rts:68",
+      "samples/oc_all_actual.rts:23",
+      "samples/oex_tf_auto_track.rts:58",
+      "samples/oex_tf_top_down.rts:38",
+      "samples/scale_in.rts:12",
+      "samples/sector_etfs.rts:31",
+      "samples/spy_tlt_uis.rts:50",
+      "samples/turtles.rts:58",
+      "samples/two_accounts.rts:53",
+      "samples/two_accounts_rebalance.rts:53",
+      "samples/vx_futures.rts:18"
+    ]
+  },
+  {
+    "name": "Benchmark Section",
+    "type": "section",
+    "pattern": "^Benchmark\\s*:",
+    "description": "Sets benchmark series used for performance comparison.",
+    "snippet": "Benchmark:\n    Symbol: SPY",
+    "sources": [
+      "samples/cii_rotate.rts:65",
+      "samples/clenow_stocks_on_move.rts:70",
+      "samples/clenow_stocks_on_move_dynamic.rts:62",
+      "samples/es_compare.rts:32",
+      "samples/futures_volume_rank.rts:51",
+      "samples/hybrid_asset_allocation.rts:48",
+      "samples/hybrid_asset_allocation_dynamic.rts:53",
+      "samples/mr_sample_benchmark.rts:5",
+      "samples/mr_sample_tracking_alloc.rts:7",
+      "samples/ndx_rotate_weekly_reduce.rts:28",
+      "samples/oex_tf_fresh_signal.rts:23",
+      "samples/optimal_diversity.rts:44",
+      "samples/radge_bbo.rts:23",
+      "samples/scale_in.rts:38",
+      "samples/sector_etfs.rts:44",
+      "samples/sector_etfs_breadth.rts:66",
+      "samples/spy_tlt_uis.rts:69",
+      "samples/tf_dynamic_size.rts:46",
+      "samples/trend_following_basics.rts:75",
+      "samples/turtles.rts:63",
+      "samples/vigilant_asset_allocation.rts:44"
+    ]
+  },
+  {
+    "name": "Charts Section",
+    "type": "section",
+    "pattern": "^Charts\\s*:",
+    "description": "Configures chart panes for visualization output.",
+    "snippet": "Charts:\n    Price: C",
+    "sources": [
+      "samples/anchored_vwap.rts:27",
+      "samples/breadth.rts:36",
+      "samples/cl_term_structure.rts:27",
+      "samples/clenow_stocks_on_move.rts:86",
+      "samples/clenow_stocks_on_move_dynamic.rts:78",
+      "samples/dividend_yield_series.rts:31",
+      "samples/ehlers_windows.rts:40",
+      "samples/flipper.rts:44",
+      "samples/futures_calendar_spread.rts:32",
+      "samples/higher_lows.rts:37",
+      "samples/keltner_pullback.rts:70",
+      "samples/ndx_plus_wtf_script.rts:62",
+      "samples/opex_and_vxex.rts:27",
+      "samples/supertrend.rts:36",
+      "samples/trend_following_basics.rts:81",
+      "samples/vx_futures.rts:41",
+      "samples/vx_term_structure.rts:33",
+      "samples/weekly_trend_follow.rts:42",
+      "samples/weekly_trend_follow_make_tradelist.rts:46"
+    ]
+  },
+  {
+    "name": "Include Section",
+    "type": "section",
+    "pattern": "^Include\\s*:",
+    "description": "Inserts another script at this location before parsing.",
+    "snippet": "Include: ?scriptpath?\\common.rts",
+    "sources": [
+      "samples/mr_sample.rts:7",
+      "samples/mr_sample_benchmark.rts:3",
+      "samples/mr_sample_debug.rts:5",
+      "samples/mr_sample_hedged.rts:3",
+      "samples/mr_sample_long_only.rts:6",
+      "samples/mr_sample_orders.rts:5",
+      "samples/mr_sample_short_only.rts:6",
+      "samples/mr_sample_tracking.rts:6",
+      "samples/mr_sample_tracking_alloc.rts:5",
+      "samples/simple_day_trade_basket_orders.rts:5",
+      "samples/simple_day_trade_basket_scan.rts:5"
+    ]
+  },
+  {
+    "name": "OrderSettings Section",
+    "type": "section",
+    "pattern": "^OrderSettings\\s*:",
+    "description": "Adjusts order generation rules for the test run.",
+    "snippet": "OrderSettings:\n    OrdersMode: Basket",
+    "sources": [
+      "samples/mr_sample_orders.rts:7",
+      "samples/mr_sample_orders_alera.rts:17",
+      "samples/mr_sample_orders_basket.rts:17",
+      "samples/ndx_rotate_rebalance.rts:13",
+      "samples/simple_day_trade.rts:20",
+      "samples/simple_day_trade_basket_orders.rts:7",
+      "samples/weekly_moc_asx.rts:20",
+      "samples/weekly_moc_asx_daily_daily.rts:10",
+      "samples/weekly_moc_asx_daily_weekly.rts:10"
+    ]
+  },
+  {
+    "name": "StatsGroup Section",
+    "type": "section",
+    "pattern": "^StatsGroup\\s*:",
+    "description": "Groups related performance statistics for reporting.",
+    "snippet": "StatsGroup: Core\n    Include: CAGR,MaxDD",
+    "sources": [
+      "samples/bensdorp_book.rts:169",
+      "samples/oc_all_actual.rts:50",
+      "samples/turtles.rts:144",
+      "samples/two_accounts.rts:107",
+      "samples/two_accounts_rebalance.rts:113"
+    ]
+  },
+  {
+    "name": "TestData Section",
+    "type": "section",
+    "pattern": "^TestData\\s*:",
+    "description": "Provides synthetic or cached data feeds for testing.",
+    "snippet": "TestData:\n    Source: cached_results.rtd",
+    "sources": [
+      "samples/annual_taxes.rts:10",
+      "samples/clenow_stocks_on_move.rts:50"
+    ]
+  },
+  {
+    "name": "TestScan Section",
+    "type": "section",
+    "pattern": "^TestScan\\s*:",
+    "description": "Declares scan inputs used when executing in Test mode.",
+    "snippet": "TestScan:\n    Include: default_scan",
+    "sources": [
+      "samples/annual_taxes.rts:22",
+      "samples/management_fees.rts:21",
+      "samples/mr_sample_test_scan.rts:75"
+    ]
+  },
+  {
+    "name": "TestSettings Section",
+    "type": "section",
+    "pattern": "^TestSettings\\s*:",
+    "description": "Overrides global settings when running Test mode comparisons.",
+    "snippet": "TestSettings:\n    StartDate: 2018-01-01",
+    "sources": [
+      "samples/mr_sample_debug.rts:7",
+      "samples/oex_tf_auto_track.rts:21"
+    ]
+  },
+  {
+    "name": "OptimizeSettings Section",
+    "type": "section",
+    "pattern": "^OptimizeSettings\\s*:",
+    "description": "Configures optimization sweeps and objective ranking.",
+    "snippet": "OptimizeSettings:\n    OptSortResults: Descending",
+    "sources": [
+      "samples/spy_tlt_uis.rts:36"
+    ]
+  },
+  {
+    "name": "WalkForward Section",
+    "type": "section",
+    "pattern": "^WalkForward\\s*:",
+    "description": "Defines walk-forward evaluation windows and offsets.",
+    "snippet": "WalkForward:\n    Length: 3 Months",
+    "sources": [
+      "samples/spy_tlt_uis.rts:86"
+    ]
+  },
+  {
+    "name": "StratData Section",
+    "type": "section",
+    "pattern": "^StratData\\s*:",
+    "description": "Declares derived series scoped to a single strategy.",
+    "snippet": "StratData:\n    TrendOk: C > MA(C, 200)",
+    "sources": [
+      "samples/management_fees.rts:13",
+      "samples/oex_tf_auto_track.rts:52"
+    ]
+  },
+  {
+    "name": "Combined Section",
+    "type": "section",
+    "pattern": "^Combined\\s*:",
+    "description": "Aggregates results from multiple test runs or accounts.",
+    "snippet": "Combined:\n    Include: Core,Edge",
+    "sources": [
+      "samples/multi_moc_top_down.rts:64",
+      "samples/oex_tf_auto_track.rts:69",
+      "samples/oex_tf_top_down.rts:43"
     ]
   },
   {
@@ -606,6 +886,7 @@
     "description": "Identifies the import data source (e.g., Yahoo, Norgate).",
     "snippet": "Import:\n    DataSource: Yahoo",
     "sources": [
+      "samples/Sample1.rts:7",
       "samples/actual_trades.rts:8",
       "samples/anchored_vwap.rts:7",
       "samples/bensdorp_book.rts:5",
@@ -670,7 +951,6 @@
       "samples/opex_and_vxex.rts:5",
       "samples/optimal_diversity.rts:10",
       "samples/radge_bbo.rts:6",
-      "samples/Sample1.rts:7",
       "samples/sector_etfs.rts:6",
       "samples/sector_etfs_breadth.rts:5",
       "samples/simple_day_trade.rts:5",
@@ -701,6 +981,7 @@
     "snippet": "Import:\n    IncludeList: SPY,TLT,GLD",
     "sources": [
       "manual.txt:3929",
+      "samples/Sample1.rts:8",
       "samples/actual_trades.rts:9",
       "samples/anchored_vwap.rts:8",
       "samples/bensdorp_book.rts:6",
@@ -763,7 +1044,6 @@
       "samples/opex_and_vxex.rts:6",
       "samples/optimal_diversity.rts:11",
       "samples/radge_bbo.rts:7",
-      "samples/Sample1.rts:8",
       "samples/sector_etfs.rts:7",
       "samples/sector_etfs_breadth.rts:6",
       "samples/simple_day_trade.rts:6",
@@ -793,6 +1073,9 @@
     "description": "Sets the bar aggregation for the current context.",
     "snippet": "Settings:\n    BarSize: Monthly",
     "sources": [
+      "samples/Sample1.rts:16",
+      "samples/Sample2.rts:9",
+      "samples/Sample2a.rts:9",
       "samples/clenow_stocks_on_move.rts:20",
       "samples/clenow_stocks_on_move_dynamic.rts:20",
       "samples/combined.rts:19",
@@ -818,9 +1101,6 @@
       "samples/oex_tf_auto_track.rts:19",
       "samples/optimal_diversity.rts:20",
       "samples/radge_bbo.rts:18",
-      "samples/Sample1.rts:16",
-      "samples/Sample2.rts:9",
-      "samples/Sample2a.rts:9",
       "samples/sector_etfs.rts:16",
       "samples/sector_etfs_breadth.rts:18",
       "samples/simple_day_trade.rts:16",
@@ -875,6 +1155,9 @@
     "snippet": "Strategy: Momentum\n    EntrySetup: C > MA(C, 200)",
     "sources": [
       "manual.txt:2923",
+      "samples/Sample1.rts:19",
+      "samples/Sample2.rts:16",
+      "samples/Sample2a.rts:17",
       "samples/anchored_vwap.rts:34",
       "samples/bensdorp_book.rts:100",
       "samples/cii_rotate.rts:62",
@@ -925,9 +1208,6 @@
       "samples/oex_tf_top_down.rts:49",
       "samples/optimal_diversity.rts:38",
       "samples/radge_bbo.rts:26",
-      "samples/Sample1.rts:19",
-      "samples/Sample2.rts:16",
-      "samples/Sample2a.rts:17",
       "samples/scale_in.rts:24",
       "samples/sector_etfs.rts:41",
       "samples/sector_etfs_breadth.rts:63",
@@ -979,6 +1259,9 @@
     "snippet": "Strategy: Momentum\n    ExitRule: C < MA(C, 100)",
     "sources": [
       "manual.txt:3636",
+      "samples/Sample1.rts:20",
+      "samples/Sample2.rts:17",
+      "samples/Sample2a.rts:18",
       "samples/anchored_vwap.rts:35",
       "samples/bensdorp_book.rts:113",
       "samples/cii_rotate.rts:63",
@@ -1025,9 +1308,6 @@
       "samples/oex_tf_top_down.rts:51",
       "samples/optimal_diversity.rts:42",
       "samples/radge_bbo.rts:50",
-      "samples/Sample1.rts:20",
-      "samples/Sample2.rts:17",
-      "samples/Sample2a.rts:18",
       "samples/sector_etfs.rts:42",
       "samples/sector_etfs_breadth.rts:64",
       "samples/simple_day_trade.rts:44",

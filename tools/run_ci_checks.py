@@ -6,9 +6,7 @@ import json
 import pathlib
 import sys
 
-from lark import Lark, exceptions
-
-from validate_grammar import validate
+from validate_grammar import ParserError, load_parser, validate
 
 
 def ensure_trailing_newline(text: str) -> str:
@@ -18,7 +16,7 @@ def ensure_trailing_newline(text: str) -> str:
 def check_evaluation(grammar_path: pathlib.Path, evaluation_path: pathlib.Path) -> list[str]:
     issues: list[str] = []
     grammar_text = grammar_path.read_text(encoding="utf-8")
-    parser = Lark(grammar_text, start="start", parser="earley", maybe_placeholders=True)
+    parser = load_parser(grammar_text)
 
     data = json.loads(evaluation_path.read_text(encoding="utf-8"))
     cases = data.get("cases", [])
@@ -34,7 +32,7 @@ def check_evaluation(grammar_path: pathlib.Path, evaluation_path: pathlib.Path) 
             continue
         try:
             parser.parse(ensure_trailing_newline(expected))
-        except exceptions.LarkError as exc:
+        except ParserError as exc:
             issues.append(f"Case {idx} expected snippet failed to parse: {exc}")
     return issues
 

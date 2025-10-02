@@ -1,0 +1,3 @@
+# Third-party dependencies required by the tooling suite
+lark
+pypdf
