@@ -1,0 +1,88 @@
+Notes:	
+	SPY-TLT "Universal Investment Strategy"
+	from https://logical-invest.com/universal-investment-strategy
+
+	To reproduce or update the WalkForward parameters, do this:
+	1. run in Import mode 
+	2. run in Optimize mode
+		
+	If you minimize the Results window while these tests run, they will finish a lot faster.
+	
+	After completion, the top two results will be the final walk-forward system (name ends with #WF-IS or #WF-OOS).
+	These are in-sample and out-of-sample results respectively.
+
+	Run in Test mode any time to run both of those playback tests again.
+	
+	To test the use of a factor to change the weight of volatility in the Sharpe formula, edit Results.rts and use (for example)
+		Sharpe:	 		{#2} SQR(252)*Avg(S.NetPct,Periods)/(StdDev(S.NetPct,Periods)^2)
+		
+	Note that it is not meaningful to optimize this factor because it distorts Sharpe values so much.
+	Instead, re-run the WF optimization with a few factor values and compare the final result of each.
+
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	SPY, TLT
+	StartDate:	2003-01-01 // TLT start year
+	EndDate:	Latest
+	SaveAs:	SPYTLT.RTD
+	
+Settings:	
+	DataFile:	SPYTLT.RTD
+	StartDate:	Earliest
+	EndDate:	Latest
+	UseAvailableBars:	False
+	AccountSize:	100000
+	
+OptimizeSettings:
+	OptimizeMode:	Combinatorial
+	OptScoreCol:	Sharpe
+	OptTimeUnit:	Months
+	OptTestInterval:	1
+	OptTestLength:	3
+	OptSortResults:	True
+	OptKeepBest:	1
+	OptKeepByDate:	True
+	OptWalkForward:	True
+
+Parameters:	
+	Ratio:	from 0 to 1 step 0.1 def 0.5 {x}
+
+Template: Base
+	Side:	Long
+	QtyType:	Value
+	Commission:	Max(1, 0.005 * Shares) // default IB commission
+	ExitRule:	EndOfMonth
+		
+Strategy: SPY
+	Using:	Base
+	EntrySetup:	Symbol = $SPY
+	Quantity:	Ratio * S.Alloc
+					
+Strategy: TLT
+	Using:	Base
+	EntrySetup:	Symbol = $TLT
+	Quantity:	(1 - Ratio) * S.Alloc
+
+Notes:	
+	the following benchmarks are plotted in the summary graphs for comparison
+	
+Benchmark: EqualWeight
+	Using:	Base
+	EntrySetup:	1
+	Quantity:	0.5 * S.Alloc
+	
+Benchmark: SPY_200_Day
+	Using:	Base
+	EntrySetup:	Symbol==$SPY and C > MA(C,200)
+	ExitRule:	C < MA(C,200) or EndOfMonth
+
+Notes:
+	a new WalkForward list will be appended if you re-run the optimization
+	only the last WalkForward section is used when run as "Test", the others are ignored
+	to more clearly see which ratio goes with which date, run the optimization and look at the results window last column
+	the "Fraction" column in the trade list can also be used to see the ratio being applied
+
+
+WalkForward: // unit=Months, length=3, offset=1
+	Dates: 1/2/03, 4/1/03, 5/1/03, 6/2/03, 7/1/03, 8/1/03, 9/2/03, 10/1/03, 11/3/03, 12/1/03, 1/2/04, 2/2/04, 3/1/04, 4/1/04, 5/3/04, 6/1/04, 7/1/04, 8/2/04, 9/1/04, 10/1/04, 11/1/04, 12/1/04, 1/3/05, 2/1/05, 3/1/05, 4/1/05, 5/2/05, 6/1/05, 7/1/05, 8/1/05, 9/1/05, 10/3/05, 11/1/05, 12/1/05, 1/3/06, 2/1/06, 3/1/06, 4/3/06, 5/1/06, 6/1/06, 7/3/06, 8/1/06, 9/1/06, 10/2/06, 11/1/06, 12/1/06, 1/3/07, 2/1/07, 3/1/07, 4/2/07, 5/1/07, 6/1/07, 7/2/07, 8/1/07, 9/4/07, 10/1/07, 11/1/07, 12/3/07, 1/2/08, 2/1/08, 3/3/08, 4/1/08, 5/1/08, 6/2/08, 7/1/08, 8/1/08, 9/2/08, 10/1/08, 11/3/08, 12/1/08, 1/2/09, 2/2/09, 3/2/09, 4/1/09, 5/1/09, 6/1/09, 7/1/09, 8/3/09, 9/1/09, 10/1/09, 11/2/09, 12/1/09, 1/4/10, 2/1/10, 3/1/10, 4/1/10, 5/3/10, 6/1/10, 7/1/10, 8/2/10, 9/1/10, 10/1/10, 11/1/10, 12/1/10, 1/3/11, 2/1/11, 3/1/11, 4/1/11, 5/2/11, 6/1/11, 7/1/11, 8/1/11, 9/1/11, 10/3/11, 11/1/11, 12/1/11, 1/3/12, 2/1/12, 3/1/12, 4/2/12, 5/1/12, 6/1/12, 7/2/12, 8/1/12, 9/4/12, 10/1/12, 11/1/12, 12/3/12, 1/2/13, 2/1/13, 3/1/13, 4/1/13, 5/1/13, 6/3/13, 7/1/13, 8/1/13, 9/3/13, 10/1/13, 11/1/13, 12/2/13, 1/2/14, 2/3/14, 3/3/14, 4/1/14, 5/1/14, 6/2/14, 7/1/14, 8/1/14, 9/2/14, 10/1/14, 11/3/14, 12/1/14, 1/2/15, 2/2/15, 3/2/15, 4/1/15, 5/1/15, 6/1/15, 7/1/15, 8/3/15, 9/1/15, 10/1/15, 11/2/15, 12/1/15, 1/4/16, 2/1/16, 3/1/16, 4/1/16, 5/2/16, 6/1/16, 7/1/16, 8/1/16, 9/1/16, 10/3/16, 11/1/16, 12/1/16, 1/3/17, 2/1/17, 3/1/17, 4/3/17, 5/1/17, 6/1/17, 7/3/17, 8/1/17, 9/1/17, 10/2/17, 11/1/17, 12/1/17, 1/2/18, 2/1/18, 3/1/18, 4/2/18, 5/1/18, 6/1/18, 7/2/18, 8/1/18, 9/4/18, 10/1/18, 11/1/18, 12/3/18, 1/2/19, 2/1/19, 3/1/19, 4/1/19, 5/1/19, 6/3/19, 7/1/19, 8/1/19, 9/3/19, 10/1/19, 11/1/19, 12/2/19, 1/2/20, 2/3/20, 3/2/20, 4/1/20, 5/1/20, 6/1/20, 7/1/20, 8/3/20, 9/1/20, 10/1/20, 11/2/20, 12/1/20, 1/4/21, 2/1/21, 3/1/21, 4/1/21, 5/3/21, 6/1/21, 7/1/21, 8/2/21, 9/1/21, 10/1/21, 11/1/21, 12/1/21, 1/3/22, 2/1/22, 3/1/22, 4/1/22, 5/2/22, 6/1/22, 7/1/22, 8/1/22, 9/1/22, 10/3/22, 11/1/22, 12/1/22, 1/3/23, 2/1/23, 3/1/23, 4/3/23, 5/1/23, 6/1/23, 7/3/23, 8/1/23, 9/1/23, 10/2/23, 11/1/23, 12/1/23, 1/2/24, 2/1/24, 3/1/24, 4/1/24, 5/1/24, 6/3/24, 7/1/24, 8/1/24, 9/3/24, 10/1/24, 11/1/24, 12/2/24, 1/2/25, 2/3/25, 3/3/25, 4/1/25, 4/3/25
+	Ratio: 0, 0.3, 0.4, 0.5, 1, 1, 1, 0.6, 0.6, 0.8, 0.6, 0.6, 0.2, 1, 1, 1, 0, 0, 0.1, 0.3, 0.8, 0.7, 0.6, 0.4, 0, 0, 0, 0.2, 0.8, 0.7, 1, 1, 1, 0.5, 0.7, 0.4, 1, 1, 1, 1, 0, 0.1, 0.2, 0.6, 0.6, 1, 1, 1, 1, 0.4, 1, 1, 0, 0, 0.2, 0.4, 0.3, 0.2, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.9, 0.6, 0.6, 0.5, 0.6, 1, 1, 1, 0.6, 0.6, 0.3, 0.2, 0.2, 0.3, 0.5, 0.6, 1, 1, 1, 1, 0.7, 0.5, 0.4, 0.3, 0, 0, 0.2, 0.4, 0.4, 0.5, 0.5, 0.6, 0.9, 0.8, 0.2, 0.4, 0.4, 0.6, 0.7, 1, 1, 1, 1, 0.8, 0.7, 0.5, 0.8, 1, 1, 1, 1, 0.8, 1, 1, 0.5, 0.4, 0.4, 0.5, 0.5, 0.5, 0.6, 0.5, 0.4, 0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 1, 1, 1, 1, 0, 0, 0.1, 0.6, 1, 0, 0, 0.4, 0.5, 0.7, 0.4, 0.5, 0.5, 1, 1, 1, 1, 1, 0.8, 0.7, 0.7, 0.5, 0.5, 0.7, 0.5, 0.8, 0.7, 0.8, 0.8, 1, 1, 1, 0, 0.2, 0.6, 0.7, 0.7, 1, 1, 1, 0, 0.2, 0.2, 0.5, 0.6, 0.3, 0.4, 0.3, 0.4, 0.4, 0.4, 1, 1, 0.7, 0.2, 0, 0, 0.3, 0.6, 0.5, 0.5, 0.6, 1, 1, 1, 1, 1, 1, 1, 1, 0.6, 0.5, 0.6, 0.6, 1, 0.5, 0.7, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0.1, 0, 0.7, 1, 0.7, 1, 1, 1, 1, 1, 1, 0.8, 0.8, 1, 1, 1, 1, 1, 0.8, 0.5, 0.3, 1, 1, 1, 1, 0, 0, 0

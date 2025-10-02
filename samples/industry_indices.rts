@@ -1,0 +1,43 @@
+Notes:	demonstrates use of Norgate's corresponding industry index feature
+	scan for strongest stocks in strongest industries 
+	see also cii_rotate.rts 
+
+	After running the import, data wil include all the current SPX component symbols (ListNum = 1),
+	and all the industry index symbols that correspond to any of the SPX symbols (ListNum = 99).
+	The data for the corresponding industry index for any symbol can be referenced using relative symbol syntax
+	with special code &99 (there's that number again).
+
+	Extern(&99, ...) is the special relative symbol code to access the corresponding industry index data for the current symbol.
+	This scan will show all symbols including the industry indexes and the individual stocks.
+	The InduRank column will show their own rank for the former and the corresponding index rank for the latter.
+
+Import:	// requires Norgate Platinum subscription
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	CIIFamily:	$SPX // can be $SPX or $SP1500 -- determines which set of corresponding industry index symbols to use
+	CIILevel:	IndustryGroup // corresponding industry index specificity level (see auto-complete choices)
+	StartDate:	1/1/18
+	EndDate:	Latest
+	SaveAs:	industry_indices.rtd
+
+Data:	ROC126:	ROC(C,126)
+	
+	// only rank the industry indexes, not the SPX components
+	InduRank:	#Rank iif(ListNum=99, ROC126, nan) 
+	
+	// count the 52-week highs and lows within each industry
+	NewHighs:	#sum #ByCII InSPX and C = HHV(C,252)
+	NewLows:	#sum #ByCII InSpx and C = LLV(C,252)
+	
+Settings:	DataFile:	industry_indices.rtd
+	EndDate:	Latest
+	NumDays:	1 // just scan the most recent date
+
+Scan:	Name:	?Name
+	CII:	?CII
+	List:	ListNum
+	ROC126:	ROC126
+	InduRank:	iif(ListNum=99,InduRank,Extern(&99, InduRank))
+	NewHighs:	NewHighs
+	NewLows:	NewLows
+	Sort:	InduRank,-List,-ROC126

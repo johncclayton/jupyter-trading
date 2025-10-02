@@ -1,0 +1,44 @@
+Notes:	
+	Bold Asset Allocation system by Keller
+	https://allocatesmartly.com/bold-asset-allocation/	
+	see also vigilant-asset-allocation.rts
+	
+Import:
+	DataSource:	Yahoo
+	IncludeList:	SPY, EFA, EEM, AGG {"Canary"}
+	IncludeList:	QQQ, EEM, EFA AGG {"OffensiveA"}
+	IncludeList:	SPY, QQQ, IWM, VGK, EWJ, EEM, VNQ, DBC, GLD, TLT, HYG, LQD {"OffensiveB"}
+	IncludeList:	TIP, DBC, BIL, IEF, TLT, LQD, AGG {"Defensive"}
+	StartDate:	2007-04-30 // youngest of above ETFs
+	EndDate:	Latest
+	SaveAs:	keller_baa.rtd
+
+Settings:
+	DataFile:	keller_baa.rtd
+	StartDate:	2008-04-30
+	EndDate:	Latest
+	BarSize:	Monthly
+
+Parameters:
+	aggressive:	0, 1
+		
+Data:
+	absmom:	12 * roc(c,1) + 4 * roc(c, 3) + 2 * roc(c,6) + roc(c,12)
+	canary:	#sum InList("Canary")
+	canarymom:	#sum InList("Canary") and absmom > 0
+	offense:	canarymom = canary
+	relmom:	c / avg(c,13)
+	offrnka:	#rank if(InList("OffensiveA"), relmom, nan)
+	offrnkb:	#rank if(InList("OffensiveB"), relmom, nan)
+	defrnk:	#rank if(InList("Defensive"), relmom, nan)
+	
+Strategy: baa
+	Side:	Long
+	EntrySetup:	(offense and aggressive and offrnka = 1)
+		or (offense and not aggressive and offrnkb <= 6)
+		or (not offense and defrnk <= 3 and relmom >= extern($BIL, relmom))
+	Quantity:	100 / if(offense and aggressive, 1, if(offense and not aggressive, 6, 3))
+	QtyType:	Percent
+	ExitRule:	TRUE	// always rebalance
+	EntryTime:	ThisClose	// impractical but what the description says
+	ExitTime:	ThisClose	// ditto

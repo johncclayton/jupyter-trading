@@ -1,0 +1,37 @@
+Notes:	
+	shows two possible ways to produce and display futures calendar spread series
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.@CME_CCB	// any custom watchlist with futures CCB symbols
+	IncludeList:	.@CME_Individual	// any custom watchlist with futures individual symbols
+	SaveAs:	futures_calendar_spread.rtd
+	StartDate:	2020-01-01
+
+Data:	
+	// use relative symbol logic with the corresponding CC series to calculate the daily spread
+	Spread1:	if(Symbol=Extern(&cc, Symbol), Extern(&0, C) - Extern(&1, C), 0)
+	
+	// use bar count ranking to filter out shorter intermediate contracts
+	// will be same as above for most, except a few such as gold (GC)
+	DaysToExp:	Days(BarDate, InfoExpiry)
+	AgeRank:	#Rank #ByMkt -DaysToExp
+	Month1:	#Highest #ByMkt if(AgeRank=1, Symbol, 0)
+	Month2:	#Highest #ByMkt if(AgeRank=2, Symbol, 0)
+	Spread2:	Extern(SymNum(Month1), C) - Extern(SymNum(Month2), C)
+	
+Settings:	
+	DataFile:	futures_calendar_spread.rtd
+	EndDate:	Latest	
+	NumBars:	2 // need the second most recent bar
+	
+Scan:	
+	Spread:	Item("Spread{#}",ListNum)
+	Filter:	not IsNan(Spread)
+	
+Charts:	
+	// view on &cc contracts
+	Prev1:	Extern(&1, C)
+	Prev2:	Extern(&0, Extern(SymNum(Month2), C))
+	Spread1:	Extern(&cc, Spread1) {|}
+	Spread2:	Extern(&0, Spread2) {|}

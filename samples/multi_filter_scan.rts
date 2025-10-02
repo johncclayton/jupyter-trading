@@ -1,0 +1,30 @@
+Notes:	
+	shows how to implement a daily setup scan with (up to) two rows per symbol
+
+Settings:	
+	DataFile:	YahooSPX.rtd // see import_yahoo.rts for import definition
+	EndDate:	Latest
+	NumDays:	1
+	
+Parameters:	
+	NumPos:	10
+	PctExt:	2.5
+
+Data:	
+	ATR5:	ATR(5) 
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20  and Avg(V, 20) >= 200000 
+	Volatile:	ATR5 > 0.03 * C
+	Universe:	Liquid and Volatile and C > EMA100
+	MyRank:	#Rank Universe * ATR5 / C
+	Setup:	Universe and MyRank <= 10
+	LongLimit:	C - 0.5 * ATR5 // drops another half ATR
+	ShortLimit:	C + 0.5 * ATR5 // rises another half ATR
+
+Scan:	
+	FilterLong:	Setup
+	FilterShort:	Setup
+	MyRank:	MyRank {"Rank"}
+	Action:	if(FilterNum == 1, "BUY", "SHORT")
+	LimitPrice:	if(FilterNum == 1, LongLimit, ShortLimit)

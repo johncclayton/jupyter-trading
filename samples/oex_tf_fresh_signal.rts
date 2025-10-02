@@ -1,0 +1,35 @@
+Import: 
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	IncludeList:	$OEX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+
+Parameters:
+	len1:	100
+	risk:	0.01
+
+Data:
+	high1:	hhv(h, len1)
+	low1:	llv(l, len1 / 2)
+	universe:	InOEX
+	
+Benchmark: oex_tf_signal
+	Side:	Long
+	Quantity:	1
+	EntrySetup:	universe and c > high1[1]
+	ExitRule:	c < hhv(low1, BarsHeld)
+	
+Strategy: oex_tf
+	Using:	oex_tf_signal
+	Quantity:	S.Alloc * risk / (c - low1)
+	EntrySetup:	universe and c > high1[1] and Extern(@oex_tf_signal, BarsHeld = 0)
+	SetupScore:	roc(c, len1)
+	MaxExposure:	100
+	

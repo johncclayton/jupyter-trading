@@ -1,0 +1,26 @@
+Notes:	
+	compute IBD RS rankings for a universe of stocks
+	we don't know what specific universe IBD uses
+	this example uses current S&P 500 constituents
+
+Settings:	
+	DataFile:	YahooSPX.rtd // see import_yahoo.rts for how to create this file
+	EndDate:	Latest
+	NumDays:	1
+	UseAvailableBars:	False
+	
+Data:	
+	// calculate the underlying values
+	strength:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // strength factor
+	pctrnk:	#PercentRank strength // "inclusive" (0-100) percent rank of strength
+	ibdrs:	99/101 * pctrnk + 1 // "exclusive" (1-99) percent rank rounded to nearest whole number
+	
+Scan:	
+	// show the RS list
+	Filter:	strength // only include stocks for which it can be calculated
+	Name:	?Name
+	Industry:	?Industry
+	Strength:	strength
+	IBDRS:	ibdrs {#0} // round to nearest whole number
+	Sort:	-strength
+

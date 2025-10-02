@@ -1,0 +1,31 @@
+Notes:
+	Shows how to find the top X stocks in the top Y industries using GICS classification
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 3000
+	Classification:	GICS
+	StartDate:	2024-01-01
+	SaveAs:	rua_current.rtd
+	
+ScanSettings:
+	DataFile:	rua_current.rtd
+	EndDate:	Latest
+	NumBars:	1
+	
+Data:
+	StockFactor:	ROC(C, 63)	// what to rank stocks by
+	InduFactor:	#Avg #ByIndu StockFactor	// factor values averaged by industry
+	InduStockRank:	#Rank #ByIndu StockFactor	// factor values ranked by industry
+	InduRank:	#Rank if(InduStockRank = 1, InduFactor, -999)	// industries ranked by average factor value
+	StockInduRank:	#Lowest #ByIndu InduRank	// the industry rank of each stock
+	
+Scan:
+	Filter:	StockInduRank <= 5 and InduStockRank <= 2
+	Sort:	StockInduRank,InduStockRank
+	InduName:	?Industry
+	GICS:	InfoGICS
+	StockFactor:	StockFactor
+	InduFactor:	InduFactor
+	StockInduRank:	StockInduRank
+	InduStockRank:	InduStockRank

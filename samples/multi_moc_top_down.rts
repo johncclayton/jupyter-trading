@@ -1,0 +1,105 @@
+Notes:
+	multiple variations on the simple_day_trade.rts strategy
+	shows how to use top-down setup ranking to prevent duplicate positions
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 1000 Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	multi_day_trade.rtd
+	
+Settings:	
+	DataFile:	multi_day_trade.rtd
+	StartDate:	2015-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	100000
+	
+Parameters:
+	// setup variables (slightly otimized)
+	atrpct1:	0.05
+	atrpct2:	0.03
+	maxroc3:	-10
+	maxroc4:	-6
+	// entry stretch variables (ditto)
+	stretch1:	0.6
+	stretch2:	0.4
+	stretch3:	1.2
+	stretch4:	1.0
+	// max positions per strategy
+	maxpos:	5
+	// strategy count
+	strats:	4
+	
+Data:
+	// common indicators
+	atr3:	atr(3)
+	atr5:	atr(5)
+	ema3:	ema(c,3)
+	ema5:	ema(c,5)
+	roc3:	roc(c,3)
+	roc5:	roc(c,5)
+	ma200:	ma(c,200)
+	// common universe
+	universe:	InRUI and C > 10 and C > ma200
+	// version 1
+	setup1:	universe and atr5 / c > atrpct1
+	score1:	1000 - roc5
+	price1:	L - atr5 * stretch1
+	// version 2
+	setup2:	universe and atr3 / c > atrpct2
+	score2:	1000 - roc3
+	price2:	L - atr3 * stretch2
+	// version 3
+	setup3:	universe and roc5 < maxroc3
+	score3:	atr5
+	price3:	C - atr5 * stretch3
+	// version 4
+	setup4:	universe and roc3 < maxroc4
+	score4:	atr3
+	price4:	C - atr3 * stretch4
+
+Combined:
+	MaxSameSym:	1	// no duplicate setups allowed
+	MaxPositions:	4 * maxpos	// experiment with only using a top-down constraint
+	
+Template: common
+	Side:	Long
+	Quantity:	100 / maxpos
+	QtyType:	Percent
+	ExitRule:	1
+	ExitTime:	ThisClose
+	MaxPositions:	maxpos	// comment this out when trying the top-down constraint
+
+	// example StrategyScore formulas to play with
+//	StrategyScore:	-StratNum	// lowest strategy number (default if not specified)	
+//	StrategyScore:	StratNum 	// highest strategy number (reverse script order)
+//	StrategyScore:	(SetupRank + strats - 1 - StratNum) % strats + 1	// take turns going first each rank number
+	StrategyScore:	-OrderSum(1)	// fewest new orders so far today
+
+Strategy: strat1
+	Using:	common
+	EntrySetup:	setup1
+	SetupScore:	score1
+	EntryLimit:	price1
+	
+Strategy: strat2
+	Using:	common
+	EntrySetup:	setup2
+	SetupScore:	score2
+	EntryLimit:	price2
+	
+Strategy: strat3
+	Using:	common
+	EntrySetup:	setup3
+	SetupScore:	score3
+	EntryLimit:	price3
+	
+Strategy: strat4
+	Using:	common
+	EntrySetup:	setup4
+	SetupScore:	score4
+	EntryLimit:	price4
+

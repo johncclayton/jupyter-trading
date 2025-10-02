@@ -1,0 +1,33 @@
+Notes:	use a benchmark copy of each strategy to generate equity curves
+	whereas mr_sample_tracking.rts uses these curves as on/off switches
+	this version uses them to dynamically adjust strategy allocation
+
+Include:	?scriptpath?\mr_sample_common.rts // right-click to open
+
+Benchmark:	mr_long_track // mean-reversion long tracking strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5) // oversold
+	EntryLimit:	LongLimit
+	ExitLimit:	FillPrice * (1 + Target/100) // intraday profit target
+	ExitRule:	C > C[1] or BarsHeld == 5 // sell on first up day or after 5 days
+	
+Strategy:	mr_long // actual strategy to backtest
+	Using:	mr_long_track
+	//Quantity:	if (Extern(@mr_long_track, S.Alloc < Avg(S.Alloc,50)), 50, 100) / NumPos
+	// the above, using equity MA rather than DDPct, can also be tested
+	Quantity:	if (Extern(@mr_long_track, S.DDPct > 0.05), 50, 100) / NumPos
+
+Benchmark:	mr_short_track // mean-reversion short tracking strategy
+	Using:	base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5) // overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100) // intraday profit target
+	ExitRule:	C < C[1] or BarsHeld == 5 // cover on first down day or after 5 days
+	
+Strategy:	mr_short// actual strategy to backtest
+	Using:	mr_short_track
+	//Quantity:	iif (Extern(@mr_short_track, S.Alloc < Avg(S.Alloc,50)), 50, 100) / NumPos
+	// the above, using equity MA rather than DDPct, can also be tested
+	Quantity:	iif (Extern(@mr_short_track, S.DDPct) > 0.05, 50, 100) / NumPos

@@ -1,0 +1,44 @@
+Notes:	
+	shows how to structure a multiple-source data import
+	
+Import:	
+	// Each DataSource statement resets the Include/Exclude lists
+	
+	// Norgate (IncludeList(s) required)
+	DataSource:	Norgate
+	IncludeList:	&ES, SPY
+	// could add more IncludeList statements if needed
+	
+	// Yahoo (IncludeList(s) required)
+	DataSource:	Yahoo
+	IncludeList:	SPY>SPY2
+	// the > identifies an alias when you want to rename a symbol
+	// could add more IncludeList statements if needed
+
+	// Local CSV directories where we want all the symbols
+	DataSource:	CSV
+
+	// Field layout for this and subsequent CSV imports (unless restated)
+	CSVFields:	Date,Open,High,Low,Close,Volume,RealClose,Dividend
+
+	DataPath:	c:\NDExport1 // include all symbols
+	DataPath:	c:\NDExport2 // ditto
+	
+	// Local CSV directories where we want only a subet of the symbols
+	DataSource:	CSV // required to prevent IncludeList below from applying to DataPaths above
+	IncludeList:	AAPL,VZ 
+	DataPath:	c:\NDExport3
+	DataPath:	c:\NDExport4
+
+	// Local multi-symbol CSV files
+	CSVFields:	Date,Symbol,Open,High,Low,Close,Volume
+	CSVFile:	c:\Data\OtherData1.CSV
+	CSVFile:	c:\Data\OtherData2.CSV
+	
+	// General Settings
+	StartDate:	2019-01-01
+	EndDate:	Latest
+	SaveAs:	multi.rtd
+	LogFile:	multi.log
+
+	// all of the above data would end up in a single RTD file

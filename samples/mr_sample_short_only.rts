@@ -1,0 +1,23 @@
+Notes:	
+	short side only of mr_sample.rts
+	separated to demonstrate combining strategies via tradelist
+	see also mr_sample_tradelist.rts
+
+Include: ?scriptpath?\mr_sample_common.rts // right-click to open
+
+Settings:
+	KeepTrades:	Strategy
+	SaveTradesAs:	?scriptpath?\mr_short.csv
+	SaveTradesType:	Compact
+	
+Strategy: mr_short // mean-reversion short strategy (gets DESTROYED in Jaunary 2021 by the meme stocks)
+	Using:	base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5) // overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100) // intraday profit target
+	ExitRule:	select(C < C[1], "down day", BarsHeld == 5, "time stop") // cover on first down day or after 5 days.
+	
+	// elements added to support tradelist combination with other strategies
+	EntryTradeValue:	OrderPrice // becomes TLValueIn in the playback strategy
+	ExitTradeValue:	FillFraction // becomes TLValueOut in the playback strategy

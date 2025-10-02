@@ -1,0 +1,63 @@
+Notes:	
+	Hybrid Asset Allocation system by Keller and Keuning (balanced version)
+	https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html
+	
+Import:	
+	DataSource:	Norgate // also works with Yahoo
+	Adjustment:	TotalReturn
+//	IncludeList:	SPY, IWM, VEA, VWO, DBC, VNQ, IEF, TLT {"offensive"}
+	IncludeList:	DBMF, JPME, JPMF, JPMG, KMLM, WTMF {"offensive"}
+	IncludeList:	BIL, IEF {"defensive"}
+	IncludeList:	TIP {"canary"}
+	IncludeList:	SPY {"benchmark"}
+	StartDate:	2007-07-31 // earliest date that includes all of the above
+	EndDate:	Latest
+	SaveAs:	haa.rtd
+
+Settings:	
+	DataFile:	haa.rtd
+	StartDate:	2008-07-31 // needs a year for factor calculation
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Monthly
+	
+Parameters:
+	offPos:	4
+	offSize:	25
+	
+Data:
+	factor:	(ROC(c,1) + ROC(c,3) + ROC(c,6) + ROC(c,12)) / 4 // Momentum Factor
+	rankDef:	#rank if(InList("defensive"), factor, -999)
+	rankOff:	#rank if(InList("offensive"), factor, -999)
+	holdOff:	InList("offensive") and factor > 0 and rankOff <= offPos
+	numOff:	#sum holdOff
+	canary:	Extern($TIP, factor <= 0)
+	size:	select(	
+		{canary mode}	canary, if(rankDef = 1, 100, 0),
+		{defensive or both}	rankDef = 1 and numOff < offPos, offSize * (holdOff + offPos - numOff),
+		{offensive only} 	holdOff, offSize,
+		{no position}	0)
+
+Strategy: HAA
+	Side:	Long
+	Quantity:	size
+	QtyType:	Percent
+	EntrySetup:	size > 0
+	ExitRule:	1	// rebalance monthly (in RT that means exit and re-enter)
+
+Benchmark: SPY
+	Side:Long
+	EntrySetup:	InList("benchmark")
+
+ScanSettings:
+	EndDate:	2020-03-31	// put the desired scan date here
+	NumBars:	1	// run Scan to check the next month's positions
+	
+Scan:
+	sort:	-date, rankOff
+	factor:	factor
+	canary:	canary
+	numOff:	numOff
+	rankOff:	rankOff
+	rankDef:	rankDef
+	size:	size

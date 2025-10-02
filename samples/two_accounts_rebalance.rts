@@ -1,0 +1,120 @@
+Notes: 
+	Trade dow_pullback and ndx_rotate in one account
+	Trade mr_sample long/short in another account
+	Compound each account separately with monthly rebalance (cash transfer) between them
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average Current & Past
+	IncludeList:	.Nasdaq 100 Current & Past
+	IncludeList:	.Russell 3000 Current & Past
+	IncludeList:	SPY
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	two_accounts.rtd
+
+Settings:	
+	AccountSize:	100000
+	DataFile:	two_accounts.rtd
+	StartDate:	Earliest
+	EndDate:	1/1/21 // avoid meme stock drawdown
+//	EndDate:	Latest // include meme stock drawdown
+	BarSize:	Daily
+	
+Data:
+	// ndx_rotate
+	uptrend:	c > Avg(C,200)
+	bullmkt:	Extern($SPY, uptrend)
+	factor:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+	
+	// mr_sample
+	ATR5:	ATR(5)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20 and Avg(V, 20) >= 200000
+	Volatile:	ATR5 > 0.03 * C
+	Biotech:	Top(InfoTRBC,4) = 5620
+	Universe:	InRUA and Liquid and Volatile and not BioTech and C > EMA100
+	LongLimit:	C - 0.5 * ATR5
+	ShortLimit:	C + 0.5 * ATR5
+	
+Parameters:
+	// ndx_rotate
+	positions:	5
+	worstrank:	5
+	
+	// mr_sample
+	NumPos:	from 5 to 20 step 5 def 10
+	PctExt:	from 1 to 5 step 0.5 def 2.5
+	Target:	from 3 to 12 def 8
+
+Template: account1alloc
+	StartPercent:	50  // fraction of combined starting account sizes
+	Allocation:	Extern(@account1, S.Alloc) // refers to StatsGroup defined at bottom
+
+Template: account2alloc
+	StartPercent:	50  // ditto (these should add up to 100)
+	Allocation:	Extern(@account2, S.Alloc) // refers to StatsGroup defined at bottom
+	
+Strategy: dow_pullback
+	Using:	account1alloc  // each strategy in a compounding account uses that account's entire allocation
+	// weekly rotation into the 5 DJIA components with the biggest 5-day pullback while still in up-trends
+	Side:	Long
+	Quantity:	50 / positions  // use 50% of this account's current value when sizing positions (allow 100% total)
+	QtyType:	Percent
+	EntrySetup:	EndOfWeek and InDJI and C > MA(C,200)  // next day will be a new week and symbol was in the DJIA this day and is in an uptrend
+	MaxPositions:	positions
+	SetupScore:	C[5] / C  // select the top 5 ranked by 5-day pullback
+	ExitRule:	EndOfWeek  // rotate every Monday at the open (in practice you could hold the ones that didn't change)
+
+Strategy: ndx_rotate
+	Using:	account1alloc
+	Side:	Long
+	Quantity:	50 / positions 	// use 50% of this account's current value when sizing positions (allow 100% total)
+	QtyType:	Percent
+	MaxPositions:	positions
+	EntrySetup:	EndOfMonth and  canhold and posrank <= positions
+	SetupScore:	factor
+	ExitRule:	EndOfMonth and (not canhold or posrank > worstrank)
+
+Template: mr_base
+	Using:	account2alloc // each strategy in a compounding account uses that account's entire allocation
+	MaxPositions:	NumPos
+	SetupScore:	ATR5 / C
+	Quantity:	100 / NumPos // use 100% of this account's current value when sizing positions (allow 200% total)
+	QtyType:	Percent
+	Commission:	Max(1, 0.005 * Shares)
+	LimitExtra:	0.001 * C
+
+Strategy: mr_long 
+	Using:	mr_base
+	Side:	Long
+	EntrySetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5)
+	EntryLimit:	LongLimit
+	ExitLimit:	FillPrice * (1 + Target/100)
+	ExitRule:	select(C > C[1], "up day", BarsHeld == 5, "time stop")
+	
+Strategy: mr_short 
+	Using:	mr_base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5)
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100) // intraday profit target
+	ExitRule:	select(C < C[1], "down day", BarsHeld == 5, "time stop")
+
+Strategy: _acc1_cash
+	CashInOut:	if(EndOfMonth, 0.5 * Combined(S.Alloc) - Extern(@account1, S.Alloc), 0)
+
+Strategy: _acc2_cash
+	CashInOut:	if(EndOfMonth, 0.5 * Combined(S.Alloc) - Extern(@account2, S.Alloc), 0)
+
+StatsGroup: account1
+	Using:	dow_pullback, ndx_rotate, _acc1_cash
+	StartPercent:	50
+
+StatsGroup: account2
+	Using:	mr_long, mr_short, _acc2_cash
+	StartPercent:	50
+	

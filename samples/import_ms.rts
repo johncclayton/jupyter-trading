@@ -1,0 +1,16 @@
+Notes:	
+	MetaStock data import example
+	(from the old Norgate Premium Data days)
+
+	If you have the current MetaStock (version 17), use their DataLink Downloader
+	to download the data that you want and then convert it to "MSLegacy" format.
+	Point the above "DataPath" to your MSLegacy folder.
+	To include all symbols in the folder, omit the IncludeList line.
+	Use IncludeList only when you want to specify a subset of symbols.
+	
+Import:	
+	DataSource:	MetaStock
+	DataPath:	c:\norgate data\stocks\us\
+	IncludeList:	c:\Norgate Data\stocks\us\Lists\US Exchange Listed Operating Company.us.txt
+	StartDate:	2014-01-01
+	SaveAs:	norgate_ms_2014.rtd

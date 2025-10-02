@@ -1,0 +1,60 @@
+Notes:	
+	NDX Rotate version showing how to test and compare rank factors
+	run ndx_rotate.rts first to import the data file
+	
+Settings:	
+	DataFile:	ndx_rotate.rtd // see ndx_rotate.rts for import definition
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	100000
+	// generate a name for each test based on factor used
+	TestName:	Item("name{#}", factor_number)
+	
+Parameters:	
+	positions:	5
+	worstrank:	5
+	factor_number:	from 1 to 6
+
+Library:	
+	// factor names (keep aligned with factor items in Data section)
+	name1:	"IBD RS"
+	name2:	"short-term IBD RS"
+	name3:	"stockbee trend intensity"
+	name4:	"ROC 63"
+	name5:	"ROC 126"
+	name6:	"ROC 252"
+	
+Data:	
+	// pre-calculated indicators
+	ma200:	MA(C,200)
+	ma65:	MA(C, 65)
+	ma7:	MA(C, 7)
+	uptrend:	c > ma200
+	bullmkt:	Extern($SPY, uptrend)
+
+	// factor formulas (keep aligned with factor names in Library section)
+	factor1:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	factor2:	0.4 * ROC(C,21) + 0.2 * ROC(C,42) + 0.2 * ROC(C,63) + 0.2 * ROC(C,126) // shorter-term version
+	factor3:	ma7 / ma65 // stockbee trend intensity
+	factor4:	ROC(C, 63) // simple 3-month gain
+	factor5:	ROC(C, 126) // simple 6-month gain
+	factor6:	ROC(C, 252) // simple 12-month gain
+
+	// current factor to use based on parameter
+	factor:	Item("factor{#}", factor_number)
+	
+	// entry criteria (require 252 bars so factor choices doesn't influence start date)
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+	
+Strategy: ndx_rotate
+	Side:	Long
+	Quantity:	100 / positions 
+	QtyType:	Percent
+	MaxPositions:	positions
+	EntrySetup:	EndOfMonth and  canhold and posrank <= positions
+	SetupScore:	factor
+	ExitRule:	EndOfMonth and (not canhold or posrank > worstrank)
+

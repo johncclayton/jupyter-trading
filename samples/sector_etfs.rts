@@ -1,0 +1,48 @@
+Notes:	
+	S&P sector ETF monthly rotation based on n-day ROC
+
+Import:	
+	// Import the S&P sector ETFs since 1999 from Yahoo
+	DataSource:	Yahoo
+	IncludeList:	XLB, XLE, XLF, XLI, XLK, XLP, XLU, XLV, XLY {"sectors"}
+	IncludeList:	SPY // for benchmark
+	StartDate:	1999-01-01
+	SaveAs:	sector_etfs.rtd
+
+Settings:	
+	DataFile:	sector_etfs.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	
+Parameters:	
+	// first value is the default for single test mode
+	Lookback:	63, 42, 21, 126, 252
+	Positions:	5, 4, 3, 2, 1
+	Momo:	1, 0
+	
+Data:	
+	Strength:	C / Lowest(C, Lookback)
+	MomoRank:	#Rank if(InList("sectors"), Strength, nan)       // momentum rank -- lowest rank is strongest momentum (only use sector ETFs, not SPY)
+	ValueRank:	#Rank if(InList("sectors"), 1 / Strength, nan)  // value rank -- lowest rank is weakest momentum (ditto)
+	MyRank:	IF(Momo, MomoRank, ValueRank)
+	Rotate:	EndOfMonth  // tomorrow is a new month
+	
+Template: base // common strategy elements
+	Side:	Long
+	Quantity:	100 / Positions 
+	QtyType:	Percent
+	MaxPositions:	Positions
+	Commission:	0.005 * Shares
+	Slippage:	0.001 * FillPrice
+	
+Strategy: sector_etfs
+	Using:	base // inserts those extra elements into this strategy
+	EntrySetup:	Rotate and MyRank <= Positions
+	ExitRule:	Rotate and MyRank > Positions
+
+Benchmark: benchmark
+	Side:Long
+	EntrySetup:	Symbol=$SPY
+	// exit (and immediately re-enter) on each ex-dividend day, to re-invest the dividend
+	ExitRule:	Dividend > 0 

@@ -1,0 +1,48 @@
+Notes:	
+	NDX Rotate Reduce
+	uses original ndx_rotate.rts as a benchmark
+	takes its positions but reduces on any weekly drawdown that crosses another 10% threshold
+	
+Settings:	
+	DataFile:	ndx_rotate.rtd // see ndx_rotate.rts for import definition
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	HolidayList:	?scriptpath?\holidays.us.txt // only needed for generating tomorrow's orders
+	AccountSize:	100000
+	OrdersMode:	rebalance // generate an input file for the IB portfolio rebalance tool
+	KeepTrades:	Strategy,Benchmark // so you can see the original strategy (now a bencyhmark) trades as well
+	
+Data:	
+	uptrend:	c > Avg(C,200)
+	bullmkt:	Extern($SPY, uptrend)
+	factor:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+
+Parameters:	
+	positions:	5
+	worstrank:	5 // set to > 5 to hold positions longer, set to 0 for monthly rebalance
+	
+Benchmark: ndx_rotate
+	Side:	Long
+	Quantity:	100 / positions 
+	QtyType:	Percent
+	MaxPositions:	positions
+	EntrySetup:	EndOfMonth and  canhold and posrank <= positions
+	SetupScore:	factor
+	ExitRule:	EndOfMonth and (not canhold or posrank > worstrank)
+
+Library:	
+	// this formula is needed in two places so we make it a library formula to avoid copy/paste
+	// idea is to convert current drawdown (c/fillprice) into a position size multiplier (rounding to celing of nearest 0.1)
+	NewQty:	Extern(@ndx_rotate, min(1, round(C/FillPrice, 0.1, 1)) * Shares)
+	
+Strategy: ndx_rotate_reduce
+	Side:	Long
+	Quantity:	NewQty
+	QtyType:	Shares
+	Compounded:	True	// this Quantity formula fools the automatic detection
+	EntrySetup: 	Extern(@ndx_rotate, Shares > 0)	// open or re-open if not already open
+	ExitRule:	Select(Extern(@ndx_rotate, Shares = 0), "full exit", (EndOfWeek and NewQty < Shares), "reduce")

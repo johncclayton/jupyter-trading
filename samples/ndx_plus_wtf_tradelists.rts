@@ -1,0 +1,35 @@
+Notes:
+	combines the ndx_rotate.rts and weekly_trend_follow.rts examples by playing back their trade lists together
+	use ndx_rotate_make_tradelist.rts and weekly_trend_follow_make_tradelist.rts to create the lists first
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	?desktop?\ndx_rotate.csv
+	IncludeList:	?desktop?\wtf.csv
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	tradelist.rtd
+	
+Settings:
+	DataFile:	tradelist.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+	AccountSize:	200000
+	
+Parameters:	
+	wtf_pos:	20
+	ndx_pos:	5
+
+Strategy: ndx_rotate
+	TradeList:	?desktop?\ndx_rotate.csv
+	Side:	Long
+	Quantity:	50 / ndx_pos
+	QtyType:	Percent
+
+Strategy: weekly_trend_follow
+	TradeList:	?desktop?\wtf.csv	
+	Side:	Long
+	Quantity:	50 / wtf_pos
+	QtyType:	Percent
+

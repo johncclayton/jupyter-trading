@@ -1,0 +1,20 @@
+Notes:	
+	Simplest Example -- 50/200 crossover on SPY
+	to run for the first time, first click on Import, then click on Test
+	to run the test again, just click Test (or press F5)
+
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	SPY
+	StartDate:	1993-01-01
+	SaveAs:	sample1.rtd
+	
+Settings:	
+	DataFile:	sample1.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	
+Strategy: SPY_Crossover
+	EntrySetup:	Avg(C,50) > Avg(C,200)
+	ExitRule:	Avg(C,50) < Avg(C,200)

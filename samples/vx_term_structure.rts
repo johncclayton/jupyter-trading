@@ -1,0 +1,42 @@
+Notes:
+	import all the individual VX futures contracts
+	determins the 8 newest ones for each date
+	charts their closing prices in the volume pane
+
+Import:
+	DataSource:	Norgate	// assumes futures subscription
+	IncludeList:	.@VX_Individual  	// you must create this watchlist
+	IncludeList:	&VX, $VIX,$VIX3M 
+	SaveAs:	vx_term_structure.rtd
+	StartDate:	2005-01-01
+
+Settings:
+	DataFile:	vx_term_structure.rtd
+	EndDate:	Latest
+	NumBars:	1
+	BarSize:	Daily
+	
+Data:	
+	DaysToExp:	Days(BarDate, InfoExpiry)
+	AgeRank:	#Rank if(InList(1), -DaysToExp, nan)
+	VX1:	#Highest if(AgeRank=1, Symbol, 0)
+	VX2:	#Highest if(AgeRank=2, Symbol, 0)
+	VX3:	#Highest if(AgeRank=3, Symbol, 0)
+	VX4:	#Highest if(AgeRank=4, Symbol, 0)
+	VX5:	#Highest if(AgeRank=5, Symbol, 0)
+	VX6:	#Highest if(AgeRank=6, Symbol, 0)
+	VX7:	#Highest if(AgeRank=7, Symbol, 0)
+	VX8:	#Highest if(AgeRank=8, Symbol, 0)
+
+// open a chart of $VIX and apply this script to it
+
+Charts:
+	VX1:	Extern(SymNum(VX1), C) {|}
+	VX2:	Extern(SymNum(VX2), C) {|}
+	VX3:	Extern(SymNum(VX3), C) {|}
+	VX4:	Extern(SymNum(VX4), C) {|}
+	VX5:	Extern(SymNum(VX5), C) {|}
+	VX6:	Extern(SymNum(VX6), C) {|}
+	VX7:	Extern(SymNum(VX7), C) {|}
+	VX8:	Extern(SymNum(VX8), C) {|}
+

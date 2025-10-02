@@ -1,0 +1,37 @@
+Notes:	
+	Import data for the current S&P 500  components (plus SPY) from Tiingo
+	requires that your Tiingo API key has been added to realtest.ini
+
+	if you have not added your API key to realtest.ini, please do the following:
+	1. close [X] RealTest
+	2. edit your realtest.ini file using Notepad or any text editor
+	3. find the line under [Options] that says "TiingoAPIKey="
+	4. immediately after the = sign, paste the (long) API key string that you got from Tiingo's website
+	5. save the file and exit the text editor
+	6. start RealTest -- from now on it will know your API key
+
+	note that at their free "starter" level, this import can only be run once per hour
+	
+Import:	
+	DataSource:	Tiingo
+	IncludeList:	SPY
+	IncludeList:	?scriptpath?\spx_syms.txt
+	StartDate:	2015-01-01
+	SaveAs:	TiingoSPX.rtd
+	// Adjustment:	TotalReturn // uncomment if desired
+	// Tiingo supports all of the Adjustment modes
+	// Capital and CapitalSpecial are identical and this is the default mode
+
+Settings:	
+	DataFile:	TiingoSPX.rtd
+	EndDate:	Latest
+	NumDays:	1
+	ScanNoDefCols:	True
+
+Scan:	
+	Sym:	{"Symbol"} ?Symbol
+	Name:	?Name
+	Exchange:	?Exchange
+
+Notes: 
+	Tiingo provides only Name and Exchange as metadata for each symbol

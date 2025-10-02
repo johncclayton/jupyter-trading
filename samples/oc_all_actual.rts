@@ -1,0 +1,69 @@
+Notes:
+	Shows how to structure a script to play back OrderClerkTrades.csv for stats generation
+	Intended for people who combine strategies from multiple scripts into one OrderClerk folder
+	(if strategies are all in the same script, simply running that script in OrderClerkStats mode handles this)
+	
+	The Import uses OrderClerkTrades.csv as the symbol include list (yes, this works)
+	
+Import:
+	DataSource: Norgate
+	IncludeList: c:\OrderClerk\Folder1\OrderClerkTrades.csv
+	// ^^^ change to your live trading folder path OrderClerkTrades.csv
+	// the idea is to use the actual trade list as the symbol list for import
+	StartDate: 2024-01-01
+	EndDate: Latest
+	SaveAs: oc_all_actual.rtd
+	
+Settings:  
+	DataFile: oc_all_actual.rtd
+	StartDate: 2024-01-01 // change to the earliest date in the above trade list
+	EndDate: Latest
+	AccountSize: 100000 // change to your approximate balance at that date
+	
+Template: tradelist
+	TradeList: c:\OrderClerk\Folder1\OrderClerkTrades.csv
+	// ^^^ change to your live trading folder path OrderClerkTrades.csv (same as for the import)
+
+// change to all your strategy names (make sure they exactly match the trade list names)	
+Strategy: long1
+	Using: tradelist
+	
+Strategy: short1
+	Using: tradelist
+
+Strategy: long2
+	Using: tradelist
+	
+Strategy: long3
+	Using: tradelist
+
+Strategy: long4
+	Using: tradelist
+
+Strategy: short2
+	Using: tradelist
+
+Strategy: short3
+	Using: tradelist
+
+// add groups as desired
+StatsGroup: Longs
+	Using: long1, long2, long3, long4
+	
+StatsGroup: Shorts
+	Using: short1, short2
+
+// add cash list if you want stats to factor in withdrawals and deposits
+//Strategy: Cash
+//	CashList: c:\wherever\cash_in_out.csv
+	
+/*
+cash list format:
+
+Date,Amount
+1/19/2022,-1000
+2/19/2022, 1000
+
+negative is withdrawal from IB, positive is deposit to IB
+*/
+	

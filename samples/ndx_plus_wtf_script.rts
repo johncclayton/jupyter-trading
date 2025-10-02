@@ -1,0 +1,65 @@
+Notes:
+	combines the ndx_roate.rts and weekly_trend_follow.rts examples by copying and pasting into one script
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.NASDAQ 100 Current & Past
+	IncludeList:	SPY 
+	IncludeList:	.Russell 1000 Current & Past
+	IncludeList:	$SPX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	ndx_plus_wtf.rtd
+	
+Settings:	
+	DataFile:	ndx_plus_wtf.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	200000
+	
+Data:	
+	// ndx_rotate
+	uptrend:	c > Avg(C,200)
+	bullmkt:	Extern($SPY, uptrend)
+	factor:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+
+	// weekly_trend_follow
+	barsize:	weekly
+	spxtrend:	extern($$spx, c > ma(c, 10))
+	newhigh:	c > hhv(c, 10)[1]
+	rocstrong:	roc(c, 10) > 30
+	liquid:	c > 1 and llv(c*v, 10) > 1000000
+
+Parameters:	
+	wtf_pos:	20
+	ndx_pos:	5
+	
+Strategy: ndx_rotate
+	Side:	Long
+	Quantity:	50 / ndx_pos
+	QtyType:	Percent
+	EntrySetup:	EndOfMonth and  canhold and posrank <= ndx_pos
+	ExitRule:	EndOfMonth and (not canhold or posrank > ndx_pos)
+	
+Library:
+	wtf_trail:	hhv(h * if(spxtrend, 0.6, 0.9), BarsHeld)
+	
+Strategy: weekly_trend_follow
+	BarSize:	Weekly
+	Side:	Long
+	Quantity:	50 / wtf_pos
+	QtyType:	Percent
+	MaxPositions:	wtf_pos
+	EntrySetup:	InRUI and liquid and spxtrend and newhigh and rocstrong
+	SetupScore:	1/c
+	ExitStop:	wtf_trail
+	ExitStopTime:	NextOpen
+
+Charts: 
+	// plot the trailing stop when reviewing trades (remember to set chart to show weekly bars)
+	Stop:	if(T.Strat = 2 and BarDate>=T.DateIn and BarDate <= T.DateOut, wtf_trail, nan)
+

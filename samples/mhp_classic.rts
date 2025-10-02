@@ -1,0 +1,51 @@
+Notes:
+	represents the systems Marsten was trading from 1998-2014
+	only 10 bars needed for all calculations
+	atypical sizing method -- fixed shares within a specific price range
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.@HistoricalStockUniverse
+	StartDate:	1998-01-01
+	EndDate:	Latest
+	SaveAs:	backtest_1998_to_latest.rtd
+
+Settings:
+	DataFile:	backtest_1998_to_latest.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	AccountSize:	100000
+	
+Data:
+	avgr:	avg(tr,5)
+	avgc:	avg(c,4)
+	avgv:	avg(v,9)
+	vsurge:	v / avgv[1]
+	Universe:	C >= 10 and C <= 80 and avgv > 100000 and avgr >= 1 and llv(v,5) > 50000
+	LSetup:	universe and c < avgc and c < o
+	SSetup:	universe and c > avgc and c > o
+	LOffset:	Max(c * 0.02, avgr, 1)
+	SOffset:	Max(c * 0.04, avgr, 2)
+	LEntry:	LSetup[1] and vsurge > 3 and c > c[1] + Loffset[1]
+	SEntry:	SSetup[1] and vsurge > 3 and c < c[1] - Soffset[1]
+	
+Template: common
+	Commission:	Max(0.005 * Shares, 1)
+	Quantity:	S.Alloc / 500	// 100 shares per $50K of equity
+	QtyRound:	100	
+	MaxInvested:	S.Alloc	// 100% per side
+	SetupScore:	vsurge
+	
+Strategy: longs
+	Using:	common
+	Side:	Long
+	EntrySetup:	LEntry
+	ExitLimit:	FillPrice + 2 * avgr[BarsHeld + 1]
+	ExitRule:	BarsHeld = 6 or C < FillPrice - 2 * avgr[BarsHeld + 1]
+	
+Strategy: shorts
+	Using:	common
+	Side:	short
+	EntrySetup:	SEntry 
+	ExitLimit:	FillPrice - 2 * avgr[BarsHeld + 1]
+	ExitRule:	BarsHeld = 6 or C > FillPrice + 2 * avgr[BarsHeld + 1]

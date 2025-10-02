@@ -1,0 +1,38 @@
+Notes:
+	library script to add management and performance fee calculations to any set of strategies
+	include this script at the END of any strategy script to calculate these fees and show after-fees stats
+	 
+Library:
+	// management fee parameters
+	mf_rate:	0.01 // 1% management fee
+	pf_rate:	0.2 // 20% performance fee
+	fee_months:	1 // 1 = monthly, 3 = quarterly, 12 = yearly
+	// fee period variable
+	fee_period:	EndOfMonth and Month % fee_months = 0
+
+StratData:
+	// management fee calculation
+	mgmt_fee:	if(fee_period, mf_rate / (12 / fee_months) * S.Alloc, 0)
+	// performance fee calculation
+	perf_fee:	Select(fee_period and S.Number > 1, pf_rate * max(S.Alloc - hwm[1] - mgmt_fee, 0), 0)
+	// high water mark calculation
+	hwm:	Select(S.Number = 1, S.Alloc, fee_period, max(S.Alloc , hwm[1]) - (mgmt_fee + perf_fee), hwm[1])
+
+TestScan: 
+	// report of fee amounts and calculation details (auto-saved as management_fees.csv)
+	filter:	fee_period and Symbol=$SPY // use any symbol with no missing bars
+	nlv_bf:	Combined(S.Alloc) {$}
+	mgmt_fee:	Combined(mgmt_fee) {$}
+	perf_fee:	Combined(perf_fee) {$}
+	nlv_af:	Combined(nlv_bf - (mgmt_fee + perf_fee)) {$}
+	hwm:	Combined(hwm) {$}
+	
+Strategy: mgmt_fees // applies end-of-month fees to next start-of-month equity
+	StartPercent:	0 // graphs descending from $0
+	FeesInOut:	-Combined(mgmt_fee + perf_fee)[1] // "Fees" are included in stats, "Cash" is not
+	
+Settings:
+	// comment out the lines below to skip the scan report
+	TestOutput:	Scan 
+	TestScanAllDates:	True
+	SaveScanAs:	?scriptpath?\management_fees.csv

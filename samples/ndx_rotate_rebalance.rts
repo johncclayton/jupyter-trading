@@ -1,0 +1,39 @@
+Notes:	
+	NDX Rotate Rebalance (see also ndx_rotate.rts)
+	implements monthly rebalance with dynamic sizing mode
+	
+Settings:	
+	DataFile:	ndx_rotate.rtd // see ndx_rotate.rts for import definition
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	100000
+	
+OrderSettings:
+	EndDate:	2024-04-30 // set to an end-of-month date to test order generation
+	HolidayList:	?scriptpath?\holidays.us.txt // only needed for generating tomorrow's orders
+	
+Data:	
+	uptrend:	c > Avg(C,200)
+	bullmkt:	Extern($SPY, uptrend)
+	factor:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+	canenter:	canhold and posrank <= positions
+	mustexit:	not canhold or posrank > worstrank
+
+Parameters:	
+	positions:	5
+	worstrank:	5 // set to > 5 to hold positions longer, set to 0 for monthly rebalance
+	
+Strategy: ndx_rotate
+	DynamicSizing:	True
+	QtyType:	Percent
+	Quantity:	Select(	not EndOfMonth, nan, // no change of position
+			mustexit, 0, // full exit
+			canenter or shares, 100 / positions) // enter or rebalance
+	Reduce:	0.01 * S.Alloc // reduce if needed but not to less than this position value
+	MaxExposure:	100
+	SetupScore:	factor	// only needed if worstrank > positions
+

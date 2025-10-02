@@ -1,0 +1,108 @@
+Notes:
+	Trades 5 breakout lengths of a simple trend-following strategy.
+	Uses automatic "tracker" benchmarks and StratData to rank recent performance.
+	Tracker benchmarks trade every valid setup (no constraints).
+	Strategies use only combined constraints.
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	IncludeList:	$OEX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+
+TestSettings:
+	StartDate:	1/1/20
+	
+Parameters:
+	// lookback lengths
+	len1:	16
+	len2:	32
+	len3:	64
+	len4:	128
+	len5:	256
+	// fraction to risk per entry
+	risk:	0.01
+	// max rank of tracker benchmark for strategy take entries
+	maxrank:	from 1 to 5 def 2
+
+Data:
+	// breakout levels
+	high1:	hhv(h, len1)
+	high2:	hhv(h, len2)
+	high3:	hhv(h, len3)
+	high4:	hhv(h, len4)
+	high5:	hhv(h, len5)
+	// exit levels
+	low1:	llv(l, len1 / 2)
+	low2:	llv(l, len2 / 2)
+	low3:	llv(l, len3 / 2)
+	low4:	llv(l, len4 / 2)
+	low5:	llv(l, len5 / 2)
+	// trading universe
+	universe:	InOEX
+	
+StratData:
+	// tracker benchmark rank factor
+	factor:	S.Equity / MA(S.Equity, 50)
+	// tracker benchmark rank number
+	srank:	#Rank  if(IsTracker, factor, nan) // nan excludes strategies themselves
+
+Template: oex_tf
+	Side:	Long
+	Tracker:	Hidden // change to Visible to see their equity graphs and stats
+	// skip strategy entries if its corresponding tracker benchmark has too high (poor) performance rank
+	SetupSkip:	if(IsTracker, 0, Extern(@tracker, srank > maxrank)) 
+
+Notes:
+	The above takes a binary enter/skip approach to applying the ranking.
+	There are many other possibilities, e.g. base quantity fraction on strategy rank.
+	Experiment!
+	
+Combined:
+	// this set of strategies only uses combined constraints
+	MaxExposure:	100
+	MaxSameSym:	1
+			
+Strategy: tf1
+	Using:	oex_tf
+	EntrySetup:	universe and c > high1[1]	
+	SetupScore:	roc(c, len1)	
+	ExitRule:	c < hhv(low1, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low1)
+	
+Strategy: tf2
+	Using:	oex_tf
+	EntrySetup:	universe and c > high2[1] 
+	SetupScore:	roc(c, len2)
+	ExitRule:	c < hhv(low2, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low2)
+
+Strategy: tf3
+	Using:	oex_tf
+	EntrySetup:	universe and c > high3[1] 
+	SetupScore:	roc(c, len3)
+	ExitRule:	c < hhv(low3, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low3)
+
+Strategy: tf4
+	Using:	oex_tf
+	EntrySetup:	universe and c > high4[1] 
+	SetupScore:	roc(c, len4)
+	ExitRule:	c < hhv(low4, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low4)
+
+Strategy: tf5
+	Using:	oex_tf
+	EntrySetup:	universe and c > high5[1] 
+	SetupScore:	roc(c, len5)
+	ExitRule:	c < hhv(low5, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low5)
+

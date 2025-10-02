@@ -1,0 +1,47 @@
+Notes: 	
+	based loosely on the Nick Radge "flipper" strategy
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.NASDAQ 100 Current & Past
+	IncludeList:	$NDX
+	StartDate:	2015-01-01
+	EndDate:	Latest
+	SaveAs:	flipper.rtd
+	
+Settings:	
+	DataFile:	flipper.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Parameters:	
+	pct:	20
+	pos:	5
+	
+Data:	
+	// self-referential data item (internal loop calculation) used for zig-zag flipper indicator
+	// uses +/- sign as direction flag for flip calculation
+
+	flip:	if(barnum==1, c, 
+		if(flip[1]<0,
+			if(c > -flip[1] * (1 + pct/100), c, -min(-flip[1], c)),
+		// else
+			if(c < flip[1] * (1 - pct/100), -c, max(flip[1], c))))
+
+	enter:	flip > 0 and flip[1] < 0
+	exit:	flip < 0 and flip[1] > 0
+	regime:	extern($$NDX, C > MA(C, 200))
+
+Strategy: flipper
+	Side:	Long
+	Quantity:	100 / pos
+	QtyType:	Percent
+	MaxPositions:	pos
+	EntrySetup:	InNDX and enter and regime
+	SetupScore:	hvol(50)
+	ExitRule:	exit 
+	
+Charts:	
+	flip:	abs(flip)
+	enter:	enter {|}
+	exit:	exit {|}

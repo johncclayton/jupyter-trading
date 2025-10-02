@@ -1,0 +1,43 @@
+Notes:	
+	common components for the set of mr_sample example scripts
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 3000 Current & Past	// built-in watchlist
+	IncludeList:	SPY	// used in another example as a hedge
+	IncludeList:	SHV	// used in another example as a cash equivalent
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	mr_sample.rtd
+
+Settings:	
+	DataFile:	mr_sample.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	True
+	
+Data:	
+	ATR5:	ATR(5)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20  and Avg(V, 20) >= 200000
+	Volatile:	ATR5 > 0.03 * C
+	Biotech:	Top(InfoTRBC,4) = 5620
+	Universe:	InRUA and Liquid and Volatile and not BioTech and C > EMA100
+	LongLimit:	C - 0.5 * ATR5	// drops another half ATR
+	ShortLimit:	C + 0.5 * ATR5	// rises another half ATR
+	
+Parameters:	
+	NumPos:	from 5 to 20 step 5 def 10
+	PctExt:	from 1 to 5 step 0.5 def 2.5
+	Target:	from 3 to 12 def 8
+	
+Template: base // formulas shared by more than one strategy
+	MaxPositions:	NumPos
+	SetupScore:	ATR5 / C	// rank setups by largest percent ATR
+	Quantity:	100 / NumPos	// fixed fraction of allocation
+	QtyType:	Percent
+	Commission:	Max(1, 0.005 * Shares)	// default IB commission
+	LimitExtra:	0.001 * C	// price must go 0.1% beyond limit price to get a fill
+	// no slippage because all entries and exits are limit orders or market-on-open

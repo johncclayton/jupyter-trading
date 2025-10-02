@@ -1,0 +1,20 @@
+Notes:	
+	2-Parameter optimization example
+	find out which crossover MA lengths would have done best
+
+Settings:	
+	DataFile:	sample1.rtd // see Sample1.rts for import instructions
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	
+Parameters:	
+	ShortMA:	5, 10, 15
+	MidMA:	30, 50, 70
+	LongMA:	 100, 200, 300
+	
+Strategy: SPY_Crossover
+	EntrySetup:	Avg(C,ShortMA) > Avg(C,MidMA) and Avg(C,MidMA) > Avg(C,LongMA)
+	ExitRule:	Avg(C,ShortMA) < Avg(C,MidMA) or Avg(C,MidMA) < Avg(C,LongMA)
+
+

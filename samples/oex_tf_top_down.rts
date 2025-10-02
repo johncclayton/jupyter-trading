@@ -1,0 +1,66 @@
+Notes:
+	Three variations on a classic trend-following strategy using OEX constituents
+	Uses top-down setup management to allocate positions to strategies
+	All constraints including no duplicate positions are handled this way
+	Strategy prioritization is under your control
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	IncludeList:	$OEX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+
+Parameters:
+	len1:	100
+	len2:	150
+	len3:	200
+	risk:	0.01
+	strats:	3
+
+Data:
+	high1:	hhv(h, len1)
+	high2:	hhv(h, len2)
+	high3:	hhv(h, len3)
+	
+	low1:	llv(l, len1 / 2)
+	low2:	llv(l, len2 / 2)
+	low3:	llv(l, len3 / 2)
+
+	universe:	InOEX
+	
+Template: oex_tf
+	Side:	Long
+//	MaxExposure:	33.33 	// strategy-level exposure cap can either be used or not
+	StrategyScore:	ROC(S.Equity,20)	// best recent performance (m2m)
+
+Combined:
+	MaxExposure:	100	// top-down combined exposure constraint
+	MaxSameSym:	1	// top-down no duplicate positions control
+			
+Strategy: tf1
+	Using:	oex_tf
+	EntrySetup:	universe and c > high1[1]	// checking Shares or S.Positions is unnecessary
+	SetupScore:	roc(c, len1)	// always use SetupScore, never EntryScore
+	ExitRule:	c < hhv(low1, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low1)
+	
+Strategy: tf2
+	Using:	oex_tf
+	EntrySetup:	universe and c > high2[1] 	// ditto
+	SetupScore:	roc(c, len2)
+	ExitRule:	c < hhv(low2, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low2)
+
+Strategy: tf3
+	Using:	oex_tf
+	EntrySetup:	universe and c > high3[1] 	// ditto
+	SetupScore:	roc(c, len3)
+	ExitRule:	c < hhv(low3, BarsHeld)
+	Quantity:	S.Alloc * risk / (c - low3)

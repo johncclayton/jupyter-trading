@@ -1,0 +1,47 @@
+Notes:
+	weekly portfolio selection of least-correlated set of OEX constituents
+	uses "the greedy algorithm" to approximate optimal diversity
+	RT implements this by re-scoring all setups except those selected already at each selection turn
+	this is enabled by the "GreedyScoring: True" strategy setting
+	note that this script does not run as quickly as most others
+	it would likely not be practical to use a larger stock universe or more frequent interval
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	IncludeList:	SPY
+	StartDate:	2010-01-01
+	SaveAs:	oex.rtd
+
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+	AccountSize:	100000
+
+Parameters:
+	positions:	10
+	bars:	252
+
+Data:
+	newperiod:	EndOfWeek
+	uptrend:	Extern($SPY, C > MA(C, bars))
+	setup:	InOEX and newperiod and uptrend
+	roc1:	ROC(C,1)
+	score1:	if(setup, -CorrelAvg(setup, roc1, bars), nan)
+
+Strategy:	Diversity
+	QtyType:	Value
+	Quantity:	S.Alloc / positions 
+	MaxPositions:	positions
+	EntrySetup:	setup 
+	MaxSetups:	positions
+	SetupScore:	Select(OrderSum(1) = 0 and PositionSum(1) = 0, score1, -CorrelAvg(IsOrder or Shares > 0, roc1, bars))
+	GreedyScoring:	True
+	ExitRule:	newperiod or not uptrend
+
+Benchmark: SPY
+	Side:	Long
+	EntrySetup:	Symbol=$SPY
+	ExitRule:	Dividend > 0

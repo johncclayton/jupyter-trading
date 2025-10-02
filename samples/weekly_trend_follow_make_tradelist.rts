@@ -1,0 +1,48 @@
+Notes:	
+	weekly_trend_follow.rts example modified to generate a trade list for combining with other strategies externally
+	see ndx_plus_wtf_tradelist.rts for how to do this
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 1000 Current & Past
+	IncludeList:	$SPX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	weekly_trend_follow.rtd
+	
+Settings:
+	DataFile:	weekly_trend_follow.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Weekly
+	// add for tradelist generation
+	SaveTradesAs:	?desktop?\wtf.csv
+	SaveTradesType:	Compact
+
+Data:
+	spxtrend:	extern($$spx, c > ma(c, 10))
+	newhigh:	c > hhv(c, 10)[1]
+	rocstrong:	roc(c, 10) > 30
+	liquid:	c > 1 and llv(c*v, 10) > 1000000
+	
+Parameters:
+	positions:	20
+	
+Library:
+	// trailing stop formula used in both the strategy in the trade charts
+	Trail:	hhv(h * if(spxtrend, 0.6, 0.9), BarsHeld)
+	
+Strategy: weekly_trend_follow
+	Side:	Long
+	Quantity:	100 / positions
+	QtyType:	Percent
+	MaxPositions:	positions
+	EntrySetup:	InRUI and liquid and spxtrend and newhigh and rocstrong
+	SetupScore:	1/c
+	ExitStop:	Trail
+	ExitStopTime:	NextOpen
+	
+Charts: 
+	// plot the trailing stop when reviewing trades (remember to set chart to show weekly bars)
+	Stop:	if(BarDate>=T.DateIn and BarDate <= T.DateOut, Trail, nan)

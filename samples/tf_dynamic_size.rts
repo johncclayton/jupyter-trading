@@ -1,0 +1,52 @@
+Notes:
+	This example uses a simple OEX constituent trend-following strategy 
+	to show how to model dynamic position size adjustment.
+	Positions sizes are changed if target size is 5% away from current size (poschg parameter).
+	Positions are reduced as distance from stop inreases and vice versa.
+	A static-size version is included as a benchmark for comparison.
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	1/1/11
+	EndDate:	Latest
+	TestScanAllDates:	True
+		
+Parameters:
+	riskpct:	0.005	// fraction of account to risk in each position
+	poschg:	0.05	// quantity fraction change required to trigger resizing
+
+Data:
+	setup:	InOEX and C = hhv(c,80) 
+	stopsize:	2 * ATR(5)
+	
+Library:
+	curqty:	extern(@tf_dynamic, shares) // sum of all open quantities for this symbol
+	tgtqty:	round(riskpct * S.Equity / stopsize)
+	newqty:	extern(@tf_dynamic, tgtqty)
+	stop:	HHV(C - stopsize, BarsHeld + 1)
+
+Strategy: tf_dynamic
+	Side:	Long
+	MaxExposure:	100
+	MaxSameSym:	99 // multiple sub-positions are required for dynamic sizing
+	EntrySetup:	if(curqty = 0, setup, newqty > curqty * (1 + poschg))
+	SetupScore:	1/stopsize
+	Quantity:	newqty - curqty
+	ExitStop:	stop // trailing stop
+	ExitRule:	newqty < curqty * (1 - poschg) // reduce size
+	ExitQty:	curqty - newqty // shares to remove (may cause multiple sub-positions to be reduced as needed)
+
+Benchmark: tf_static
+	Side:	Long
+	MaxExposure:	100
+	EntrySetup:	setup
+	SetupScore:	1/stopsize
+	Quantity:	tgtqty
+	ExitStop:	stop

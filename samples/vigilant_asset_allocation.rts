@@ -1,0 +1,47 @@
+Notes:	
+	Vigilant Asset Allocation system by Keller and Keuning
+	https://allocatesmartly.com/vigilant-asset-allocation-dr-wouter-keller-jw-keuning
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	SPY, EFA, EEM, AGG {"offensive"}
+	IncludeList:	LQD, IEF, SHY {"defensive"}
+	IncludeList:	SPY {"benchmark"}
+	StartDate:	2003-10-01 // earliest date that includes all of the above
+	EndDate:	Latest
+	SaveAs:	vaa.rtd
+
+Settings:	
+	DataFile:	vaa.rtd
+	StartDate:	2005-01-01
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Monthly
+	
+Parameters:	
+	pos:	from 1 to 7 // def 1
+
+Data:
+//13612W Calculation Method = (Profitability in Last 1 months * 12 + Profitability in Last 3 months * 4 + Profitability in Last 6 months * 2 + Profitability in Last 12 months)/4 
+	factor:	1/4 * (12* ROC(c,1)+ 4* ROC(c,3)+ 2* ROC(c,6)+ 1* ROC(c,12)) // VAA Factor
+
+// a. If all four of the offensive assets exhibit positive momentum scores, select the offensive asset with the highest score and allocate 100% of the portfolio to that asset at the close.
+// b. If any of the four offensive assets exhibit negative momentum scores, select the defensive asset (LQD, IEF or SHY) with the highest score (regardless of whether the score is > 0) and allocate 100% of the portfolio to that asset at the close.
+	numOn:	#sum (InList("offensive"))
+	numrisk:	#sum (InList("offensive") and factor > 0)
+	setup:	if(numrisk == numOn, InList("offensive"), InList("defensive"))
+	posrank:	#rank 1000 * setup + factor // forces setups to have better ranks than non-setups
+
+Strategy: VAA
+	Side:	Long
+	Quantity:	100 / pos
+	QtyType:	Percent
+	MaxPositions:	pos
+	EntrySetup:	setup
+	SetupScore:	factor
+	ExitRule:	posrank > pos
+
+Benchmark: SPY
+	Side:Long
+	EntrySetup:	InList("benchmark")
+	ExitRule:	Dividend > 0

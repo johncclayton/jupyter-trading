@@ -1,0 +1,32 @@
+Notes:
+	library script to add capital gains and dividend income tax calculations to any set of strategies
+
+Library:
+	eoy_month:	12	// fiscal year end month
+	lt_gain_rate:	0.2	// 20%
+	st_gain_rate:	0.37	// 37%
+	div_rate:	0.37	// 37%
+
+TestData:
+	EndOfYear:	EndOfMonth and Month = eoy_month
+	SinceEOY:	if(EndOfYear, SinceTrue(EndOfYear)[1], 0)
+	LTGain:	#OnePerDate if(SinceEOY > 0, Combined(TradeStatSum(if(DateYear(T.DateOut) = This(Year) and Days(T.DateIn, T.DateOut) > 366, T.Profit - T.Div, 0))), 0)
+	STGain:	#OnePerDate if(SinceEOY > 0, Combined(TradeStatSum(if(DateYear(T.DateOut) = This(Year) and Days(T.DateIn, T.DateOut) <= 366, T.Profit - T.Div, 0))), 0)
+	Dividends:	#OnePerDate if(SinceEOY > 0, Combined(TradeStatSum(if(DateYear(T.DateOut) = This(Year), T.Div, 0))), 0)
+	TaxOwed:	max(LTGain, 0) * lt_gain_rate + max(STGain, 0) * st_gain_rate + max(Dividends, 0) * div_rate
+
+Settings:
+	TestOutput:	Scan
+	TestScanAllDates:	True
+	
+TestScan:
+	Filter:	EndOfYear and Symbol = $SPY // change as needed or always import SPY
+	LTGains:	Combined(LTGain) {$}
+	STGains:	Combined(STGain) {$}
+	Dividends:	Combined(Dividends) {$}
+	TaxOwed:	Combined(TaxOwed) {$}
+	
+Strategy: taxes
+	StartPercent:	0
+	CashInOut:	-Combined(TaxOwed)[1] // invesetment stats are "before taxes"
+//	FeesInOut:	-Combined(TaxOwed)[1] // invesetment stats are "after taxes"

@@ -1,0 +1,30 @@
+Notes:	
+	shows how to import from Norgate NDU
+	Norgate's standard dyanamic watchlists are used as symbol lists
+	all symbols that have been in any of the 3 large-cap indexes will be included
+	index constituency bits for each of these indexes will be added to every bar of every stock
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average Current & Past
+	IncludeList:	.NASDAQ 100 Current & Past
+	IncludeList:	.S&P 500 Current & Past
+	Adjustment:	Capital	// use TotalReturn if you prefer dividends to appear as stock splits
+	Padding:	None	// rare to need padding, but available if you want it
+	Update:	False	// change to true to run a NDU update before the import
+	StartDate:	1994-01-01
+	EndDate:	1996-01-01
+	SaveAs:	import_norgate_example.rtd
+
+Settings:
+	DataFile:	import_norgate_example.rtd
+	EndDate:	1995-01-01
+	NumDays:	1
+
+//this scan finds stocks which were members of $NDX but not of $SPX at the start of 1995
+	
+Scan:	
+	Filter:	InNDX and not InSPX
+	DJI:	InDJI
+	NDX:	InNDX
+	SPX:	InSPX

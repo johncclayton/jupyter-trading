@@ -1,0 +1,39 @@
+Notes:	
+	Compares different ways to test "buy and hold" of E-Mini S&P futures
+	Assumes Norgate NDU futures and a dynamic watchlist containing the individual ES contracts
+	Run import, then test, then look at the equity curves to see comparison
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.@ES_INDIVIDUAL // dynamic watchlist with all individual ES contracts
+	IncludeList:	&ES, &ES_CCB
+	StartDate:	1998-01-01
+	EndDate:	Latest
+	SaveAs:	ES.RTD
+	
+Settings:	
+	DataFile:	ES.RTD
+	StartDate:	Earliest
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Daily // relative symbol references only work with daily bars
+	
+Template: base
+	MaxPositions:	1
+	Quantity:	1
+	Commission:	2.40
+	Slippage:	TickSize
+	
+Strategy: es_individual
+	Using:	base
+	EntrySetup:	v > extern(&-1,V)
+	ExitRule:	 v < extern(&1, V)
+
+Benchmark: es_continuous
+	Using:	base
+	EntrySetup:	Symbol = $&ES
+	
+Benchmark: es_back_adjusted
+	Using:	base
+	EntrySetup:	Symbol = $&ES_CCB
+	

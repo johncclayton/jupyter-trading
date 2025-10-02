@@ -1,0 +1,52 @@
+Notes:
+	ASX weekly MOC strategy
+	based loosely on ideas tweeted and circulated via email by Nick Radge
+	implemented as a weekly bar size script
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.@ASX Current & Past // custom dynamic watchlist of all ASX stocks
+	Padding:	AllMarketDays // recommended for ASX due to large number of halts
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	all_asx.rtd
+	
+Settings:
+	DataFile:	all_asx.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Weekly
+
+OrderSettings:
+	StartDate:	2024-01-01
+	EndDate:	Latest
+	OrdersMode:	Template
+	OrdersTemplate:	Examples\ib_basket_template.csv
+
+Parameters:
+	minprice:	1
+	minturnover:	1e6	// $1M
+	minpctatr:	5	// weekly ATR pct
+	setups:	20	// orders to place each Monday (won't all fill)
+	sizepos:	10	// fraction of account to use for size
+	lookback:	5	// weeks to use for all multi-bar indicators
+	stretch:	1	// atrs for limit price
+	
+Data:
+	Liquid:	c >= minprice and ma(c*v, lookback) >= minturnover
+	Volatile:	100 * atr(lookback) / c >= minpctatr
+	Momentum:	roc(c, lookback)
+	LmtPrice:	C - stretch * atr(lookback)
+
+Strategy: weekly_moc
+	Side:	Long
+	Quantity:	S.Alloc / sizepos / LmtPrice
+	QtyType:	Shares
+	MaxSetups:	setups
+	SetupScore:	Momentum
+	EntrySetup:	Liquid and Volatile  
+	EntryLimit:	LmtPrice
+	ExitRule:	1
+	ExitTime:	NextClose // i.e. Friday
+		// IB ASX commission plus tax
+	Commission:	1.1 * Max(6.00, 0.0008 * FillValue)

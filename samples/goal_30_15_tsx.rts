@@ -1,0 +1,89 @@
+Notes:	adaptation of the goal_30_15.rts example for the TSX market
+	this is somewhat an academic exercise, as day-trading and shorting on the TSX may be problematic:
+	- commissions can be higher
+	- stocks are often not available to borrow
+	- the ASX does not support the MOC order type
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.S&P TSX Composite Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	goal_30_15_tsx.rtd
+
+Settings:	
+	DataFile:	goal_30_15_tsx.rtd
+	StartDate:	2015-01-01
+	EndDate:	Latest	
+	AccountSize:	100000
+	
+Data:	
+	// Common Indicators
+	ATR5:	ATR(5)
+	AtrPct:	100 * ATR5 / C
+	AvgTO:	MA(C*V,20)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	RSI2:	RSI(2)
+	ROC5:	ROC(C,5)
+	Universe:	InSPTSX and C > 10 and AvgTO > 1e6
+	// MR multi-day long/short from Tutorial Video 7 script
+	MRU:	Universe and C > EMA100  and AtrPct > 3
+	CanHoldShort:	1
+	mrl_setup:	MRU and C < EMA5 - ATR5
+	mrs_setup:	MRU and CanHoldShort and C > EMA5 + ATR5
+	// MOC day-trade long/short pair (new simplistic concept)
+	mocl_setup:	Universe and rsi2 < 5
+	mocs_setup:	Universe and rsi2 > 95
+	
+Parameters:	
+	mr_pos:	10
+	mr_alloc:	80
+	moc_pos:	10
+	moc_alloc:	80
+	
+Template: common
+	QtyType:	Percent
+	Commission:	Min(0.005 * FillValue, Max(1, 0.01 * Shares)) // IB TSX commissions
+
+Template: mr_common
+	Using:	common
+	Quantity:	mr_alloc / mr_pos
+	MaxPositions:	mr_pos
+	SetupScore:	AtrPct
+
+Strategy: mr_long
+	Using:	mr_common
+	Side:	Long
+	EntrySetup:	mrl_setup
+	EntryLimit:	L - 0.5 * ATR5
+	ExitRule:	Select(C > C[1], "up day", BarsHeld == 5, "time stop")
+	
+Strategy: mr_short
+	Using:	mr_common
+	Side:	Short
+	EntrySetup:	mrs_setup
+	EntryLimit:	H + ATR5
+	ExitRule:	Select(C < C[1], "down day", BarsHeld == 5, "time stop")
+
+Template: moc_common
+	Using:	common
+	Quantity:	moc_alloc / moc_pos
+	MaxPositions:	moc_pos
+	ExitRule:	1 // MOC
+	ExitTime:	ThisClose 
+	
+Strategy: moc_long
+	Using:	moc_common
+	Side:	Long
+	EntrySetup:	mocl_setup
+	SetupScore:	1000-roc5
+	EntryLimit:	C - ATR5
+	
+Strategy: moc_short
+	Using:	moc_common
+	Side:	Short
+	EntrySetup:	mocs_setup
+	SetupScore:	roc5
+	EntryLimit:	C + ATR5
+	

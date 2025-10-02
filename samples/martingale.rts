@@ -1,0 +1,26 @@
+Notes:	shows how to use MaxSameSym and FillPriceMin to implement a martingale-ish strategy
+	if you like a high winning percentage, and don't mind low returns and large drawdowns, this approach is for you
+
+Import:	DataSource:	Yahoo
+	IncludeList:	SPY
+	StartDate:	1/1/10
+	EndDate:	Latest
+	SaveAs:	martingale.rtd
+	
+Settings:	DataFile:	martingale.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Parameters:	ent:	0.99
+	tgt:	from 1.01 to 1.1 step 0.01 def 1.07
+	pos:	10
+	
+Strategy:	test
+	Side:	Long
+	Quantity:	100 / pos
+	QtyType:	Percent
+	MaxPositions:	pos
+	MaxSameSym:	pos	// allow adding to loser until max positions is reached
+	EntrySetup:	1 	// can potentially buy every day that -1% limit is hit (up to 10 times in a row)
+	EntryLimit:	iif(FillPriceMin, FillPriceMin * ent, c * ent)
+	ExitLimit:	FillPriceMin * tgt

@@ -1,0 +1,24 @@
+Notes:	
+	how to import current fundamental fields from Norgate and view them in a scan
+	use auto-complete in the Fundamentals statement to see all the available values
+	do not use these in backtesting -- they are current values only, not historical series
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average
+	StartDate:	2025-01-01
+	EndDate:	Latest
+	SaveAs:	fundamentals.rtd
+	Fundamentals:	aepsnorm, arevps, abvps
+	
+Settings:	
+	DataFile:	fundamentals.rtd
+	EndDate:	Latest
+	NumBars:	1
+	
+Scan:	
+	eps:	F.aepsnorm
+	revs:	F.arevps
+	book:	F.abvps
+	reported:	F.aepsnorm.Date {//}
+

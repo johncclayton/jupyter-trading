@@ -1,0 +1,51 @@
+Notes:
+	"BBO" strategy from Holy Grails by Nick Radge
+	(script courtesy of Nick Radge)
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.All Ordinaries Current & Past
+	IncludeList:	$XAO.au,$XAOA.au, $XSOA.au, %AUCRT
+	StartDate:	1995-01-01
+	EndDate:	Latest
+	SaveAs:	BBO_Test.rtd
+	
+Settings:
+	DataFile:	BBO_Test.rtd
+	StartDate:	1996-01-01
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Daily
+	UseAvailableBars:	False
+	RiskFreeRateSym:    %AUCRT
+	CashIntPct:    	-0.5 
+	
+Benchmark: Benchmark
+	Side: 	Long
+	Allocation: 	S.Equity
+	EntrySetup: 	Symbol=$$XSOA.au
+		
+Data:
+	RegimeFilter:	extern($$XAO.au, C > MA(C, 100)) 
+		
+	BBH:  	BBTOP(100,3)
+	BBL:  	BBBOT(100,1)
+	Turnover:	V*C
+	Liquid:	MA(Turnover,50) > 500000 and Turnover > 500000
+	Price:	C  >= 0.5
+	
+	TradeRank:	1/HVOL(26)         
+	Entry:	RegimeFilter and C > BBH and Price and Liquid
+	
+Parameters:
+	Positions:	10
+		
+Strategy: BB_Test
+	Side:	Long
+	Quantity:	100 / positions
+	QtyType:	Percent
+	MaxPositions:	Positions
+	EntrySetup:	InXAO and Entry
+	SetupScore:	TradeRank
+	ExitRule:	C < BBL
+	Commission: 	Max(6, 0.0008 * FillValue)

@@ -1,0 +1,52 @@
+Notes:	
+	A version of mr_sample with during-test and end-of-test debug demonstration
+	also illustrates use of the Library section to avoid repeated formula segments
+
+Include: ?scriptpath?\mr_sample_common.rts // right-click to open
+
+TestSettings:	
+	// uses Settings from included script, then modifies with these items
+	StartDate:	2020-01-01
+	EndDate:	2020-11-17
+	UseAvailableBars:	True
+	TestOutput:	Debug
+	// allows during-test DebugEntry (etc.) statements to write to log
+	// can also use debug panel at end of test with positions still open
+	
+Library:	
+	debug_sym:	Symbol=$PLUG	// not required, just used in this example
+	next_low:	L[-1]
+	next_high:	H[-1]
+	long_setup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5)
+	long_target:	FillPrice * (1 + Target/100)
+	long_exit:	Shares <> 0 and C > C[1] or BarsHeld == 5
+	short_setup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5)
+	short_target:	FillPrice * (1 - Target/100)
+	short_exit:	Shares <> 0 and C < C[1] or BarsHeld == 5
+
+Strategy: mr_long	
+	// mean-reversion long strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	long_setup	// oversold
+	EntryLimit:	LongLimit
+	ExitLimit:	long_target	// intraday profit target
+	ExitRule:	long_exit	// sell on first up day or after 5 days
+	// examples of during-test debug/log output
+	DebugEntry:	if(debug_sym and long_setup, Format("limit={#2}, nextlow={#2}, miss={#2}", LongLimit, next_low,  next_low - LongLimit), "")
+	DebugExit:	if(debug_sym, Format("c={#2}, c[1]={#2}, held={#}", c, c[1], BarsHeld), "")
+	DebugTargetStop:	if(debug_sym, Format("target={#2}, nexthigh={#2}, miss={#2}", long_target, next_high, long_target - next_high), "")
+	
+Strategy: mr_short	
+	// mean-reversion short strategy
+	Using:	base
+	Side:	Short
+	EntrySetup:	short_setup	// overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	short_target	// intraday profit target
+	ExitRule:	short_exit	// cover on first down day or after 5 days
+	// examples of during-test debug/log output
+	DebugEntry:	if(debug_sym and short_setup, Format("limit={#2}, nexthigh={#2}, miss={#2}", ShortLimit, next_high, ShortLimit - next_high), "")
+	DebugExit:	if(debug_sym, Format("c={#2}, c[1]={#2}, held={#}", c, c[1], BarsHeld), "")
+	DebugTargetStop:	if(debug_sym, Format("target={#2}, nextlow={#2}, miss={#2}", short_target, next_low, next_low - short_target), "")
+

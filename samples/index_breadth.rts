@@ -1,0 +1,35 @@
+Notes:	
+	shows the best way to calculate breadth statistics for historical index constituents
+	the "Wrong2" approach is fine for #sum since 0 and nan have the equivalent effect
+	use the "Correct" technique for breadth calculations involving variable constituency and count significance
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	IncludeList:	SPY
+	StartDate:	2022-01-01
+	EndDate:	Latest
+	SaveAs:	index_breadth.rtd
+	
+Data:
+	MedC:	#Median C 
+	MedC0:	#Median iif(InSPX, C, 0)
+	MedCX:	#Median iif(InSPX, C, nan)
+
+Settings:	
+	DataFile:	index_breadth.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	NumBars:	1
+
+Scan: 
+	// only show each day's value once
+	Filter:	Symbol = $SPY
+	Wrong1:	MedC // does not exclude non-constituents
+	Wrong2:	MedC0 // excludes non-constituent values but still counts them
+	Correct:	MedCX // <-- only this value is correct
+
+Notes:
+	why is the correctly-calculated median so much higher?
+	many prior constituents have been removed but are still trading
+	the survivors tend to have higher prices

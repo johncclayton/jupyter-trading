@@ -1,0 +1,49 @@
+Notes:	example of a daily setups scan for the mr_sample system
+	uses a somewhat different data section to calculate setup ranks
+	this is because the MaxSetups / SetupScore mechanism is only available during tests, not for scans
+	only entry setups are produced by this scan, not exits
+	this was somewhat made obsolete by the later addition of the order list feature
+
+Import:	DataSource:	Norgate
+	IncludeList:	.Russell 3000
+	StartDate:	1/1/2020
+	EndDate:	Latest
+	SaveAs:	mr_sample_scan.rtd
+
+Settings:	DataFile:	mr_sample_scan.rtd
+	EndDate:	Latest
+	NumDays:	1 // only run scan for the most recent bar for all stocks
+	SaveScanAs:	mr_sample_setups.csv
+	
+Parameters:	NumPos:	from 5 to 20 step 5 def 10
+	PctExt:	from 1 to 5 step 0.5 def 2.5
+	Target:	from 3 to 12 def 8
+
+Data:	ATR5:	ATR(5)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20  and Avg(V, 20) >= 200000 
+	Volatile:	ATR5 > 0.03 * C
+	Biotech:	Top(InfoTRBC,4) = 5620 
+	Universe:	Liquid and Volatile and not Biotech and C > EMA100
+	// removed constituency test since using current constituent list
+	// Long Side
+	LongSetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5) 
+	LongRank:	#Rank LongSetup * ATR5 / C
+	IsLong:	LongSetup and LongRank <= NumPos
+	LongLimit:	C - 0.5 * ATR5 // drops another half ATR
+	// Short Side
+	ShortSetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5) 
+	ShortRank:	#Rank ShortSetup * ATR5 / C
+	IsShort:	ShortSetup and ShortRank <= NumPos
+	ShortLimit:	C + 0.5 * ATR5 // rises another half ATR
+
+Scan:	Filter:	IsLong or IsShort
+	LongRank:	IsLong * LongRank
+	LongLimit:	IsLong * LongLimit
+	ShortRank:	IsShort * ShortRank
+	ShortLimit:	IsShort * ShortLimit
+	Name:	?Name
+	Industry:	?Industry
+	
+

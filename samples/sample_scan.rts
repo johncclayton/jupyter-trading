@@ -1,0 +1,21 @@
+Notes:	
+	Scans for SPX components down 25% within 63 days
+	
+Settings:	
+	DataFile:	YahooSPX.rtd // see import_yahoo.rts for import definition
+	EndDate:	Latest
+	NumDays:	1
+	
+Data:	
+	High126:	Highest(C,126)
+	Drop:	C / High126 - 1
+	
+Scan:	
+	Filter:	C > 10 and Avg(V, 20) > 100000 and Drop < -0.25
+	Price:	{#2}  C
+	High126:	High126
+	Drop:	 {%2} Drop
+	Sort:	Drop
+	
+
+

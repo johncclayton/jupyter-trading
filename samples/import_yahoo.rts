@@ -1,0 +1,11 @@
+Notes:	
+	Import data for the current S&P 500 components (plus SPY) from Yahoo
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	?scriptpath?\spx_syms.txt
+	SymInfoFile:	?scriptpath?\spx_syminfo.csv
+	IncludeList:	SPY
+	StartDate:	2015-01-01
+	SaveAs:	YahooSPX.rtd
+

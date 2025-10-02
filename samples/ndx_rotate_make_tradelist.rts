@@ -1,0 +1,49 @@
+Notes:	
+	ndx_rotate.rts example modified to generate a trade list for combining with other strategies externally
+	see ndx_plus_wtf_tradelist.rts for how to do this
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.NASDAQ 100 Current & Past
+	IncludeList:	SPY // for bull market indicator
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	ndx_rotate.rtd
+
+Settings:	
+	DataFile:	ndx_rotate.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	100000
+	// add for tradelist generation
+	SaveTradesAs:	?desktop?\ndx_rotate.csv
+	SaveTradesType:	Compact
+	
+Data:	
+	uptrend:	c > Avg(C,200)
+	bullmkt:	Extern($SPY, uptrend)
+	factor:	0.4 * ROC(C,63) + 0.2 * ROC(C,126) + 0.2 * ROC(C,189) + 0.2 * ROC(C,252) // IBD RS factor
+	canhold:	InNDX and C > 10 and factor > 0 and uptrend and bullmkt
+	posrank:	#rank if(canhold, factor, -999)
+
+Parameters:	
+	positions:	5
+	worstrank:	5 // set to > 5 to hold positions longer, set to 0 for monthly rebalance
+	
+Strategy: ndx_rotate
+	Side:	Long
+	Quantity:	100 / positions 
+	QtyType:	Percent
+	EntrySetup:	EndOfMonth and  canhold and posrank <= positions
+	ExitRule:	EndOfMonth and (not canhold or posrank > worstrank)
+	// to rebalance monthly use ExitRule: EndOfMonth (comment out remainder of line)
+	// see also ndx_rotate_rebalance.rts for a different way to implement monthly rebalance
+	MaxPositions:	positions	// needed when worstrank > positions
+	SetupScore:	factor	// ditto
+//	MaxExposure:	100	
+//	Reduce:	True
+	// ^^^ uncomment  these two lines to enforce no margin usage
+	// otherwise unrealized gains in open positions will be used in new position sizing
+	// note that Exposure will still peek above 100% at times due to entry-day gaps

@@ -1,0 +1,73 @@
+Notes:	
+	A long-only momentum continuation strategy using a Keltner channel
+	Illustrates several concepts:
+	- a with-trend entry using a stop+limit order
+	- pre-determined stop size
+	- position size based on stop size (fixed risk)
+	- target size equal to stop size (1R)
+	- calculating indicators, setup, etc. in the data section
+	- using a scan to generate daily signals
+	- impact of realistic commission and slippage
+	
+	Setup Criteria:
+	- penetrated upper channel within 30 days but more than 2 days ago
+	- hasn't penetrated lower channel since then
+	- today's low is the lowest since the top penetration (will become the stop)
+	- today also made a lower high
+		
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Nasdaq 100 Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	keltner_pullback.rtd
+
+Settings:	
+	DataFile:	keltner_pullback.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Data:	
+	KTop:	KBTOP(20, 2)
+	KBot:	KBBOT(20, 2)
+	SinceTop:	SinceTrue(H > KTop, 30)	// bars since high was above the Keltner top (must be within 30)
+	SinceBot:	SinceTrue(L < KBot, SinceTop)	// bars since low was below the Keltner bottom (since high was above top)
+	Trigger:	H * 1.001	// entry stop trigger price
+	Limit:	H * 1.005	// entry stop limit price
+	Stop:	iif(SinceTop > 0, Lowest(L, SinceTop), 0)	// exit stop price
+	Risk:	Limit - Stop	// exit stop distance
+	Setup:	InNDX and SinceTop > 2 and SinceBot = -1 and L = Stop and H < H[1] 
+	
+Strategy: Pullback
+	Side:	Long
+	Quantity:	S.Equity * 0.005 / risk	// share quantity to risk 0.5% based on stop
+//      uncomment the following 3 lines to see the impact of realistic excution assumptions
+//	Commission:	Max(1, Shares * 0.005)
+//	StopSlip:	Trigger * 0.001
+//	LimitExtra:	Trigger * 0.001
+	MaxInvested:	S.Equity
+	SetupScore:	Risk	// favor setups with farther-away stops 
+	EntrySetup:	Setup 
+	EntryStop:	Trigger
+	EntryLimit:	Limit
+	ExitRule:	BarsHeld = 20	// time stop if price target or stop not hit
+	ExitLimit:	FillPrice + Risk[BarsHeld]	// fixed 1R price target
+	ExitStop:	Highest(H, BarsHeld) - Risk[BarsHeld]	// trailing 1R stop
+	//ExitStop:	Stop[BarsHeld]	// fixed price stop at initial 1R level
+	
+ScanSettings:	
+	DataFile:	YahooSPX.rtd
+	EndDate:	Latest
+	NumDays:	1
+	
+Scan:	
+	Filter:	Setup
+	Trigger:	Trigger
+	Limit:	Limit
+	Stop:	Stop
+	Risk:	Risk
+	
+Charts:	
+	// override defaults to show these indicators
+	KTop:	KTop {#2}
+	KBot:	KBot {#2}

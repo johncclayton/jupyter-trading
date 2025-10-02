@@ -1,0 +1,48 @@
+Notes:	
+	Old SuperTrend Indicator Example (prior to build-in indicator being added)
+	run Import, then Apply, then Data/Show Chart
+	edit parameter values then press F4 or click Apply again to see changes applied
+	
+	the "trend" data item uses self reference to replace loop code
+	uses +/- sign as direction flag during calculation
+	(both parts use "max" since the values are negative in the second one)
+
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	AAPL
+	StartDate:	1990-01-01
+	EndDate:	Latest
+	SaveAs:	AAPL.rtd
+	
+Parameters:	
+	width:	3
+	lenATR:	10
+	
+Data:	
+	nATR:	ATR(lenATR)
+	pAvg:	(H+L)/2
+	upperBand:	pAvg + width * nATR
+	lowerBand:	pAvg - width * nATR
+
+	trend:	if(barnum<=lenATR,c,
+		if(trend[1]>0, // in up-trend
+			if(c < trend[1], -upperBand, max(trend[1], lowerBand)),
+		// else in down-trend
+			if(c > -trend[1], lowerBand, max(trend[1], -upperBand))))
+			
+	superTrendx:	abs(trend)
+	direction:	sign(trend)
+	
+Charts:	
+	superTrendx:	superTrendx
+	signal:	if (direction <> direction[1], direction, 0) {|}
+	
+Settings:	
+	DataFile:	AAPL.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Strategy: st_follow
+	Side:	Long
+	EntrySetup:	direction > 0
+	ExitRule:	direction < 0

@@ -1,0 +1,21 @@
+Notes:	
+	CSV folder import examples (just use one of these)
+	see also import_multi.rts for an example of how to combined multiple data sources
+	
+Import:	
+	// single folder with multiple CSV data files, one per stock
+	DataSource:	CSV
+	CSVFields:	Date,Open,High,Low,Close,Volume,RealClose,Dividend
+	DataPath:	c:\NDExport // the folder path
+	StartDate:	Earliest
+	SaveAs:	Stocks2014.rtd
+
+Import:	
+	// single CSV file with multiple symbols included
+	DataSource:	CSV
+	CSVFields:	Date,Symbol,Open,High,Low,Close,Volume,RealClose,Dividend
+	CSVFile:	c:\Data\BigFile.CSV // the file path
+	StartDate:	Earliest
+	SaveAs:	Stocks2014.rtd
+
+

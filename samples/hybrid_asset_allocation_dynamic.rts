@@ -1,0 +1,56 @@
+Notes:	
+	Hybrid Asset Allocation system by Keller and Keuning (balanced version)
+	https://indexswingtrader.blogspot.com/2023/02/introducing-hybrid-asset-allocation-haa.html
+	
+Import:	
+	DataSource:	Norgate // also works with Yahoo
+	Adjustment:	TotalReturn
+	IncludeList:	SPY, IWM, VEA, VWO, DBC, VNQ, IEF, TLT {"offensive"}
+	IncludeList:	BIL, IEF {"defensive"}
+	IncludeList:	TIP {"canary"}
+	IncludeList:	SPY {"benchmark"}
+	StartDate:	2007-07-31 // earliest date that includes all of the above
+	EndDate:	Latest
+	SaveAs:	haa.rtd
+
+Settings:	
+	DataFile:	haa.rtd
+	StartDate:	2008-07-31 // needs a year for factor calculation
+	EndDate:	Latest
+	AccountSize:	100000
+	BarSize:	Monthly
+	
+Parameters:
+	offPos:	4
+	offSize:	25
+	
+Data:
+	factor:	(ROC(c,1) + ROC(c,3) + ROC(c,6) + ROC(c,12)) / 4 // Momentum Factor
+	rankDef:	#rank if(InList("defensive"), factor, -999)
+	rankOff:	#rank if(InList("offensive"), factor, -999)
+	holdOff:	InList("offensive") and factor > 0 and rankOff <= offPos
+	numOff:	#sum holdOff
+	canary:	Extern($TIP, factor <= 0)
+	new_pct:	select(	
+		{canary mode}	canary, if(rankDef = 1, 100, 0),
+		{defensive or both}	rankDef = 1 and numOff < offPos, offSize * (holdOff + offPos - numOff),
+		{offensive only} 	holdOff, offSize,
+		{no position}	0)
+
+Library:
+	curr_size:	PositionSum(Shares, symbol)
+	new_size:	round(new_pct / 100 * S.Alloc / Close, -1)
+
+Strategy: HAA
+	Side:	Long
+	MaxSameSym:	99
+	Quantity:	new_size - curr_size
+	EntrySetup:	new_size > curr_size
+	ExitRule:	new_size < curr_size
+	ExitQty:	curr_size - new_size
+	ExitScore:	-Shares
+
+Benchmark: SPY
+	Side:Long
+	EntrySetup:	InList("benchmark")
+

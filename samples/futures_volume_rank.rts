@@ -1,0 +1,66 @@
+Notes:	
+	shows how to use #ByMkt ranking in a universe of individual futures contracts
+	scans for most liquid contract for each market with at least 5 market days until expiration
+	tests a simple trend-following strategy using individual contracts to trade and CCBs for signals
+	
+Import:	
+	DataSource: Norgate
+	IncludeList: &6S_CCB // any custom watchlist with futures CCB symbols
+	IncludeList: .@FUTURES_6S_INDIVIDUAL // any custom watchlist with futures individual symbols
+	StartDate: 2000-01-01
+	EndDate: Latest
+	SaveAs: futures_volume_rank.rtd
+	
+Data:	
+	MktRank: #rank #ByMkt if(InList(2) and BarsLeft >= 5, Volume, -1)
+	DlrAtr: ATR(5) * PointValue
+	CanEnter: DlrAtr > 500 and DlrAtr < 5000 and LLV(V, 5) > 500
+	HC100: HHV(C,100)
+	LC100: LLV(C,100)
+	
+Settings:	
+	DataFile: futures_volume_rank.rtd
+	StartDate: Earliest
+	EndDate: Latest
+	AccountSize: 500000
+
+ScanSettings:	
+	EndDate: Latest
+	NumBars: 1
+	
+Scan:	
+	Filter: MktRank >= -5 and MktRank < 3
+	MktRank: MktRank
+	DlrAtr: ATR(5) * PointValue
+	ExpDate: InfoExpiry {//}
+	Margin: InfoMargin
+	PtVal: PointValue
+	TickSze: TickSize
+	DollarTick: TickSize * PointValue
+	Vol: Volume
+	CCB: Extern(&ccb, ?Symbol)
+	CC: Extern(&cc, ?Symbol)
+	Ref0: Extern(&0, ?Symbol)
+	Ref1: Extern(&1, ?Symbol)
+	
+Template: common
+	Allocation: S.StartEquity
+	Side: Long
+	Quantity: 1
+	
+Benchmark: tf_ccb
+	Using: common
+	EntrySetup: InList(1)  and CanEnter and C = HC100
+	ExitRule: C = LC100
+	
+Library:	
+	CCBPos: Extern(@tf_ccb, Extern(&ccb, Shares))
+	CanHold: MktRank = 1 and CCBPos <> 0
+	
+Strategy: trend_follow
+	Using: common
+	Commission: 1 * Contracts
+	Slippage: TickSize
+	EntrySetup: CanEnter and CanHold
+	ExitRule: not CanHold
+

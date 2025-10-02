@@ -1,0 +1,37 @@
+Notes:	
+	click "Orders" (not "Test") to generate orders
+	assumes trading had started at the beginning of 2025
+
+Include:	?scriptpath?\mr_sample_common.rts
+
+OrderSettings:	
+	// additional settings applied when script is run in "Orders" mode
+	StartDate:	2025-01-01
+	// run as-is for standard text orders only
+	
+	// uncomment for IB Basket Trader mode
+//	OrdersMode:	Template
+//	OrdersTemplate:	?scriptpath?\ib_basket_template.csv
+	
+	// uncomment for OrderClerk mode
+//	OrdersMode:	OrderClerk
+//	OrderClerkFolder:	c:\OrderClerk\Folder1
+	
+Strategy: mr_long	
+	// mean-reversion long strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5)	// oversold
+	EntryLimit:	LongLimit
+	ExitLimit:	FillPrice * (1 + Target/100)	// intraday profit target
+	ExitRule:	C > C[1] or BarsHeld == 5	// sell on first up day or after 5 days
+	
+Strategy: mr_short	
+	// mean-reversion short strategy
+	Using:	base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5)	// overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100)	// intraday profit target
+	ExitRule:	C < C[1] or BarsHeld == 5	// cover on first down day or after 5 days
+

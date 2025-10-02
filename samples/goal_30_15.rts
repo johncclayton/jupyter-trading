@@ -1,0 +1,90 @@
+Notes:	meet goal of ROR 30 / MaxDD 15 requested by someone on the forum
+	combines four strategies -- long and short of mr-multi-day and mr-single-day
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 3000 Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	goal_30_15.rtd
+
+Settings:	
+	DataFile:	goal_30_15.rtd
+	StartDate:	2015-01-01
+	EndDate:	2022-01-01
+	// ^^^ the "goal" was met for that "in sample" period
+//	StartDate:	2022-01-01
+//	EndDate:	Latest
+	// ^^^ results since then are not as good
+	AccountSize:	100000
+	
+Data:	
+	// Common Indicators
+	ATR5:	ATR(5)
+	AtrPct:	100 * ATR5 / C
+	AvgVol:	MA(V,20)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	RSI2:	RSI(2)
+	ROC5:	ROC(C,5)
+	Universe:	InRUA and C > 20 and AvgVol > 100000
+	// MR multi-day long/short from Tutorial Video 7 script
+	MRU:	Universe and C > EMA100  and AtrPct > 3
+	CanHoldShort:	C < 2 * EMA100 and Top(InfoTRBC, 4) <> 5620
+	mrl_setup:	MRU and C < EMA5 - ATR5
+	mrs_setup:	MRU and CanHoldShort and C > EMA5 + ATR5
+	// MOC day-trade long/short pair (new simplistic concept)
+	mocl_setup:	Universe and rsi2 < 5
+	mocs_setup:	Universe and rsi2 > 95
+	
+Parameters:	
+	mr_pos:	10
+	mr_alloc:	80
+	moc_pos:	10
+	moc_alloc:	80
+	
+Template: common
+	QtyType:	Percent
+	Commission:	Min(0.01 * FillValue, Max(1, 0.005 * Shares)) // IB US commissions
+
+Template: mr_common
+	Using:	common
+	Quantity:	mr_alloc / mr_pos
+	MaxPositions:	mr_pos
+	SetupScore:	AtrPct
+
+Strategy: mr_long
+	Using:	mr_common
+	Side:	Long
+	EntrySetup:	mrl_setup
+	EntryLimit:	L - 0.5 * ATR5
+	ExitRule:	Select(C > C[1], "up day", BarsHeld = 5, "time stop")
+	
+Strategy: mr_short
+	Using:	mr_common
+	Side:	Short
+	EntrySetup:	mrs_setup
+	EntryLimit:	H + ATR5
+	ExitRule:	Select(C < C[1], "down day", BarsHeld = 5, "time stop")
+
+Template: moc_common
+	Using:	common
+	Quantity:	moc_alloc / moc_pos
+	MaxPositions:	moc_pos
+	ExitRule:	1 // MOC
+	ExitTime:	ThisClose 
+	
+Strategy: moc_long
+	Using:	moc_common
+	Side:	Long
+	EntrySetup:	mocl_setup
+	SetupScore:	1000-roc5
+	EntryLimit:	C - ATR5
+	
+Strategy: moc_short
+	Using:	moc_common
+	Side:	Short
+	EntrySetup:	mocs_setup
+	SetupScore:	roc5
+	EntryLimit:	C + ATR5
+

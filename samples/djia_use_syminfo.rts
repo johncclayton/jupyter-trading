@@ -1,0 +1,40 @@
+Notes:	
+	shows how to use a symbol information file to add metadata to an import
+	run import and then scan to confirm that the syminfo file was applied during import
+	see djia_make_syminfo.rts for how to make this file using Norgate data
+	note that when using Norgate you never need a SymInfoFile because this metadata is imported automatically
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	?scriptpath?\djia_syms.txt
+	SymInfoFile:	?scriptpath?\djia_info.csv
+	StartDate:	2008-01-01
+	EndDate:	Latest
+	SaveAs:	djia_yahoo.rtd
+
+Settings:	
+	DataFile:	djia_yahoo.rtd
+	EndDate:	Latest
+	NumDays:	1
+	ScanNoDefCols:	True
+
+Scan:	
+	Sym:	?Symbol	{"Symbol"} 
+	Name:	?Name
+	Type:	?Type
+	EquityType:	?EquityType
+	ListingType:	?ListingType
+	Exchange:	?Exchange
+	Cur:	?Currency	{"Currency"} 
+	RepCur:	?ReportingCurrency	{"ReportingCurrency"}
+	Domicile:	?Domicile
+	EconSect:	?EconSect
+	Sector:	?Sector
+	IndGroup:	?IndGroup
+	Industry:	?Industry
+	TRBC:	InfoTRBC
+	GICS:	InfoGICS
+	Shr:	InfoShares	{"Shares"} 
+	Float:	InfoFloat
+
+ 

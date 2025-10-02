@@ -1,0 +1,55 @@
+Notes:
+	a futures long/short trend-following example using CSI back-adjusted continuous contract data
+	
+Import:
+	DataSource:	CSIFutures
+	DataPath:	c:\UA\Files\RealTest {"CSI"} // change to your CSI futures portfolio location
+	StartDate:	Earliest
+	EndDate:	Latest
+	SaveAs:	csi_futures.rtd
+	
+Settings:
+	DataFile:	csi_futures.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	AccountSize:	1e6	// $1M
+	CashIntPct:	2	// interest paid on cash not in use as margin collateral
+
+Parameters:
+	VolMin:	500	// minimum recent volume
+	BreakLen:	250	// breakout lookback length
+	PctRisk:	0.5	// percent of capital to risk per trade
+	StopATRs:	7	// trailing stop width, in ATRs
+	
+Data:
+	N:	ATR(20)
+	NDlr:	N * PointValue
+	NStopPts:	N * StopATRs
+	NStopDlr:	NStopPts * PointValue
+	Liquid:	InList("CSI") and Lowest(V, 5) > VolMin
+	BreakHigh:	Highest(C, BreakLen)
+	BreakLow:	Lowest(C, BreakLen)
+	RiskPts:	Min(BreakHigh - BreakLow, NStopPts) * PointValue
+	LongStop:	Max(BreakLow, C - NStopPts)
+	ShortStop:	Min(BreakHigh, C + NStopPts)
+
+Template: common
+	Quantity:	PctRisk / 100 * S.Alloc / RiskPts // risk-based position size
+	Commission:	2 * Contracts	// $2/contract each way
+	Slippage:	2 * TickSize	// 2 ticks each way
+	RollCost:	4 * Contracts + 4 * TickSize * PointValue // commission and slippage for each full roll
+	FuturesMargin:	10 * NDlr 	// estimated margin requirement per contract
+	MinFreeCash:	0.5 * S.Alloc	// allow up to half NLV to be used as margin, else skip entries
+	ExitStopTime:	NextOpen	// define "stop" as closing below the stop price (comment out for live stops)
+	
+Strategy: tf_csi_long
+	Using:	common
+	Side:	Long
+	EntrySetup:	Liquid and C = BreakHigh
+	ExitStop:	Highest(LongStop, BarsHeld + 1) // Trailing Stop
+
+Strategy: tf_csi_short
+	Using:	common
+	Side:	Short
+	EntrySetup:	Liquid and C = BreakLow
+	ExitStop:	Lowest(ShortStop, BarsHeld + 1) // Trailing Stop

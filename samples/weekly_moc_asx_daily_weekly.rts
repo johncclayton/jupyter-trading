@@ -1,0 +1,44 @@
+Notes:
+	version of weekly_moc_asx example that works as a weekly strategy in a daily script
+
+Settings:
+	DataFile:	all_asx.rtd // see weekly_moc_asx.rts for Import definition
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily // script runs on daily interval and Data arrays are daily by default
+
+OrderSettings:
+	StartDate:	2024-01-01
+	EndDate:	Latest
+	OrdersMode:	Template
+	OrdersTemplate:	Examples\ib_basket_template.csv
+
+Parameters:
+	minprice:	1
+	minturnover:	1e6 // $1M
+	minpctatr:	5 // weekly ATR pct
+	setups:	20 // orders to place each Monday (won't all fill)
+	sizepos:	10 // fraction of account to use for size
+	lookback:	5 // weeks to use for all multi-bar indicators
+	stretch:	1 // atrs for limit price
+	
+Data:
+	BarSize:	Weekly // explicitly calculate and store weekly bar arrays
+	Liquid:	c >= minprice and ma(c*v, lookback) >= minturnover
+	Volatile:	100 * atr(lookback) / c >= minpctatr
+	Momentum:	roc(c, lookback)
+	LmtPrice:	C - stretch * atr(lookback)
+
+Strategy:	weekly_moc
+	BarSize:	Weekly // explicitly run this strategy on a weekly timeframe
+	Side:	Long
+	Quantity:	S.Alloc / sizepos / LmtPrice
+	QtyType:	Shares
+	MaxSetups:	setups
+	SetupScore:	Momentum
+	EntrySetup:	Liquid and Volatile  
+	EntryLimit:	LmtPrice
+	ExitRule:	1
+	ExitTime:	NextClose // i.e. Friday
+		// IB ASX commission plus tax
+	Commission:	1.1 * Max(6.00, 0.0008 * FillValue)

@@ -1,0 +1,70 @@
+Notes:	
+	S&P sector ETF monthly rotation using sector constituent breadth to rank the ETFs
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	IncludeList:	XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLU, XLV, XLY, XLRE {"ETFs"}
+	IncludeList:	SPY // for benchmark
+	Classification:	GICS
+	StartDate:	1999-01-01
+	EndDate:	Latest
+	SaveAs:	sector_etfs_breadth.rtd
+	
+Settings:
+	DataFile:	sector_etfs_breadth.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	AccountSize:	100000
+	
+Library:
+	// map a symbol in each sector back to the ETF
+	XLEsym:	$XOM
+	XLBsym:	$IP
+	XLIsym:	$BA
+	XLYsym:	$LOW
+	XLPsym:	$WMT
+	XLVsym:	$UNH
+	XLFsym:	$JPM
+	XLKsym:	$XRX
+	XLCsym:	$VZ
+	XLUsym:	$AEP
+	XLREsym:	$SPG
+
+Parameters:
+	Lookback:	63
+	Positions:	3
+	
+Data:
+	StockFactor:	if(InSPX, ROC(C, Lookback), nan)
+	SectFactor:	#Avg #ByEcon StockFactor
+	SectStockRank:	#Rank #ByEcon StockFactor
+	SectRank:	#Rank if(SectStockRank = 1, SectFactor, -999)
+	StockSectRank:	#Lowest #ByEcon SectRank
+	ETFstock:	Item("{?}sym", ?Symbol)
+	ETFrank:	Extern(SymNum(ETFstock), StockSectRank)
+	Rotate:	EndOfMonth
+	
+ScanSettings:
+	EndDate:	Latest
+	NumBars:	1
+	
+Scan:
+	Filter:	InList("ETFs")
+	ETFrank:	ETFrank
+	ETFstock:	Extern(SymNum(ETFstock), ?symbol)
+	ETFsect:	Extern(SymNum(ETFstock), ?EconSect)
+
+Strategy: sector_etfs
+	Side:	Long
+	Quantity:	100 / Positions
+	QtyType:	Percent
+	EntrySetup:	Rotate and InList("ETFs") and ETFrank <= Positions
+	ExitRule:	Rotate and ETFrank > Positions
+
+Benchmark: benchmark
+	Side:Long
+	EntrySetup:	Symbol=$SPY
+	// exit (and immediately re-enter) on each ex-dividend day, to re-invest the dividend
+	ExitRule:	Dividend > 0 

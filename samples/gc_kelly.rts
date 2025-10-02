@@ -1,0 +1,35 @@
+Notes:	
+	Shows one way to structure a trend-following futures strategy with Kelly Criterion position sizing (probably a bad idea)
+	Assumes Norgate futures data
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	&GC
+	StartDate:	Earliest
+	EndDate:	Latest
+	SaveAs:	gc_kelly.rtd
+	
+Parameters:	
+	bars:	20
+	tgt:	2 // atrs
+	stp:	1 // atrs
+	p:	0.38
+	f:	0.5 // Kelly Fraction
+	
+Data:	
+	kf:	(tgt * p - stp * (1-p)) / tgt
+	atrx:	atr(bars)
+	
+Settings:	
+	DataFile:	gc_kelly.rtd
+	AccountSize:	100000
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	
+Strategy: gc_mom
+	Side:	Long
+	Quantity:	(S.Equity * kf * f) / (PointValue * stp * atrx)
+	EntrySetup:	c > highest(c,bars)[1]
+	ExitLimit:	FillPrice + tgt *atrx
+	ExitStop:	FillPrice - stp * atrx

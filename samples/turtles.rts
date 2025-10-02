@@ -1,0 +1,148 @@
+Notes:	approximation of the original Turtles systems
+	based on the "Original Turtle Rules" document published by Curtis Faith (tradingblox.com)
+
+Import:	DataSource:	Norgate
+	IncludeList:	.@TurtlesCCB
+	// &6B, &6C, &6J, &6S, &CC, &CL, &CT, &GC, &GE, &HG, &HO, &KC, &SB, &SI, &SP, &ZB, &ZC, &ZN (all with _CCB suffix)
+	//IncludeList:	.@TurtlesInd // uncomment if you have data and wish to compare
+	// define as individual contracts for all of the above markets (3000+ in total)
+	StartDate:	1/1/79
+	EndDate:	Latest
+	SaveAs:	turtles.rtd
+	
+Settings:	DataFile:	turtles.rtd
+	StartDate:	1/1/80
+	EndDate:	Latest
+	AccountSize:	1000000
+	BarSize:	Daily
+	UseAvailableBars:	False
+	// must include both to use benchmark to track "was last trade a winner" for system 1
+	KeepTrades:	Strategy,Benchmark 
+	LegacyMode:	True // do not use newer modes for this convoluted example
+	
+Parameters:	system:	2 // 1 = 20-day breakout with 10-day exit, 2 = 55-day breakout with 20-day exit
+	list:	1 // 1 = continuous contracts, 2 = individual contracts
+	
+Data:	// the all-important position size and risk factor
+	N:	ATR(20)
+	NDlr:	N * PointValue 
+	// they tended to not use front-month contracts, and had liquidity constraints (not specified)
+	Liquid:	Avg(V,20) > 100000 / NDlr
+	Universe:	InList(list) and Liquid and (list==1 or BarsLeft > 63)
+
+Library:	// lookback length depends on system choice (this model does not combine them, but could be modified to do so -- will then have 16 strategies)
+	len_in:	if(system==1, 20, 55)
+	len_out:	if(system==1, 10, 20)
+
+	// keep track of last trade on either side as per Turtle rules
+	lastTradeWin:	if(system==2, 0, if(extern(@longtrack,sincetrue(t.points)) > extern(@shorttrack,sincetrue(t.points)),
+			extern(@longtrack,whentrue(t.points,t.points)), extern(@shorttrack,whentrue(t.points,t.points))) > 0)
+			
+	// no more than 12 units per side open at once as per Turtle rules
+	longUnits:	Extern(@long1, S.Positions) + Extern(@long2, S.Positions) + Extern(@long3, S.Positions) + Extern(@long4, S.Positions)
+	shortUnits:	Extern(@short1, S.Positions) + Extern(@short2, S.Positions) + Extern(@short3, S.Positions) + Extern(@short4, S.Positions)
+	
+	// enforce size reduction when equity is below starting equity (20% reduction for every 10% below prior level)
+	Size:	Combined(S.Equity)
+	Mult:	select(
+		Size > 0.9 * S.StartEquity, 1, 
+		Size > 0.9 * 0.8 * S.StartEquity, 0.8, 
+		Size > 0.9 * 0.9 * 0.8 * S.StartEquity, 0.6,
+		Size > 0.9 * 0.9 * 0.9 * 0.8 * S.StartEquity, 0.4,
+		Size > 0.9 * 0.9 * 0.9 * 0.9 * 0.8 * S.StartEquity, 0.2,
+		1, 0)
+
+// tracking strategies for system 1 to know if last trade was a winner or not
+// per their specs, only enter when last trade in that market was not a winner, if system 1 (system 2 always takes signals)
+	
+Template:	common
+	Compounded:	True	// this sizing model is kind of compounded and kind of not -- causes stats to assume compoounding
+	MarkToMarket:	False	// causes drawdowns to be based on closed trades only as per Jerry Parker et all.
+	Quantity:	1
+	
+Benchmark:	longtrack
+	Using:	common
+	Side:	Long
+	EntrySetup:	Universe and system==1
+	EntryStop:	Highest(h,20) + TickSize
+	ExitRule:	list==2 and BarsLeft < 5
+	ExitStop:	max(Lowest(L, 10) - TickSize, FillPrice - 2 * N[BarsHeld])
+
+Benchmark:	shorttrack
+	Using:	common
+	Side:	Short
+	EntrySetup:	Universe and system==1
+	EntryStop:	Lowest(l,20) - TickSize
+	ExitRule:	list==2 and BarsLeft < 5
+	ExitStop:	min(Highest(H, 10) + TickSize, FillPrice + 2 * N[BarsHeld])
+	
+Template:	base
+	Using:	common
+	Quantity:	round(0.01 * Mult * S.StartEquity / NDlr, 1, -1) // one unit = 1% risk (round down)
+	Slippage:	TickSize // was probably worse in many cases...
+	EntrySetup:	Universe
+	ExitRule:	list==2 and BarsLeft < 5 // rollover will only occur if newer contract gets fresh entry signal
+
+Template:	longbase
+	Using:	base
+	Side:	Long
+	EntryScore:	(C - C[63]) / N // 3-month momentum, one thing they used to "pick the strongest" for longs
+	EntrySkip:	longUnits == 12 or lastTradeWin // max 12 units per side in total, no entry for system 1 if last trade was a winner
+	ExitStop:	max(Lowest(L, len_out) - TickSize, Combined(FillPriceMax - 2 * N[BarsHeld]))
+	// not that this is not a trailing stop -- they did not use one
+	
+Template:	shortbase
+	Using:	base
+	Side:	Short
+	EntryScore:	(C[63] - C) / N// 3-month momentum, one thing they used to "pick the weakest" for shorts
+	EntrySkip:	shortUnits == 12 or lastTradeWin // max 12 units per side in total, no entry for system 1 if last trade was a winner
+	ExitStop:	min(Highest(H, len_out) + TickSize, Combined(FillPriceMin + 2 * N[BarsHeld]))
+	// not that this is not a trailing stop -- they did not use one
+	
+// first unit entry
+Strategy:	long1 
+	Using:	longbase
+	EntryStop:	Highest(H, len_in) + TickSize
+
+Strategy:	short1
+	Using:	shortbase
+	EntryStop:	Lowest(L, len_in) - TickSize
+
+// second unit entry at first unit fill price plus 0.5N
+Strategy:	long2
+	Using:	longbase
+	EntrySetup:	Extern(@long1, FillPrice > 0)
+	EntryStop:	Extern(@long1, FillPrice + 0.5 * N[BarsHeld])
+	
+Strategy:	short2
+	Using:	shortbase
+	EntrySetup:	Extern(@short1, FillPrice > 0)
+	EntryStop:	Extern(@short1, FillPrice - 0.5 * N[BarsHeld])
+
+// third unit entry at second unit fill price plus 0.5N
+Strategy:	long3
+	Using:	longbase
+	EntrySetup:	Extern(@long2, FillPrice > 0)
+	EntryStop:	Extern(@long2, FillPrice + 0.5 * N[BarsHeld])
+
+Strategy:	short3
+	Using:	shortbase
+	EntrySetup:	Extern(@short2, FillPrice > 0)
+	EntryStop:	Extern(@short2, FillPrice - 0.5 * N[BarsHeld])
+
+// fourth unit entry at third unit fill price plus 0.5N
+Strategy:	long4
+	Using:	longbase
+	EntrySetup:	Extern(@long3, FillPrice > 0)
+	EntryStop:	Extern(@long3, FillPrice + 0.5 * N[BarsHeld])
+
+Strategy:	short4
+	Using:	shortbase
+	EntrySetup:	Extern(@short3, FillPrice > 0)
+	EntryStop:	Extern(@short3, FillPrice - 0.5 * N[BarsHeld])
+
+StatsGroup:	Longs
+	Using:	long1, long2, long3, long4
+	
+StatsGroup:	Shorts
+	Using:	short1, short2, short3, short4

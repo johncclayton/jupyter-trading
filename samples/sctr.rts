@@ -1,0 +1,35 @@
+Notes:	
+	SCTR (StockCharts Technical Rank)
+	https://school.stockcharts.com/doku.php?id=technical_indicators:sctr
+	https://school.stockcharts.com/doku.php?id=technical_indicators:price_oscillators_ppo
+	
+Data:	
+	// long term
+	ema200:	30 * (c / ema(c,200) - 1) // percent above/below 200-day ema (30%)
+	roc125:	0.3 * roc(c,125) // 125-day rate of change (30%)
+	 
+	// medium term
+	ema50:	15 * (c / ema(c, 50) - 1) // percent above/below 50-day ema (15%)
+	roc20:	0.15 * roc(c, 20) // 20-day rate of change (15%)
+	
+	// short term
+	ppo:	100 * (ema(C,12) / ema(C,26) - 1)  
+	pposig:	 ema(ppo, 9)
+	ppohist:	ppo - pposig
+	pposlope:	Slope(ppohist,3) // 3-day slope of ppo hist
+	slopescore:	0.5 * (Bound(pposlope, -1, 1) + 1)
+	// ^^^ "If the PPO-Histogram's slope is less than -45 degrees, 0 points are contributed to the score. Otherwise, 5% of ((Slope + 1) x 50) is contributed. "
+	rsi14:	0.05 * rsi(14) // (5%)
+	
+	factor:	ema200 + roc125 + ema50 + roc20 + slopescore + rsi14
+	pctrnk:	#PercentRank factor // 0-100 percent rank of strength
+	SCTR:	99.99/100 * pctrnk // "First, the rankings extend from 0.00 to 99.99, with 0 being the absolute weakest and 99.99 being the absolute strongest. No stock will score a perfect 100."
+	
+Settings:	
+	DataFile:	YahooSpx.rtd // or any file of your choice with a universe of stocks
+	EndDate:	Latest
+	NumBars:	1
+	
+Scan:	
+	SCTR:	SCTR
+	Sort:	-SCTR

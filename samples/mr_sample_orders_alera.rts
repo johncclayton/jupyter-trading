@@ -1,0 +1,64 @@
+Notes:	shows how to configure mr_sample for daily Alera Portfolio Manager signal file generation
+	click "Orders" (not "Test") to generate orders
+
+Import:	// requires Norgate Platinum subscription
+	DataSource:	Norgate
+	IncludeList:	.Russell 3000 Current & Past
+	StartDate:	1/1/2020
+	EndDate:	Latest
+	SaveAs:	mr_sample_orders.rtd
+
+Settings:	// settings applied when script is run in any mode
+	DataFile:	mr_sample_orders.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	UseAvailableBars:	True
+
+OrderSettings:	// additional settings applied when script is run in "Orders" mode
+	OrdersMode:	Alera // each strategy must specify its own OrdersFile
+	
+Data:	ATR5:	ATR(5)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20  and Avg(V, 20) >= 200000 
+	Volatile:	ATR5 > 0.03 * C
+	Biotech:	Top(InfoTRBC,4) = 5620 
+	Universe:	InRUA and Liquid and Volatile and not Biotech and C > EMA100
+	LongLimit:	C - 0.5 * ATR5	// drops another half ATR
+	ShortLimit:	C + 0.5 * ATR5	// rises another half ATR
+	
+Parameters:	NumPos:	10
+	PctExt:	2.5
+	Target:	8
+	
+Template:	base	// formulas shared by more than one strategy
+	MaxPositions:	NumPos
+	SetupScore:	ATR5 / C	// rank setups by largest percent ATR
+	Quantity:	100 / NumPos	// percent of allocation
+	QtyType:	Percent
+	Commission:	Max(1, 0.005 * Shares)	// default IB commission
+	LimitExtra:	0.001 * C	// price must go 0.1% beyond limit price to get a fill
+	// no slippage because all entries and exits are limit orders or market-on-open
+
+Strategy:	mr_long	// mean-reversion long strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5)	// oversold
+	EntryLimit:	LongLimit
+	ExitLimit:	FillPrice * (1 + Target/100)	// intraday profit target
+	ExitRule:	C > C[1] or BarsHeld == 5	// sell on first up day or after 5 days
+	OrdersFile:	mr_sample_long.sig.txt	// change path to appropriate Alera workspace folder
+	
+Strategy:	mr_short	// mean-reversion short strategy
+	Using:	base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5)	// overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100)	// intraday profit target
+	ExitRule:	C < C[1] or BarsHeld == 5	// cover on first down day or after 5 days
+	OrdersFile:	mr_sample_short.sig.txt	// change path to appropriate Alera workspace folder
+
+Notes:	the above treats the long and short sides as separate strategies for Alera's purposes
+	to combine two RT strategies into one Alera strategy, use the same OrdersFile for both,
+	and put + at the start of the second one (tells RT to append rather than overwrite the file)
+

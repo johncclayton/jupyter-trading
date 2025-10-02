@@ -1,0 +1,39 @@
+Notes:
+	example of how to use a regular scan to generate a basket trader CSV file
+	(see simple_day_trade_basket_orders.rts for much simpler solution)
+
+Include: ?scriptpath?\simple_day_trade.rts // right-click to open
+	
+ScanSettings:
+	EndDate:	Latest
+	NumDays:	1
+	ScanNoDefCols:	True
+	SaveScanAs:	simple_day_trade_basket.csv
+	
+Library:	
+	// must manually update these two items before running the scan
+	acctsize:	100000
+	acctnum:	"DU123456"
+	
+Scan:	
+	// run import then scan once each day and upload to IB basket trader
+	Filter1:	setup // creates two output rows for each symbol
+	Filter2:	setup // FilterNum is used below to differentiate these rows
+	Action:	{!2} if(FilterNum=1,"BUY","SELL")
+	Qty:	{"Quantity"} round(acctsize/10/price, 1, -1)
+	Sym:	{"Symbol" !1} Replace(?Symbol, ".", " ")
+	Exchange:	"SMART"
+	Cur:	{"Currency"} "USD"
+	TimeInForce:	if(FilterNum=1,"GTD", "DAY")
+	GoodTilDate:	if(FilterNum=1, "15:44:00 EST","")
+	OrderType:	if(FilterNum=1,"LMT","MOC")
+	LmtPrice:	if(FilterNum=1, round(price, 0.01), "")
+	AuxPrice:	""
+	OcaGroup:	if(FilterNum=1,"",srank)
+	OrderId:	if(FilterNum=1,srank,"")
+	ParentOrderId:	if(FilterNum=1,"",srank)
+	BasketTag:	"SDT"
+	Account:	acctnum
+	Sort:	Sym,Action
+
+	

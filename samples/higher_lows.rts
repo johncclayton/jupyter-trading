@@ -1,0 +1,48 @@
+Notes:	trend-following strategy based on three higher pivot lows
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.Russell 1000 Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	higher_lows.rtd
+	
+Settings:	
+	DataFile:	higher_lows.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Parameters:	
+	len:	65	// three pivots must occur within this many bars
+	risk:	0.005	// account risk per trade
+	pvtatr:	0.2	// ATR distance between lows within pivot V
+	tgtatr:	2	// ATR multiplier for target and overbought avoidance
+	
+Data:	
+	atrx:	atr(5)
+	universe:	InRUI and c > 10 and llv(v,5) > 50000 and atrx > 0.01 * c 
+	dist:	pvtatr * atrx
+	pivot:	l[2] > l[1] + dist and l[1] > l + dist and l[-1] > l + dist and l[-2] > l[-1] + dist // looks ahead 2 bars!
+	since1:	sincetrue(pivot) // bars since most recent pivot (can use one-pass)
+	since2:	if(since1 >= 0, since1 + since1[since1+1] + 1, -1) // bars since 2nd pivot
+	since3:	if(since2 >= 0, since2 + since1[since2+1] + 1, -1) // bars since 3rd pivot
+	// it is critical to check "since > 1" to avoid look-ahead bias
+	p1:	if(since1 > 1, L[since1], nan) // low of most recent pivot
+	p2:	if(since2 > 1, L[since2], nan) // low of 2nd pivot
+	p3:	if(since3 > 1, L[since3], nan) // low of 3rd pivot
+	trend1:	l > p1 and p1 > p2 and p2 > p3 // higher pivot lows
+	trend2:	trend1 and p1 = llv(l,since1+2) and p2 = llv(l, since2+2) and p3 = llv(l, since3+2) // no violations
+	setup:	universe and trend2 and c = hhv(c, since1+2) and c < p1 + tgtatr*atrx // new high since pivot, not overbought
+	
+Charts:	
+	pivot:	pivot {|}
+	stop:	p1
+
+Strategy: test
+	Side:	Long
+	Quantity:	S.Alloc * risk / (c - p1)
+	MaxInvested:	S.Alloc
+	Reduce:	True
+	EntrySetup:	setup
+	ExitStop:	p1
+	ExitLimit:	FillPrice + tgtatr*atrx[BarsHeld]

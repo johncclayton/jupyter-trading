@@ -1,0 +1,35 @@
+Notes:
+	Calculates monthly options expiration and VIX futures expiration dates
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	$VIX
+	StartDate:	2000-01-01
+	EndDate:	Latest
+	SaveAs:	vix.rtd
+	
+Settings:
+	DataFile:	vix.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	ScanNoDefCols:	True
+	
+Data:
+	IsOpEx:	(Day >= 15 and Day <= 21 and DayOfWeek = 5) // normal case
+		or (Day >= 14 and Day <= 20 and EndOfWeek and DayOfWeek < 5) // 3rd Friday is a holiday
+		
+	NextOpEx:	WhenTrue(IsOpEx, BarDate, 25, -1)[-5] 
+		// looks ahead up to 25 market days
+		// starts 5 days in the future to avoid this week's opex
+	
+	IsVxEx:	Days(BarDate,NextOpEx) = 30 // this function counts calendar days by default
+
+Charts:
+	opex:	IsOpEx {|} // shows OpEx pointing up and VxEx pointing down in volume pane
+	vxex:	-IsVxEx {|}
+	
+Scan:
+	Filter: Symbol=$$VIX and IsVxEx 
+	VxEx: BarDate {//}
+	OpEx: NextOpEx {//}
+	

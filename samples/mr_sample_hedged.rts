@@ -1,0 +1,20 @@
+Notes:	adds a simplistic hedging strategy to the mr_sample long/short pair
+	
+Include:	?scriptpath?\mr_sample.rts // right-click to open
+
+Parameters:	// you can have more than one Parameters section -- this is added to params defined in included script
+	Hedge:	1, 0
+	
+Library:
+	imbalance: Extern(@mr_short, S.Invested) - Extern(@mr_long, S.Invested)
+	
+Strategy:	hedge // use SPY to hedge any overnight long/short imbalance (data file must include SPY)
+	EntrySetup:	Symbol = $SPY
+	ExitRule:	Hedge and S.Invested <> S.Invested + imbalance
+	Quantity:	Hedge * imbalance
+	QtyType:	Value
+	Commission:	0.005 * Shares
+	EntryTime:	ThisClose
+	ExitTime:	ThisClose
+	// in real life, you'd probably maintain the hedge after each filled order -- here we can only do it daily
+

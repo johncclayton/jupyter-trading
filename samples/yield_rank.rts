@@ -1,0 +1,31 @@
+Notes:
+	Shows how to calculate annualized dividend yield from dividends paid,
+	how to rank S&P 500 component stocks by dividend yield,
+	and how to scan at the end of each year for the top-yielding 10 stocks
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 500 Current & Past
+	Adjustment:	CapitalSpecial	// convert special dividends to splits, keep ordinary ones as dividends
+	StartDate:	Earliest
+	EndDate:	Latest
+	SaveAs:	spx.rtd
+	
+Settings:
+	DataFile:	spx.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	
+Data:
+	divs30:	sum(dividend > 0, 30)
+	sum237:	sum(dividend, 237)
+	sum267:	sum(dividend, 267)
+	yield:	if(divs30, sum237, sum267) / c
+	yieldRank:	#rank if(InSPX, yield, nan)
+
+Scan:
+	filter:	year[-1] > year and yieldRank <= 10
+	yield:	yield {%2}
+	yieldRank:	yieldRank
+	sort:	-date, yieldRank

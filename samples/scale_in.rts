@@ -1,0 +1,41 @@
+Notes:	Shows how to scale in to a position as price moves in your favor, keeping risk smaller
+	Demonstrates use of Template and Library to keep script smaller and more readable
+	
+Settings:	DataFile:	sample1.rtd // imported in sample1.rts
+	StartDate:	Earliest
+	EndDate:	Latest
+	
+Parameters:	HighBars:	40
+	ScaleStep:	5
+	StopPct:	10
+	
+Template:	common // elements shared by all each sub-strategy
+	Side:	Long
+	Quantity:	25
+	QtyType:	Percent
+	ExitStop:	Highest(C, BarsHeld) * (1 - StopPct/100)
+
+Library:	// formulas used in multiple places
+	Entry:	C > Highest(C,HighBars)[1]
+	Step:	Shares > 0 and C > (ScaleStep/100 + 1) * FillPrice
+	
+Strategy:	entry1
+	Using:	common
+	EntrySetup:	Entry
+	
+Strategy:	entry2
+	Using:	common
+	EntrySetup:	Entry and Extern(@entry1, Step)
+	
+Strategy:	entry3
+	Using:	common
+	EntrySetup:	Entry and Extern(@entry2, Step)
+
+Strategy:	entry4
+	Using:	common
+	EntrySetup:	Entry and Extern(@entry3, Step)
+	
+Benchmark:	all_at_once
+	Using:	common
+	Quantity:	100
+	EntrySetup:	Entry

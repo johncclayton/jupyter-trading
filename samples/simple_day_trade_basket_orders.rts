@@ -1,0 +1,10 @@
+Notes:	
+	this shows the easy way to generate orders for IB Basket Trader -- just click on Orders
+	(see simple_day_trade_basket_scan.rts for a lower-level solution)
+
+Include: ?scriptpath?\simple_day_trade.rts // right-click to open
+	
+OrderSettings:	
+	// overrides the OrderSettings from the included script
+	OrdersMode:	Template
+	OrdersTemplate:	?scriptpath?\ib_basket_template.csv 

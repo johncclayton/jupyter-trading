@@ -1,0 +1,46 @@
+Notes:	
+	simplistic MOC-exit day-trade strategy
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.Russell 1000 Current & Past
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	simple_day_trade.rtd
+	
+Settings:	
+	// settings applied when script is run in any mode
+	DataFile:	simple_day_trade.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	BarSize:	Daily
+	UseAvailableBars:	False
+	AccountSize:	100000
+	
+OrderSettings:	
+	// additional settings applied when script is run in "Orders" mode
+	OrdersMode:	OrderClerk
+	OrderClerkFolder:	c:\OrderClerk\TEST
+	
+Data:	
+	// indicators calculated ahead of time for speed
+	atr5:	atr(5)
+	roc5:	roc(c, 5)
+	ma200:	ma(c,200)
+	setup:	InRUI and C > 10 and C > ma200	// EntrySetup
+	score:	1000 - roc5	// SetupScore
+	srank:	#rank if(setup, score, -999)	// used by simple_day_trade_basket_scan.rts example
+	price:	L - atr5	// EntryLimit
+
+Strategy: simple_day_trade
+	Side:	Long
+	Quantity:	10	// size each position to 10% of account
+	QtyType:	Percent
+	Commission:	max(1, 0.005 * Shares)	// IB commission (no slippage due to limit entry and MOC exit)
+	MaxPositions:	40	// place 40 orders each day
+	EntrySetup:	setup	// defined above, in Data, for other example scripts which include this one
+	SetupScore:	score	// ditto
+	EntryLimit:	price 	// ditto
+	ExitRule:	1	// these two statements implement the "MOC" exit rule
+	ExitTime:	ThisClose
+

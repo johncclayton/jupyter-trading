@@ -1,0 +1,34 @@
+Notes:	
+	Naive VXX ETF long/short strategy based on VIX term structure
+	Combines original (delisted) VXX and current version
+	Demonstrates using one strategy to trade long or short using sign of Quantity
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	$VIX, $VIX3M, VXX-201901, VXX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	vxx_long_short.rtd
+	
+Settings:	
+	AccountSize:	100000
+	StartDate:	1/1/10
+	EndDate:	Latest
+	DataFile:	vxx_long_short.rtd
+	
+Parameters:	
+	diff:	0
+	
+Data:	
+	isvxx:	(symbol=$VXX-201901 and year < 2019) or (symbol=$VXX and year >= 2019)
+	vdiff:	extern($$vix,c) - extern($$vix3m,c)
+	backward:	vdiff > diff
+	
+Strategy: vxx_long_short
+	QtyType:	Percent
+	Commission:	Max(0.005 * Shares, 1)
+	Slippage:	0.001 * FillPrice
+	Side:	Both // sign of Quantity determines side
+	Quantity:	100/3 * if(backward, 1, -1)
+	EntrySetup:	isvxx and backward <> backward[1]
+	ExitRule:	backward <> backward[1]

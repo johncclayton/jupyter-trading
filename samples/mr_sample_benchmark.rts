@@ -1,0 +1,8 @@
+Notes:	shows how to add an index benchmark line to the equity curve for a set of strategies
+
+Include:	?scriptpath?\mr_sample.rts // right-click to open
+	
+Benchmark:	SPY // buy-and-hold SPY with dividend reinvestment
+	EntrySetup:	Symbol = $SPY	// simply enter SPY whenever there is no position
+	ExitRule:	Dividend > 0	// exit (and immediately re-enter) on each ex-dividend day
+	

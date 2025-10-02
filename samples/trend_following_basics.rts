@@ -1,0 +1,83 @@
+Notes:
+	This example uses a single OEX trend-following strategy 
+	to demonstrate a variety of trailing stop techniques
+	and a mechanism for only taking "fresh breakout" entries.
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	IncludeList:	$OEX
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	2011-01-01
+	EndDate:	Latest
+
+Parameters:
+	stopType:	from 1 to 7 def 4	// allows optimizer to loop through stop types
+	setupBar:	1, 0	// whether to include the setup bar in the lookback
+	freshSetup:	1, 0	// whether the setup must be a "fresh" breakout
+	enterLen:	100	// Donchian entry breakout bars
+	exitLen:	50	// Donchian exit bars (when used)
+	atrLen:	10	// ATR lookback
+	atrMult:	3	// trailing ATR stop multipler
+	acctRisk:	0.01	// fraction of account to risk per trade
+	
+Data:
+	universe:	InOEX
+	atrN:	ATR(atrLen)
+	enterPrice:	Highest(H, enterLen)	// Donchian breakout price
+	exitPrice:	Lowest(L, exitLen)	// Donchian exit price
+	ckPrice:	Highest(H, 10) - 3 * Avg(TR, 10)	// Chande-Kroll stop price
+	
+Library:
+	// bars since entry for use as an offset
+	trailOfst:	BarsHeld + setupBar
+	// bars since entry for use as a function length
+	trailLen:	Max(1, trailOfst) // 0 returns nan
+	// Chandelier that can move lower if ATR expands:
+	initStop1:	C - atrMult * atrN
+	trailStop1:	Highest(H, trailLen) - atrMult * atrN
+	// Chandelier that can't move lower if ATR expands:
+	initStop2:	C - atrMult * atrN
+	trailStop2:	Highest(H - atrMult * atrN, trailLen)
+	// basic Donchian exit
+	initStop3:	exitPrice
+	trailStop3:	exitPrice
+	// Donchian trail (can't get lower)
+	initStop4:	exitPrice
+	trailStop4:	Highest(exitPrice, trailLen)
+	// Donchian trail (can't get lower) with initial fixed 10% percent
+	initStop5:	OrderPrice * 0.9
+	trailStop5:	Max(initStop5, trailStop4)
+	// Fixed lookback (partial Chande-Kroll)
+	initStop6:	ckPrice
+	trailStop6:	ckPrice
+	// Full Chande-Kroll
+	initStop7:	ckPrice
+	trailStop7:	Max(ckPrice[trailOfst], Lowest(ckPrice, 20))
+	// parameterized trailing stop
+	initStop:	Item("initStop{#}", stopType)
+	initialRisk:	OrderPrice - initStop
+	trailStop:	Item("trailStop{#}", stopType)
+	
+Strategy: basic_tf
+	Side:	Long
+	Quantity:	S.Alloc * acctRisk / initialRisk	// risk-based position size
+	MaxExposure:	100	// cap total exposure to account size
+	SetupScore:	initialRisk	// rank by distance from stop
+	EntrySetup:	universe and C > enterPrice[1] and (freshSetup = 0 or Extern(@_basic_tf_all, Shares  = 0))
+	ExitStop:	trailStop
+	
+Benchmark: _basic_tf_all
+	Side:	Long
+	Quantity:	1
+	EntrySetup:	universe and C > enterPrice[1] 
+	ExitStop:	trailStop
+
+Charts:
+	Stop: if(BarDate>=T.DateIn and BarDate <= T.DateOut, trailStop, nan) // only plots the line during when the trade was open
+

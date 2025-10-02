@@ -1,0 +1,39 @@
+Notes:
+	tests a simple classic futures trend-following strategy using back-adjusted continuous contract data
+	
+Import:
+	DataSource:	Norgate
+	IncludeList:	.@CME_CCB
+	StartDate:	1/1/98
+	EndDate:	Latest
+	SaveAs:	cme.rtd
+	
+Parameters:
+	VolMin:	500	// minimum recent volume
+	BreakLen:	126	// breakout lookback length (half year)
+	PctRisk:	0.5	// percent of capital to risk per trade
+	NStop:	3	// initial stop width, in ATRs
+	
+Data:
+	N:	ATR(20)
+	NDlr:	N * PointValue 
+	Stop:	N * NStop
+	Liquid:	Lowest(V,5) > VolMin and BarsLeft > 5
+	Setup:	Liquid and C = Highest(C, BreakLen)
+	CanEnter:	InList(2) and Liquid
+
+Settings:
+	DataFile:	cme.rtd
+	StartDate:	1/1/00
+	EndDate:	Latest
+	AccountSize:	1e6
+	
+Strategy:	tf_ccb_long
+	Side:	Long
+	Quantity:	PctRisk / 100 * S.Alloc / (NDlr * NStop)
+	EntrySetup:	InList(1)  and Setup
+	SetupScore:	1/NDlr
+	MaxExposure:	1000	// notional 10x of account
+	ExitRule:	C <= Max(FillPrice - Stop[BarsHeld+1], Lowest(C, Breaklen))
+	Commission:	1 * Contracts
+	Slippage:	TickSize

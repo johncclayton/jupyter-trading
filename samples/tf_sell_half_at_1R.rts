@@ -1,0 +1,30 @@
+Notes:
+	This example uses a simple OEX constituent trend-following strategy 
+	to show how to model exiting half the position at an initial target
+	and trailing the remainder with a stop
+
+Import:
+	DataSource:	Norgate
+	IncludeList:	.S&P 100 Current & Past
+	StartDate:	2010-01-01
+	EndDate:	Latest
+	SaveAs:	oex.rtd
+	
+Settings:
+	DataFile:	oex.rtd
+	StartDate:	1/1/11
+	EndDate:	Latest
+		
+Data:
+	stop:	3 * ATR(5)
+	risk:	0.005
+	
+Strategy: tf_sell_half_at_1R_target
+	Side:	Long
+	Quantity:	risk * S.Alloc / stop
+	MaxExposure:	100
+	SetupScore:	1 / stop
+	EntrySetup:	InOEX and C = hhv(c,80)
+	ExitStop:	HHV(C - stop, BarsHeld+1)
+	ExitLimit:	if(ExitNum = 1, FillPrice + stop[BarsHeld], 0)
+	ExitLimitQty:	Shares / 2

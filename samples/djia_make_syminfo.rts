@@ -1,0 +1,39 @@
+Notes:	
+	shows how to make a syminfo file from Norgate data for use when importing from other sources
+	run import and then scan to generate a syminfo file for this watchlist
+	then run use_syminfo.rts to see how it is applied to a yahoo import
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.Dow Jones Industrial Average
+	StartDate:	2020-01-01
+	EndDate:	Latest
+	SaveAs:	djia.rtd
+
+Settings:	
+	DataFile:	djia.rtd
+	EndDate:	Latest
+	NumDays:	1
+	ScanNoDefCols:	True
+	SaveScanAs:	?scriptpath?\djia_info.csv
+
+Scan:	
+	Sym:	?Symbol	{"Symbol"} 
+	Name:	?Name
+	Type:	?Type
+	EquityType:	?EquityType
+	ListingType:	?ListingType
+	Exchange:	?Exchange
+	Cur:	?Currency	{"Currency"} 
+	RepCur:	?ReportingCurrency	{"ReportingCurrency"}
+	Domicile:	?Domicile
+	EconSect:	?EconSect
+	Sector:	?Sector
+	IndGroup:	?IndGroup
+	Industry:	?Industry
+	TRBC:	InfoTRBC
+	GICS:	InfoGICS
+	Shr:	InfoShares	{"Shares"} 
+	Float:	InfoFloat
+
+ 

@@ -1,0 +1,81 @@
+Notes:	example of a daily setups and exits scan for the mr_sample system
+	uses a somewhat different data section to calculate setup ranks
+	this is because the MaxSetups / SetupScore mechanism is only available during tests, not for scans (even test output ones)
+	unlike the mr_sample_scan.rts example, both entry setups and exits are generated
+	note that this was somewhat made obsolete by the later addition of the order list feature
+
+Import:	DataSource:	Norgate
+	IncludeList:	.Russell 3000
+	StartDate:	1/1/2020
+	EndDate:	Latest
+	SaveAs:	mr_sample_scan.rtd
+
+Settings:	DataFile:	mr_sample_scan.rtd
+	StartDate:	1/1/20
+	EndDate:	Latest
+	TestOutput:	Scan
+	TestScanAllDates:	False // only scan on last date of test run (change to True to see all historical orders)
+	SaveScanAs:	mr_sample_setups.csv
+
+Parameters:	NumPos:	10
+	PctExt:	2.5
+	Target:	8
+
+Data:	ATR5:	ATR(5)
+	EMA5:	EMA(C,5)
+	EMA100:	EMA(C,100)
+	Liquid:	C >= 20  and Avg(V, 20) >= 200000 
+	Volatile:	ATR5 > 0.03 * C
+	Biotech:	Top(InfoTRBC,4) = 5620 
+	Universe:	Liquid and Volatile and not Biotech and C > EMA100
+	// removed constituency test since using current constituent list
+	// Long Side
+	LongSetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5) 
+	LongRank:	#Rank LongSetup * ATR5 / C
+	LongLimit:	C - 0.5 * ATR5 // drops another half ATR
+	// Short Side
+	ShortSetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5) 
+	ShortRank:	#Rank ShortSetup * ATR5 / C
+	ShortLimit:	C + 0.5 * ATR5 // rises another half ATR
+
+Template:	base // formulas shared by more than one strategy
+	Quantity:	100 / NumPos // fixed fraction of allocation
+	QtyType:	Percent
+	Commission:	Max(1, 0.005 * Shares) // default IB commission
+	LimitExtra:	0.001 * C // price must go 0.1% beyond limit price to get a fill
+	// no slippage because all entries and exits are limit orders or market-on-open
+	SetupScore:	ATR5 / C // causes order list sequence to be the same as test scan sort order
+
+Library:
+	LongEntry:	LongSetup and LongRank <= Extern(@mr_long, NumPos - S.Positions)
+	ShortEntry:	ShortSetup and ShortRank <= Extern(@mr_short, NumPos - S.Positions)
+	LongPos:	Extern(@mr_long, Shares)
+	LongExit:	Extern(@mr_long, C > C[1] or BarsHeld == 5)
+	LongTarget:	Extern(@mr_long, FillPrice * (1 + Target/100))
+	ShortPos:	Extern(@mr_short, Shares)
+	ShortExit:	Extern(@mr_short, C < C[1] or BarsHeld == 5)
+	ShortTarget:	Extern(@mr_short, FillPrice * (1 - Target/100))
+	
+Strategy:	mr_long // mean-reversion long strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	LongEntry
+	EntryLimit:	LongLimit
+	ExitLimit:	LongTarget
+	ExitRule:	LongExit
+	
+Strategy:	mr_short // mean-reversion short strategy
+	Using:	base
+	Side:	Short
+	EntrySetup:	ShortEntry
+	EntryLimit:	ShortLimit
+	ExitLimit:	ShortTarget
+	ExitRule:	ShortExit
+
+TestScan:	Filter:	LongEntry or ShortEntry or LongPos or ShortPos
+	CLS:	C {"Close"}
+	Score:	{!-2} ATR5 / C {%2"ATR"}
+	Action:	{!1} if(LongPos,"SELL",if(ShortPos,"COVER", if(LongEntry,"BUY",if(ShortEntry,"SHORT","n/a"))))
+	Shrs:	if(LongPos,LongPos,if(ShortPos,-ShortPos, Round(S.Alloc/NumPos/iif(LongEntry,LongLimit,ShortLimit),1,-1))) {"Shares"}
+	Type:	if(LongPos and LongExit or ShortPos and ShortExit, "MKT", "LMT")
+	Price:	if(LongPos, if(LongExit, "", LongTarget), if(ShortPos,  if(ShortExit,  "", ShortTarget), if(LongEntry, LongLimit, if(ShortEntry, ShortLimit, ""))))

@@ -1,0 +1,27 @@
+Notes: 
+	A long/short Russell 3000 mean-reversion strategy pair
+	this example was published in 2020
+	the short side got destroyed in the spring 2021 meme-stock squeeze
+	the long side has done poorly since 2022
+
+Include: ?scriptpath?\mr_sample_common.rts // right-click on file name to open
+
+//Settings: // uncomment this EndDate override to see the pre-2021 results
+//	EndDate:	2021-01-01
+
+Strategy: mr_long // mean-reversion long strategy
+	Using:	base
+	Side:	Long
+	EntrySetup:	Universe and C < (1 - PctExt / 100) * Min(O, C[1], EMA5) // oversold
+	EntryLimit:	LongLimit
+	ExitLimit:	FillPrice * (1 + Target/100)	// intraday profit target
+	ExitRule:	select(C > C[1], "up day", BarsHeld == 5, "time stop") // sell on first up day or after 5 days
+	
+Strategy: mr_short // mean-reversion short strategy (gets DESTROYED in Jaunary 2021 by the meme stocks)
+	Using:	base
+	Side:	Short
+	EntrySetup:	Universe and C > (1 + PctExt / 100) * Max(O, C[1], EMA5) // overbought
+	EntryLimit:	ShortLimit
+	ExitLimit:	FillPrice * (1 - Target/100) // intraday profit target
+	ExitRule:	select(C < C[1], "down day", BarsHeld == 5, "time stop") // cover on first down day or after 5 days
+

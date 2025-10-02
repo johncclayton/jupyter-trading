@@ -1,0 +1,60 @@
+Notes:	
+	Naive VIX futures long/short strategy based on term structure
+	Shows how to work with individual futures contract data
+	
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.@VX_Individual	// dyanmic watchlist with all the individual VX contracts
+	IncludeList:	$VIX,$VIX3M	// used for one of the flip signals
+	SaveAs:	vx_futures.rtd
+	StartDate:	2005-01-01
+
+Settings:	
+	DataFile:	vx_futures.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+	AccountSize:	100000
+	
+Template: base
+	Quantity:	1
+	Commission:	0.85
+	Slippage:	TickSize
+	
+Parameters:	
+	Roll:	from 1 to 5 def 3
+	Diff:	from 0 to 3 def 3
+	Type:	1, 2
+	
+Data:	
+	BL:	BarsLeft
+	BL1:	nonan(extern(&-1,BarsLeft))
+	BL2:	nonan(extern(&-2,BarsLeft))
+	BL3:	nonan(Extern(&-3,BarsLeft))
+	month0:	inlist(1) and BL <= roll
+	month1:	inlist(1) and BL > roll and BL1 <= roll 
+	month2:	inlist(1) and BL1 > roll and BL2 <= roll 
+	month3:	inlist(1) and BL2 > roll and BL3 <= roll 
+	vdiff1:	C - extern(&1, C)
+	vdiff2:	extern($$VIX,C) - extern($$VIX3M, C)
+	backward:	item("vdiff{#}",type) > diff
+
+Charts:	
+	bl:	BL {|}
+	bl1:	BL1{|}
+	bl2:	BL2{|}
+	bl3:	BL3{|}
+	vdiff1:	vdiff1 {^}
+	vdiff2:	vdiff2 {^}
+	
+Strategy: vx_long
+	Using:	base
+	Side:	long
+	EntrySetup:	month1 and backward
+	ExitRule:	 month0 or not backward
+	
+Strategy: vx_short
+	Using:	base
+	Side:	Short
+	EntrySetup:	month1 and not backward
+	ExitRule:	 month0 or backward
+	

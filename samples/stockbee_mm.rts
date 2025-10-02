@@ -1,0 +1,57 @@
+Notes:	
+	stockbee market monitor example
+	https://stockbee.blogspot.com/p/mm.html
+
+Import:	
+	DataSource:	Norgate
+	IncludeList:	.@HistoricalStockUniverse // custom watchlist for all US common stocks
+	IncludeList:	$SPX
+	StartDate:	2014-01-01
+	EndDate:	Latest
+	SaveAs:	stockbee_mm.rtd
+	
+Data:	
+	stocks:	#sum 1
+	up4:	#sum c >= c[1] * 1.04 and v >= 100000 and v > v[1]
+	dn4:	#sum c <= c[1] * 0.96 and v >= 100000 and v > v[1]
+	rat5:	sum(up4,5)/sum(dn4,5)
+	rat10:	sum(up4,10)/sum(dn4,10)
+	liq20:	ma(c*v, 20) >= 250000
+	up25q:	#sum c >= 1.25 * llv(c,65) and liq20
+	dn25q:	#sum c <= 0.75 * hhv(c,65) and liq20
+	cond1:	liq20 and c[20] >= 5
+	up25m:	#sum c >= 1.25 * c[20] and cond1
+	dn25m:	#sum c <= 0.75 * c[20] and cond1
+	up50m:	#sum c >= 1.5 * c[20] and cond1
+	dn50m:	#sum c <= 0.5 * c[20] and cond1
+	up1334:	#sum c >= 1.13 * llv(c,34) and liq20
+	dn1334:	#sum c <= 0.87 * hhv(c,34) and liq20
+	t2108:	#sum c > ma(c,40)
+	
+Settings:	
+	DataFile:	stockbee_mm.rtd
+	StartDate:	Earliest
+	EndDate:	Latest
+
+Scan:	
+	Filter:	Symbol=$$SPX
+	up4:	{"4%+"}	up4
+	dn4:	{"4%-"}	dn4
+	rat5:	{"5-day"}	rat5
+	rat10:	{"10-day"}	rat10
+	up25q:	{"25%+Q"}	up25q
+	dn25q:	{"25%-Q"}	dn25q
+	up25m:	{"25%+M"}	up25m
+	dn25m:	{"25%-M"}	dn25m
+	up50m:	{"50%+M"}	up50m
+	dn50m:	{"50%-M"}	dn50m
+	up1334:	{"13%+34"}	up1334
+	dn1334:	{"13%-34"}	dn1334
+	Stocks:	{#}	stocks
+	T2108:	{%2}	t2108 / stocks
+	spx:	{"S&P"}	Close
+	Sort:	-Date
+	
+	
+	
+	
