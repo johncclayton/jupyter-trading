@@ -1,0 +1,6 @@
+// realtest2.lark - A new grammar for RealTest scripts
+
+start:
+
+%import common.WS
+%ignore WS
