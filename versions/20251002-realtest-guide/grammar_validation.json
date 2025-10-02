@@ -172,8 +172,8 @@
     },
     {
       "file": "samples/goal_30_15.rts",
-      "valid": false,
-      "error": "No terminal matches 'A' in the current parser context, at line 19 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/goal_30_15_asx.rts",
@@ -192,8 +192,8 @@
     },
     {
       "file": "samples/hybrid_asset_allocation.rts",
-      "valid": false,
-      "error": "No terminal matches 'I' in the current parser context, at line 9 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/hybrid_asset_allocation_dynamic.rts",
@@ -252,8 +252,8 @@
     },
     {
       "file": "samples/keltner_pullback.rts",
-      "valid": false,
-      "error": "No terminal matches 'M' in the current parser context, at line 48 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/management_fees.rts",
@@ -352,8 +352,8 @@
     },
     {
       "file": "samples/multi_moc_top_down.rts",
-      "valid": false,
-      "error": "No terminal matches 'S' in the current parser context, at line 80 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/ndx_plus_wtf_script.rts",
@@ -407,8 +407,8 @@
     },
     {
       "file": "samples/oex_tf_top_down.rts",
-      "valid": false,
-      "error": "No terminal matches 'S' in the current parser context, at line 41 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/opex_and_vxex.rts",
@@ -502,18 +502,18 @@
     },
     {
       "file": "samples/two_accounts.rts",
-      "valid": false,
-      "error": "No terminal matches 'B' in the current parser context, at line 22 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/two_accounts_rebalance.rts",
-      "valid": false,
-      "error": "No terminal matches 'B' in the current parser context, at line 22 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/vigilant_asset_allocation.rts",
-      "valid": false,
-      "error": "No terminal matches 'f' in the current parser context, at line 26 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/vx_futures.rts",
@@ -537,8 +537,8 @@
     },
     {
       "file": "samples/weekly_moc_asx_daily_daily.rts",
-      "valid": false,
-      "error": "No terminal matches 'E' in the current parser context, at line 50 col 2"
+      "valid": true,
+      "error": null
     },
     {
       "file": "samples/weekly_moc_asx_daily_weekly.rts",

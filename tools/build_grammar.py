@@ -43,8 +43,11 @@ start: element*
 section: SECTION_NAME ":" inline_content? NEWLINE section_body?
 inline_content: INLINE_TEXT
 
-section_body: section_line+
-section_line: INDENTED_TEXT NEWLINE
+section_body: section_item+
+
+section_item: INDENTED_TEXT NEWLINE
+            | COMMENT_LINE NEWLINE
+            | blankline
 
 commentline: COMMENT_LINE NEWLINE
 blankline: WS_INLINE? NEWLINE

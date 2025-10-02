@@ -21,17 +21,8 @@
 7. Built an evaluation set of prompt_to_RTS cases for LLM regression testing.
 
 ## Grammar Validation
-- Parsed 103/112 sample scripts successfully.
-- Failures:
-  - samples/goal_30_15.rts: No terminal matches 'A' in the current parser context, at line 19 col 2
-  - samples/hybrid_asset_allocation.rts: No terminal matches 'I' in the current parser context, at line 9 col 2
-  - samples/keltner_pullback.rts: No terminal matches 'M' in the current parser context, at line 48 col 2
-  - samples/multi_moc_top_down.rts: No terminal matches 'S' in the current parser context, at line 80 col 2
-  - samples/oex_tf_top_down.rts: No terminal matches 'S' in the current parser context, at line 41 col 2
-  - samples/two_accounts.rts: No terminal matches 'B' in the current parser context, at line 22 col 2
-  - samples/two_accounts_rebalance.rts: No terminal matches 'B' in the current parser context, at line 22 col 2
-  - samples/vigilant_asset_allocation.rts: No terminal matches 'f' in the current parser context, at line 26 col 2
-  - samples/weekly_moc_asx_daily_daily.rts: No terminal matches 'E' in the current parser context, at line 50 col 2
+- Parsed 112/112 sample scripts successfully.
+- All sample scripts parsed without errors.
 
 ## Key Catalog Highlights
 - Syntax catalog entries cover sections (Import/Settings/Strategy/Library), directives (IncludeList, DataSource) and statements (EntrySetup, Quantity, Side, etc.).
