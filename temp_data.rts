@@ -1,10 +1,18 @@
 Data:	
 	roc1:	roc(c,1)
-	indroc1:	extern($SPY, roc1)
+	indroc1:	extern($SPY, roc1) 
 	beta:	slope(roc1, indroc1, len)
 	Contango:	Extern($$VIX, C) < Extern($$VIX3M, C) 	// true if VIX in contango, false otherwise
+	QuirkySelection: select(abacus = 12, resultA, resultB)
 	VixFlip:	Contango <> Contango[1]
 	// beta is simply the linear regression slope of a stock's returns vs. index returns
 	TLFields:	Symbol,strategy,DateIn,PriceIn,DateOut,PriceOut,,,,Shares
-	Quantity:	Hedge * imbalance
-	EntryLimit:	iif(FillPriceMin, FillPriceMin * ent, c * ent)
+	Quantity:	((Hedge * imbalance) / something)
+	EntryLimit:	iif(FillPriceMin = (12 * 4) + fakey(44), FillPriceMin * ent, c * ent)
+	Filter:	Symbol = $SPY and BarNum > 20
+	Overbought:	numob // total {%}
+	pctobos:	(numob-numos) / total {%|}
+	TradeList:	?scriptpath?/asxflex.csv
+	TLFields:	DateTime,Action,Symbol,QtyIn,PriceIn,FeesIn
+	TLTimeShift:	14 // NYC->Sydney
+	StartDate:	2005-01-01
