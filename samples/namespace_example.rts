@@ -1,0 +1,114 @@
+Notes:
+	COMBINED VERSION - using namespaces / includes 	
+		
+Settings:	
+	AllowSameName: 	True
+
+Import:	
+	DataSource:	Norgate
+
+	Padding:	AlignWithSymbol
+	PadAlignSym:	SPY
+	SaveAs:	namespaced_live_combined.rtd
+	
+Settings:	
+	AccountSize:	200000
+	DataFile:	namespaced_live_combined.rtd
+	
+	HolidayList: 	us_auto
+
+	StartDate:	1995/1/1	
+	EndDate:	Latest
+	
+Include: ?scriptpath?\strat\common_usd_imports.rts
+
+Namespace: util
+Include: ?scripts?\lib\biotech.rts
+Namespace: none
+
+//Namespace: vxx
+//Include: ?scriptpath?\strat\vxx_short_barlimited.rts
+//Namespace: none
+
+//Namespace: correl
+//Include: ?scriptpath?\strat\2025.09.11_US_Long_Short_v1.1_freigegeben.rts
+//Namespace: none
+
+Namespace: correl
+Include: ?scriptpath?\strat\2025.09.11_US_Long_Short_v1.3_freigegeben.rts
+Namespace: none
+
+Namespace: mr1
+Include: ?scriptpath?\strat\mean_rev1.rts
+Namespace: none
+
+Namespace: mf
+Include: ?scriptpath?\strat\managed_futures.rts
+Namespace: none
+
+//Namespace: mf
+//Include: ?scriptpath?\strat\managed_futures_hybrid.rts
+//Namespace: none
+
+Namespace: we_xao
+Include: ?scriptpath?\strat\we_trend_trader.rts
+Namespace: none
+
+Namespace: aw
+Include:	?scriptpath?\strat\all_weather1.rts
+Namespace: none
+
+Namespace: rui
+Include: ?scriptpath?\strat\rotation_rui1.rts
+Namespace: none
+
+Namespace: awe
+Include: ?scriptpath?\strat\all_weather_europe.rts
+Namespace: none
+
+TestSettings:
+	StartDate:	2010/1/1
+	EndDate: 	Latest
+
+Parameters:
+//	aw_diff:	from 0 to 90 step 10 def 100
+
+Data:
+//	aw.AllocationPercent:	0 + aw_diff
+//	awe.AllocationPercent:	100 - aw_diff
+	
+	rui.AllocationPercent:	20
+	mr1.LongAllocationPercent:	60 
+	mr1.ShortAllocationPercent:	70 
+	we_xao.AllocationPercent:	20
+	mf.AllocationPercent:	0
+	vxx.AllocationPercent:	0
+	correl.AllocationPercent:	20
+
+	mf.Priority:	150
+	vxx.Priority:	150
+	mr1.Priority:	80
+	aw.Priority:	50
+	awe.Priority:	50
+	we_xao.Priority:	30
+	rui.Priority:	20
+	correl.Priority_US_short:	30
+	correl.Priority_US_long:	25
+	
+Combined:
+	MaxExposure:	120
+	
+//StatsGroup: _vxx_shorting
+//	MaxExposure:	120
+//	Using:	vxx_short_barlimited, vxx_above35, vxx_above60
+
+StatsGroup: _momentum_and_trend_limits
+	MaxExposure:	120
+	Using:	allweather1_long, rotate_rui, wend_trendf_all_xao, US_short, US_long
+
+StatsGroup: _mean_reversion_limits
+	MaxExposure:	120
+	MaxSameSym:	1
+	Using:	mean_rev_long, mean_rev_short
+
+// end of file.
