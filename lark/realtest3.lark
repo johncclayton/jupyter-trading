@@ -53,7 +53,7 @@ notes_entry: COMMENT NEWLINE?
            | NEWLINE
            
 NOTE_TEXT: /(?![ \t]*[.a-zA-Z_@][a-zA-Z0-9_.]*:)[^\n\r]+/
-FILENAME_PATH: /(?!\/\/)\S[^\r\n]*?(?=(?:\s+\/\/|$))/
+FILENAME_PATH: /(?!\/\/)(?:\?scriptpath\?|\?scriptname\?|\?desktop\?|\S[^\r\n]*?)(?=(?:\s+\/\/|$))/
 
 KEY: IDENTIFIER
 SECTION_NAME: IDENTIFIER
