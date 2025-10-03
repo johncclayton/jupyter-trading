@@ -1,0 +1,10 @@
+Data:	
+	roc1:	roc(c,1)
+	indroc1:	extern($SPY, roc1)
+	beta:	slope(roc1, indroc1, len)
+	Contango:	Extern($$VIX, C) < Extern($$VIX3M, C) 	// true if VIX in contango, false otherwise
+	VixFlip:	Contango <> Contango[1]
+	// beta is simply the linear regression slope of a stock's returns vs. index returns
+	TLFields:	Symbol,strategy,DateIn,PriceIn,DateOut,PriceOut,,,,Shares
+	Quantity:	Hedge * imbalance
+	EntryLimit:	iif(FillPriceMin, FillPriceMin * ent, c * ent)

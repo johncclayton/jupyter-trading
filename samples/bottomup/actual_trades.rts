@@ -1,0 +1,69 @@
+Notes: 	
+	illustrates how to run a "test" from a list of actual trades
+	run first in Import mode, then in Test mode
+	(note that some Symbols may not be found, due to mergers or Symbol changes since list was created)
+	see actual_entries.rts for an example using actual entries with mechanical exit rules
+	
+Import:	
+	DataSource:	Yahoo
+	IncludeList:	?scriptpath?\actual_trades.csv // uses Symbol column as import list
+	StartDate:	2016-01-01
+	EndDate:	Latest
+	SaveAs:	actual_trades.rtd
+
+Settings:
+	DataFile:	actual_trades.rtd
+	StartDate:	2017-01-01
+	EndDate:	2017-06-23
+	AccountSize:	100000
+	
+Template: trades
+	TradeList:	?scriptpath?\actual_trades.csv
+	TLFields:	Symbol,Strategy,Side,DateIn,QtyIn,PriceIn,DateOut,QtyOut,PriceOut
+	
+Strategy: longs // must exactly match a name found in the strategy column in the trade list
+	Using:	trades
+	
+Strategy: shorts // ditto
+	Using:	trades
+	
+// strategy sides above are inferred from tradelist side column -- their use in strategy names is just a coincidence
+	
+//---------------------------------------------------------------------------
+// below are tempates for some other trade list formats
+//---------------------------------------------------------------------------
+
+// this works for IB TWS trade log export files with default columns
+
+Template: iblog
+	TradeList:	ib_log.csv // change to your actual file (assumes Order Ref contains strategy name)
+	TLFields:	Symbol,Action,QtyIn,PriceIn,TimeIn,DateIn,,,strategy
+
+// this is one example of a IB flex query with too many columns selected
+// it is recommended to configure your flex query with only the columns that you need for this purpose
+
+Template: flex
+	TradeList:	ib_flex_query_output.csv // change to your actual file
+	TLFields:	,,Symbol,,,,,,,,,Underlying,,,,,,,,,,,,,,,,,,,,,,,,,,DateTime,,,,,Action,QtyIn,PriceIn,,,FeesIn
+
+// this is for IB flex query for ASX trades, where the Date/Time column is in NYC time
+// the TLTimeShift setting tells RT how to shift the date/time values so they're aligned with ASX data bars
+
+Template: asxflex
+	TradeList:	asxflex.csv
+	TLFields:	DateTime,Action,Symbol,QtyIn,PriceIn,FeesIn
+	TLTimeShift:	14 // NYC->Sydney
+
+// this is for a standard AmiBroker trade list (run test with trades report then export to CSV)
+// AB trade prices are split-adjusted, so use TLAdjusted to tell RT to unadjust them
+
+Template: abtrades
+	TradeList:	abtrades.csv
+	TLAdjusted:	True
+	TLFields:	Symbol,strategy,DateIn,PriceIn,DateOut,PriceOut,,,,Shares
+
+// this is for TradeRunner's trades.csv output file
+	
+Template: tradelist
+	TradeList:	c:\traderunner\trades.csv
+	TLFields:	Symbol,strategy,side,,DateIn,,,,QtyIn,PriceIn,FeesIn,,,,DateOut,,,,QtyOut,PriceOut,FeesOut
