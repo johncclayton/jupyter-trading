@@ -1,15 +1,19 @@
-Create a BNF lark grammar for the real test language.
+The goal is to extract features and documentation related to the Real Test Script language from the PDF manual, 
+and make it available in a structured format for consumption by a large language model.
 
-Validation:
-- use the validate_rts.py script to test an .rts file against the lark grammar
-- this can be run without args to test ALL files in the samples/ directory or use --file to pick a specific .rts file
+The BNF grammar for the Real Test Language is in the bnf/ directory - the grammar file is bnf/lark/realtest.lark, this might be useful when trying to produce code or understand existing code.
+
+The plan/ directory contains the plans that describe the PDF extraction process, the exec/ are more detailed
+tasks lists.
+
+There is a python env called realtestextract - use that wherever possible.
+
+The samples/ directory contains read-only sample .rts script files. 
+The versions/ directory is where the versioned real test PDF manuals are stored and worked on.
+The tools/ directory contains python code suitable for extracting from the PDF and working with the resulting text
 
 Rules:
 1. DO NOT CHANGE ANYTHING IN THE samples/ directory - ever
-2. When testing / validating - a common error is that a rule consumes EVERYTHING after it - make sure this is never the case.
+2. Only focus on the language aspects of Real Test, not on the UI 
 
-Prerequisites:
-1. Use the venv called 'realtestextract' for all python scripts - if it does not exist it can be set up via tools/setup_realtest_env.sh or via tools/setup_realtest_env.ps1
-
-Behaviour:
-1. Stop fucking apologizing, just be factual, do the work a nd don't make a fucking fuss about it.  Apologize one more time and I'm gonna fucking fire your ass. 
+Refer to the plan/ directory for further detailed instructions, executed in numerical order and defined in greater detail in exec/ directory (the plan/ files map 1:1 to the exec/ directory).
