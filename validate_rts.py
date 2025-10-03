@@ -26,7 +26,6 @@ def load_grammar(grammar_path_str="lark/realtest-new.lark"):
             grammar_content = f.read()
         
         parser = Lark(grammar_content, 
-                      debug=True,
                       start='start',
                       parser='earley')
         print(f"✓ Grammar loaded successfully from {grammar_path}")
