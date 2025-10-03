@@ -14,7 +14,7 @@ from lark.exceptions import ParseError, LexError, UnexpectedInput
 import argparse
 
 
-def load_grammar(grammar_path_str="lark/realtest-new.lark"):
+def load_grammar(grammar_path_str="lark/realtest.lark"):
     """Load the Lark grammar from the specified path"""
     grammar_path = Path(grammar_path_str)
     if not grammar_path.exists():
@@ -139,7 +139,7 @@ def main():
     parser.add_argument(
         "--grammar",
         type=str,
-        default="lark/realtest-new.lark",
+        default="lark/realtest.lark",
         help="Path to the grammar file to use (e.g., lark/realtest3.lark).",
     )
     args = parser.parse_args()

@@ -22,7 +22,7 @@ import argparse
 from typing import List, Tuple, Set, Dict, Optional
 
 
-def load_grammar(grammar_path_str="lark/realtest-new.lark"):
+def load_grammar(grammar_path_str="lark/realtestlark"):
     """Load the Lark grammar from the specified path"""
     grammar_path = Path(grammar_path_str)
     if not grammar_path.exists():
@@ -358,7 +358,7 @@ def main():
     parser.add_argument(
         "--grammar",
         type=str,
-        default="lark/realtest-new.lark",
+        default="lark/realtest.lark",
         help="Path to the grammar file to use (e.g., lark/realtest2.lark).",
     )
     parser.add_argument(
