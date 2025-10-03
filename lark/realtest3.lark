@@ -4,8 +4,7 @@ rts_file: section+
 
 section: notes_section | parameters_section | charts_section | generic_section
 
-notes_section: "Notes" ":" notes_content
-notes_content: notes_entry*
+notes_section: "Notes" ":" NOTE_BLOCK
 
 parameters_section: "Parameters" ":" NEWLINE parameters_item*
 parameters_item: parameter_definition_line
@@ -36,31 +35,54 @@ chart_definition: IDENTIFIER ":" chart_value NEWLINE
 ?chart_value: COMMENT
             | chart_expression
 
-chart_expression: COMMENT? expression chart_decorator? COMMENT?
+chart_expression: COMMENT? decorated_expression COMMENT?
+
+?decorated_expression: chart_decorator? expression_list chart_decorator?
+
+?expression_list: expression ("," expression)*
 
 chart_decorator: "{" CHART_DECORATOR_BODY? "}"
 
-generic_section: section_header section_item*
+generic_section: SECTION_NAME ":" generic_section_body
+generic_section_body: NEWLINE section_item*
+                    | section_header_value NEWLINE section_item*
+                    | section_item section_item*
+
 section_item: using_statement
             | include_list_item
             | tl_fields_item
             | key_value_item
             | COMMENT
+            | NEWLINE
 
-using_statement: "Using" ":" section_ref_list COMMENT? NEWLINE
+using_statement: "Using" ":" reference_list COMMENT? NEWLINE
 include_list_item: "IncludeList" ":" include_value COMMENT? NEWLINE
 
-section_ref_list: SECTION_NAME ("," SECTION_NAME)*
+reference_list: reference_item ("," reference_item)*
+reference_item: SECTION_NAME
+              | IDENTIFIER
+              | SYMBOL
+              | STRING
 
-section_header: SECTION_NAME ":" NEWLINE
+
+section_header_value: COMMENT?
+                    | COMMENT? decorated_expression COMMENT?
 
 tl_fields_item: "TLFields" ":" tl_fields_list COMMENT? NEWLINE
 
-key_value_item: KEY ":" value NEWLINE
-include_value: include_entry 
-include_entry: FILENAME_PATH COMMENT?
+key_value_item: IDENTIFIER ":" value NEWLINE?
+include_value: include_entry ("," include_entry)*
+include_entry: include_atom+ COMMENT?
+include_atom: FILENAME_PATH
+            | WATCHLIST_REF
+            | QUESTION_IDENT
+            | IDENTIFIER
+            | SYMBOL
+            | STRING
+            | NUMBER
+            | AMPERSAND
 
-?value: COMMENT? expression COMMENT?
+?value: COMMENT? decorated_expression COMMENT?
       | COMMENT
 
 ?expression: logical_or
@@ -70,18 +92,27 @@ include_entry: FILENAME_PATH COMMENT?
 ?comparison: arith_expr (COMP_OP arith_expr)*
 ?arith_expr: term (("+"|"-") term)*
 ?term: factor (("*"|"/") factor)*
-?factor: ("+"|"-") factor | power
-?power: atom ("^" factor)?
-?atom: NUMBER
-     | SYMBOL
-     | array_access
-     | function_call
-     | "(" expression ")"
-     | IDENTIFIER
-     | STRING
-     | FILENAME_PATH
+?factor: aggregator_prefix factor
+       | ("+"|"-") factor
+       | power
 
-array_access: IDENTIFIER "[" expression "]"
+aggregator_prefix: AGGREGATOR+
+?power: atom ("^" factor)?
+?atom: postfix
+?postfix: base_atom trailer*
+base_atom: NUMBER
+         | SYMBOL
+         | QUESTION_IDENT
+         | WATCHLIST_REF
+         | function_call
+         | "(" expression ")"
+| IDENTIFIER
+         | STRING
+         | FILENAME_PATH
+
+QUESTION_IDENT: /\?[A-Za-z0-9_]+/
+
+trailer: "[" expression "]"
 function_call: IDENTIFIER "(" [arguments] ")"
 arguments: expression ("," expression)*
 
@@ -92,19 +123,17 @@ tl_field_token: IDENTIFIER
               | STRING
               | NUMBER
 
-notes_entry: COMMENT NEWLINE?
-           | NOTE_TEXT NEWLINE
-           | NEWLINE
-           
-NOTE_TEXT: /(?![ \t]*[.a-zA-Z_@][a-zA-Z0-9_.]*:)[^\n\r]+/
-FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?)?[^ \t\r\n]+/
-CHART_DECORATOR_BODY: /[^}\r\n]+/
+FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?)?(?=[^ \t\r\n(),]*(?:[\.\/\\]|:[^ \t\r\n(),]))[^ \t\r\n(),]+/
+NOTE_BLOCK: /(?:[^\r\n]*\r?\n)+(?=^[.a-zA-Z_@][a-zA-Z0-9_.@]*:|\Z)/m
+CHART_DECORATOR_BODY: /(?<=\{)[^}\r\n]+/
+WATCHLIST_REF: /&[A-Za-z0-9_.@]+/
+AMPERSAND: "&"
 
-KEY: IDENTIFIER
-SECTION_NAME: IDENTIFIER
+SECTION_NAME: "Benchmark" | "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
 IDENTIFIER: /[.a-zA-Z_@][a-zA-Z0-9_.@]*/
-SYMBOL: /\$[a-zA-Z0-9_]+/
+SYMBOL: /\$\$?[a-zA-Z0-9_]+/
 STRING: /"(?:[^"\\]|\\.)*"/ | /'(?:[^'\\]|\\.)*'/
+AGGREGATOR: /#[A-Za-z_][A-Za-z0-9_]*/
 
 COMMENT: /\/\/[^\n]*/
 
