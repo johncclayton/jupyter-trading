@@ -35,5 +35,6 @@ Import:
 	EndDate:	Latest
 	SaveAs:	spx.rtd
 	EntrySetup:	EndOfWeek and InList("sepci")
-
+	TestScanAllDates:	True
+	
 Import: 

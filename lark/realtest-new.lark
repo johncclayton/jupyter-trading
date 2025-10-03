@@ -38,7 +38,7 @@ trades_section: TRADES_HEADER NEWLINE? declaration*
 
 date_expr: date_literal | "Latest" | "Earliest"
 date_identifier: /(?i)StartDate/ | /(?i)EndDate/
-include_list_expr: path_name | string_literal | field_list
+include_list_expr: string_literal | field_list | path_name
 include_name: / \{ "[^"]*" \} /
 aliased_item: (identifier | stock_symbol | symbol_item) ">" identifier
 field_item: aliased_item | identifier | stock_symbol | string_literal | symbol_item
@@ -57,8 +57,9 @@ mul_op: "*" | "/"
 add_op: "+" | "-"
 indexed_expr: primary ("[" NUMBER "]")?
 primary: "(" expression ")" | base_expr
-base_expr: function_call | identifier | NUMBER | stock_symbol | string_literal | field_list | path_name 
+base_expr: function_call | identifier | NUMBER | boolean_literal | stock_symbol | string_literal | field_list | path_name  
 date_literal: /\d{8}|\d{4}\/\d{2}\/\d{2}|\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{2}-[A-Za-z]{3}-\d{2,4}|\d{1,2}\/\d{1,2}\/\d{2,4}|\d{1,2}-\d{1,2}-\d{2,4}|\d{1,2}\.\d{1,2}\.\d{2,4}/
+boolean_literal: /(?i)True/ | /(?i)False/
 path_name: reserved_word path_literal? | path_literal
 reserved_word: /\?[a-z]+\?/
 path_literal: /[^?\n]+/
@@ -67,7 +68,7 @@ symbol_item: /[%$][\w.]+/
 comparison_op: "<" | ">" | "<=" | ">=" | "==" | "<>" | "!=" | "=" 
 function_call: identifier "(" arguments? ")"
 arguments: expression ("," expression)*
-identifier: /(?i)(?!Data\b|Import\b|Settings\b|Benchmark\b|Parameters\b|Strategy\b|Template\b|Charts\b|Trades\b|Notes\b)[a-zA-Z_][a-zA-Z0-9_]*/
+identifier: /(?i)(?!Data\b|Import\b|Settings\b|Benchmark\b|Parameters\b|Strategy\b|Template\b|Charts\b|Trades\b|Notes\b|True\b|False\b)[a-zA-Z_][a-zA-Z0-9_]*/
 string_literal: /\${1,2}\w+/
 stock_symbol: /\${1,2}[A-Z_][A-Z0-9_]*/
 
