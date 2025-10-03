@@ -61,7 +61,7 @@ def validate_file(parser, file_path):
         
         # Try to parse the content
         tree = parser.parse(content)
-        print(tree.pretty())
+        # print(tree.pretty())
         return True, None, None
         
     except FileNotFoundError:

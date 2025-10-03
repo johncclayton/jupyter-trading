@@ -2,32 +2,47 @@
 
 rts_file: section+
 
-section: notes_section | parameters_section | charts_section | generic_section
+section: notes_section
+       | parameters_section
+       | charts_section
+       | benchmark_section
+       | generic_section
+
+benchmark_section: "Benchmark" ":" generic_section_body
 
 notes_section: "Notes" ":" NOTE_BLOCK
 
-parameters_section: "Parameters" ":" NEWLINE parameters_item*
+parameters_section: "Parameters" ":" parameters_section_body
+parameters_section_body: NEWLINE parameters_item*
+                       | parameters_item parameters_item*
+                       | COMMENT NEWLINE parameters_item*
+                       | BLOCK_COMMENT NEWLINE parameters_item*
 parameters_item: parameter_definition_line
                | using_statement
                | include_list_item
                | tl_fields_item
                | key_value_item
                | COMMENT NEWLINE?
+               | BLOCK_COMMENT
                | NEWLINE
 
-parameter_definition_line: IDENTIFIER ":" parameter_value COMMENT? NEWLINE
+parameter_definition_line: IDENTIFIER ":" parameter_value chart_decorator? COMMENT? NEWLINE
 
 parameter_value: parameter_range
                | parameter_list
                | INT
 
-parameter_range: "from" NUMBER "to" NUMBER "step" NUMBER ("def" NUMBER)?
+parameter_range: "from" NUMBER "to" NUMBER parameter_range_suffix?
+parameter_range_suffix: "step" NUMBER parameter_range_def?
+                     | "def" NUMBER
+parameter_range_def: "def" NUMBER
 
 parameter_list: NUMBER ("," NUMBER)+
 
 charts_section: "Charts" ":" NEWLINE charts_item*
 charts_item: chart_definition
            | COMMENT NEWLINE?
+           | BLOCK_COMMENT
            | NEWLINE
 
 chart_definition: IDENTIFIER ":" chart_value NEWLINE
@@ -37,9 +52,16 @@ chart_definition: IDENTIFIER ":" chart_value NEWLINE
 
 chart_expression: COMMENT? decorated_expression COMMENT?
 
-?decorated_expression: chart_decorator? expression_list chart_decorator?
+?decorated_expression: chart_decorator* expression_series chart_decorator*
 
-?expression_list: expression ("," expression)*
+expression_series: decorated_expr_item ("," _arg_sep decorated_expr_item)*
+
+decorated_expr_item: chart_decorator* expression chart_decorator*
+
+_expr_sep: (NEWLINE | COMMENT | BLOCK_COMMENT)*
+
+_arg_sep: _expr_sep
+
 
 chart_decorator: "{" CHART_DECORATOR_BODY? "}"
 
@@ -53,6 +75,7 @@ section_item: using_statement
             | tl_fields_item
             | key_value_item
             | COMMENT
+            | BLOCK_COMMENT
             | NEWLINE
 
 using_statement: "Using" ":" reference_list COMMENT? NEWLINE
@@ -66,13 +89,14 @@ reference_item: SECTION_NAME
 
 
 section_header_value: COMMENT?
+                    | BLOCK_COMMENT
                     | COMMENT? decorated_expression COMMENT?
 
 tl_fields_item: "TLFields" ":" tl_fields_list COMMENT? NEWLINE
 
 key_value_item: IDENTIFIER ":" value NEWLINE?
 include_value: include_entry ("," include_entry)*
-include_entry: include_atom+ COMMENT?
+include_entry: include_atom+ chart_decorator? COMMENT?
 include_atom: FILENAME_PATH
             | WATCHLIST_REF
             | QUESTION_IDENT
@@ -82,39 +106,45 @@ include_atom: FILENAME_PATH
             | NUMBER
             | AMPERSAND
 
-?value: COMMENT? decorated_expression COMMENT?
+?value: _expr_sep decorated_expression _expr_sep
+      | path_value
       | COMMENT
+      | BLOCK_COMMENT
+
+path_value: FILENAME_PATH (FILENAME_PATH | IDENTIFIER | NUMBER | SYMBOL | STRING)* COMMENT?
 
 ?expression: logical_or
 
-?logical_or: logical_and ("or" logical_and)*
-?logical_and: comparison ("and" comparison)*
-?comparison: arith_expr (COMP_OP arith_expr)*
-?arith_expr: term (("+"|"-") term)*
-?term: factor (("*"|"/") factor)*
+?logical_or: logical_and ((_expr_sep OR) _expr_sep logical_and)*
+?logical_and: comparison ((_expr_sep AND) _expr_sep comparison)*
+?comparison: NOT _expr_sep comparison
+          | arith_expr ((_expr_sep COMP_OP) _expr_sep arith_expr)*
+?arith_expr: term ((_expr_sep ("+"|"-")) _expr_sep term)*
+?term: factor ((_expr_sep ("*"|"/"|"%")) _expr_sep factor)*
 ?factor: aggregator_prefix factor
-       | ("+"|"-") factor
+       | ("+"|"-") _expr_sep factor
        | power
 
 aggregator_prefix: AGGREGATOR+
-?power: atom ("^" factor)?
+?power: atom ((_expr_sep "^") _expr_sep factor)?
 ?atom: postfix
 ?postfix: base_atom trailer*
 base_atom: NUMBER
          | SYMBOL
          | QUESTION_IDENT
          | WATCHLIST_REF
+         | TILDE_IDENT
          | function_call
-         | "(" expression ")"
-| IDENTIFIER
+         | "(" _expr_sep expression _expr_sep ")"
+         | IDENTIFIER
          | STRING
          | FILENAME_PATH
 
 QUESTION_IDENT: /\?[A-Za-z0-9_]+/
 
-trailer: "[" expression "]"
-function_call: IDENTIFIER "(" [arguments] ")"
-arguments: expression ("," expression)*
+trailer: "[" _expr_sep expression _expr_sep "]"
+function_call: IDENTIFIER "(" _expr_sep [arguments] _expr_sep ")"
+arguments: decorated_expr_item ("," _arg_sep decorated_expr_item)*
 
 tl_fields_list: tl_field ("," tl_field)*
 tl_field: tl_field_token?
@@ -124,18 +154,23 @@ tl_field_token: IDENTIFIER
               | NUMBER
 
 FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?)?(?=[^ \t\r\n(),]*(?:[\.\/\\]|:[^ \t\r\n(),]))[^ \t\r\n(),]+/
-NOTE_BLOCK: /(?:[^\r\n]*\r?\n)+(?=^[.a-zA-Z_@][a-zA-Z0-9_.@]*:|\Z)/m
+NOTE_BLOCK: /(?:[^\r\n]*\r?\n)+?(?=^[.a-zA-Z_@][a-zA-Z0-9_.@]*:|\Z)/m
 CHART_DECORATOR_BODY: /(?<=\{)[^}\r\n]+/
-WATCHLIST_REF: /&[A-Za-z0-9_.@]+/
+WATCHLIST_REF: /&[-A-Za-z0-9_.@]+/
 AMPERSAND: "&"
 
-SECTION_NAME: "Benchmark" | "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
+SECTION_NAME: "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Namespace" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
+AND: /(?i)and/
+OR: /(?i)or/
+NOT: /(?i)not/
 IDENTIFIER: /[.a-zA-Z_@][a-zA-Z0-9_.@]*/
-SYMBOL: /\$\$?[a-zA-Z0-9_]+/
+SYMBOL: /[$%](?:[$&])?[A-Za-z0-9_.@]+/
 STRING: /"(?:[^"\\]|\\.)*"/ | /'(?:[^'\\]|\\.)*'/
 AGGREGATOR: /#[A-Za-z_][A-Za-z0-9_]*/
 
 COMMENT: /\/\/[^\n]*/
+BLOCK_COMMENT: /\/\*.*?\*\//s
+TILDE_IDENT: /~[A-Za-z0-9_]+/
 
 %import common.SIGNED_NUMBER -> NUMBER
 %import common.SIGNED_INT -> INT
@@ -144,7 +179,4 @@ COMMENT: /\/\/[^\n]*/
 
 %ignore WS_INLINE
 
-COMP_OP: ">" | "<" | ">=" | "<=" | "=" | "!="
-
-// Define whitespace handling to allow for multi-line expressions
-%ignore /(\s)+/
+COMP_OP: ">=" | "<=" | "==" | "!=" | "<>" | ">" | "<" | "="

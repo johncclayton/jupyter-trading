@@ -6,10 +6,10 @@ Validation:
 
 Rules:
 1. DO NOT CHANGE ANYTHING IN THE samples/ directory - ever
+2. When testing / validating - a common error is that the NOTES block consumes EVERYTHING after it - make sure this is never the case.
 
 Prerequisites:
-1. There must be a venv already set up called realtestextract - this is done via tools/setup_realtest_env.sh
-2. Use that venv for all python scripts.
+1. Use the venv called 'realtestextract' for all python scripts - if it does not exist it can be set up via tools/setup_realtest_env.sh or via tools/setup_realtest_env.ps1
 
 Behaviour:
 1. Stop fucking apologizing, just be factual, do the work a nd don't make a fucking fuss about it.  Apologize one more time and I'm gonna fucking fire your ass. 
