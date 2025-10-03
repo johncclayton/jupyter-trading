@@ -1,0 +1,75 @@
+?start: rts_file
+
+rts_file: section+
+
+section: notes_section | generic_section
+
+notes_section: "Notes" ":" notes_content
+notes_content: notes_entry*
+
+generic_section: section_header section_item*
+section_item: using_statement
+            | include_list_item
+            | key_value_item
+            | COMMENT
+
+using_statement: "Using" ":" section_ref_list COMMENT? NEWLINE
+include_list_item: "IncludeList" ":" include_value COMMENT? NEWLINE
+
+section_ref_list: SECTION_NAME ("," SECTION_NAME)*
+
+section_header: SECTION_NAME ":" NEWLINE
+
+key_value_item: KEY ":" value NEWLINE
+include_value: include_entry 
+include_entry: FILENAME_PATH COMMENT?
+
+?value: COMMENT? expression COMMENT?
+      | COMMENT
+
+?expression: logical_or
+
+?logical_or: logical_and ("or" logical_and)*
+?logical_and: comparison ("and" comparison)*
+?comparison: arith_expr (COMP_OP arith_expr)*
+?arith_expr: term (("+"|"-") term)*
+?term: factor (("*"|"/") factor)*
+?factor: ("+"|"-") factor | power
+?power: atom ("^" factor)?
+?atom: NUMBER
+     | SYMBOL
+     | array_access
+     | function_call
+     | "(" expression ")"
+     | IDENTIFIER
+     | STRING
+
+array_access: IDENTIFIER "[" expression "]"
+function_call: IDENTIFIER "(" [arguments] ")"
+arguments: expression ("," expression)*
+
+notes_entry: COMMENT NEWLINE?
+           | NOTE_TEXT NEWLINE
+           | NEWLINE
+           
+NOTE_TEXT: /(?![ \t]*[.a-zA-Z_@][a-zA-Z0-9_.]*:)[^\n\r]+/
+FILENAME_PATH: /(?!\/\/)\S[^\r\n]*?(?=(?:\s+\/\/|$))/
+
+KEY: IDENTIFIER
+SECTION_NAME: IDENTIFIER
+IDENTIFIER: /[.a-zA-Z_@][a-zA-Z0-9_.@]*/
+SYMBOL: /\$[a-zA-Z0-9_]+/
+STRING: /"(?:[^"\\]|\\.)*"/ | /'(?:[^'\\]|\\.)*'/
+
+COMMENT: /\/\/[^\n]*/
+
+%import common.SIGNED_NUMBER -> NUMBER
+%import common.WS_INLINE
+%import common.NEWLINE
+
+%ignore WS_INLINE
+
+COMP_OP: ">" | "<" | ">=" | "<=" | "=" | "!="
+
+// Define whitespace handling to allow for multi-line expressions
+%ignore /(\s)+/

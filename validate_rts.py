@@ -106,19 +106,21 @@ def find_last_successful_parse(parser, content):
     # Find the largest prefix that parses successfully
     left, right = 0, len(lines)
     last_good = 0
+    last_tree = None
     
     while left <= right:
         mid = (left + right) // 2
         test_content = ''.join(lines[:mid])
         
         try:
-            parser.parse(test_content)
+            tree = parser.parse(test_content)
             last_good = mid
+            last_tree = tree
             left = mid + 1
         except:
             right = mid - 1
     
-    return last_good, ''.join(lines[:last_good])
+    return last_good, ''.join(lines[:last_good]), last_tree
 
 
 def main():
@@ -183,13 +185,21 @@ def main():
                 print("\n--early flag set. Stopping at first error.")
                 print_error_context(file_path, error, content)
                 # Find last successful parse point
-                last_line, last_content = find_last_successful_parse(parser, content)
+                last_line, last_content, last_tree = find_last_successful_parse(parser, content)
                 
                 print(f"Last successfully parsed line: {last_line}")
+                
+                # Show the parse tree for the last successful content
+                if last_tree:
+                    print("\nParse tree for last successful content:")
+                    print("=" * 50)
+                    print(last_tree.pretty())
+                    print("=" * 50)
+                
                 print("Last successfully parsed content:")
                 print("-" * 30)
 
-                            # Show last few lines of successful content
+                # Show last few lines of successful content
                 good_lines = last_content.splitlines()
                 start_show = max(0, len(good_lines) - 10)
                 for i, line in enumerate(good_lines[start_show:], start_show + 1):
