@@ -2,563 +2,563 @@
   "results": [
     {
       "file": "samples/Sample1.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'E' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/Sample2.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 14"
     },
     {
       "file": "samples/Sample2a.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 14"
     },
     {
       "file": "samples/actual_trades.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 14"
     },
     {
       "file": "samples/anchored_vwap.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/annual_taxes.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/bensdorp_book.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/beta_indicator.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/breadth.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 13"
     },
     {
       "file": "samples/cii_rotate.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'R' in the current parser context, at line 1 col 12"
     },
     {
       "file": "samples/cl_term_structure.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/clenow_stocks_on_move.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'C' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/clenow_stocks_on_move_dynamic.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'C' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/combined.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 16"
     },
     {
       "file": "samples/combined_multi_bar_size.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 17"
     },
     {
       "file": "samples/combined_rebalance.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/correl_multi.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 15"
     },
     {
       "file": "samples/dalio_all_weather.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'D' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/dalio_all_weather_maxdiff.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'D' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/dividend_capture.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'c' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/dividend_yield_series.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/djia_earnings.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/djia_make_syminfo.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/djia_use_syminfo.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/ehlers_windows.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '\"' in the current parser context, at line 3 col 15"
     },
     {
       "file": "samples/es_compare.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/flipper.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'l' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/fundamentals.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/futures_calendar_spread.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/futures_trend_follow_csi.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'f' in the current parser context, at line 2 col 4"
     },
     {
       "file": "samples/futures_trend_follow_simple.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/futures_volume_rank.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/gc_kelly.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/gics_indu_rank.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/goal_30_15.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'g' in the current parser context, at line 1 col 13"
     },
     {
       "file": "samples/goal_30_15_asx.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 19"
     },
     {
       "file": "samples/goal_30_15_tsx.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 19"
     },
     {
       "file": "samples/higher_lows.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 1 col 24"
     },
     {
       "file": "samples/hybrid_asset_allocation.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'A' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/hybrid_asset_allocation_dynamic.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'A' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/ibd_rs.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'I' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/import_csv.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'f' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/import_ms.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 12"
     },
     {
       "file": "samples/import_multi.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/import_norgate.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/import_tiingo.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/import_yahoo.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/index_breadth.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/industry_indices.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'u' in the current parser context, at line 1 col 21"
     },
     {
       "file": "samples/keller_baa.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'A' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/keltner_pullback.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'l' in the current parser context, at line 2 col 4"
     },
     {
       "file": "samples/management_fees.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/martingale.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 1 col 14"
     },
     {
       "file": "samples/mhp_classic.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 13"
     },
     {
       "file": "samples/mr_sample.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'l' in the current parser context, at line 2 col 4"
     },
     {
       "file": "samples/mr_sample_benchmark.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 1 col 14"
     },
     {
       "file": "samples/mr_sample_common.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'c' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/mr_sample_debug.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'v' in the current parser context, at line 2 col 4"
     },
     {
       "file": "samples/mr_sample_hedged.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 1 col 13"
     },
     {
       "file": "samples/mr_sample_long_only.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/mr_sample_orders.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '\"' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/mr_sample_orders_alera.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 1 col 14"
     },
     {
       "file": "samples/mr_sample_orders_basket.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 1 col 14"
     },
     {
       "file": "samples/mr_sample_scan.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 16"
     },
     {
       "file": "samples/mr_sample_short_only.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/mr_sample_test_scan.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 16"
     },
     {
       "file": "samples/mr_sample_tracking.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/mr_sample_tracking_alloc.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 1 col 12"
     },
     {
       "file": "samples/mr_sample_tradelist.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/multi_filter_scan.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/multi_moc_top_down.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'v' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/ndx_plus_wtf_script.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/ndx_plus_wtf_tradelists.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 't' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/ndx_rotate.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'R' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/ndx_rotate_factor_test.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'R' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/ndx_rotate_make_tradelist.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'e' in the current parser context, at line 2 col 17"
     },
     {
       "file": "samples/ndx_rotate_rebalance.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'R' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/ndx_rotate_weekly_reduce.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'R' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/oc_all_actual.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/oex_tf_auto_track.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '5' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/oex_tf_fresh_signal.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '.' in the current parser context, at line 3 col 15"
     },
     {
       "file": "samples/oex_tf_top_down.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'v' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/opex_and_vxex.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'm' in the current parser context, at line 2 col 13"
     },
     {
       "file": "samples/optimal_diversity.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'p' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/radge_bbo.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/sample_scan.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'f' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/scale_in.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 1 col 14"
     },
     {
       "file": "samples/sctr.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'T' in the current parser context, at line 2 col 20"
     },
     {
       "file": "samples/sector_etfs.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '&' in the current parser context, at line 2 col 3"
     },
     {
       "file": "samples/sector_etfs_breadth.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '&' in the current parser context, at line 2 col 3"
     },
     {
       "file": "samples/simple_day_trade.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'M' in the current parser context, at line 2 col 13"
     },
     {
       "file": "samples/simple_day_trade_basket_orders.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 's' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/simple_day_trade_basket_scan.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/spy_tlt_uis.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches '\"' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/stockbee_mm.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'm' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/supertrend.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'S' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/tf_dynamic_size.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'e' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/tf_sell_half_at_1R.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'e' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/trend_following_basics.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'e' in the current parser context, at line 2 col 7"
     },
     {
       "file": "samples/turtles.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 1 col 22"
     },
     {
       "file": "samples/two_accounts.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/two_accounts_rebalance.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'd' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/vigilant_asset_allocation.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'A' in the current parser context, at line 2 col 11"
     },
     {
       "file": "samples/vx_futures.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'V' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/vx_term_structure.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'a' in the current parser context, at line 2 col 9"
     },
     {
       "file": "samples/vxx_long_short.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'V' in the current parser context, at line 2 col 8"
     },
     {
       "file": "samples/weekly_moc_asx.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'w' in the current parser context, at line 2 col 6"
     },
     {
       "file": "samples/weekly_moc_asx_daily_daily.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/weekly_moc_asx_daily_weekly.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'o' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/weekly_trend_follow.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'b' in the current parser context, at line 2 col 10"
     },
     {
       "file": "samples/weekly_trend_follow_make_tradelist.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'e' in the current parser context, at line 2 col 26"
     },
     {
       "file": "samples/yield_rank.rts",
-      "valid": true,
-      "error": null
+      "valid": false,
+      "error": "No terminal matches 'h' in the current parser context, at line 2 col 8"
     }
   ]
 }

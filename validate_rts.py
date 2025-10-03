@@ -25,7 +25,10 @@ def load_grammar(grammar_path_str="lark/realtest.lark"):
         with open(grammar_path, 'r', encoding='utf-8') as f:
             grammar_content = f.read()
         
-        parser = Lark(grammar_content, start='start', parser='earley')
+        parser = Lark(grammar_content, 
+                      debug=True,
+                      start='start',
+                      parser='earley')
         print(f"✓ Grammar loaded successfully from {grammar_path}")
         return parser
     except Exception as e:
@@ -96,6 +99,28 @@ def print_error_context(file_path, error, content):
         print(f"Error: {error}")
 
 
+def find_last_successful_parse(parser, content):
+    """Binary search to find the last successfully parsed content"""
+    lines = content.splitlines(keepends=True)
+    
+    # Find the largest prefix that parses successfully
+    left, right = 0, len(lines)
+    last_good = 0
+    
+    while left <= right:
+        mid = (left + right) // 2
+        test_content = ''.join(lines[:mid])
+        
+        try:
+            parser.parse(test_content)
+            last_good = mid
+            left = mid + 1
+        except:
+            right = mid - 1
+    
+    return last_good, ''.join(lines[:last_good])
+
+
 def main():
     """Main validation loop"""
     parser = argparse.ArgumentParser(description="RealTest Script Validator")
@@ -157,6 +182,33 @@ def main():
             if args.early:
                 print("\n--early flag set. Stopping at first error.")
                 print_error_context(file_path, error, content)
+                # Find last successful parse point
+                last_line, last_content = find_last_successful_parse(parser, content)
+                
+                print(f"Last successfully parsed line: {last_line}")
+                print("Last successfully parsed content:")
+                print("-" * 30)
+
+                            # Show last few lines of successful content
+                good_lines = last_content.splitlines()
+                start_show = max(0, len(good_lines) - 10)
+                for i, line in enumerate(good_lines[start_show:], start_show + 1):
+                    print(f"{i:3d}: {line}")
+                
+                print("-" * 30)
+                print()
+                
+                # Show what comes next (the problematic part)
+                all_lines = content.splitlines()
+                if last_line < len(all_lines):
+                    print("Next lines (where parsing fails):")
+                    print("-" * 30)
+                    end_show = min(len(all_lines), last_line + 10)
+                    for i in range(last_line, end_show):
+                        marker = ">>> " if i == last_line else "    "
+                        print(f"{marker}{i+1:3d}: {all_lines[i]}")
+                    print("-" * 30)
+            
                 sys.exit(1)
 
     # --- Summary Report ---

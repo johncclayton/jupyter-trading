@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create the RealTest Lark grammar focused on top-level sections."""
+"""Create the RealTest Lark grammar with section items and expressions."""
 
 import argparse
 import json
@@ -31,8 +31,13 @@ def extract_section_names(catalog: Iterable[dict]) -> list[str]:
 def build_lark_grammar(sections: Iterable[str]) -> str:
     options = " | ".join(f'"{name}"' for name in sections)
     return f"""%import common.NEWLINE
+%import common.SIGNED_NUMBER
+%import common.ESCAPED_STRING
+%ignore WS_INLINE
 %ignore /\\r/
 %ignore /\\/\\*.*?\\*\\//s
+
+COMMENT: /\\/\\/[^\\n]*/
 
 start: element*
 
@@ -40,23 +45,111 @@ start: element*
         | commentline
         | blankline
 
-section: SECTION_NAME ":" inline_content? NEWLINE section_body?
-inline_content: INLINE_TEXT
+section: SECTION_NAME ":" inline_section_value? COMMENT? NEWLINE section_body?
+inline_section_value: value
 
-section_body: section_item+
+section_body: section_entry*
 
-section_item: INDENTED_TEXT NEWLINE
-            | COMMENT_LINE NEWLINE
-            | blankline
+section_entry: indented_statement
+             | indented_comment
+             | indented_text
+             | blankline
 
-commentline: COMMENT_LINE NEWLINE
-blankline: WS_INLINE? NEWLINE
+indented_statement: INDENT statement COMMENT? NEWLINE
+indented_comment: INDENT COMMENT NEWLINE
+indented_text: INDENT TEXT_CONTENT NEWLINE
 
-SECTION_NAME: {options}
-INLINE_TEXT: /[^\\r\\n]+/
-INDENTED_TEXT: /[ \\t]+[^\\n]*/
-COMMENT_LINE: /[ \\t]*\\/\\/[^\\n]*/
+statement: assignment | bare_expression
+assignment: assignment_target assignment_operator value?
+assignment_operator: ":" | ":="
+bare_expression: value
+
+assignment_target: assignment_atom assignment_suffix*
+assignment_atom: NAME
+assignment_suffix: "." NAME
+                | "(" parameter_list? ")"
+
+parameter_list: NAME ("," NAME)*
+
+value: expression_list | free_text
+expression_list: expression ("," expression)*
+free_text: TEXT_CONTENT
+
+?expression: conditional
+?conditional: logical_or ("?" expression ":" expression)?
+?logical_or: logical_and (OR logical_and)*
+?logical_and: comparison (AND comparison)*
+?comparison: sum (COMPARISON_OP sum)*
+?sum: sum ADD_OP term
+     | term
+?term: term MUL_OP power
+     | power
+?power: unary (POW_OP unary)*
+?unary: ADD_OP unary
+      | NOT unary
+      | primary
+
+?primary: atom trailer*
+trailer: "." NAME
+       | "[" expression "]"
+
+?atom: function_call
+     | aggregator_call
+     | at_reference
+     | symbol_reference
+     | amp_reference
+     | placeholder
+     | literal
+     | NAME
+     | "(" expression ")"
+
+function_call: NAME "(" argument_list? ")"
+argument_list: argument ("," argument)* (",")?
+argument: leading_break? expression
+leading_break: (NEWLINE INDENT)+
+
+aggregator_call: HASH_NAME aggregator_args
+aggregator_args: "(" argument_list? ")" | argument
+
+literal: NUMBER
+       | STRING
+       | DATE
+       | TRUE
+       | FALSE
+
+at_reference: AT_REFERENCE
+symbol_reference: SYMBOL_REFERENCE
+amp_reference: AMP_REFERENCE
+placeholder: PLACEHOLDER
+
+blankline: (INDENT)? NEWLINE
+commentline: COMMENT NEWLINE
+
+INDENT.2: /(?m)^[ \\t]+/
 WS_INLINE: /[ \\t]+/
+TEXT_CONTENT: /[^\\r\\n]+?(?=\\s+\\/\\/|$)/
+NUMBER: SIGNED_NUMBER
+STRING: ESCAPED_STRING
+DATE: /\\d{{4}}-\\d{{2}}-\\d{{2}}/
+AT_REFERENCE: /@[A-Za-z_][A-Za-z0-9_]*/
+SYMBOL_REFERENCE: /\\$(?:&?-?[A-Za-z0-9_]+)/
+AMP_REFERENCE: /&-?[A-Za-z0-9_]+/
+PLACEHOLDER: /\\?[A-Za-z_][A-Za-z0-9_]*\\?(?:[^\\s,\\r\\n]*)?/
+
+AND: /(?i)and/
+OR: /(?i)or/
+NOT: /(?i)not/
+TRUE: /(?i)true/
+FALSE: /(?i)false/
+
+COMPARISON_OP: "<>" | "==" | "!=" | ">=" | "<=" | "=" | ">" | "<"
+ADD_OP: "+" | "-"
+MUL_OP: "*" | "/" | "%"
+POW_OP: "^"
+
+HASH_NAME: /#[A-Za-z_][A-Za-z0-9_]*/
+SECTION_NAME.3: {options}
+NAME: /[A-Za-z_][A-Za-z0-9_]*/
 """
 
 
