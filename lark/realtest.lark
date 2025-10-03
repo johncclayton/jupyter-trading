@@ -168,13 +168,13 @@ tl_field_token: IDENTIFIER
               | NUMBER
 
 FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?)?(?=[^ \t\r\n(),]*(?:[\.\/\\]|:[^ \t\r\n(),]))[^ \t\r\n(),]+/
-NOTE_BLOCK: /(?:[^\r\n]*\r?\n)+?(?=^[.a-zA-Z_@][a-zA-Z0-9_.@]*:|\Z)/m
+NOTE_BLOCK: /(?:[^\r\n]*\r?\n)+?(?=^[A-Z][a-zA-Z0-9_]*:|\Z)/m
 CHART_DECORATOR_BODY: /(?<=\{)[^}\r\n]+/
 WATCHLIST_REF: /&[-A-Za-z0-9_.@]+/
 AMPERSAND: "&"
 
 SECTION_NAME: "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Namespace" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
-KEY_ID: /(?!^Strategy$|^Template$|^OrderSettings$|^Benchmark$)(?:[.a-zA-Z_@][a-zA-Z0-9_.@]*)/
+KEY_ID: /(?!^(Strategy|Template|OrderSettings|Benchmark|Charts|Combined|Data|Import|Include|Library|Namespace|Notes|OptimizeSettings|Parameters|Scan|ScanSettings|Settings|StatsGroup|StratData|TestData|TestScan|TestSettings|WalkForward)$)(?:[.a-zA-Z_@][a-zA-Z0-9_.@]*)/
 AND: /(?i)and/
 OR: /(?i)or/
 NOT: /(?i)not/
