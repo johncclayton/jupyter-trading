@@ -37,8 +37,8 @@ section: benchmark_section | charts_section | data_section | graphs_section | \
          strategy_section | template_section | trades_section | order_settings_section | order_include_section | \
          results_section | scan_section | scan_include_section | scan_settings_section
 
-notes_section: NOTES_HEADER NEWLINE? notes_content
-notes_content: | /[^\n]+/
+notes_section: NOTES_HEADER NEWLINE? NOTE_BLOCK?
+NOTE_BLOCK: /(?ms).+?(?=^[A-Za-z_][A-Za-z0-9_]*:|\Z)/
 
 data_section: DATA_HEADER NEWLINE? declaration*
 graphs_section: GRAPHS_HEADER NEWLINE? declaration*
@@ -47,7 +47,8 @@ include_section: INCLUDE_HEADER NEWLINE? declaration*
 settings_section: SETTINGS_HEADER NEWLINE? declaration*
 benchmark_section: BENCHMARK_HEADER NEWLINE? declaration*
 parameters_section: PARAMETERS_HEADER NEWLINE? parameters_declaration*
-strategy_section: STRATEGY_HEADER NEWLINE? declaration*
+strategy_section: STRATEGY_HEADER (strategy_header_value NEWLINE | NEWLINE?) declaration*
+strategy_header_value: expression
 template_section: TEMPLATE_HEADER NEWLINE? declaration*
 charts_section: CHARTS_HEADER NEWLINE? declaration*
 trades_section: TRADES_HEADER NEWLINE? declaration*
