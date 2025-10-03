@@ -5,6 +5,8 @@ Data:
 	Contango:	Extern($$VIX, C) < Extern($$VIX3M, C) 	// true if VIX in contango, false otherwise
 	QuirkySelection: select(abacus = 12, resultA, resultB)
 	VixFlip:	Contango <> Contango[1]
+
+Data:
 	// beta is simply the linear regression slope of a stock's returns vs. index returns
 	TLFields:	Symbol,strategy,DateIn,PriceIn,DateOut,PriceOut,,,,Shares
 	Quantity:	((Hedge * imbalance) / something)
@@ -16,3 +18,7 @@ Data:
 	TLFields:	DateTime,Action,Symbol,QtyIn,PriceIn,FeesIn
 	TLTimeShift:	14 // NYC->Sydney
 	StartDate:	2005-01-01
+	StartDate:	01/01/2005
+
+Data:
+	IncludeList:	$XAO.au,$XAOA.au, $XSOA.au, %AUCRT
