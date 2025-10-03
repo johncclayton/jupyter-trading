@@ -31,6 +31,7 @@ RESULTS_HEADER: /Results:/
 SCAN_HEADER: /Scan:/
 SCANINCLUDE_HEADER: /ScanInclude:/
 SCANSETTINGS_HEADER: /ScanSettings:/
+TESTSETTINGS_HEADER: /TestSettings:/
 
 RESERVED_IDENTIFIER.10: /(?i)(Symbol|Name|BarNum|InfoID|InfoExpiry|InfoFloat|InfoGICS|InfoMargin|InfoTRBC|FilterNum|InList|ListNum|PointValue|InfoShares|TickSize)/
 RESERVED_WORD.9: /(?i)\?[a-zA-Z]+(\?)?/
@@ -39,7 +40,7 @@ WATCHLIST_REF: /&[-A-Za-z0-9_.@]+/
 start: section+
 
 section: benchmark_section | charts_section | data_section | graphs_section | \
-         include_section | library_section | namespace_section | \
+         include_section | library_section | namespace_section | testsettings_section | \
          notes_section | import_section | settings_section | parameters_section | \
          strategy_section | template_section | trades_section | order_settings_section | order_include_section | \
          results_section | scan_section | scan_include_section | scan_settings_section
@@ -63,6 +64,7 @@ results_section: RESULTS_HEADER NEWLINE? declaration*
 scan_section: SCAN_HEADER NEWLINE? declaration*
 scan_include_section: SCANINCLUDE_HEADER NEWLINE? declaration*
 scan_settings_section: SCANSETTINGS_HEADER NEWLINE? declaration*
+testsettings_section: TESTSETTINGS_HEADER NEWLINE? declaration*
 order_settings_section: ORDERSETTINGS_HEADER NEWLINE? declaration*
 order_include_section: ORDERINCLUDE_HEADER NEWLINE? declaration*
 
@@ -77,11 +79,11 @@ aliased_item: (identifier | stock_symbol | symbol_item) ">" identifier
 field_item: aliased_item | identifier | stock_symbol | string_literal | symbol_item
 declaration: date_declaration | include_list_declaration | normal_declaration
 parameters_declaration: parameter_range_declaration | parameter_list_declaration | date_declaration | include_list_declaration | normal_declaration
-parameter_range_declaration: identifier ":" _TAB? "from" NUMBER "to" NUMBER "step" NUMBER "def" NUMBER NEWLINE?
-parameter_list_declaration: identifier ":" _TAB? NUMBER ("," NUMBER)* NEWLINE?
+parameter_range_declaration: qualified_name ":" _TAB? "from" NUMBER "to" NUMBER "step" NUMBER "def" NUMBER NEWLINE?
+parameter_list_declaration: qualified_name ":" _TAB? NUMBER ("," NUMBER)* NEWLINE?
 date_declaration: date_identifier ":" _TAB? date_expr NEWLINE?
 include_list_declaration: /(?i)IncludeList:/ _TAB? include_list_expr include_name? NEWLINE?
-normal_declaration: identifier ":" _TAB? expression NEWLINE?
+normal_declaration: qualified_name ":" _TAB? expression NEWLINE?
 expression: logical_expr format_spec? CPP_COMMENT?
 format_spec: /\{%[^}]*\}/
 logical_expr: comparison_expr (logical_op comparison_expr)*
@@ -93,7 +95,7 @@ mul_op: "*" | "/"
 add_op: "+" | "-"
 indexed_expr: primary ("[" NUMBER "]")?
 primary: "(" expression ")" | base_expr
-base_expr: function_call | identifier | NUMBER | boolean_literal | stock_symbol | string_literal | field_list | path_name | RESERVED_IDENTIFIER | WATCHLIST_REF  
+base_expr: function_call | qualified_name | NUMBER | boolean_literal | stock_symbol | string_literal | field_list | path_name | RESERVED_IDENTIFIER | WATCHLIST_REF  
 date_literal: /\d{8}|\d{4}\/\d{2}\/\d{2}|\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{2}-[A-Za-z]{3}-\d{2,4}|\d{1,2}\/\d{1,2}\/\d{2,4}|\d{1,2}-\d{1,2}-\d{2,4}|\d{1,2}\.\d{1,2}\.\d{2,4}/
 boolean_literal: /(?i)True/ | /(?i)False/
 reserved_identifier: RESERVED_IDENTIFIER
@@ -102,9 +104,10 @@ reserved_word: RESERVED_WORD
 field_list: field_item? ("," field_item? )*
 symbol_item: /[%$][\w.]+/
 comparison_op: "<" | ">" | "<=" | ">=" | "==" | "<>" | "!=" | "=" 
-function_call: (RESERVED_IDENTIFIER | identifier) "(" arguments? ")"
+function_call: (RESERVED_IDENTIFIER | qualified_name) "(" arguments? ")"
 arguments: expression ("," expression)*
 identifier: /(?i)(?!Data\b|Graphs\b|Import\b|Settings\b|Benchmark\b|Parameters\b|Strategy\b|Template\b|Include\b|Charts\b|Trades\b|Notes\b|Library\b|Namespace\b|OrderSettings\b|OrderInclude\b|Results\b|Scan\b|ScanInclude\b|ScanSettings\b|True\b|False\b)[a-zA-Z_][a-zA-Z0-9_]*/
+qualified_name: identifier ("." identifier)*
 string_literal: /"[^"]*"/
 stock_symbol: /[$%](?:[$&])?[A-Za-z0-9_.@]+/
 path_literal: /[^?\n]+/

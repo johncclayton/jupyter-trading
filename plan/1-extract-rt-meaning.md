@@ -1,12 +1,16 @@
 # Plan 1: Extract and Understand RealTest Language
 
-The python code for this is in the tools/ directory - if you find a BETTER WAY then you can update the code there. 
+The goal is to extract as much information as possible about the real test script language into text files.
 
 It's important to understand that some of the manual deals with the Real Test UI, and some of it with the Real Test
-Script (.rts) language.  Focus on the language here - and much less on the UI, unless the portions of the UI help provide
+Script (.rts) language.  Focus on the script language - and not on the UI, unless the portions of the UI help provide
 meaning and or context.
 
 In the generated output, never use full path names - always use relative path names.  Where this might be a problem for further processing steps, make sure these steps resolve the relative path names properly.
+
+All code goes into the tools/ directory.
+
+Here are the general steps to extract:
 
 1. **Prepare Versioned Artifacts**  
    - Input: Repository root containing at least one `RealTest*.pdf`, populated `samples/` with `.rts` examples.  
@@ -15,50 +19,16 @@ In the generated output, never use full path names - always use relative path na
 
 2. **Run Standardized Text Extraction**  
    - Input: `versions/<version>/manual.pdf`.  
-   - Actions: Execute `python tools/extract_pdf_text.py versions/<version>/manual.pdf --output versions/<version>/manual.txt`; verify byte count > 0.  
+   - Actions: Write code to extract text from the input, and store the results in the output - call this code 2-standard-text-extraction.py
    - Output: `versions/<version>/manual.txt` (UTF-8 plain text).
 
 3. **Build Manual Structure and Glossary**  
    - Input: `versions/<version>/manual.txt`.  
-   - Actions: `python tools/build_manual_structure.py --manual versions/<version>/manual.txt --output versions/<version>/manual_structure.json`; captures every heading and curated glossary terms.  
+   - Actions: Write code to process the input, capture every heading and curated glossary terms into output called manual_structure.json
    - Output: `versions/<version>/manual_structure.json` (sections list + glossary array).
 
-4. **Generate Syntax Catalog with Samples**  
+4. **Compile Function, Directive, and Statement Catalog**  
    - Input: `versions/<version>/manual.txt`, `samples/*.rts`.  
-   - Actions: `python tools/build_syntax_catalog.py --manual versions/<version>/manual.txt --samples samples --output versions/<version>/syntax_catalog.json`; records structural constructs with manual and sample references.  
-   - Output: `versions/<version>/syntax_catalog.json`.
-
-5. **Produce Grammar Spec and Lark Grammar**  
-   - Input: `versions/<version>/syntax_catalog.json`.  
-   - Actions: `python tools/build_grammar.py --version-dir versions/<version>/`; emits machine-readable JSON grammar plus `realtest_grammar.lark` (PEG/ANTLR-style).  
-   - Outputs: `versions/<version>/realtest_grammar.json`, `versions/<version>/realtest_grammar.lark`.
-
-6. **Compile Function, Directive, and Statement Catalog**  
-   - Input: `versions/<version>/manual.txt`, `samples/*.rts`.  
-   - Actions: `python tools/build_function_catalog.py --manual versions/<version>/manual.txt --samples samples --output versions/<version>/function_catalog.json`; aggregates signatures, descriptions, snippets, and cross-references.  
+   - Actions: Extract all the language functions, descriptions and usage examples into a catalog called function_catalog.json
    - Output: `versions/<version>/function_catalog.json`.
 
-7. **Map Semantic Strategy Patterns**  
-   - Input: `versions/<version>/manual_structure.json`, `versions/<version>/function_catalog.json`, `samples/*.rts`.  
-   - Actions: `python tools/build_semantic_patterns.py --version-dir versions/<version>/ --samples samples --output versions/<version>/semantic_patterns.json`; links natural-language motifs to canonical snippets.  
-   - Output: `versions/<version>/semantic_patterns.json`.
-
-8. **Validate Grammar Against Samples**  
-   - Input: `versions/<version>/realtest_grammar.lark`, `samples/*.rts`.  
-   - Actions: `python tools/validate_grammar.py --grammar versions/<version>/realtest_grammar.lark --samples samples --output versions/<version>/grammar_validation.json`; parses every sample file (no truncation) and records pass/fail diagnostics.  
-   - Output: `versions/<version>/grammar_validation.json` + console summary.
-
-9. **Create LLM Evaluation Suite**  
-   - Input: `versions/<version>/semantic_patterns.json`, `versions/<version>/function_catalog.json`, `versions/<version>/realtest_grammar.json`.  
-   - Actions: `python tools/build_evaluation_suite.py --version-dir versions/<version>/ --output versions/<version>/evaluation_suite.json`; prepares prompt_to_RTS regression cases with references.  
-   - Output: `versions/<version>/evaluation_suite.json`.
-
-10. **Assemble Knowledge Base Summary**  
-   - Input: All prior outputs (`manual_structure.json`, `syntax_catalog.json`, `realtest_grammar.json`, `realtest_grammar.lark`, `realtest_grammar.g4`, `function_catalog.json`, `semantic_patterns.json`, `grammar_validation.json`, `evaluation_suite.json`).  
-   - Actions: `python tools/build_knowledge_base.py --version-dir versions/<version>/ --output versions/<version>/knowledge_base.md`; compiles methodology, counts, references, and validation status.  
-   - Output: `versions/<version>/knowledge_base.md` ready for review.
-
-11. **CI Verification Hook**  
-   - Input: `versions/<version>/` artifacts, `samples/`.  
-   - Actions: `python tools/run_ci_checks.py --version-dir versions/<version>/ --samples samples`; runs grammar validation and confirms evaluation suite cases parse under the grammar.  
-   - Output: CI-friendly pass/fail signal plus console summary of grammar/evaluation checks.
