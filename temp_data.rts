@@ -6,7 +6,7 @@ Data:
 	QuirkySelection: select(abacus = 12, resultA, resultB)
 	VixFlip:	Contango <> Contango[1]
 
-
+Data:
 
 Data:
 	// beta is simply the linear regression slope of a stock's returns vs. index returns
@@ -34,3 +34,6 @@ Import:
 	StartDate:	1995-01-01
 	EndDate:	Latest
 	SaveAs:	spx.rtd
+	EntrySetup:	EndOfWeek and InList("sepci")
+
+Import: 
