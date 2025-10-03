@@ -6,7 +6,7 @@ Validation:
 
 Rules:
 1. DO NOT CHANGE ANYTHING IN THE samples/ directory - ever
-2. When testing / validating - a common error is that the NOTES block consumes EVERYTHING after it - make sure this is never the case.
+2. When testing / validating - a common error is that a rule consumes EVERYTHING after it - make sure this is never the case.
 
 Prerequisites:
 1. Use the venv called 'realtestextract' for all python scripts - if it does not exist it can be set up via tools/setup_realtest_env.sh or via tools/setup_realtest_env.ps1

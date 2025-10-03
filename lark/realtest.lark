@@ -5,10 +5,24 @@ rts_file: section+
 section: notes_section
        | parameters_section
        | charts_section
+       | strategy_section
        | benchmark_section
        | generic_section
 
 benchmark_section: "Benchmark" ":" generic_section_body
+
+strategy_section: "Strategy" ":" strategy_section_body
+strategy_section_body: strategy_header_value? NEWLINE strategy_item*
+
+strategy_header_value: (IDENTIFIER | decorated_expression)? COMMENT?
+
+strategy_item: using_statement
+             | include_list_item
+             | tl_fields_item
+             | key_value_item
+             | COMMENT
+             | BLOCK_COMMENT
+             | NEWLINE
 
 notes_section: "Notes" ":" NOTE_BLOCK
 
@@ -94,7 +108,7 @@ section_header_value: COMMENT?
 
 tl_fields_item: "TLFields" ":" tl_fields_list COMMENT? NEWLINE
 
-key_value_item: IDENTIFIER ":" value NEWLINE?
+key_value_item: KEY_ID ":" value NEWLINE?
 include_value: include_entry ("," include_entry)*
 include_entry: include_atom+ chart_decorator? COMMENT?
 include_atom: FILENAME_PATH
@@ -160,6 +174,7 @@ WATCHLIST_REF: /&[-A-Za-z0-9_.@]+/
 AMPERSAND: "&"
 
 SECTION_NAME: "Charts" | "Combined" | "Data" | "Import" | "Include" | "Library" | "Namespace" | "Notes" | "OptimizeSettings" | "OrderSettings" | "Parameters" | "Scan" | "ScanSettings" | "Settings" | "StatsGroup" | "StratData" | "Strategy" | "Template" | "TestData" | "TestScan" | "TestSettings" | "WalkForward"
+KEY_ID: /(?!^Strategy$|^Template$|^OrderSettings$|^Benchmark$)(?:[.a-zA-Z_@][a-zA-Z0-9_.@]*)/
 AND: /(?i)and/
 OR: /(?i)or/
 NOT: /(?i)not/
