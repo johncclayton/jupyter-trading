@@ -10,6 +10,7 @@ notes_content: notes_entry*
 generic_section: section_header section_item*
 section_item: using_statement
             | include_list_item
+            | tl_fields_item
             | key_value_item
             | COMMENT
 
@@ -19,6 +20,8 @@ include_list_item: "IncludeList" ":" include_value COMMENT? NEWLINE
 section_ref_list: SECTION_NAME ("," SECTION_NAME)*
 
 section_header: SECTION_NAME ":" NEWLINE
+
+tl_fields_item: "TLFields" ":" tl_fields_list COMMENT? NEWLINE
 
 key_value_item: KEY ":" value NEWLINE
 include_value: include_entry 
@@ -43,17 +46,25 @@ include_entry: FILENAME_PATH COMMENT?
      | "(" expression ")"
      | IDENTIFIER
      | STRING
+     | FILENAME_PATH
 
 array_access: IDENTIFIER "[" expression "]"
 function_call: IDENTIFIER "(" [arguments] ")"
 arguments: expression ("," expression)*
+
+tl_fields_list: tl_field ("," tl_field)*
+tl_field: tl_field_token?
+tl_field_token: IDENTIFIER
+              | SYMBOL
+              | STRING
+              | NUMBER
 
 notes_entry: COMMENT NEWLINE?
            | NOTE_TEXT NEWLINE
            | NEWLINE
            
 NOTE_TEXT: /(?![ \t]*[.a-zA-Z_@][a-zA-Z0-9_.]*:)[^\n\r]+/
-FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?(?:[\\/][^ \t\r\n\\\/]+)*|\S[^\s\r\n]*)(?=(?:\s+\/\/|$))/
+FILENAME_PATH: /(?!\/\/)(?:\?(?:scriptpath|scriptname|desktop)\?)?[^ \t\r\n]+/
 
 KEY: IDENTIFIER
 SECTION_NAME: IDENTIFIER
