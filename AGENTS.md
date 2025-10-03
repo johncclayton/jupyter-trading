@@ -10,3 +10,6 @@ Rules
 Prerequisites:
 1. There must be a venv already set up called realtestextract - this is done via tools/setup_realtest_env.sh
 2. Use that venv for all scripts.
+
+Behaviour:
+1. Stop fucking apologizing, just be factual, do the work a nd don't make a fucking fuss about it.  Apologize one more time and I'm gonna fucking fire your ass. 
