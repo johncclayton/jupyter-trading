@@ -3,7 +3,7 @@ Notes:
 	
 Import:	
 	DataSource:	Norgate
-	IncludeList:	.NASDAQ 100 Current & Past
+	IncludeList: .NASDAQ 100 Current & Past
 	IncludeList:	$NDX
 	StartDate:	2015-01-01
 	EndDate:	Latest

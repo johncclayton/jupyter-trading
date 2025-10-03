@@ -22,9 +22,8 @@ Data:
 	StartDate:	2005-01-01
 	StartDate:	01/01/2005
 	Something: Reference
-
-Data:
-	IncludeList:	$XAO.au,$XAOA.au, $XSOA.au, %AUCRT
+	corr_max_sym:	CorrelMaxSym(InDJI, factor, len, sprmn)
+	corr_djia:	if (sprmn, Correl(factor, djia, len), Spearman(factor, djia, len))
 
 Import: 
 	DataSource:	Norgate
@@ -36,5 +35,21 @@ Import:
 	SaveAs:	spx.rtd
 	EntrySetup:	EndOfWeek and InList("sepci")
 	TestScanAllDates:	True
-	
+
 Import: 
+	CorrMinSym:	Extern(SymNum(corr_min_sym), ?Symbol)
+
+Library:
+
+Namespace: something
+Namespace: none
+
+Parameters:	
+	pct:	20
+	os:		5
+	vary:	6, 7, 8, 9, 20
+	boring: from 0.5 to 6.7 step 0.05 def 2
+
+Data:
+	IncludeList:	$XAO.au,$XAOA.au, $XSOA.au, %AUCRT
+	DefenseAlloc:	if(InList("defense"), 1, nan) 
