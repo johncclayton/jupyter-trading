@@ -4,9 +4,12 @@
 %import common.NEWLINE
 %import common.SIGNED_NUMBER -> NUMBER
 
+INLINE_COMMENT: /\{(?!%)[^}]*\}/
+
 %ignore WS
 %ignore WS_INLINE
 %ignore CPP_COMMENT
+%ignore INLINE_COMMENT
 
 DATA_HEADER: /Data:/
 GRAPHS_HEADER: /Graphs:/
@@ -47,7 +50,7 @@ NOTE_BLOCK: /(?ms).+?(?=^[A-Za-z_][A-Za-z0-9_]*:|\Z)/
 data_section: DATA_HEADER NEWLINE? declaration*
 graphs_section: GRAPHS_HEADER NEWLINE? declaration*
 import_section: IMPORT_HEADER NEWLINE? declaration*
-include_section: INCLUDE_HEADER NEWLINE? declaration*
+include_section: INCLUDE_HEADER (expression NEWLINE | NEWLINE?) declaration*
 settings_section: SETTINGS_HEADER NEWLINE? declaration*
 benchmark_section: BENCHMARK_HEADER (expression NEWLINE | NEWLINE?) declaration*
 parameters_section: PARAMETERS_HEADER NEWLINE? parameters_declaration*
