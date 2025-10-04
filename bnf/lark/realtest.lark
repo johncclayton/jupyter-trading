@@ -41,7 +41,9 @@ WALKFORWARD_HEADER: /WalkForward:/
 RESERVED_IDENTIFIER.10: /(?i)(Symbol|Name|BarNum|InfoID|InfoExpiry|InfoFloat|InfoGICS|InfoMargin|InfoTRBC|FilterNum|InList|ListNum|PointValue|InfoShares|TickSize)/
 RESERVED_WORD.9: /(?i)\?[a-zA-Z]+(\?)?/
 WATCHLIST_REF: /&[-A-Za-z0-9_.@]+/
-PATH_LITERAL.0: /(?!\s*[A-Za-z_][A-Za-z0-9_]*\s*\()(?![A-Za-z_][A-Za-z0-9_]*:)[^?\n]+/
+PATH_LITERAL.0: /(?!\/\/)(?!\s*[A-Za-z_][A-Za-z0-9_]*\s*\()(?![A-Za-z_][A-Za-z0-9_]*:)(?:#[^\n]+|[^,()\[\]{}\n\/]+(?:\/(?!\/)[^,()\[\]{}\n\/]*)*)/
+SECTION_WORD.6: /(?i)(Data|Graphs|Import|Settings|Benchmark|Parameters|Strategy|Template|Include|Charts|Trades|Notes|Library|Namespace|OrderSettings|OrderInclude|Results|Scan|ScanInclude|ScanSettings|TestSettings|Combined|WalkForward)/
+INCLUDE_RAW.0: /[^\{\n]+/
 NOT.8: /(?i)not/
 
 start: section+
@@ -65,7 +67,12 @@ parameters_section: PARAMETERS_HEADER NEWLINE? parameters_declaration*
 strategy_section: STRATEGY_HEADER (expression NEWLINE | NEWLINE?) declaration*
 template_section: TEMPLATE_HEADER (expression NEWLINE | NEWLINE?) declaration*
 combined_section: COMBINED_HEADER NEWLINE? declaration*
-walkforward_section: WALKFORWARD_HEADER NEWLINE? declaration*
+walkforward_section: WALKFORWARD_HEADER NEWLINE? walkforward_entry*
+walkforward_entry: walkforward_list_declaration | NEWLINE
+walkforward_list_declaration: identifier ":" _TAB? walkforward_list CPP_COMMENT? NEWLINE?
+walkforward_list: walkforward_item (walkforward_sep walkforward_item)*
+walkforward_item: date_literal | NUMBER
+walkforward_sep: "," NEWLINE*
 charts_section: CHARTS_HEADER NEWLINE? declaration*
 trades_section: TRADES_HEADER NEWLINE? declaration*
 library_section: LIBRARY_HEADER NEWLINE? declaration*
@@ -83,18 +90,21 @@ namespace_section: NAMESPACE_HEADER NEWLINE? namespace_expr NEWLINE?
 
 date_expr: date_literal | "Latest" | "Earliest"
 date_identifier: /(?i)StartDate/ | /(?i)EndDate/
-include_list_expr: string_literal | field_list | path_name
+include_list_expr: string_literal | loose_field_list | field_list | path_name
 include_name: / \{ "[^"]*" \} /
 aliased_item: (identifier | stock_symbol | symbol_item) ">" identifier
-field_item: aliased_item | identifier | stock_symbol | string_literal | symbol_item
+field_item: aliased_item | identifier | reserved_identifier | SECTION_WORD | WATCHLIST_REF | stock_symbol | string_literal | symbol_item
+loose_field_list: field_item+
+include_raw: INCLUDE_RAW
 declaration: date_declaration | include_list_declaration | normal_declaration
 parameters_declaration: parameter_range_declaration | parameter_list_declaration | date_declaration | include_list_declaration | normal_declaration
-parameter_range_declaration: qualified_name ":" _TAB? "from" NUMBER "to" NUMBER "step" NUMBER "def" NUMBER NEWLINE?
+parameter_range_declaration: qualified_name ":" _TAB? "from" NUMBER "to" NUMBER "step" NUMBER ("def" NUMBER)? NEWLINE?
 parameter_list_declaration: qualified_name ":" _TAB? NUMBER ("," NUMBER)* NEWLINE?
 date_declaration: date_identifier ":" _TAB? date_expr NEWLINE?
-include_list_declaration: /(?i)IncludeList:/ _TAB? include_list_expr include_name? NEWLINE?
+include_list_declaration: /(?i)IncludeList:/ _TAB? include_list_value include_name? NEWLINE?
+include_list_value: include_list_expr | include_raw
 normal_declaration: qualified_name ":" _TAB? expression NEWLINE?
-expression: logical_expr format_spec? CPP_COMMENT?
+expression: format_spec? logical_expr format_spec? CPP_COMMENT?
 format_spec: /\{%[^}]*\}/
 logical_expr: or_expr
 or_expr: and_expr ("or" and_expr)*
@@ -103,10 +113,14 @@ not_expr: NOT not_expr -> not_expr
         | comparison_expr
 comparison_expr: add_expr (comparison_op add_expr)*
 add_expr: mul_expr (add_op mul_expr)*
-mul_expr: indexed_expr (mul_op indexed_expr)*
+mul_expr: pow_expr (mul_op pow_expr)*
+pow_expr: indexed_expr ("^" pow_expr)?
 mul_op: "*" | "/"
 add_op: "+" | "-"
-indexed_expr: primary ("[" NUMBER "]")?
+indexed_expr: primary ("[" index_value "]")?
+index_value: sign? index_term (add_op index_term)*
+sign: "+" | "-"
+index_term: NUMBER | identifier | reserved_identifier
 primary: "(" expression ")" | base_expr
 base_expr: function_call | qualified_name | NUMBER | date_literal | boolean_literal | stock_symbol | string_literal | field_list | path_name | RESERVED_IDENTIFIER | WATCHLIST_REF  
 DATE_LITERAL.1: /\d{8}|\d{4}\/\d{2}\/\d{2}|\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{2}-[A-Za-z]{3}-\d{2,4}|\d{1,2}\/\d{1,2}\/\d{2,4}|\d{1,2}-\d{1,2}-\d{2,4}|\d{1,2}\.\d{1,2}\.\d{2,4}/
@@ -126,4 +140,4 @@ string_literal: /"[^"]*"/
 stock_symbol: /[$%](?:[$&])?[A-Za-z0-9_.@]+/
 path_literal: PATH_LITERAL
 
-_TAB: /\t/
+_TAB.5: /\t/

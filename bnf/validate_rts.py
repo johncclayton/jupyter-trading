@@ -29,7 +29,7 @@ def load_grammar(grammar_path_str="lark/realtest.lark"):
             grammar_content,
             start='start',
             parser='earley',
-            lexer='dynamic_complete',
+            lexer='dynamic',
         )
         print(f"✓ Grammar loaded successfully from {grammar_path}")
         return parser
