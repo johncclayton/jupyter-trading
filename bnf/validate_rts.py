@@ -25,9 +25,12 @@ def load_grammar(grammar_path_str="lark/realtest.lark"):
         with open(grammar_path, 'r', encoding='utf-8') as f:
             grammar_content = f.read()
         
-        parser = Lark(grammar_content, 
-                      start='start',
-                      parser='earley')
+        parser = Lark(
+            grammar_content,
+            start='start',
+            parser='earley',
+            lexer='dynamic_complete',
+        )
         print(f"✓ Grammar loaded successfully from {grammar_path}")
         return parser
     except Exception as e:
@@ -37,7 +40,7 @@ def load_grammar(grammar_path_str="lark/realtest.lark"):
 
 def find_rts_files():
     """Find all .rts files in the samples/ directory"""
-    samples_dir = Path("samples")
+    samples_dir = Path("..", "samples")
     if not samples_dir.exists():
         print(f"Error: Samples directory not found at {samples_dir}")
         sys.exit(1)
