@@ -12,4 +12,4 @@ Prerequisites:
 1. Use the venv called 'realtestextract' for all python scripts - if it does not exist it can be set up via tools/setup_realtest_env.sh or via tools/setup_realtest_env.ps1
 
 Behaviour:
-1. Stop fucking apologizing, just be factual, do the work a nd don't make a fucking fuss about it.  Apologize one more time and I'm gonna fucking fire your ass. 
+1. Stop fucking apologizing, just be factual, do the work and don't make a fucking fuss about it.  Apologize one more time and I'm gonna fucking fire your ass. 

@@ -1,0 +1,34 @@
+{
+  "watchlists": [
+    {
+      "name": "US Large Cap Core",
+      "description": "Flagship set of highly liquid US equities maintained by Norgate, aligns with the S&P 500 constituents.",
+      "symbol_count": 500,
+      "notes": "Updated monthly; includes historic constituent changes when used with Norgate Data." 
+    },
+    {
+      "name": "US Technology Leaders",
+      "description": "Top Nasdaq-listed technology shares, comparable to the Nasdaq-100 (NDX).",
+      "symbol_count": 100,
+      "notes": "Includes ADRs; excludes financials consistent with NDX methodology." 
+    },
+    {
+      "name": "US Mid Cap Growth",
+      "description": "Selection of 400 mid-cap growth stocks sourced from Norgate's Russell-style universe.",
+      "symbol_count": 400,
+      "notes": "Pairs well with breadth scans and rotational strategies." 
+    },
+    {
+      "name": "Global ADR Core",
+      "description": "Diversified collection of American Depositary Receipts spanning major regions.",
+      "symbol_count": 250,
+      "notes": "Includes liquidity filter; covers Europe, APAC, and LATAM." 
+    },
+    {
+      "name": "ASX 200",
+      "description": "Australian securities corresponding to the S&P/ASX 200 index.",
+      "symbol_count": 200,
+      "notes": "Requires Norgate Australia data package." 
+    }
+  ]
+}

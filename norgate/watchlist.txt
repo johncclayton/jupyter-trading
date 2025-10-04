@@ -1,0 +1,1767 @@
+Data Content Tables
+
+
+
+Price Data
+US Stock Market
+US Stock Market includes all major exchange listed securities, as sorted into 5 categories. Price & Volume reflects trading from all trading venues and ECNs. The Open is the first price from any venue/ECN. The Close is the price determined by the closing auction on the listing exchange. If there is no closing auction, the Close is the last price from any venue/ECN.
+
+The OTC add-on covers about 15,000 over-the-counter traded securities at any time.
+
+US Stock Market
+Equity
+Common shares and units, American Depositary Receipts
+Operating/Holding Companies
+Closed End Funds
+Business Development Companies
+Master Limited Partnerships
+Royalty Trusts
+Blank Check Companies [1]
+Liquidation Trusts
+Litigation Trusts
+Exchange Traded Products
+Exchange Traded Funds
+Exchange Traded Notes
+Exchange Traded Managed Funds
+Special Investment Products
+Debt
+Exchange Traded Debt Securities (PET Bonds)
+Hybrid
+Preference Shares
+Convertible Preference Shares
+Third-party Trust Preferred
+Convertible Notes
+Corporate Units
+Derivatives
+Warrants
+Rights
+OTC Market add-on
+OTC-QX
+OTC-QB
+Pink Sheet OTC
+Other OTC (Grey market)
+
+Show more
+Notes:
+[1] Includes Special Purpose Acquisition Companies (SPACs) Units and Common Shares
+
+US Delisted
+Delisted Stocks are included with a US Stock Market subscription at the Platinum or Diamond level.
+
+A security is only included in Delisted if it traded on a major exchange at some point in its history and is no longer tradeable. A security that has been relegated from a major exchange, but can still be traded on OTC, is not considered to be delisted. Such securities are included in a Platinum or Diamond subscription as currently-listed.
+
+The symbol for a delisted security has a year & month suffix indicating when the security last traded - e.g. ALOG-201806.
+
+US Stocks Delisted
+Included	Excluded
+Operating/Holding Companies
+Closed End Funds
+Business Development Companies
+Master Limited Partnerships
+Royalty Trusts
+Blank Check Companies [1]
+Exchange Traded Funds
+Exchange Traded Notes
+OTC-only Common Stocks
+Liquidation Trusts
+Litigation Trusts
+Special Investment Products
+Exchange Traded Debt Securities
+Preference Shares
+Convertible Preference Shares
+Third-party Trust Preferred
+Convertible Notes
+Corporate Units
+Warrants
+Rights
+Parallel-trading short-life "When Issued" Securities
+
+Show more
+Notes:
+There is no claim that the database for Delisted is "complete", especially with regard to the 1950s and early 1960s. It is, however, extensive, containing 25222 delisted securities from the start of 1950 to Sep 2022, and will continue to increase as additional securities are delisted.
+[1] Includes Special Purpose Acquisition Companies (SPACs) Units and Common Shares
+
+US Extras
+"US Extras" are included with a US Stock Market subscription at the Gold, Platinum or Diamond levels.
+
+Extras for US Stock Market (1/2)
+Cash Commodities	Economic [1]	Forex	Futures Continuous
+West Texas Intermediate Crude Oil Spot
+Chicago Fed National Activity Index
+ISM Purchasing Managers Index
+US Durable Goods New Orders
+US Housing Completions
+US Housing Starts
+US Industrial Production Index
+US Light Weight Vehicle Sales
+US Retail & Food Services Sales
+US Retail Sales
+US Total Construction Spending
+
+US Initial Jobless Claims
+US Non-Farm Payrolls
+US Unemployment Rate
+
+US Corporate Before Tax Profits
+US Current Account Balance
+US Gross Domestic Product
+US Real Personal Consumption Spending
+US Trade Balance of Payments
+
+S&P/Case Shiller Composite-20 Home Price Index
+US Consumer Price Index
+US Chained Consumer Price Index
+US Core Consumer Price Index
+US Existing Home Sales Median Price
+US Producer Price Index
+
+US M1 Money Stock
+US M2 Money Stock
+Chicago Fed National Financial Conditions Index
+Chicago Fed National Financial Conditions Credit SubIndex
+Chicago Fed National Financial Conditions Leverage SubIndex
+Chicago Fed National Financial Conditions Risk SubIndex
+
+30 Day Federal Funds Rate (Effective)
+US Bank Prime Loan Rate
+US 13-Week T. Bill Yield
+US 5-Year T. Note Yield
+US 10-Year T. Note Yield
+US 30-Year T. Bond Yield
+US 3-Month Treasury Constant Maturity Yield
+US 1-Year Treasury Constant Maturity Yield
+US 2-Year Treasury Constant Maturity Yield
+US 5-Year Treasury Constant Maturity Yield
+US 10-Year Treasury Constant Maturity Yield
+US 30-Year Treasury Constant Maturity Yield
+US 30-Year Fixed Rate Mortgage Average Rate
+Moody's Seasoned Corporate Bonds AAA Yield
+Moody's Seasoned Corporate Bonds BAA Yield
+Dow Jones Equal Weight US Corporate Bond Total Return Index
+S&P 500 Investment Grade Corporate Bond Total Return Index
+S&P US Aggregate Bond Total Return Index
+S&P US Treasury Bill/Bond Total Return series (13 indices)
+ICE BofA CCC & Lower US High Yield Index OAS
+ICE BofAML MOVE Index
+Gold/U.S. Dollar Spot Rate
+Silver/U.S. Dollar Spot Rate
+U.S. Dollar/Australian Dollar Spot Rate
+U.S. Dollar/Brazilian Real Spot Rate
+U.S. Dollar/British Pound Spot Rate
+U.S. Dollar/Canadian Dollar Spot Rate
+U.S. Dollar/Chilean Peso Spot Rate
+U.S. Dollar/Chinese Yuan Spot Rate
+U.S. Dollar/Czech Koruna Spot Rate
+U.S. Dollar/Danish Krone Spot Rate
+U.S. Dollar/Euro Spot Rate
+U.S. Dollar/Hong Kong Dollar Spot Rate
+U.S. Dollar/Hungarian Forint Spot Rate
+U.S. Dollar/Indian Rupee Spot Rate
+U.S. Dollar/Israeli Shekel Spot Rate
+U.S. Dollar/Japanese Yen Spot Rate
+U.S. Dollar/Malaysian Ringgit Spot Rate
+U.S. Dollar/Mexican Peso Spot Rate
+U.S. Dollar/New Zealand Dollar Spot Rate
+U.S. Dollar/Norwegian Krone Spot Rate
+U.S. Dollar/Polish Zloty Spot Rate
+U.S. Dollar/Russian Ruble Spot Rate
+U.S. Dollar/Singapore Dollar Spot Rate
+U.S. Dollar/South African Rand Spot Rate
+U.S. Dollar/South Korean Won Spot Rate
+U.S. Dollar/Swedish Kronor Spot Rate
+U.S. Dollar/Swiss Franc Spot Rate
+U.S. Dollar/Taiwan Dollar Spot Rate
+U.S. Dollar/Turkish Lira Spot Rate
+E-mini S&P 500 Continuous Futures
+
+Show more
+
+
+Extras for US Stock Market (2/2)
+Market Breadth & Other Indicators
+Nasdaq, NYSE and NYSE American [2] Exchanges	Chicago Board Options Exchange	DJIA, Nasdaq 100, Nasdaq Composite, NYSE Composite, S&P 100/500/400/600/1500 + Russell 1k/2k/3k Indices
+Arms Index (TRIN)
+Advancing Issues along with Advancing Volume
+Declining Issues along with Declining Volume
+Unchanged Issues along with Unchanged Volume
+Advance/Decline Ratio
+Advance/Decline Volume Ratio
+Cumulative Advance-Decline Line
+New Highs
+New Lows
+Cumulative New Highs-New Lows Line
+Cboe Equity Options Put/Call Ratio
+Cboe Index Options Put/Call Ratio
+Cboe Total Options Put/Call Ratio
+Cboe S&P 500 Index Options Put/Call Ratio
+Arms Index (TRIN)
+Advancing Issues along with Advancing Volume
+Declining Issues along with Declining Volume
+Unchanged Issues along with Unchanged Volume
+Advance/Decline Ratio
+
+Cumulative Advance-Decline Line
+4/13/26/52 Week New Highs
+4/13/26/52 Week New Lows
+Cumulative 4/13/26/52 Week New Highs-New Lows Line
+% Stocks above their 20/50/100/150/200 day Moving Average
+Average Bollinger Band %B
+Cumulative Bollinger Band %B
+Average Williams %R
+Cumulative Williams %R (Normalized) Line
+Coppock Indicator
+Intermediate-Term Breadth Momentum Oscillator
+McClellan Oscillator
+McClellan Summation
+McClellan Volume Oscillator
+Swenlin Trading Oscillator
+Zweig Breadth Thrust
+
+Show more
+
+Notes:
+[1] Many figures that track economic activity are published initially as estimates and then subsequently revised. Our updates to a time series include any revisions (the entire series is refreshed).
+[2] For NYSE and NYSE American exchanges, volume is primary exchange volume to maintain historical consistency.
+
+AU Stock Market
+AU Stock Market includes all ASX-listed securities, as sorted into 5 categories. The ASX Derivatives add-on covers Exchange Traded Options and Warrants. Price & Volume are as reported by the Australian Securities Exchange (ASX).
+
+AU Stock Market
+Equity
+Fully-paid ordinary shares & units, partly-paid shares, stapled securities, Chess Depositary Interests
+Operating Companies
+Listed Investment Companies
+Pooled Development Funds
+Exchange Traded Products
+Exchange Traded Funds
+Other Exchange Traded Products
+Debt
+AUSGOV Treasury Bonds
+Floating Rate Notes
+Unsecured Notes
+Hybrid
+Preference Shares
+Convertible Preference Shares
+Convertible Notes
+Derivatives
+Company Options
+Rights
+ASX Derivatives Market add-on
+Call Options
+Put Options
+Low Exercise Price Options
+Call Warrants
+Put Warrants
+High Denomination Warrants
+
+Show more
+
+
+AU Delisted
+Delisted stocks are included with an AU Stock Market subscription at the Platinum level.
+
+The symbol for a delisted security has a year & month suffix indicating when the security last traded - e.g. ONE-200105.au
+
+AU Stocks Delisted
+Included	Excluded
+Operating Companies
+Listed Investment Companies
+Pooled Development Funds
+Exchange Traded Funds
+Other Exchange Traded Products
+Debt
+Hybrid
+Company Options
+Rights
+ASX Derivatives
+
+
+AU Extras
+"AU Extras" are included with an AU Stock Market subscription at the Gold or Platinum level.
+
+Extras for AU Stock Market (1/2)
+Cash Commodities	Economic	Forex	Futures Continuous
+West Texas Intermediate Crude Oil Spot
+West Texas Intermediate Crude Oil Spot (AUD)
+Palladium - London PM Fix
+Palladium - London PM Fix (AUD)
+Platinum - London PM Fix
+Platinum - London PM Fix (AUD)
+Iron Ore CFR China 62% Fe Spot
+Iron Ore CFR China 62% Fe Spot (AUD)
+Thermal Coal Spot
+Thermal Coal Spot (AUD)
+Uranium Spot
+Uranium Spot (AUD)
+Aluminium - LME Offical Cash
+Aluminium - LME Offical Cash (AUD)
+Copper - LME Offical Cash
+Copper - LME Offical Cash (AUD)
+Lead - LME Offical Cash
+Lead - LME Offical Cash (AUD)
+Nickel- LME Offical Cash
+
+Nickel - LME Offical Cash (AUD)
+Tin - LME Offical Cash
+Tin - LME Offical Cash (AUD)
+Zinc - LME Offical Cash
+
+Zinc - LME Offical Cash (AUD)
+RBA Commodity Prices Index (AUD)
+RBA Commodity Prices Index (USD)
+RBA Base Metals Sub-Index (AUD)
+RBA Base Metals Sub-Index (USD)
+RBA Bulk Commodities Sub-Index (AUD)
+RBA Bulk Commodities Sub-Index (USD)
+RBA Non-Rural Commodities Prices Sub-Index (AUD)
+RBA Non-Rural Commodities Prices Sub-Index (USD)
+RBA Rural Commodities Prices Sub-Index (AUD)
+RBA Rural Commodities Prices Sub-Index (USD)
+AU Building Approvals Total
+AU Unemployment Rate
+AU Current Account Balance
+AU Gross Domestic Product Rate
+AU Inflation Rate
+Reserve Bank of Australia Cash Rate (Target)
+Reserve Bank of Australia Cash Rate Total Return Index
+AU 2-Year Government Bond Yield
+AU 3-Year Government Bond Yield
+AU 5-Year Government Bond Yield
+AU 10-Year Government Bond Yield
+Government Bond Total Return Index
+Commonwealth Government Bond Total Return Index
+State Government Bond Total Return Index
+Supranational and Sovereign Bond Total Return Index
+Corporate Bond Total Return Index
+Corporate Bond A Rating Total Return Index
+Corporate Bond AA Rating Total Return Index
+Corporate Bond BBB Rating Total Return Index
+Australian Fixed Interest Total Return Index
+Australian Fixed Interest A Rating Total Return Index
+Australian Fixed Interest AA Rating Total Return Index
+Australian Fixed Interest AAA Rating Total Return Index
+Australian Fixed Interest BBB Rating Total Return Index
+Australian Fixed Interest 10-15 Year Total Return Index
+Australian Fixed Interest 10 Year+ Total Return Index
+Australian Dollar/British Pound Spot Rate
+Australian Dollar/Canadian Dollar Spot Rate
+Australian Dollar/Euro Spot Rate
+Australian Dollar/Hong Kong Dollar Spot Rate
+Australian Dollar/Japanese Yen Spot Rate
+Australian Dollar/New Zealand Dollar Spot Rate
+Australian Dollar/South African Rand Spot Rate
+Australian Dollar/Swiss Franc Spot Rate
+Australian Dollar/U.S. Dollar Spot Rate
+Gold/U.S. Dollar Spot Rate
+Gold/Australian Dollar Spot Rate
+Silver/U.S. Dollar Spot Rate
+Silver/Australian Dollar Spot Rate
+ASX SPI 200 Continuous Futures
+
+Show more
+
+
+Extras for AU Stock Market (2/2)
+Market Breadth & Other Indicators
+ASX	All Ordinaries + S&P ASX 50/100/200/300 Indices
+Arms Index (TRIN)
+Advancing Issues along with Advancing Volume
+Declining Issues along with Declining Volume
+Unchanged Issues along with Unchanged Volume
+Advance/Decline Ratio
+Advance/Decline Volume Ratio
+Cumulative Advance-Decline Line
+New Highs
+New Lows
+Cumulative New Highs-New Lows Line
+Arms Index (TRIN)
+Advancing Issues along with Advancing Volume
+Declining Issues along with Declining Volume
+Unchanged Issues along with Unchanged Volume
+Advance/Decline Ratio
+
+Cumulative Advance-Decline Line
+4/13/26/52 Week New Highs
+4/13/26/52 Week New Lows
+Cumulative 4/13/26/52 Week New Highs-New Lows Line
+% Stocks above their 20/50/100/150/200 day Moving Average
+Average Bollinger Band %B
+Cumulative Bollinger Band %B
+Average Williams %R
+Cumulative Williams %R (Normalized) Line
+Coppock Indicator
+Intermediate-Term Breadth Momentum Oscillator
+McClellan Oscillator
+McClellan Summation
+McClellan Volume Oscillator
+Swenlin Trading Oscillator
+Zweig Breadth Thrust
+
+Show more
+
+
+CA Stock Market
+CA Stock Market includes all securities listed for trading on TSX, TSX-V, TSX-V NEX, CSE and Neo, as sorted into 5 categories. Price & Volume reflects consolidated tape trading from all trading venues and ECNs. The Open is the first price from any venue/ECN. The Close is the price determined by the closing auction on the listing exchange. If there is no closing auction, the Close is the last price from any venue/ECN.
+
+CA Stock Market
+Equity
+Common stocks & units, Canadian Depositary Receipts
+Operating/Holding Companies
+Closed-End Funds
+Master Limited Partnerships
+Blank Check Companies [1]
+Exchange Traded Products
+Exchange Traded Funds
+Other Exchange Traded Products
+Debt
+Exchange Traded Debt Securities
+Hybrid
+Preference Shares
+Convertible Preference Shares
+Convertible Notes
+Corporate Units
+Derivatives
+Warrants
+Rights
+
+Show more
+Notes:
+[1] Includes Special Purpose Acquisition Companies (SPACs) Units and Common Shares, and Capital Pool Companies.
+
+CA Delisted
+Delisted stocks are included with an CA Stock Market subscription at the Platinum level.
+
+The symbol for a delisted Canadian security has a year & month suffix indicating when the security last traded- e.g. A-200710.ca
+
+CA Stocks Delisted
+Included	Excluded
+Operating/Holding Companies
+Canadian Depositary Receipts
+Closed-End Funds
+Exchange Traded Funds
+Master Limited Partnerships
+Blank Check Companies [1]
+Exchange Traded Funds
+Exchange Traded Debt Securities
+Preference Shares
+Convertible Preference Shares
+Convertible Notes
+Corporate Units
+Warrants
+Rights
+Other Exchange Traded Products
+Notes:
+[1] Includes Special Purpose Acquisition Companies (SPACs) Units and Common Shares, and Capital Pool Companies.
+
+CA Extras
+"CA Extras" are included with a CA Stock Market subscription at the Gold or Platinum level.
+
+Extras for CA Stock Market (1/2)
+Cash Commodities	Economic	Forex	Futures Continuous
+West Texas Intermediate Crude Oil Spot
+West Texas Intermediate Crude Oil Spot (CAD)
+Palladium - London PM Fix
+Palladium - London PM Fix (CAD)
+Platinum - London PM Fix
+Platinum - London PM Fix (CAD)
+Iron Ore CFR China 62% Fe Spot
+Iron Ore CFR China 62% Fe Spot (CAD)
+Thermal Coal Spot
+Thermal Coal Spot (CAD)
+Uranium Spot
+Uranium Spot (CAD)
+Aluminium - LME Offical Cash
+Aluminium - LME Offical Cash (CAD)
+Copper - LME Offical Cash
+Copper - LME Offical Cash (CAD)
+Lead - LME Offical Cash
+Lead - LME Offical Cash (CAD)
+Nickel- LME Offical Cash
+
+Nickel - LME Offical Cash (CAD)
+Tin - LME Offical Cash
+Tin - LME Offical Cash (CAD)
+Zinc - LME Offical Cash
+
+Zinc - LME Offical Cash (CAD)
+CA 3-month T. Bill Yield
+CA 2-Year Government Bond Yield
+CA 3-Year Government Bond Yield
+CA 5-Year Government Bond Yield
+CA 10-Year Government Bond Yield
+Bank of Canada Cash Rate Target
+S&P Canada Aggregate Bond Total Return Index
+CA Residential Building Permits
+CA Current Account Balance
+CA Inflation Rate
+CA Gross Domestic Product Rate
+CA Unemployment Rate
+Canadian Dollar/Australian Dollar Spot Rate
+Canadian Dollar/British Pound Spot Rate
+Canadian Dollar/Euro Spot Rate
+Canadian Dollar/Hong Kong Dollar Spot Rate
+Canadian Dollar/Japanese Yen Spot Rate
+Canadian Dollar/New Zealand Dollar Spot Rate
+Canadian Dollar/South African Rand Spot Rate
+Canadian Dollar/Swiss Franc Spot Rate
+Canadian Dollar/U.S. Dollar Spot Rate
+Gold/U.S. Dollar Spot Rate
+Gold/Canadian Dollar Spot Rate
+Silver/U.S. Dollar Spot Rate
+Silver/Canadian Dollar Spot Rate
+S&P/TSX 60 Continuous Futures
+
+Show more
+
+
+Extras for CA Stock Market (2/2)
+Market Breadth & Other Indicators
+S&P/TSX 60/Completion/SmallCap/Composite Indices
+Arms Index (TRIN)
+Advancing Issues along with Advancing Volume
+Declining Issues along with Declining Volume
+Unchanged Issues along with Unchanged Volume
+Advance/Decline Ratio
+
+Cumulative Advance-Decline Line
+4/13/26/52 Week New Highs
+4/13/26/52 Week New Lows
+Cumulative 4/13/26/52 Week New Highs-New Lows Line
+% Stocks above their 20/50/100/150/200 day Moving Average
+Average Bollinger Band %B
+Cumulative Bollinger Band %B
+Average Williams %R
+Cumulative Williams %R (Normalized) Line
+Coppock Indicator
+Intermediate-Term Breadth Momentum Oscillator
+McClellan Oscillator
+McClellan Summation
+McClellan Volume Oscillator
+Swenlin Trading Oscillator
+Zweig Breadth Thrust
+
+Show more
+
+
+World Indices
+World Indices are included along with any stock market subscription.
+
+World Indices
+Stock Market Indices
+Region	Country	Index
+Americas	Brazil	Bovespa
+Canada	S&P/TSX 60
+S&P/TSX Composite
+U.S.A.	Cboe Volatility
+Dow Jones Industrial
+Nasdaq 100
+Nasdaq Composite
+NYSE Composite
+Russell 1000
+Russell 2000
+S&P 100
+S&P MidCap 400
+S&P 500
+Mexico	Mexico IPC
+Asia/Pacific	Australia	S&P/ASX 200
+China	FTSE China 50
+FTSE China A50
+Hang Seng
+Shanghai Composite
+India	BSE Sensex 50
+CNX Nifty
+Japan	Nikkei 225
+Singapore	StraitsTimes
+MSCI Singapore
+South Korea	KOSPI 200
+Taiwan	MSCI Taiwan
+EMEA	France	CAC 40
+Germany	DAX 30
+TecDax
+Italy	FTSE MIB
+Russia	RTS Index
+Spain	IBEX 35
+Switzerland	Swiss Market
+U.K.	FTSE 100
+Nordic Countries	OMX Nordic 40
+Developed Europe	FTSE Eurofirst 300
+Eurozone	Euro STOXX 50
+South Africa	Dow Jones South Africa
+Global	Dow Jones Global
+Dow Jones Global ex-U.S.
+S&P Global 100
+Commodity Indices
+Bloomberg Commodity
+Bloomberg Agriculture
+Bloomberg Energy
+Bloomberg ex-Energy
+Bloomberg Grains
+Bloomberg Industrial Metals
+Bloomberg Livestock
+Bloomberg Petroleum
+Bloomberg Precious Metals
+Bloomberg Softs
+S&P GSCI
+Currency Indices
+US Dollar
+
+Show more
+
+
+Cash Commodities
+Cash Commodities are included with a Futures subscription.
+
+Market	Notes	History Start Date
+Broad Indices
+Bloomberg Commodity Index	2 Jan 1991
+Bloomberg Commodity Index Total Return	2 Jan 1991
+Bloomberg Ex-Energy Sub-Index	2 Jan 1991
+RBA Bulk Commodities Sub-Index (AUD)	1 Jul 1982
+RBA Bulk Commodities Sub-Index (USD)	1 Jul 1982
+RBA Commodity Prices Index (AUD)	1 Jul 1982
+RBA Commodity Prices Index (USD)	1 Jul 1982
+RBA Non-Rural Commodities Prices Sub-Index (AUD)	1 Jul 1982
+RBA Non-Rural Commodities Prices Sub-Index (USD)	1 Jul 1982
+S&P GSCI Index	2 Jan 1970
+S&P GSCI Total Return Index	2 Jan 1970
+S&P GSCI Select Equal Weight Spot Index	24 May 2010
+S&P GSCI Select Equal Weight Total Return Index	3 Aug 2009
+Refinitiv/CoreCommodity CRB Index	3 Jan 1994
+Agriculture
+Bloomberg Agriculture Sub-Index	2 Jan 1991
+Bloomberg Grains Sub-Index	2 Jan 1991
+Bloomberg Livestock Sub-Index	2 Jan 1991
+Bloomberg Softs Sub-Index	2 Jan 1991
+RBA Rural Commodities Prices Sub-Index (AUD)	1 Jul 1982
+RBA Rural Commodities Prices Sub-Index (USD)	1 Jul 1982
+CME Feeder Cattle Index	One day delay	1 Jan 2001
+CME Lean Hogs Index	Two day delay	2 Nov 1995
+Corn #2 Yellow Central Illinois Average Price	US Dollars per bushel	2 Feb 1987
+Soybeans #1 Yellow Central Illinois Average Price	US Dollars per bushel	2 Feb 1987
+Energy
+Bloomberg Energy Sub-Index	2 Jan 1991
+Bloomberg Petroleum Sub-Index	2 Jan 1991
+Brent Crude Europe FOB	US Dollars per barrel. Six day delay	20 May 1987
+Heating Oil	US Dollars per gallon	2 Jun 1986
+Henry Hub Natural Gas	US Dollars per million BTUs (British Thermal Units)	12 Aug 1991
+RBOB Gasoline	US Dollars per gallon	12 Oct 2006
+Thermal Coal	Updated on a weekly basis - US Dollars per metric tonne	21 Feb 2000
+Thermal Coal (AUD)	Updated on a weekly basis	21 Feb 2000
+Thermal Coal (CAD)	Updated on a weekly basis	21 Feb 2000
+Uranium	Updated on a weekly basis - US Dollars per pound	29 Feb 1988
+Uranium (AUD)	Updated on a weekly basis	2 Jan 1991
+Uranium (CAD)	Updated on a weekly basis	1 Jul 1993
+West Texas Intermediate Crude Oil	US Dollars per barrel	30 Mar 1983
+West Texas Intermediate Crude Oil (AUD)	2 Jan 1991
+West Texas Intermediate Crude Oil (CAD)	1 Jul 1993
+Industrial Metals
+Bloomberg Industrial Metals Sub-Index	2 Jan 1991
+LMEX Index	Index of the 6 primary LME base metals	2 Jul 1984
+RBA Base Metals Sub-Index (AUD)	1 Jul 1982
+RBA Base Metals Sub-Index (USD)	1 Jul 1982
+Aluminium - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Aluminium - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Aluminium - LME Official Cash (AUD)	1 Jul 1993
+Aluminium - LME Official Cash (CAD)	1 Jul 1993
+Aluminium - LME Warehouse Opening Stocks	6 Jan 1998
+Aluminium Alloy - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Aluminium Alloy - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Aluminium Alloy - LME Warehouse Opening Stocks	13 Mar 2002
+Aluminium Alloy (NASAAC) - LME Official Cash	US Dollars per metric tonne	7 Mar 2002
+Aluminium Alloy (NASAAC) - LME 03 Months Seller	US Dollars per metric tonne	7 Mar 2002
+Aluminium Alloy (NASAAC) - LME Warehouse Opening Stocks	1 May 2002
+Cobalt - LME 03 Months Seller	US Dollars per metric tonne	22 Feb 2010
+Cobalt - LME 15 Months Seller	US Dollars per metric tonne	22 Feb 2010
+Cobalt - LME Official Cash	US Dollars per metric tonne	19 May 2010
+Cobalt - LME Warehouse Opening Stocks	5 May 2010
+Copper - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Copper - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Copper - LME Official Cash (AUD)	1 Jul 1993
+Copper - LME Official Cash (CAD)	1 Jul 1993
+Copper - LME Warehouse Opening Stocks	6 Jan 1998
+Iron Ore CFR China 62% Fe	US Dollars per metric tonne	17 Nov 2008
+Iron Ore CFR China 62% Fe (AUD)	17 Nov 2008
+Iron Ore CFR China 62% Fe (CAD)	4 Jan 2000
+Lead - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Lead - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Lead - LME Official Cash (AUD)	1 Jul 1993
+Lead - LME Official Cash (CAD)	1 Jul 1993
+Lead - LME Warehouse Opening Stocks	6 Jan 1998
+Nickel - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Nickel - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Nickel - LME Official Cash (AUD)	1 Jul 1993
+Nickel - LME Official Cash (CAD)	1 Jul 1993
+Nickel - LME Warehouse Opening Stocks	6 Jan 1998
+Tin - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Tin - LME 15 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Tin - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Tin - LME Official Cash (AUD)	1 Jul 1993
+Tin - LME Official Cash (CAD)	1 Jul 1993
+Tin - LME Warehouse Opening Stocks	6 Jan 1998
+Zinc - LME 03 Months Seller	US Dollars per metric tonne	1 Jul 1993
+Zinc - LME Official Cash	US Dollars per metric tonne	1 Jul 1993
+Zinc - LME Official Cash (AUD)	1 Jul 1993
+Zinc - LME Official Cash (CAD)	1 Jul 1993
+Zinc - LME Warehouse Opening Stocks	6 Jan 1998
+Precious Metals
+Bloomberg Precious Metals Sub-Index	2 Jan 1991
+Gold - London PM Fix	US Dollars per troy ounce	1 Apr 1968
+Gold/Silver Ratio		1 Apr 1968
+Palladium - London PM Fix	US Dollars per troy ounce	2 Apr 1990
+Palladium - London PM Fix (AUD)	2 Jan 1991
+Palladium - London PM Fix (CAD)	1 Jul 1993
+Platinum - London PM Fix	US Dollars per troy ounce	2 Apr 1990
+Platinum - London PM Fix (AUD)	2 Jan 1991
+Platinum - London PM Fix (CAD)	1 Jul 1993
+Silver - London Fix	US Cents per troy ounce	2 Jan 1968
+
+Show more
+
+
+Forex [1]
+Name	Paramter	History Start Date
+Primary Exchange Rates [2]
+Australian Dollar/British Pound	AUDGBP	2 Jan 1991
+Australian Dollar/Canadian Dollar	AUDCAD	2 Jan 1991
+Australian Dollar/Hong Kong Dollar	AUDHKD	2 Jan 1991
+Australian Dollar/Japanese Yen	AUDJPY	2 Jan 1991
+Australian Dollar/New Zealand Dollar	AUDNZD	2 Jan 1991
+Australian Dollar/Singapore Dollar	AUDSGD	2 Jan 1991
+Australian Dollar/South African Rand	AUDZAR	2 Jan 1991
+Australian Dollar/Swiss Franc	AUDCHF	2 Jan 1991
+Australian Dollar/United States Dollar	AUDUSD	2 Jan 1991
+Canadian Dollar/Swiss Franc	CADCHF	2 Jan 1991
+British Pound/Canadian Dollar	GBPCAD	2 Jan 1991
+British Pound/Hong Kong Dollar	GBPHKD	2 Jan 1991
+British Pound/Japanese Yen	GBPJPY	2 Jan 1991
+British Pound/Mexican Peso	GBPMXN	2 Jan 1991
+British Pound/New Zealand Dollar	GBPNZD	2 Jan 1991
+British Pound/Singapore Dollar	GBPSGD	2 Jan 1991
+British Pound/South African Rand	GBPZAR	2 Jan 1991
+British Pound/Swiss Franc	GBPCHF	2 Jan 1991
+British Pound/United States Dollar	GBPUSD	2 Jan 1991
+Canadian Dollar/Japanese Yen	CADJPY	2 Jan 1991
+Euro/Australian Dollar	EURAUD	4 Jan 1999
+Euro/British Pound	EURGBP	4 Jan 1999
+Euro/Canadian Dollar	EURCAD	4 Jan 1999
+Euro/Danish Krone	EURDKK	4 Jan 1999
+Euro/Hong Kong Dollar	EURHKD	4 Jan 1999
+Euro/Hungarian Forint	EURHUF	4 Jan 1999
+Euro/Indian Rupee	EURINR	4 Jan 1999
+Euro/Japanese Yen	EURJPY	4 Jan 1999
+Euro/Malaysian Ringgit	EURMYR	4 Jan 1999
+Euro/Mexican Peso	EURMXN	4 Jan 1999
+Euro/New Zealand Dollar	EURNZD	4 Jan 1999
+Euro/Norwegian Krone	EURNOK	4 Jan 1999
+Euro/Polish Zloty	EURPLN	4 Jan 1999
+Euro/Singapore Dollar	EURSGD	4 Jan 1999
+Euro/South African Rand	EURZAR	4 Jan 1999
+Euro/Swedish Kronor	EURSEK	4 Jan 1999
+Euro/Swiss Franc	EURCHF	4 Jan 1999
+Euro/Taiwan Dollar	EURTWD	4 Jan 1999
+Euro/United States Dollar	EURUSD	4 Jan 1999
+Japanese Yen/New Zealand Dollar	JPYNZD	2 Jan 1991
+Swiss Franc/Japanese Yen	CHFJPY	2 Jan 1991
+United States Dollar/Brazilian Real	USDBRL	4 Jul 1994
+United States Dollar/Canadian Dollar	USDCAD	2 Jan 1991
+United States Dollar/Chilean Peso	USDCLP	2 Jan 1991
+United States Dollar/Chinese Yuan	USDCNY	4 Jan 1994
+United States Dollar/Danish Krone	USDDKK	2 Jan 1991
+United States Dollar/Hong Kong Dollar	USDHKD	2 Jan 1991
+United States Dollar/Hungarian Forint	USDHUF	15 Jun 1993
+United States Dollar/Indian Rupee	USDINR	2 Jan 1991
+United States Dollar/Israeli Shekel	USDILS	2 Jan 1991
+United States Dollar/Japanese Yen	USDJPY	2 Jan 1991
+United States Dollar/Malaysian Ringgit	USDMYR	2 Jan 1991
+United States Dollar/Mexican Peso	USDMXN	11 Jul 1994
+United States Dollar/New Zealand Dollar	USDNZD	2 Jan 1991
+United States Dollar/Norwegian Krone	USDNOK	2 Jan 1991
+United States Dollar/Polish Zloty	USDPLN	15 Jun 1993
+United States Dollar/Russian Rouble	USDRUB	7 Sep 1994
+United States Dollar/Singapore Dollar	USDSGD	2 Jan 1991
+United States Dollar/South African Rand	USDZAR	23 Dec 1992
+United States Dollar/South Korean Won	USDKRW	2 Jan 1991
+United States Dollar/Swedish Kronor	USDSEK	2 Jan 1991
+United States Dollar/Swiss Franc	USDCHF	2 Jan 1991
+United States Dollar/Taiwan Dollar	USDTWD	2 Jan 1991
+United States Dollar/Turkish Lira	USDTRY	2 Jan 1991
+Gold & Silver
+Gold/Australian Dollar	XAUAUD	1 Jul 1982
+Gold/British Pound	XAUGBP	1 Jul 1982
+Gold/Canadian Dollar	XAUCAD	1 Jul 1982
+Gold/Euro	XAUEUR	1 Jul 1982
+Gold/Japanese Yen	XAUJPY	1 Jul 1982
+Gold/Swiss Franc	XAUCHF	1 Jul 1982
+Gold/United States Dollar	XAUUSD	1 Jul 1982
+Silver/Australian Dollar	XAGAUD	1 Jul 1982
+Silver/British Pound	XAGGBP	1 Jul 1982
+Silver/Canadian Dollar	XAGCAD	1 Jul 1982
+Silver/Euro	XAGEUR	1 Jul 1982
+Silver/Japanese Yen	XAGJPY	1 Jul 1982
+Silver/Swiss Franc	XAGCHF	1 Jul 1982
+Silver/United States Dollar	XAGUSD	1 Jul 1982
+Cryptocurrencies
+Bitcoin/United States Dollar	BTCUSD	18 Aug 2011
+Ethereum/United States Dollar	ETHUSD	16 Aug 2017
+Ripple/United States Dollar	XRPUSD	12 Feb 2018
+Currency Indices
+Australian Dollar Trade Weighted Index	$AUDTWI	13 Dec 1983
+Dow Jones FXCM Yen Index	$DJFXJPY	22 Jan 2007
+ICE Euro FX Index	$ICEEX	7 Jul 2016
+S&P Cryptocurrency Broad Digital Market (USD) Index	$SPCBDM	28 Feb 2017
+S&P Cryptocurrency BDM Ex-MegaCap (USD) Index	$SPCBXM	28 Feb 2017
+S&P Cryptocurrency MegaCap (USD) Index [3]	$SPCMC	28 Feb 2017
+US Dollar Index	$USDX	4 Jan 1971
+
+Show more
+
+Notes:
+[1] Data is not provided for weekends, whether for foreign exchange or cryptocurrencies.
+[2] For each Primary Rate, the inverse rate (or "flip") is also provided.
+[3] The S&P Cryptocurrency MegaCap (USD) Index measures the performance of Bitcoin and Ethereum combined.
+
+Futures
+The symbols shown are for individual contracts. Continuous contracts are also provided for each market.
+
+For continuous contracts, the Volume and Open Interest figures are for the total market (and not just for the current contract).
+
+Click here to download a spreadsheet showing contract details.
+
+Market	First Contract	History Start Date	Symbol	Session
+Australian Securities Exchange (ex-SFE)
+ASX SPI 200	Mar 1983	16 Feb 1983	YAP	All Sessions Combined
+YAP4	Day
+Mar 1992	3 Jan 1992	YAP10	Night
+ASX 30 Day Interbank Cash Rate	Sep 2003	12 Aug 2003	YIB	All Sessions Combined
+YIB4	Day
+ASX 90 Day Bank Accepted Bills	Mar 1991	10 Mar 1989	YIR	All Sessions Combined
+YIR4	Day
+ASX 10 Year Treasury Bond	Mar 1985	5 Dec 1984	YXT	All Sessions Combined
+YXT4	Day
+ASX 3 Year Treasury Bond	Jun 1988	17 May 1988	YYT	All Sessions Combined
+YYT4	Day
+Eastern Australia Feed Barley	Nov 2003	1 Jul 2003	AFB	All Sessions Combined
+Eastern Australia Wheat	Jan 2004	20 May 2003	AWM	All Sessions Combined
+Cboe Futures Exchange
+Cboe Volatility Index	May 2004	26 Mar 2004	VX	All Sessions Combined
+CME Group (ex-CBOT markets)
+30 Day Federal Funds	Oct 1988	3 Oct 1988	ZQ	All Sessions Combined
+2-Year U.S. T-Note	Sep 1990	22 Jun 1990	ZT	All Sessions Combined
+5-Year U.S. T-Note	Jun 1988	20 May 1988	ZF	All Sessions Combined
+10-Year U.S. T-Note	Jun 1982	3 May 1982	ZN	All Sessions Combined
+Ultra 10-Year U.S. T-Note	Mar 2016	11 Jan 2016	TN	All Sessions Combined
+U.S. T-Bond	Mar 1980	6 Mar 1978	ZB	All Sessions Combined
+Ultra U.S. T-Bond	Mar 2010	11 Jan 2010	UB	All Sessions Combined
+Corn	Mar 1979	4 Jan 1978	ZC	All Sessions Combined
+E-mini Dow	Jun 2002	5 Apr 2002	YM	All Sessions Combined
+Micro E-mini Dow	Jun 2019	6 May 2019	MYM	All Sessions Combined
+Oats	Mar 1979	26 Apr 1978	ZO	All Sessions Combined
+Rough Rice	Nov 1986	20 Aug 1986	ZR	All Sessions Combined
+Soybean	Jan 1979	21 Nov 1977	ZS	All Sessions Combined
+Soybean Meal	Jan 1979	25 Jan 1978	ZM	All Sessions Combined
+Soybean Oil	Jan 1979	17 Jan 1978	ZL	All Sessions Combined
+Chicago SRW Wheat	Mar 1979	5 Jan 1978	ZW	All Sessions Combined
+CME Group (ex-CME markets)
+Australian Dollar	Mar 1987	13 Jan 1987	6A	All Sessions Combined
+British Pound	Mar 1980	20 Mar 1979	6B	All Sessions Combined
+Euro FX	Mar 1999	4 Jan 1999	6E	All Sessions Combined
+Canadian Dollar	Mar 1980	5 Mar 1979	6C	All Sessions Combined
+Japanese Yen	Mar 1980	1 May 1979	6J	All Sessions Combined
+Mexican Peso	Jun 1995	25 Apr 1995	6M	All Sessions Combined
+New Zealand Dollar	Mar 2007	19 Sep 2005	6N	All Sessions Combined
+Swiss Franc	Mar 1980	20 Mar 1979	6S	All Sessions Combined
+Bitcoin	Jan 2018	18 Dec 2017	BTC	All Sessions Combined
+Micro Bitcoin	May 2021	3 May 2021	MBT	All Sessions Combined
+Ether	Feb 2021	8 Feb 2021	ETH	All Sessions Combined
+Micro Ether	Dec 2021	6 Dec 2021	MET	All Sessions Combined
+3-Month SOFR	June 2018	7 May 2018	SR3	All Sessions Combined
+E-mini Russell 2000	Dec 2001	23 Oct 2001	RTY	All Sessions Combined
+Micro E-mini Russell 2000	Jun 2019	6 May 2019	M2K	All Sessions Combined
+E-mini S&P 500	Dec 1997	9 Sep 1997	ES	All Sessions Combined
+Micro E-mini S&P 500	Jun 2019	6 May 2019	MES	All Sessions Combined
+E-mini S&P Midcap 400	Mar 2002	28 Jan 2002	EMD	All Sessions Combined
+E-mini Nasdaq 100	Sep 1999	12 Jul 1999	NQ	All Sessions Combined
+Micro E-mini Nasdaq 100	Jun 2019	6 May 2019	MNQ	All Sessions Combined
+Nikkei 225 Dollar	Dec 1990	25 Sep 1990	NKD	All Sessions Combined
+Nikkei 225 Yen	Mar 2004	23 Feb 2004	NKY	All Sessions Combined
+S&P GSCI	Jul 1996	15 Apr 1996	GD	All Sessions Combined
+Feeder Cattle	Jan 1980	22 Jan 1979	GF	All Sessions Combined
+Lean Hogs	Feb 1980	14 Nov 1978	HE	All Sessions Combined
+Live Cattle	Feb 1980	23 Oct 1978	LE	All Sessions Combined
+Lumber	Sep 2022	08 Aug 2022	LBR	All Sessions Combined
+Class III Milk	Jul 1997	07 Jul 1997	DC	All Sessions Combined
+CME Group (ex-KCBT markets)
+KC HRW Wheat	Mar 1980	23 Apr 1979	KE	All Sessions Combined
+CME Group (ex-NYMEX/COMEX Markets)
+Crude Oil - Light Sweet	Jun 1983	30 Mar 1983	CL	All Sessions Combined
+NY Harbor ULSD	Dec 1979	2 Feb 1979	HO	All Sessions Combined
+Henry Hub Natural Gas	Jun 1990	3 Apr 1990	NG	All Sessions Combined
+RBOB Gasoline	Jan 2006	3 Oct 2005	RB	All Sessions Combined
+Palladium	Dec 1982	1 Nov 1982	PA	All Sessions Combined
+Platinum	Jan 1980	15 May 1978	PL	All Sessions Combined
+Copper	Jan 1980	13 Mar 1978	HG	All Sessions Combined
+Gold	Jan 1980	30 Oct 1979	GC	All Sessions Combined
+Silver	Jan 1980	1 Mar 1978	SI	All Sessions Combined
+Eurexchange (Eurex)
+DAX	Mar 1999	4 Jan 1999	FDAX	All Sessions Combined
+Dec 2005	21 Mar 2005	FDAX9	Last in Close field
+Euro-BOBL	Mar 1999	1 Feb 1999	FGBM	All Sessions Combined
+Dec 2005	9 Mar 2005	FGBM9	Last in Close field
+Euro-BTP Long-Term	Dec 2009	14 Sep 2009	FBTP	All Sessions Combined
+FBTP9	Last in Close field
+Euro-BUND	Mar 1999	4 Jan 1999	FGBL	All Sessions Combined
+Dec 2005	9 Mar 2005	FGBL9	Last in Close field
+Euro-BUXL	Dec 2005	12 Sep 2005	FGBX	All Sessions Combined
+Euro-OAT	Jun 2012	19 Apr 2012	FOAT	All Sessions Combined
+Mar 2015	9 Dec 2014	FOAT9	Last in Close field
+Euro-SCHATZ	Mar 1999	20 Jan 1999	FGBS	All Sessions Combined
+Dec 2005	9 Mar 2005	FGBS9	Last in Close field
+EURO STOXX 50	Jun 1999	26 Mar 1999	FESX	All Sessions Combined
+Dec 2005	23 Mar 2005	FESX9	Last in Close field
+Swiss Market Index	Mar 1999	4 Jan 1999	FSMI	All Sessions Combined
+TecDAX	Dec 2005	11 Nov 2005	FTDX	All Sessions Combined
+Euronext
+CAC 40	Sep 1988	18 Aug 1988	FCE	All Sessions Combined
+Hong Kong Futures Exchange (HKEX)
+Hang Seng Index	Apr 1996	1 Apr 1996	HSI	All Sessions Combined
+Hang Seng Index - Mini	Oct 2000	9 Oct 2000	MHI	All Sessions Combined
+MSCI Taiwan Index	Mar 1997	9 Jan 1997	HTW	All Sessions Combined
+HTW4	Day
+ICE Futures Europe (ex-IPE)
+Brent Crude Oil	Sep 1988	23 Jun 1988	BRN	All Sessions Combined
+Low Sulphur Gasoil	Aug 1989	10 Nov 1988	GAS	All Sessions Combined
+UK Natural Gas	Mar 1997	31 Jan 1997	GWM	All Sessions Combined
+WTI Crude Oil	Mar 2006	3 Feb 2006	WBS	All Sessions Combined
+EUA	Dec 2008	22 Apr 2005	EUA	All Sessions Combined
+London Cocoa	Mar 1983	1 Oct 1981	LCC	All Sessions Combined
+Robusta Coffee 10 Tonne	Jan 1983	1 Dec 1981	LRC	All Sessions Combined
+White Sugar	Mar 1990	13 Sep 1988	LSU	All Sessions Combined
+Feed Wheat	Jun 1992	2 Dec 1991	LWB	All Sessions Combined
+3-Month SONIA	Jun 2018	1 Jun 2018	SO3	All Sessions Combined
+Euribor	Mar 1999	4 Jan 1999	LEU	All Sessions Combined
+Oct 2008	6 Oct 2008	LEU9	Official Close
+Long Gilt	Sep 1988	23 Feb 1988	LLG	All Sessions Combined
+FTSE 100	Dec 1994	11 Oct 1994	LFT	All Sessions Combined
+Dec 2008	6 Oct 2008	LFT9	Official Close
+ICE Futures U.S. (ex-NYBOT)
+Canola	Jan 1981	18 Nov 1980	RS	All Sessions Combined
+Cocoa	Dec 1980	19 Dec 1979	CC	All Sessions Combined
+Coffee	Mar 1980	14 Dec 1978	KC	All Sessions Combined
+Sugar No. 11	Jan 1980	21 Sep 1978	SB	All Sessions Combined
+Cotton No. 2	Mar 1980	19 Sep 1978	CT	All Sessions Combined
+Frozen Concentrated Orange Juice A	Jan 1980	8 Aug 1978	OJ	All Sessions Combined
+US Dollar Index	Mar 1986	20 Nov 1985	DX	All Sessions Combined
+Korea Exchange
+KOSPI 200	Mar 2001	12 Dec 2000	KOS	All Sessions Combined
+Minneapolis Grain Exchange (MGEX)
+Hard Red Spring Wheat	Mar 1980	5 Apr 1979	MWE	All Sessions Combined
+Montreal Exchange
+3-Month CORRA	Jun 2020	11 Jun 2020	CRA	All Sessions Combined
+10-Year Govt. of Canada Bond	Mar 1997	2 Oct 1996	CGB	All Sessions Combined
+S&P/TSX 60 Index	Dec 1999	7 Sep 1999	SXF	All Sessions Combined
+Singapore Exchange
+Nikkei 225	Sep 1990	21 Sep 1989	SNK	All Sessions Combined
+SNK4	Day
+MSCI Singapore Index	Oct 1998	7 Sep 1989	SSG	All Sessions Combined
+SSG4	Day
+FTSE China A50 Index	Aug 2010	20 Aug 2010	SCN	All Sessions Combined
+SCN4	Day
+Japanese Govt Bond - Mini	Mar 2000	10 Dec 1998	SJB	All Sessions Combined
+
+Show more
+
+
+Indicators
+US Historical Index Constituents
+Access to historical index constituent information is only available with a US Stock Market subscription at the Platinum or Diamond levels.
+
+US Historical Index Constituents
+Index Name	Parameter	Constits Start	Index Summary
+Dow Jones Industrial Average	$DJI	Jan 1950	Selected large cap 30 stocks, reconstituted irregularly, delisted stocks replaced immediately
+Nasdaq Composite	$COMP	Jan 1995	Nasdaq-listed common stocks, ADRs, MLPs, reconstituted daily
+Nasdaq-100	$NDX	Oct 1993	Top 100 non-Financials Nasdaq-listed stocks by market cap, reconstituted annually (December), delisted stocks (and listing transfers) replaced immediately
+Nasdaq Q-50	$NXTQ	Oct 2007	Next 50 (i.e. 101-150) non-Financials Nasdaq-listed stocks by market cap, reconstituted quarterly, delisted/promoted stocks not replaced until next reconstitution
+Nasdaq Next Generation 100	$NGX	Aug 2020	Next 100 (i.e. 101-200) non-Financials Nasdaq stocks by market cap, reconstituted annually (December), delisted/promoted stocks not replaced until next reconstitution
+Nasdaq-100 Technology Sector	$NDXT	Feb 2006	Subset of Nasdaq-100 stocks that are classified as Technology
+Nasdaq Biotechnology	$NBI	May 2001	Biotechnology and pharmaceutical stocks listed on Nasdaq, with minimum market cap of $200M, reconstituted annually (December), delisted stocks not replaced until next reconstitution
+NYSE Composite	$NYA	Jan 1995	NYSE-listed common stocks, ADRs, REITS and Tracking Stocks, reconstituted daily
+Russell Top 200	$RT200	Jul 1995	Top 200 US stocks by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell 1000	$RUI	Jul 1990	Top 1000 US stocks by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell 2000	$RUT	Jul 1990	Next 2000 (i.e. 1001-3000) US stocks by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell 3000	$RUA	Jul 1990	Top 3000 US stocks by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell Mid Cap	$RMC	Jul 1995	Smallest approximately 800 (i.e. 201-1000) stocks of the Russell 1000 by market cap plus the next smallest eligible securities by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell Micro Cap	$RUMIC	Jul 2000	Smallest 1000 (i.e. 2001-4000) of the Russell 2000 by market cap plus the next smallest eligible securities by market cap, reconstituted annually (Jun) until 2026, thereafter semi-annually (Jun, Nov), delisted stocks replaced at reconstitution, new IPOs added quarterly
+Russell Small Cap Completeness	$RSCC	Jul 1990	Smallest 2500 of Russell 3000 index (i.e. 501-3000) determined from stocks in the Russell 3000 that are not in the S&P 500. NB: This combines two different index methodologies from S&P and FTSE Russell.
+S&P 100	$OEX	Sep 1989	Top 100 US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P 500	$SPX	Mar 1957	Top 500 US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P MidCap 400	$MID	Jun 1991	Next 400 (i.e. 501-900) US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P SmallCap 600	$SML	Oct 1994	Next 600 (i.e. 901-1500) US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P Composite 1500	$SP1500	Oct 1994	Top 1500 US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P 1000	$SP1000	Oct 1994	MidCap and Small Cap (i.e. 501-1500) US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P 900	$SP900	Jun 1991	Top 900 US stocks by market cap, reconstituted quarterly, delisted stocks replaced immediately
+S&P 500 Dividend Aristocrats	$SPDAUDP	Jan 1990	S&P 500 stocks that have increased their dividends for 25 consecutive years
+S&P 500 ESG	$SPESG	May 2018	Stocks in the S&P 500 stocks that have met Environmental, Sustainability and Governance criteria, rebalanced annually, delisted stocks not replaced until next annual rebalancing (last day of April). Stocks are reviewed quarterly for ESG eligibility and removed if inenligible on the third Friday of March, June, September and Decemeber.
+Nasdaq-100 + Q-50 Superset	$N1-150	Oct 2007	Inferred: Top 150 non-Financials Nasdaq-listed stocks taken as a superset of Nasdaq-100 and Nasdaq Q-50 indices
+Nasdaq-100 + Next Generation 100 Superset	$N1-200	Aug 2020	Inferred: Top 200 non-Financials Nasdaq stocks taken as a superset of Nasdaq-100, Nasdaq Q-50 and Nasdaq Next Generation 100 indices
+Russell 1000 2000 + Micro Cap Superset	$R1-4000	Jul 2000	Inferred: Top 4000 (i.e. 1-4000) US stocks by market cap as a superset of Russell 1000, 2000 and Micro Cap indices, reconstituted annually (June), delisted stocks replaced annually (June), new IPOs added quarterly. Also known as Russell 3000E (where E means extended).
+Russell 2000 + Micro Cap Superset	$R1001-4000	Jul 2000	Inferred: Market cap range (i.e. 1001-4000 in the Russell Universe) US stocks as a superset of Russell 2000 and Micro Cap indices.
+Russell Micro Cap excl Russell 2000	$R3001-4000	Jul 2000	Inferred: Ultra Micro Cap stocks: Smallest 1000 of Russell Micro Cap index (i.e. 3001-4000 in the Russell Universe)
+Russell 2000 bottom 1000	$R2001-3000	Jul 2000	Inferred: Bottom 1000 of the Russell 2000 (i.e. 2001-3000)
+S&P 500 excl S&P 100	$SP101-500	Sep 1989	Inferred: S&P 500 excluding S&P 100 stocks (i.e. 101-500)
+
+Show more
+
+Notes:
+The US historical index constituents are essentially complete. There are instances where there are not exactly "1000" constituents for the Russell 1000 or "2000" for the Russell 2000 etc. There are a number of possible reasons for this:
+
+FTSE Russell pre-announces the reconstitution of its Russell indexes at the end of May. If it a stock delists before the actual reconstitution date (late June) then it will not be included in the relevant index.
+In the early 1990s, Russell indexes included a small number of stocks that had primary listings on what are now known as "regional exchanges", which means an exchange other than Nasdaq, NYSE or NYSE American (formerly NYSE American). We only include the 3 "major" exchanges in our coverage.
+In the case of a spin-off, the spun-off stock appears in the index until the next reconstitution. This can cause the number of constituents to exceed the titled number.
+Staggered reconstitutions can cause variations to the titled number. For instance, the Russell 2000 was reconstituted with 2019 stocks at the start at 1 Jul 2009.
+Stocks that move to OTC are immediately removed from Russell, Nasdaq and Dow Jones Indices. However, S&P indices sometimes incorporate limited periods of OTC trading prior to index removal.
+FTSE Russell adds new eligible IPOs on a quarterly basis. FTSE Russell occasionally adds new IPOs that currently trade on OTC prior to their major exchange listing if a major exchange IPO is due within the next quarter.
+
+AU Historical Index Constituents
+Access to historical index constituent information is only available with an AU Stock Market subscription at the Platinum level.
+
+AU Historical Index Constituents
+Index Name	Parameter	Constits Start	Index Summary
+S&P/ASX 20	$XTL.au	Jun 1992	Top 20 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/ASX 50	$XFL.au	Jun 1992	Top 50 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/ASX 100	$XTO.au	Jun 1992	Top 100 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/ASX 200	$XJO.au	Jun 1992	Top 200 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/ASX 300	$XKO.au	Jun 1992	Top 300 stocks by market cap, adjusted for liquidity, rebalanced every 6 months (Mar/Sep)
+All Ordinaries	$XAO.au	Jun 1992	Top 500 stocks by market cap, rebalanced annually (March) until 2024, thereafter twice (March, September)
+S&P/ASX All Technology	$XTX.au	Feb 2020	Technology-oriented stocks, rebalanced quarterly
+S&P/ASX MidCap 50	$XMD.au	Jun 1992	S&P/ASX 100 stocks that are not in the S&P/ASX 50 (i.e. 51-100)
+S&P/ASX Small Ordinaries	$XSO.au	Jun 1992	S&P/ASX 300 stocks that are not in the S&P/ASX 100 (i.e. 101-300)
+S&P/ASX 300 excl S&P/ASX 50	$SPASX51-300.au	Jun 1992	Inferred: S&P/ASX 300 stocks that are not in the S&P/ASX 50 (i.e. 51-300)
+S&P/ASX 300 excl S&P/ASX 200	$SPASX201-300.au	Jun 1992	Inferred: S&P/ASX 300 stocks not in the S&P/ASX 200 (i.e. 201-300)
+All Ordinaries excl S&P/ASX 100	$SPASX101-500.au	Jun 1992	Inferred: All Ordinaries stocks that are not in the S&P/ASX 100 (i.e. 101-500)
+All Ordinaries excl S&P/ASX 200	$SPASX201-500.au	Jun 1992	Inferred: All Ordinaries stocks that are not in the S&P/ASX 200 (i.e. 201-500)
+All Ordinaries excl S&P/ASX 300	$SPASX301-500.au	Jun 1992	Inferred: All Ordinaries stocks that are not in the S&P/ASX 300 (i.e. 301-500)
+
+Show more
+
+Notes:
+The ASX historical index constituents are essentially complete. There are instances where there are not exactly "500" constituents for the All Ordinaries or "300" for the S&P/ASX 300 etc. This is generally due to delistings having occurred in between index re-balancing dates.
+
+In March 2000, Standard & Poor's took over management of the ASX indices, introducing indices such as the S&P/ASX 200 and re-vamping the methodology for the All Ordinaries Index. Synthetic (theoretic) histories were provided for these indices.
+The history of index constituent changes before March 2000 is also synthetic, with index re-balancing being performed notionally at the end of each month.
+Therefore the record contains more constituent changes than would actually have occurred with re-balancing being performed annually or semi-annually as after March 2000. As a result, some stocks (those on the verge of index inclusion/exclusion) pop in and out of membership frequently.
+
+
+CA Historical Index Constituents
+Access to historical index constituent information is only available with an CA Stock Market subscription at the Platinum level.
+
+CA Historical Index Constituents
+Index Name	Parameter	Constits Start	Index Summary
+S&P/TSX Composite	$SPTSX.ca	Jun 1992	Top 250-300 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/TSX 60	$SPTSX60.ca	Jan 1999	Top 60 stocks by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/TSX Completion	$SPTSXC.ca	Jan 1999	Remaining mid-small cap stocks that make up the S&P/TSX Composite from position 61 onwards by market cap, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/TSX SmallCap	$SPTSXSC.ca	May 1999	Small cap stocks, adjusted for liquidity, rebalanced quarterly, delisted stocks replaced immediately
+S&P/TSX Canadian Dividend Aristocrats	$SPTSXDA	Aug 2008	stocks that have increased their dividends for 25 consecutive years
+S&P/TSX MidCap	$SPTSXMC.ca	May 1999	Inferred: Mid cap stocks, from stocks in the S&P/TSX Composite that are not in the S&P/TSX 60 and not in the S&P/TSX SmallCap
+
+Show more
+
+Notes:
+CA historical index constituents are essentially complete.
+
+The S&P/TSX Completion methodology has changed significantly over time. It was formerly known as S&P/TSX MidCap (prior to Dec 2005) and S&P/TSE MidCap (prior to May 2002). When it was the MidCap index it only had 52-60 stocks ( May 2002-Nov 2005) and a fixed 60 (May 1999-Apr 2002). For the historical index constituents we use the current methodology (stocks in the S&P/TSX Composite that are not in the S&P/TSX 60).
+
+The S&P/TSE SmallCap Index changed methodology significantly in Dec 2005 to become fully independent of the S&P/TSX Composite. The number of stocks within this index is variable and contained between 152 and 270 stocks since Dec 2005. Prior to Dec 2005 this it only included stocks within the S&P/TSX Composite and contained 92-180 stocks during that period.
+
+The S&P/TSX MidCap (Inferred) index constituents are determined from stocks in the S&P/TSX Composite that are not in the S&P/TSX 60 or in the S&P/TSX SmallCap index.
+
+
+Dividend
+This indicator provides information about cash distributions that one would be entitled to if the security was held at the close on the day prior to the ex-dividend date.
+The dividends shown are only those that have not already been incorporated in the stock price via the chosen adjustment method (eg: if you are already adjusting the price to account for capital reconstructions, special distributions and ordinary cash dividends, then no distributions will be shown when using this indicator).
+
+Dividend Yield
+This indicator provides a trailing 12 month sum of all split-adjusted ordinary dividends. It is calculated daily against the close price.
+New dividends are incorporated on the entitlement date (the trading day prior to the ex-dividend date) after which the trailing 12 month sum of dividends is recalculated.
+Special dividends, distributions and spin-offs are not included.
+The lookback period is adaptive to take into account slight variations in ex-dividend dates from year-to-year.
+
+Note:
+Anomalies can occur for up to 12 months after a company first starts paying dividends (or re-starts after a hiatus), or when changes are made to the dividend payment frequency/timetable.
+
+Padding Status
+This indicator will show when a price record has been padded in accordance with the Date Padding setting. If the Date Padding is set to "No padding" then this indicator will not return any values.
+
+US Major Exchange Listing identification
+This indicator provides information about whether a stock was listed on a major exchange (e.g. NYSE, Nasdaq, NYSE American, NYSE Arca, Cboe BZX, IEX) or as an OTC/Pink Sheet stock for each trading date. Data for all Equities and ETPs is provided back to Jan 1995. Prior to this date, no information is provided.
+
+Access to this indicator is only available with a US Stock Market subscription at the Platinum or Diamond levels.
+
+US Blank Check Company identification
+This indicator provides information about whether a stock was a Blank Check Company during its trading history. Blank Check Companies also include SPACs (Special Purpose Acquisition Companies) and Capital Pool Companies. Blank Check Company data is provided for all Equities back to 1993, coinciding with the SECs regulations that took effect that year.
+
+Access to this indicator is only available with a US Stock Market subscription at the Platinum or Diamond levels.
+
+Capital Event
+This indicator will show when a capital event occurred. Effective on holding the security at the close on the day prior to the ex-date. Events include splits, reverse splits, bonus issues, stock dividends (dividends paid as stock) and complex reorganizations of capital.
+
+
+Metadata
+"Fundamental" related fields are only included with stock market subscriptions at the Gold, Platinum or Diamond levels.
+
+Security Information - Text
+Field Name	Description
+BaseType
+Base type of the security (Stock Market, Futures Market, Foreign Exchange etc.)
+BusinessSummary
+Summary of the company's operations
+Classification
+Returns the classification for the given classification scheme (String)
+ClassificationDescription
+Returns the detailed description of the classification, given a classification scheme (String)
+ClassificationName
+Returns the classification name for the given classification scheme (String)
+Currency
+Currency that the security trades in
+Domicile
+Where BaseType=Stock Market, the country in which the company is incorporated; where BaseType=Economic, the country to which the economic indicator applies
+Exchange
+Abbreviation for the exchange on which the security last traded
+FinancialSummary
+Summary of the company's most recently reported financials
+SubType1
+Next level of security type below BaseType (Equity, Exchange Traded Product, Debt, Hybrid, Derivative etc.)
+SubType2
+Next level of security type below SubType1 (Operating/Holding Company, Investment Company, ETF, ETN etc.)
+SubType3
+Final level of security type below SubType2 (Public Limited Partnership, Royalty Trust, Closed-End Fund, Business Development Company etc.)
+Website
+URL for the company's website
+
+Show more
+
+Security Information - Date
+Field Name	Description
+BusinessSummaryLastUpdate
+Date when the Business Summary was last updated
+LastQuotedDate
+Last bar of trading for any delisted/expired security
+SecondLastQuotedDate
+Second last bar of trading for any delisted/expired security
+
+Security Information - Numeric
+Field Name	Description
+FrankedPct
+Franking level of the most recent dividend (for Australian listings only)
+LowestEverTickSize
+Lowest ever minimum price change increment (for futures only)
+Margin
+Initial margin requirements (for futures only)
+PointValue
+Value of a whole point (for futures only)
+SharesFloat
+Shares Float
+SharesOutstanding
+Shares Outstanding
+TickSize
+Current minimum price change increment
+
+Show more
+
+
+Current Fundamentals
+Current fundamental and broker forecast information is provided by Refinitiv. The fields listed in the tables below contain current fundamentals only (historical data is not available).
+
+Items that reference the latest price (such as Beta and Market Cap) are calculated daily, however the data doesn't arrive from Refinitiv until well after the market has closed. "Current dividend yield, trailing 12 months" and "Trailing 12 month Ordinary Dividends per Share" are calculated by Norgate Data shortly after the market close data has arrived.
+
+Other fundamentals are reported at different times and for different periods. Items such as Earnings per Share are typically included with each quarterly or half-yearly company report whilst others may only be reported on a half-yearly or annual basis.
+
+Units: Per Share and per Employee figures are shown in dollars. Growth/Change/Return figures are shown in %. Other dollar-based items (such as market cap, revenue etc.) are show in milions.
+
+Date: A date is provided for each fundamental field representing the last date of the reporting period from the most recent report of that field. For example, a trailing twelve month fundamental item will show the date of the most recently-reported quarter (or half, for half-yearly reporting companies). The date in the "Most recent fiscal year" fundamentals will provide the last date of that fiscal year. Some companies report quarterly/interim figures in a staggered fashion over several weeks, so some items will have an earlier period until they are reported.
+
+"Fundamentals" are included with stock market subscriptions at the Gold, Platinum or Diamond levels.
+
+Trailing 12 month Fundamentals
+Field Name	Description	Units	Group
+ebitda_ttmy5cagr
+Earnings Before Interest, Taxes, Depreciation & Amortization, 5 Year TTM CAGR	Percentage	Growth Rates
+ev2fcf_curttm
+Current Enterprise value/Free Cash Flow, trailing 12 months	Actual Values	Financial Strength
+focf2rev_ttm
+Free Operating Cash Flow/Revenue	Percentage	Profitability Ratios
+ttmastturn
+Asset turnover	Actual Values	Efficiency Ratios
+ttmbepsxcl
+EPS Basic excluding extraordinary items	Actual Values	Per Share Ratios
+ttmcfshr
+Cash Flow per Share	Actual Values	Per Share Ratios
+ttmdivshr
+Ordinary Dividends per share	Actual Values	Dividend
+ttmdivshradj
+Ordinary Dividends per Share (fully adjusted)	Actual Values	Dividend
+ttmebitd
+Earnings Before Interest, Taxes, Depreciation (EBITD)	Millions	Income Statement
+ttmebitdps
+EBITD per Share	Actual Values	Per Share Ratios
+ttmebt
+Earnings before taxes	Millions	Income Statement
+ttmepschg
+EPS Change %, TTM over TTM	Percentage	Growth Rates
+ttmepsincx
+EPS including extraordinary items	Actual Values	Per Share Ratios
+ttmepsxclx
+EPS excluding extraordinary items	Actual Values	Per Share Ratios
+ttmfcf
+Free Cash Flow	Millions	Cash Flow
+ttmfcfshr
+Free Cash Flow per Share	Actual Values	Per Share Ratios
+ttmgrosmgn
+Gross Margin	Percentage	Profitability Ratios
+ttmintcov
+Net Interest coverage	Actual Values	Financial Strength
+ttminvturn
+Inventory turnover	Actual Values	Efficiency Ratios
+ttmniac
+Net Income accruing to common shares for dividends and retained earnings	Millions	Income Statement
+ttmniperem
+Net Income/employee	Actual Values	Efficiency Ratios
+ttmnpmgn
+Net Profit Margin %	Percentage	Profitability Ratios
+ttmopmgn
+Operating margin	Percentage	Profitability Ratios
+ttmpayrat
+Payout ratio	Percentage	Financial Strength
+ttmptmgn
+Pretax margin	Percentage	Profitability Ratios
+ttmrecturn
+Receivables turnover	Actual Values	Efficiency Ratios
+ttmrev
+Revenue	Millions	Income Statement
+ttmrevchg
+Revenue Change %, TTM over TTM	Percentage	Growth Rates
+ttmrevpere
+Revenue/employee	Actual Values	Efficiency Ratios
+ttmrevps
+Revenue per share	Actual Values	Per Share Ratios
+ttmroapct
+Return on average assets	Percentage	Management Effectiveness
+ttmroepct
+Return on average equity	Percentage	Management Effectiveness
+ttmroipct
+Return on investment	Percentage	Management Effectiveness
+vdes_ttm
+Earnings per Share (EPS), Normalized, Excluding Extraordinary Items, Avg. Diluted Shares Outstanding	Actual Values	Income Statement
+
+Show more
+
+Fundamentals that reference the current price
+Field Name	Description	Units	Group
+apr2rev
+Price to sales, most recent fiscal year	Actual Values	Price Related
+apr2tanbk
+Price to Tangible Book, most recent fiscal year	Actual Values	Price Related
+aprfcfps
+Price to Free Cash Flow per Share, most recent fiscal year	Actual Values	Price Related
+aprice2bk
+Price to Book, most recent fiscal year	Actual Values	Price Related
+beta
+Beta, compared to major market index	Actual Values	Price Related
+divyield_curttm
+Current Dividend Yield, trailing 12 months	Percentage	Dividend
+mktcap
+Market capitalization, includes all classes of securities/listings	Millions	Share Related Items
+pebexclxor
+P/E Basic excluding extraordinary items, trailing 12 months	Actual Values	Price Related
+peexclxor
+Price-to-Earnings Ratio (P/E) excluding extraordinary items, trailing 12 months	Actual Values	Price Related
+peinclxor
+P/E including extraordinary items, trailing 12 months	Actual Values	Price Related
+pr2tanbk
+Price to Tangible Book, most recent quarter	Actual Values	Price Related
+price2bk
+Price to Book, most recent quarter	Actual Values	Price Related
+ttmpehigh
+P/E excluding extraordinary items high, trailing 12 months	Actual Values	Price Related
+ttmpelow
+P/E excluding extraordinary items low, trailing 12 months	Actual Values	Price Related
+ttmpr2rev
+Price to sales, trailing 12 month	Actual Values	Price Related
+ttmprcfps
+Price to Cash Flow per Share, trailing 12 month	Actual Values	Price Related
+ttmprfcfps
+Price to Free Cash Flow per Share, trailing 12 months	Actual Values	Price Related
+
+Show more
+
+Most recent quarter/interim reporting period
+Field Name	Description	Units	Group
+epschngyr
+EPS Change %, most recent quarter 1 year ago	Percentage	Growth Rates
+netdebt_i
+Net Debt	Millions	Balance Sheet
+qbvps
+Book value (total equity) per Share	Actual Values	Per Share Ratios
+qcshps
+Cash per Share	Actual Values	Per Share Ratios
+qcurratio
+Current ratio	Actual Values	Financial Strength
+qltd2eq
+Long Term debt/equity ratio	Percentage	Financial Strength
+qquickrati
+Quick ratio	Actual Values	Financial Strength
+qtanbvps
+Book value (tangible) per Share	Actual Values	Per Share Ratios
+qtotd2eq
+Total debt/total equity ratio	Percentage	Financial Strength
+revchngyr
+Revenue Change %, most recent quarter vs 1 year ago	Percentage	Growth Rates
+
+Show more
+
+Most recent fiscal year
+Field Name	Description	Units	Group
+a1fcf
+Free Cash Flow	Millions	Cash Flow
+aastturn
+Asset turnover	Actual Values	Efficiency Ratios
+abepsxclxo
+EPS Basic excluding extraordinary items	Actual Values	Per Share Ratios
+abvps
+Book value (total equity) per Share	Actual Values	Per Share Ratios
+acfshr
+Cash Flow per Share	Actual Values	Per Share Ratios
+acshps
+Cash per Share	Actual Values	Per Share Ratios
+acurratio
+Current ratio	Actual Values	Financial Strength
+adiv5yavg
+Ordinary Dividend Per Share, 5 year average	Percentage	Dividend
+adivshr
+Ordinary Dividend per Share	Actual Values	Dividend
+aebitd
+EBITDA	Millions	Income Statement
+aebt
+Earnings before taxes	Millions	Income Statement
+aebtnorm
+Earnings before taxes Normalized	Millions	Income Statement
+aepsinclxo
+EPS including extraordinary items	Actual Values	Per Share Ratios
+aepsnorm
+EPS Normalized	Actual Values	Per Share Ratios
+aepsxclxor
+EPS excluding extraordinary items	Actual Values	Per Share Ratios
+agrosmgn
+Gross Margin	Percentage	Profitability Ratios
+aintcov
+Net Interest coverage	Actual Values	Financial Strength
+ainvturn
+Inventory turnover	Actual Values	Efficiency Ratios
+altd2eq
+LT debt/equity	Percentage	Financial Strength
+aniac
+Net Income available to common	Millions	Income Statement
+aniacnorm
+Net Income Available to Common, Normalized	Millions	Income Statement
+aniperemp
+Net Income/employee	Actual Values	Efficiency Ratios
+anpmgnpct
+Net Profit Margin %	Percentage	Profitability Ratios
+aopmgnpct
+Operating margin	Percentage	Profitability Ratios
+apayratio
+Payout ratio	Percentage	Financial Strength
+aptmgnpct
+Pretax margin	Percentage	Profitability Ratios
+aquickrati
+Quick ratio	Actual Values	Financial Strength
+arecturn
+Receivables turnover	Actual Values	Efficiency Ratios
+arev
+Revenue	Millions	Income Statement
+arevperemp
+Revenue/employee	Actual Values	Efficiency Ratios
+arevps
+Revenue per Share	Actual Values	Per Share Ratios
+aroa5yavg
+Return on average assets, 5 year average	Percentage	Management Effectiveness
+aroapct
+Return on average assets	Percentage	Management Effectiveness
+aroe5yavg
+Return on average equity, 5 year average	Percentage	Management Effectiveness
+aroepct
+Return on average equity	Percentage	Management Effectiveness
+aroipct
+Return on investment	Percentage	Management Effectiveness
+atanbvps
+Book value (tangible) per Share	Actual Values	Per Share Ratios
+atotd2eq
+Total debt/total equity	Percentage	Financial Strength
+bvtrendgr
+Book value per Share growth rate, 5 year CAGR	Percentage	Growth Rates
+csptrendgr
+Capital Spending growth rate, 5 year CAGR	Percentage	Growth Rates
+divgrpct
+Ordinary Dividend growth rate, 3 year CAGR	Percentage	Growth Rates
+ebitda_ayr5cagr
+Earnings Before Interest, Taxes, Depreciation & Amortization, 5 Year CAGR	Percentage	Growth Rates
+epsgrpct
+EPS growth rate, 3 year CAGR	Percentage	Growth Rates
+epstrendgr
+EPS growth rate, 5 year CAGR	Percentage	Growth Rates
+ev2fcf_cura
+Current Enterprise Value/Free Cash Flow, most recent fiscal year	Actual Values	Financial Strength
+focf2rev_aavg5
+Free Operating Cash Flow/Revenue, 5 Year Average	Percentage	Profitability Ratios
+focf_ayr5cagr
+Free Operating Cash Flow growth rate, 5 Year CAGR	Percentage	Growth Rates
+grosmgn5yr
+Gross Margin, 5 year average	Percentage	Profitability Ratios
+margin5yr
+Net Profit Margin, 5 year average	Percentage	Profitability Ratios
+netdebt_a
+Net Debt	Millions	Balance Sheet
+npmtrendgr
+Net Profit Margin growth rate, 5 year CAGR	Percentage	Growth Rates
+opmgn5yr
+Operating Margin, 5 year average	Percentage	Profitability Ratios
+ptmgn5yr
+Pretax Margin, 5 year average	Percentage	Profitability Ratios
+revgrpct
+Revenue growth rate, 3 year CAGR	Percentage	Growth Rates
+revps5ygr
+Revenue per Share growth rate, 5 yr CAGR	Percentage	Growth Rates
+revtrendgr
+Revenue growth rate, 5 year CAGR	Percentage	Growth Rates
+stld_ayr5cagr
+Total Debt growth rate, 5 Year CAGR	Percentage	Growth Rates
+tanbv_ayr5cagr
+Tangible Book Value (Total Equity) growth rate, 5 Year CAGR	Percentage	Growth Rates
+yld5yavg
+Ordinary Dividend Yield, 5 Year Average	Percentage	Dividend
+
+Show more
+
+Broker Consensus Forecasts/Projections
+Field Name	Description
+epsactual
+Previous Actual Annual EPS
+epsactualq
+Previous Actual Quarterly EPS
+epssurprise
+Previous Annual Surprise
+epssurpriseprc
+Previous Annual Surprise as a Percentage
+epssurpriseq
+Previous Quarter Surprise
+epssurpriseqprc
+Previous Quarter Surprise as a Percentage
+projdps
+Current Consensus for Annual Total Dividend Per Share
+projdpsh
+High Estimate
+projdpsl
+Low Estimate
+projdpsnumofest
+Number of Estimates
+projeps
+Current Consensus for Annual EPS
+projepsh
+High Estimate
+projepsl
+Low Estimate
+projepsnumofest
+Number of Estimates
+projepsq
+Current Consensus for Quarterly EPS
+projepsqh
+High Estimate
+projepsql
+Low Estimate
+projepsqnumofest
+Number of Estimates
+projltgrowthrate
+Current Consensus for long term (5 year) growth rate of EPS
+projprofit
+Current Consensus for Profit
+projprofith
+High Estimate
+projprofitl
+Low Estimate
+projprofitnumofest
+Number of Estimates
+projsalesh
+High Estimate
+projsalesl
+Low Estimate
+projsalesnumofest
+Number of Estimates
+projsalesps
+Current Consensus for Annual Revenue Per Share
+projsalesq
+Current Consensus for Quarterly Revenue
+projsalesqh
+High Estimate
+projsalesql
+Low Estimate
+projsalesqnumofest
+Number of Estimates
+targetprice
+Current 12 month Consensus Target Price
+
+Show more
+
+Note:
+Earnings Per Share (EPS) may be calculated by each contributing analyst in a different way. Certain items may be included or excluded from the calculation depending on the analyst's specific model.
+
+Irregular exchange closures and noteworthy exchange halts/failures/issues since 1950
+Partial/full	Date	Reason
+Full	Jun 3 - Sep 30, 1950	NYSE, NYSE American - Closed Saturdays
+Partial	Apr 20, 1951	NYSE, NYSE American - Closed from 11:00am to 1:00pm. Parade for General MacArthur
+Full	Jun 2 - Sep 29, 1950	NYSE, NYSE American - Closed Saturdays
+Partial	Apr 20, 1951	NYSE, NYSE American - Closed from 10:33am to 11:05am - Civil Defense Drill
+Partial	Jun 15, 1955	NYSE, NYSE American - Closed from 2:05pm to 2:35pm - Civil Defense Drill
+Partial	Jul 12, 1957	NYSE, NYSE American - Closed from 1:45pm to 2:15pm - Civil Defense Drill
+Partial	May 6, 1958	NYSE, NYSE American - Closed from 10:33am to 10:50am - Civil Defense Drill
+Full	Dec 26, 1958	NYSE, NYSE American - Day after Christmas
+Partial	Apr 17, 1959	NYSE, NYSE American - Closed from 1:30pm to 1:50pm - Civil Defense Drill
+Partial	May 3, 1960	NYSE, NYSE American - Closed from 2:16pm to 2:40pm - Civil Defense Drill
+Partial	Dec 12, 1960	NYSE, NYSE American - Snowstorm, delayed opening to 11:00am
+Full	May 29, 1961	NYSE, NYSE American - Day before Decoration Day
+Partial	Nov 22, 1963	NYSE, NYSE American - Closed at 2:07pm. Assassination of President John F. Kennedy
+Full	Nov 25, 1963	NYSE, NYSE American - Funeral of President John F. Kennedy
+Partial	Oct 23, 1964	NYSE, NYSE American - Closed at 2:00pm. Funeral of former President Herber C. Hoover
+Partial	Nov 10, 1965	NYSE, NYSE American - Opened at 10:05am due to blackout
+Partial	Jan 6-14, 1966	NYSE, NYSE American - Closed at 2:00pm due to transit strike
+Partial	Feb 7, 1967	NYSE, NYSE American - Snowstorm, delayed opening to 10:15am, early close at 2:00pm
+Partial	May 17, 1967	NYSE, NYSE American - Trading suspended 12:58pm to 1:13pm while Vice President Humnphrey spoke from Rostrum in honor of NYSE's 175th anniversary
+Partial	May 22, 1967	NYSE - No tape reporting of trades from 10:05am, manual entry of trades required from 10:08am until 1:32pm, due to computer failure, many trades reported late and out-of-order
+Partial	Aug 8-18, 1967	NYSE, NYSE American - early close at 2:00pm due to back office workload
+Partial	Jan 22-Mar 1, 1968	NYSE, NYSE American - early close at 2:00pm due to back office workload
+Full	Feb 12, 1968	NYSE, NYSE American - Lincoln's Birthday
+Full	Apr 9, 1968	NYSE, NYSE American - National Day of Mourning for Martin Luther King, Jr.
+Full	Jun 12-Dec 31, 1968	NYSE, NYSE American - 4-day week - "Paperwork Crisis", exchanges closed on Wednesdays and occasionally other days
+Partial	Jun 12-Dec 31, 1968	NYSE, NYSE American - "Paperwork Crisis" closed early at 2:00pm
+Full	Feb 10, 1969	NYSE, NYSE American - Heavy snow
+Partial	Feb 11, 1969	NYSE, NYSE American - Snowstorm, delayed opening to 11:00am
+Full	Mar 31, 1969	NYSE, NYSE American - Funeral of former President Dwight D. Eisenhower
+Partial	Jun 20, 1969	NYSE, NYSE American - Storm delayed opening to 10:45am
+Partial	Jul 7-Sep 26, 1969	NYSE, NYSE American - "Paperwork Crisis" closed early at 2:30pm
+Full	Jul 21, 1969	NYSE, NYSE American - National Day of Participation for the lunar exploration
+Partial	Sep 3, 1969	NYSE, NYSE American - Electrical failure at 12:28pm, trading suspended 12:35pm-1:05pm
+Partial	Sep 29-Dec 31, 1969	NYSE, NYSE American - "Paperwork Crisis" closed early at 3:30pm
+Partial	Nov 10, 1969	NYSE, NYSE American - Electrical fire delays opening to 10:30am
+Partial	Jan 2-May 1, 1970	NYSE, NYSE American - "Paperwork Crisis" closed early at 3:30pm
+Full	Dec 28, 1972	NYSE, Nasdaq, NYSE American - Funeral of former President Harry S. Truman
+Full	Jan 25, 1973	NYSE, Nasdaq, NYSE American - Funeral of former President Lyndon B. Johnson
+Partial	Dec 17, 1973	NYSE, NYSE American - Ice Storm delayed opening to 11:00am
+Partial	Jan 16, 1974	NYSE, NYSE American - Opened at 10:15am due to Merrill Lynch computer trouble
+Partial	Jan 16, 1974	NYSE - Trading halted 11:09am to 11:35am due to computer malfunction
+Partial	Oct 15, 1974	NYSE - Software failure at 11:37am, trading halted 11:46am-12:22pm
+Partial	Nov 22, 1974	NYSE, NYSE American - Opening delayed to 10:15am due to fire drill
+Partial	Jan 7, 1975	NYSE - Computer problem at 10:07am. Trading halted until 10:50am
+Partial	Jan 7, 1975	NYSE - Computer problem at 1:24pm. Trading halted until 1:45pm
+Partial	Feb 7, 1975	NYSE - Computer problem at 10:24am. Trading halted until 11:00am
+Partial	Feb 12, 1975	NYSE, NYSE American - Snowstorm, early close at 2:30pm
+Partial	Apr 9, 1975	NYSE - Computer problem at 10:09am. Trading halted until 10:35am
+Partial	Feb 2, 1976	NYSE, NYSE American - Storm delayed opening until 11:15am
+Partial	Jun 8, 1976	NYSE, NYSE American - Fire drill delayed opening
+Partial	Aug 9, 1976	NYSE, NYSE American - Closed at 3:00pm. Hurricane watch
+Partial	Mar 1, 1977	NYSE - Floor closed at 10:24am due to fire. Reopened 11:45am
+Full	Jul 14, 1977	NYSE, Nasdaq, NYSE American - Blackout in New York City
+Partial	Dec 12, 1977	NYSE - Computer problem at 1:35pm Trading halted until 2:00pm
+Partial	Jan 20 1978	NYSE, NYSE American - Snowstorm, delayed opening to 12:00pm
+Partial	Feb 6, 1978	NYSE, NYSE American - Snowstorm, early close at 2:00pm
+Partial	Feb 7, 1978	NYSE, NYSE American - Snowstorm, delayed opening to 11:00am
+Partial	Oct 13, 1980	NYSE - Computer problem at 11:11am Trading halted until 12:05pm
+Partial	Mar 30, 1981	NYSE, NYSE American - Markets closed at 3:17pm due assassination attempt on President Reagan
+Partial	Sep 9, 1981	NYSE, NYSE American - Markets closed at 3:28pm due to Con Edison power failure in lower Manhattan
+Partial	Sep 16, 1981	NYSE - Fire alarm malfunction halted trading from 12:26pm to 12:45pm
+Partial	Dec 28, 1982	NYSE - Trading halted from 10:25am to 11:00m due to small fire
+Partial	Oct 13, 1983	NYSE, NYSE American - Trading halted from 2:51pm to 3:30pm due to malfunction of low speed ticker
+Full	Sep 27, 1985	NYSE, Nasdaq, NYSE American - Hurricane Gloria
+Partial	Oct 19, 1987	NYSE, NYSE American - Black Monday - 1987 Crash - Various trading halts due to extreme movements
+Partial	Oct 23-30, 1987	NYSE, NYSE American - Shortened trading hours following Black Monday, 2:00pm close
+Partial	Nov 2-4, 1987	NYSE, NYSE American - Shortened trading hours following Black Monday, 2:30pm close
+Partial	Nov 5-6, 1987	NYSE, NYSE American - Shortened trading hours following Black Monday, 3:00pm close
+Partial	Nov 9-11, 1987	NYSE, NYSE American - Shortened trading hours following Black Monday, 3:30pm close
+Partial	Dec 9, 1987	Nasdaq - Stray squirrel shuts down power and Nasdaq quotation service from 10:43am, partially restored 12:05pm, fully restored 2:30pm
+Partial	Oct 16, 1989	Nasdaq - Communication delays due to high volumes
+Partial	Nov 10, 1989	NYSE, NYSE Ameircan, Nasdaq - Fire-related power problem at SIAC briefly delays NYSE opening until 10:30am
+Partial	Aug 13, 1990	NYSE American, NYMEX, Dow Jones & Co - Electrical failure 1:13pm-1:39pm, NYSE unaffected
+Partial	Aug 23, 1990	TSX - Programming glitch affects stop loss orders on CATS
+Partial	Nov 14, 1990	TSX - Computer glitch delays trading of stocks on CATS until 10:05am, floor trading unaffected
+Partial	Nov 23, 1990	NYSE - Electrical failure, trading halted from 9:41am-11:15am
+Partial	Dec 27, 1990	NYSE, NYSE American, Nasdaq - Electrical explosion, opening delayed to 11:00am
+Partial	Jan 17, 1991	NYSE - Opening delayed until 9:31am for a minute of prayer for US troops in Persian Gulf
+Partial	Jan 9, 1991	TSX - 19 minute computer malfunction in TSE's Computer-Assisted Trading System
+Partial	Jan 15, 1991	TSX - Computer malfunction in TSE's Computer-Assisted Trading System at 10:06am until 11:24am
+Partial	Jan 24, 1991	TSX - Power failure from 10:39am, trading halted at 10:45am until 1:15pm
+Partial	Feb 25, 1991	NYSE - Opening delayed until 9:31am for a minute of silnce in honor of US troops in Persian Gulf
+Partial	Oct 22, 1991	NYSE - Trading halt 10:21am-10:45am due to power issues
+Partial	Jan 21, 1992	Nasdaq - Indexes stopped calculation at 10:03, trading in stocks unaffected.
+Partial	Mar 3, 1992	TSX - Computer glitch discovered at 9:35am. Floor trading halted between 9:55am and 2pm. CATS unaffected.
+Partial	Feb 11, 1994	NYSE, Nasdaq, NYSE American - Snowstorm, early close at 2:30pm
+Partial	Mar 3, 1994	TSX - Broken water pipe/flood delays opening until 10:00am, ultimately delaying TSE switch to automated trading
+Full	Apr 27, 1994	NYSE, Nasdaq, NYSE American - Funeral of former President Richard M. Nixon
+Partial	Jul 14, 1994	Nasdaq - Sporadic outages due to software failure. All Nasdaq indices except Nasdaq-100 could not be calculated.
+Partial	Jul 15, 1994	Nasdaq - Delayed opening to 11:00am due to suspected software failure, was actually disk drive failure
+Partial	Aug 1, 1994	Nasdaq - Trading interruption from 1:17pm through 1:51pm due to squirrel chewing power line and backup power systems failing
+Full	May 26, 1995	Vancouver Stock Exchange - Trading halted entire day due to corrupted files in computer systems caused by power failure previous day
+Partial	Dec 18, 1995	NYSE - Open delayed to 10:30am due to computer systems issues
+Partial	Jan 8, 1996	NYSE, Nasdaq, NYSE American - Snowstorm, delayed opening to 11:00am, early close at 2:00pm
+Partial	Feb 26, 1996	TSX - Equity floor trading due to computer glitch at 9:38am delaying open until noon. All trades in first 8 minutes cancelled.
+Partial	Mar 5, 1996	TSX - Equity floor trading halted due to computer glitch at 9:45am delaying open until 11:30am
+Partial	Apr 3, 1997	TSX - Trading halted at 12:43pm to identify issues caused by large amount of trading in Bre-X. Trading restarted at 3:40pm but it crashed again at 3:48pm. Trading abandoned for the day. Montreal and Alberta unaffected. Bre-X continued to be halted from trading due to it causing glitches for the following week.
+Partial	Oct 27, 1997	NYSE, Nasdaq, NYSE American - Mini crash - trading halted at 2:35pm due to circuit breaker, reopened at 3:05pm. At 3:30pm, a second circuit breaker was hit and markets closed early
+Partial	Mar 19, 1998	TSX - Computer systems crashed at 3:45pm and did not reopen
+Partial	Oct 26, 1998	NYSE - Software failure, stocks halted from 12:37pm to 1:22pm
+Partial	Mar 5, 1999	Nasdaq - Failure in SelectNet quotation system 9:41am-11:05am and SOES 9:41am-11:10am
+Partial	Apr 5, 1999	TSX - Computer systems crashed at 10:45am, trading halted and resumed at 1:15pm
+Partial	Apr 27, 1999	TSX - Computer systems crashed at 12:03pm, resumed at 12:10pm
+Partial	Jul 17, 1999	Canada - Fire at Bell Canada caused phone line and communication systems issues - Trading remained open
+Partial	Jul 20, 1999	TSX - Trading in Canadian National Railways halted by accident due to human error
+Partial	Jul 27, 1999	TSX - Computer problems halted trading from 12:00pm to 12:08pm
+Partial	Sep 7, 1999	TSX - Communications issues halted trading from 12:15pm to 1:03pm
+Partial	Dec 2, 1999	TSX - Index values incorrectly published for S&P/TSE benchmark, due to an incorrect calculation by S&P relating to Air Canada share buyback
+Partial	Feb 18, 2000	Nasdaq - Communication line malfunction disrupted last sale price data for 2 hours
+Partial	Apr 4, 2000	Nasdaq - Failure in SelectNet quote system for 75 minutes
+Partial	Nov 30, 2000	Nasdaq - Software issue in SOES and SelectNet quote system at 3:40pm, trading suspended from 3:49pm
+Partial	Jun 8, 2001	NYSE - System failure, trading halted from 10:10am-11:35am
+Full	Sep 11, 2001	NYSE, Nasdaq, NYSE American - Terrorist attack on the World Trade Center
+Full	Sep 12, 2001	NYSE, Nasdaq, NYSE American, TSX, TSX-V - Terrorist attack on the World Trade Center
+Full	Sep 13-14, 2001	NYSE, Nasdaq, NYSE American - Terrorist attack on the World Trade Center
+Partial	Sep 17, 2001	NYSE, NYSE American - Open delayed until 9:33am in memory of the terrorist attack on the World Trade Center
+Partial	May 2, 2002	TSX - S&P/TSX - Fault caused new S&P/TSX Composite index to only update every 15 minutes instead of every 15 seconds
+Partial	Sep ??, 2002	CME - Technical failure resulting in a temporary suspension
+Partial	Sep 11, 2002	NYSE, Nasdaq, NYSE American - Opening delay until 11:00am in memory of the one-year terrorist attack on the World Trade Center
+Partial	Apr 14, 2003	ASX - details TBA
+Partial	May 1 2003	CME - Technical failure resulting in a temporary suspension on Globex at 10:40am CDT for 5 hours.
+Partial	Aug 18, 2003	NYSE, Nasdaq, NYSE American, TSX, TSX-V - Thin trading due to fragile power grid in USA and Canada, and heavy power use restrictions across many cities.
+Partial	Oct 12, 2004	TSX, TSX-V - Fault at 10:35am at Reuters data facility in London caused S&P/TSX realtime indices to stop calculating. Trading was not halted.
+Full	Jun 11, 2004	NYSE, Nasdaq, NYSE American - National Day of Mourning for former President Ronald W. Reagan
+Partial	Apr 14 2005	CME - Technical failure resulting in a temporary suspension. Eurodollar futures on Globex were halted for three hours. Floor trading was unaffected
+Partial	Jun 1, 2005	NYSE & AMEX - trading disrupted at at 3:35pm, NYSE & AMEX halted and closed early at 3:56pm due to communications problem at SIAC
+Partial	Jun 3, 2005	CME - Technical glitch on Globex halted futures trading on Yen, Canadian Dollar, Mexican Peso, British Pound, Swiss Franc and EuroFX at 8:15am CDT until 9:45am CDT. Floor trading unaffected.
+Partial	May 15, 2006	ASX - software problem halted trading from 12:28pm to 2:08pm
+Partial	Aug 4, 2006	eCBOT failed for 3 hours.
+Partial	Oct 3, 2006	eCBOT failed 9:30am and resumed at 11:07am, affecting KCBT, MGEX and WCE.
+Partial	Nov 7, 2006	LME - upgrade to LME trading system failed, electronic trading disrputed
+Partial	4Q, 2006	CME - Technical failure resulting in a temporary suspension
+Full	Jan 2, 2007	NYSE, Nasdaq, NYSE American - National Day of Mourning for former President Gerald R. Ford
+Partial	Jan 12, 2007	CBOT - Issues at CBOT's service provider, AEMS, caused e-cbot outages on Fri Jan 12, 2007. Implied pricing for the argricultural CBOT products was disabled and continued through to Sunday night for WCE markets and Monday night for CBOT markets.
+Partial	Aug 16, 2007	Sydeny Futures Exchange - trading halted for an hour due to technical issues. Also, all brokers required to submit anticipated cashflows for next three trading days due to speculation of futures broking firms running out of money
+Partial	Aug 16, 2007	ASX - System issues caused a halt at 10:05am. Trading resumed at 2:30pm.
+Partial	Aug 31, 2007	ASX - Index values were unable were not disseminated in early trading.
+Partial	May 22, 2008	TSX, TSX-V - Trade dissemination issue discovered, trading halted
+Partial	Oct 10, 2008	TSX - Trading halted on 38 stocks for 2.5 hours
+Partial	Oct 14, 2008	TSX - Trading halted on 85 stocks at open. Trading resumed at 11:30am
+Partial	Nov 7, 2008	TSX, TSX-V - Open delayed until 9:40am due to system issues at Standard & Poors
+Partial	Dec 17, 2008	TSX, TSX-V - Trade dissemination issue discovered, exchange halted at 9:48am and did not reopen
+Partial	Jul 2, 2009	NYSE - Trading extended to 4:15pm due to earlier system irregularities
+Partial	May 6, 2010	NYSE, Nasdaq, NYSE American - Flash crash due to HFT order spoofing algoriothms and amplification by HFTs software errors from 2:45pm
+Partial	Feb 28, 2011	ASX - Trading for all stocks suspended at 2:48pm after trade confirmation failure and did not reopen.
+Partial	Oct 26, 2011	ASX - System issues caused a halt at 10:05am. Trading resumed at 2:30pm.
+Partial	Jan 31, 2012	Russell Indices - Morning outage
+Partial	Feb 2, 2012	Russell Indices - 54 minute outage from 13:16 through 14:10
+Partial	Mar 23, 2012	Cboe BZX - BATS Global Markets IPO failed due to software bug on BATS, erroneous trading occurred, trades subsequently cancelled
+Partial	May 18, 2012	Nasdaq - Facebook's IPO halted for 20 minutes due to glitch
+Partial	Aug 1, 2012	US - Knight Capital, a large US market maker, had a computer glitch causing billions of dollars of trades in 148 stocks
+Partial	Oct 9, 2012	ASX - Technical faults caused any stock that made a price-sensitive announcement go into a trading halt, and all company announcements were halted at 12:11pm. 20 stocks affected. Cboe Australia unaffected.
+Full	Oct 29, 2012	NYSE, Nasdaq, NYSE American - Hurricane Sandy
+Full	Oct 30, 2012	NYSE, Nasdaq, NYSE American - Hurricane Sandy
+Partial	Nov 12, 2012	NYSE - Supended trading in 216 companies due to order matching engine failure
+Partial	Jan 3, 2013	Nasdaq - UTP Quotes stopped from 13:37:24 to 13:48:19 and Trades from 13:36:55 through 13:51:14. Nasdaq sent out an alert at 13:42. Direct Edge halted all trading.
+Partial	Aug 22, 2013	Nasdaq - Trading halted 12:14pm. Some trading resumed at 2:45pm, market fully resumed 3:10pm
+Partial	Sep 4, 2013	Nasdaq - Quotes not disseminated in many Nasdaq stocks starting at 11:35am until at least 11:39am
+Partial	Feb 11, 2014	ASX - Technical faults caused trading to be halted at 2:15pm until 2:45pm
+Partial	Apr 8, 2014	CME - 90 minute trading halt on some Agricultural futures
+Partial	Aug 25, 2014	CME - Globex trading halted due to technical issues from 5pm to 9pm
+Partial	Oct 3, 2014	ASX SFE - Pricing unavailable for 30 minutes on ASX 200 futures
+Partial	Oct 13, 2014	ASX SFE - All futures halted from 12:41pm until 2:34pm due to technical fault
+Partial	Nov 25, 2014	NYSE, Nasdaq - Mini flash crash at 10:18am affecting 88 stocks, and again at 2:45pm affecting 40 stocks
+Partial	Jul 8, 2015	NYSE - Technical issues at 11:32am, all trading on NYSE halted at 11:51am. Trading resumed at 3:10pm. Trading on NYSE-listed securities on other venues unaffected.
+Partial	Aug 24, 2015	NYSE, Nasdaq - Flash crash mainly in ETFs
+Partial	May 18, 2016	NYSE - Technical issues caused 199 stocks to be suspended
+Partial	Sep 19, 2016	ASX - Opened for trading about an hour late due to a system glitch. The ticker group N-R did not open until 1.20 pm. Trading was halted shortly after 2.00 pm and did not reopen.
+Partial	Mar 20, 2017	NYSE Arca - Computer glitch interrupted the closing price auction of more than 340 securities on NYSE Arca, primarily affecting ETFs, resulting in closing prices to use a back-up methods. After hours trading closed early.
+Partial	Jul 3, 2017	Nasdaq - Computer glitch caused many Nasdaq stocks to show price of $123.47. UTP is asking all third parties to revert to Nasdaq Official Closing Prices effective at 5:16 PM.
+Partial	Aug 16, 2017	ASX SFE - Trading halted on futures at 12:45pm caused ASX stock market meltdown.
+Partial	Sep 13, 2017	ASX - Trade reporting did not reflect trades executed after 3:45pm.
+Partial	Apr 27, 2018	TSX, TSX-V - Failure of data storage equipment, shut down at 1:39pm, did not repoen
+Partial	Apr 29, 2018	CME - Globex technical issue caused trading to start 30 minutes late at 5:30pm CDT.
+Full	Dec 5, 2018	NYSE, Nasdaq, NYSE American - Funeral of former President George H.W. Bush
+Partial	Aug 12, 2019	NYSE - Consolidated tape association network component failure affecting reporting of trades from about 3pm onwards
+Partial	Feb 27, 2020	TSX - Issue started at 1:30pm, TSX Alpha trading halted 1:51pm, TSX and TSXV halted 1:54pm. Did not reopen.
+Partial	Nov 16, 2020	ASX - System issues caused a halt at 10:24am. Did not reopen. Cboe Australia remained open.
+Partial	May 5, 2021	NYSE, NYSE American - System issues at CTA System caused trades prior to 11:32am to be ignored when consolidated HL values.
+Partial	Jan 10, 2022	LME - Electronic trading interrupted by power failure from 1:00am to 6:15am
+Partial	Nov 1, 2022	TSX - Issue started around 10am, TSX, Venture and Alpha trading halted 10:30am-11:10am
+Partial	Jan 24, 2023	NYSE - Continuous trading was allowed to commence without an opening auction which resulted in highly erratic trading. Trading was halted for many tickers at 09:30:15 and resumed at 09:37:03. At 14:50, NYSE announced that it would bust some 4,341 trades in 251 tickers, and said that the process would continue into the next day. The reality was that many trades took many days to be cancelled.
+Partial	June 5, 2023	NYSE, NYSE American - Technical issues after 9:30am with issues related to latency. Traidng and quotation systems were reset by 9:57am.
+Partial	May 30, 2024	CME index feeds - Indices calculated by CME Group were not updating from 10:41am through 12:00pm - including $DJI and $SPX. Trading in associated instruments (Futures, ETFs) continued normally.
+Partial	June 4, 2024	NYSE, NYSE American - Technical issues 9:30am-10:27am with LULD price bands. 40 stocks had invalid price and quotation data showing, with some experencing a 99.97% drop in value before systems were restored and trades were subsequently busted.
+Full	Jan 9, 2025	NYSE, Nasdasq, NYSE American - National day of mourning for former President Jimmy Carter.
+
+Show more
+
+Notes:
+Current exchange names used. Previous exchange names include NASDAQ, AMEX, NYSE Mkt, Chi-X, Arca, BATS, Pacific Exchange.
+
+US securities exchanges also officially close early on the day prior to Independence Day, the day after Thanksgiving Day and on Christmas Eve, where these days do not occur on a weekend. In some years, additional full day holidays were granted before/after these holidays. Australian exchanges close early on Christmas Eve and New Year's eve. In earlier years, the ASX also closed early on Easter Thursday.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

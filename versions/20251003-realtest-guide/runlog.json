@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2025-10-03T22:40:08.932270Z",
+    "action": "extract-text",
+    "manual_pdf": "versions/20251003-realtest-guide/manual.pdf",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "pdf_sha256": "ca1f9d542ed5fdac4b88a0e27e65884ba9543242ef624f62d0e4c6077b4addb1",
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "wrote_output": true
+  },
+  {
+    "timestamp": "2025-10-03T22:45:34.241127Z",
+    "action": "build-structure",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "manual_structure": "versions/20251003-realtest-guide/manual_structure.json",
+    "section_count": 741,
+    "glossary_count": 297,
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "wrote_output": true
+  },
+  {
+    "timestamp": "2025-10-03T22:46:05.701306Z",
+    "action": "build-structure",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "manual_structure": "versions/20251003-realtest-guide/manual_structure.json",
+    "section_count": 741,
+    "glossary_count": 723,
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "wrote_output": true
+  },
+  {
+    "timestamp": "2025-10-03T22:46:54.741268Z",
+    "action": "build-structure",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "manual_structure": "versions/20251003-realtest-guide/manual_structure.json",
+    "section_count": 741,
+    "glossary_count": 723,
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "wrote_output": false
+  },
+  {
+    "timestamp": "2025-10-03T22:47:11.831146Z",
+    "action": "build-structure",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "manual_structure": "versions/20251003-realtest-guide/manual_structure.json",
+    "section_count": 741,
+    "glossary_count": 723,
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "wrote_output": true
+  },
+  {
+    "timestamp": "2025-10-03T22:52:15.222415Z",
+    "action": "build-function-catalog",
+    "manual_txt": "versions/20251003-realtest-guide/manual.txt",
+    "manual_structure": "versions/20251003-realtest-guide/manual_structure.json",
+    "function_catalog": "versions/20251003-realtest-guide/function_catalog.json",
+    "entry_count": 571,
+    "grammar_matches": 53,
+    "entries_with_samples": 293,
+    "txt_sha256": "7797bd3ed4f4214a4e87350985ac436434938feb7c062783452d98a7afa611bb",
+    "structure_sha256": "2fc9e2502e5f6ee5190d5a1051eef7475eaca49258d56deb2ba3ab0737cbc293",
+    "wrote_output": true
+  },
+  {
+    "timestamp": "2025-10-04T06:30:39.797454Z",
+    "action": "build-prompt-assets",
+    "prompt_assets_dir": "versions/20251003-realtest-guide/prompt_assets",
+    "cheatsheet": "versions/20251003-realtest-guide/prompt_assets/function_cheatsheet.md",
+    "sample_prompt": "versions/20251003-realtest-guide/prompt_assets/sample_prompt.txt",
+    "token_checker": "tools/prompt_token_check.py",
+    "tokens_sample_prompt": 2222,
+    "notes": "Watchlist summary sourced from watchlists.json; cosine index deferred. Full grammar embedded."
+  }
+]
