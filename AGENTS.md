@@ -15,5 +15,7 @@ The tools/ directory contains python code suitable for extracting from the PDF a
 Rules:
 1. DO NOT CHANGE ANYTHING IN THE samples/ directory - ever
 2. Only focus on the language aspects of Real Test, not on the UI 
+3. Do not over engineer the solution - repeatable results are more important than perfection.
+4. IMPORTANT: the manual MAY CONTAIN more than the BNF, meaning the BNF is just there to help/guide - it might be out of date when the process runs.
 
 Refer to the plan/ directory for further detailed instructions, executed in numerical order and defined in greater detail in exec/ directory (the plan/ files map 1:1 to the exec/ directory).
