@@ -1,3 +1,4 @@
 realtestextract/
 tools/__pycache__/
 *:Zone.Identifier
+bnf/__pycache__/
