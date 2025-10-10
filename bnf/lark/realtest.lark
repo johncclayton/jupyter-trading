@@ -134,7 +134,7 @@ symbol_item: /[%$][\w.]+/
 comparison_op: "<" | ">" | "<=" | ">=" | "==" | "<>" | "!=" | "=" 
 function_call: (RESERVED_IDENTIFIER | qualified_name) "(" arguments? ")"
 arguments: expression ("," expression)*
-identifier: /(?i)(?!Data\b|Graphs\b|Import\b|Settings\b|Benchmark\b|Parameters\b|Strategy\b|Template\b|Include\b|Charts\b|Trades\b|Notes\b|Library\b|Namespace\b|OrderSettings\b|OrderInclude\b|Results\b|Scan\b|ScanInclude\b|ScanSettings\b|TestData\b|WalkForward\b|True\b|False\b)[a-zA-Z_][a-zA-Z0-9_]*/
+identifier: /(?i)(?!Data\b|Graphs\b|Import\b|Settings\b|Benchmark\b|Parameters\b|Strategy\b|Template\b|Include\b|Charts\b|Trades\b|Notes\b|Library\b|Namespace\b|OrderSettings\b|OrderInclude\b|Results\b|Scan\b|ScanInclude\b|ScanSettings\b|TestData\b|TestSettings\b|WalkForward\b|True\b|False\b)[a-zA-Z_][a-zA-Z0-9_]*/
 qualified_name: identifier ("." identifier)*
 string_literal: /"[^"]*"/
 stock_symbol: /[$%](?:[$&])?[A-Za-z0-9_.@]+/

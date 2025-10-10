@@ -23,8 +23,7 @@ Prerequisites:
 2. This venv is located at the root of the repository
 
 Progress Log:
-- 2025-10-10: Updated both validators with `--samples-dir`, generated `data.json` baseline (113/113 pass), no failing files currently identified for grammar fixes.
-- 2025-10-10: Reset `data.json` and reran full baseline validation with updated enhanced validator; 112/113 samples pass, `mr_sample_debug.rts` flagged for missing `TestSettings` section in parse tree.
+- See `progress_log.md` for detailed history.
 
 Detailed Plan:
 1. Activate the realtestextract virtual environment from the repository root (`source realtestextract/bin/activate`) to guarantee a consistent Python toolchain.
