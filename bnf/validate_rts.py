@@ -6,10 +6,10 @@ This script validates all .rts files in the samples/ directory using the realtes
 It will report parsing errors to help iteratively refine the grammar.
 """
 
-import os
 import sys
+import json
 from pathlib import Path
-from lark import Lark, LarkError
+from lark import Lark
 from lark.exceptions import ParseError, LexError, UnexpectedInput
 import argparse
 
@@ -38,13 +38,12 @@ def load_grammar(grammar_path_str="lark/realtest.lark"):
         sys.exit(1)
 
 
-def find_rts_files():
-    """Find all .rts files in the samples/ directory"""
-    samples_dir = Path("..", "samples")
+def find_rts_files(samples_dir: Path):
+    """Find all .rts files in the provided samples directory"""
     if not samples_dir.exists():
         print(f"Error: Samples directory not found at {samples_dir}")
         sys.exit(1)
-    
+
     rts_files = list(samples_dir.glob("*.rts"))
     if not rts_files:
         print(f"No .rts files found in {samples_dir}")
@@ -104,16 +103,16 @@ def print_error_context(file_path, error, content):
 def find_last_successful_parse(parser, content):
     """Binary search to find the last successfully parsed content"""
     lines = content.splitlines(keepends=True)
-    
+
     # Find the largest prefix that parses successfully
     left, right = 0, len(lines)
     last_good = 0
     last_tree = None
-    
+
     while left <= right:
         mid = (left + right) // 2
         test_content = ''.join(lines[:mid])
-        
+
         try:
             tree = parser.parse(test_content)
             last_good = mid
@@ -121,38 +120,83 @@ def find_last_successful_parse(parser, content):
             left = mid + 1
         except:
             right = mid - 1
-    
+
     return last_good, ''.join(lines[:last_good]), last_tree
+
+
+def load_status(data_path: Path, rts_files):
+    """Load or initialize parse status tracking"""
+    status = {}
+    if data_path.exists():
+        try:
+            with open(data_path, "r", encoding="utf-8") as f:
+                status = json.load(f)
+            if not isinstance(status, dict):
+                print("Warning: data.json is not a dictionary; resetting state.")
+                status = {}
+        except Exception as exc:
+            print(f"Warning: Could not read {data_path}: {exc}. Resetting state.")
+            status = {}
+
+    valid_names = {path.name for path in rts_files}
+
+    # Prune entries without a backing sample file
+    status = {name: value for name, value in status.items() if name in valid_names and isinstance(value, str)}
+
+    for name in valid_names:
+        status.setdefault(name, "fail")
+
+    return status
+
+
+def write_status(data_path: Path, status):
+    """Persist parse status tracking to disk"""
+    with open(data_path, "w", encoding="utf-8") as f:
+        json.dump(status, f, indent=2, sort_keys=True)
 
 
 def main():
     """Main validation loop"""
-    parser = argparse.ArgumentParser(description="RealTest Script Validator")
-    parser.add_argument(
+    arg_parser = argparse.ArgumentParser(description="RealTest Script Validator")
+    arg_parser.add_argument(
         "--early",
         action="store_true",
         help="Stop validation at the first file that fails to parse.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--file",
         type=str,
         default=None,
         help="Path to a single .rts file to validate.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--grammar",
         type=str,
         default="lark/realtest.lark",
         help="Path to the grammar file to use (e.g., lark/realtest3.lark).",
     )
-    args = parser.parse_args()
+    arg_parser.add_argument(
+        "--samples-dir",
+        type=str,
+        default="samples",
+        help="Directory containing .rts samples to validate (default: bnf/samples).",
+    )
+    arg_parser.add_argument(
+        "--status-file",
+        type=str,
+        default="data.json",
+        help="Path to the parse status JSON file (default: data.json).",
+    )
+    args = arg_parser.parse_args()
 
     print("RealTest Script Validator")
     print("=" * 50)
     
     # Load the grammar
     parser = load_grammar(args.grammar)
-    
+
+    samples_dir = Path(args.samples_dir)
+
     # Find .rts file(s)
     if args.file:
         file_path = Path(args.file)
@@ -161,13 +205,17 @@ def main():
             sys.exit(1)
         rts_files = [file_path]
         print(f"Found 1 file to validate: {file_path.name}")
+        all_samples = find_rts_files(samples_dir)
     else:
-        rts_files = find_rts_files()
-    
+        all_samples = find_rts_files(samples_dir)
+        rts_files = all_samples
+
     # Track results
     successful = []
     failed = []
-    
+    status_path = Path(args.status_file)
+    status = load_status(status_path, all_samples)
+
     print(f"\nValidating {len(rts_files)} files...")
     print("-" * 50)
     
@@ -180,9 +228,11 @@ def main():
         if success:
             print("✓ PASS")
             successful.append(file_path)
+            status[file_path.name] = "pass"
         else:
             print("✗ FAIL")
             failed.append((file_path, error, content))
+            status[file_path.name] = "fail"
             if args.early:
                 print("\n--early flag set. Stopping at first error.")
                 print_error_context(file_path, error, content)
@@ -235,7 +285,7 @@ def main():
     print(f"Total files: {total_files}")
     print(f"Successful: {success_count} ({success_count/total_files*100:.1f}%)")
     print(f"Failed: {fail_count} ({fail_count/total_files*100:.1f}%)")
-    
+
     if successful and fail_count > 0:
         print("\n✓ Successfully parsed files:")
         for file_path in successful:
@@ -255,6 +305,10 @@ def main():
             first_fail_path, first_fail_error, first_fail_content = failed[0]
             print_error_context(first_fail_path, first_fail_error, first_fail_content)
         
+    write_status(status_path, status)
+    print(f"\nUpdated status written to {status_path}")
+
+    if failed:
         sys.exit(1)
     else:
         print("\n✨ All files parsed successfully! ✨")

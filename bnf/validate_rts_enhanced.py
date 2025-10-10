@@ -12,7 +12,6 @@ The enhanced validation helps catch:
 3. Incorrect section boundaries
 """
 
-import os
 import sys
 import re
 from pathlib import Path
@@ -22,7 +21,7 @@ import argparse
 from typing import List, Tuple, Set, Dict, Optional
 
 
-def load_grammar(grammar_path_str="lark/realtestlark"):
+def load_grammar(grammar_path_str="lark/realtest.lark"):
     """Load the Lark grammar from the specified path"""
     grammar_path = Path(grammar_path_str)
     if not grammar_path.exists():
@@ -44,9 +43,8 @@ def load_grammar(grammar_path_str="lark/realtestlark"):
         sys.exit(1)
 
 
-def find_rts_files():
-    """Find all .rts files in the samples/ directory"""
-    samples_dir = Path("samples")
+def find_rts_files(samples_dir: Path):
+    """Find all .rts files in the provided samples directory"""
     if not samples_dir.exists():
         print(f"Error: Samples directory not found at {samples_dir}")
         sys.exit(1)
@@ -343,41 +341,49 @@ def count_section_in_tree(tree: Tree, section_name: str) -> int:
 
 def main():
     """Main validation loop"""
-    parser = argparse.ArgumentParser(description="Enhanced RealTest Script Validator")
-    parser.add_argument(
+    arg_parser = argparse.ArgumentParser(description="Enhanced RealTest Script Validator")
+    arg_parser.add_argument(
         "--early",
         action="store_true",
         help="Stop validation at the first file that fails to parse.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--file",
         type=str,
         default=None,
         help="Path to a single .rts file to validate.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--grammar",
         type=str,
         default="lark/realtest.lark",
         help="Path to the grammar file to use (e.g., lark/realtest2.lark).",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--verbose",
         action="store_true",
         help="Show detailed section analysis for all files.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--section-check-only",
         action="store_true",
         help="Only perform section validation on files that parse successfully.",
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "--section-count",
         type=str,
         default=None,
         help="Count occurrences of a specific section name in text vs parse tree for all files.",
     )
-    args = parser.parse_args()
+    arg_parser.add_argument(
+        "--samples-dir",
+        type=str,
+        default="samples",
+        help="Directory containing .rts samples to validate (default: bnf/samples).",
+    )
+    args = arg_parser.parse_args()
+
+    samples_dir = Path(args.samples_dir)
 
     # Handle section count mode
     if args.section_count:
@@ -395,7 +401,7 @@ def main():
                 sys.exit(1)
             rts_files = [file_path]
         else:
-            rts_files = find_rts_files()
+            rts_files = find_rts_files(samples_dir)
         
         print(f"Analyzing {len(rts_files)} files for '{args.section_count}' sections...")
         print("-" * 70)
@@ -455,7 +461,7 @@ def main():
         rts_files = [file_path]
         print(f"Found 1 file to validate: {file_path.name}")
     else:
-        rts_files = find_rts_files()
+        rts_files = find_rts_files(samples_dir)
     
     # Track results
     successful = []

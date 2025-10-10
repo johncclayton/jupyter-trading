@@ -1,5 +1,13 @@
-The goal is to extract features and documentation related to the Real Test Script language from the PDF manual, 
-and make it available in a structured format for consumption by a large language model.
+# Mission
+
+The goal is to make it possible for LLMs to write perfect real test code. 
+
+1. Extraction of a BNF grammar that can parse EVERYTHING in the samples/ directory, this is in the bnf/ directory
+2. Extraction of the text from the Real Test Manual
+3. Creation of a "LLM Context Pack" - which is a directory containing an AGENTS.MD file, and reference files extracted from step 2 above, containing at least:
+ - list of functions, names, arguments, description of purpose (extracted from documentation)
+ - lark (or other) grammar definition
+ - program to validate RT code - perhaps even written as an MCP server so LLMs can test their code quickly
 
 The BNF grammar for the Real Test Language is in the bnf/ directory - the grammar file is bnf/lark/realtest.lark, this might be useful when trying to produce code or understand existing code.
 
