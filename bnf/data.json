@@ -56,7 +56,7 @@
   "mr_sample.rts": "pass",
   "mr_sample_benchmark.rts": "pass",
   "mr_sample_common.rts": "pass",
-  "mr_sample_debug.rts": "pass",
+  "mr_sample_debug.rts": "fail",
   "mr_sample_hedged.rts": "pass",
   "mr_sample_long_only.rts": "pass",
   "mr_sample_orders.rts": "pass",

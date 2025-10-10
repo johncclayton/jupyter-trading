@@ -20,6 +20,65 @@ from lark.exceptions import ParseError, LexError, UnexpectedInput
 import argparse
 from typing import List, Tuple, Set, Dict, Optional
 
+# Top-level RealTest sections sourced from realtest.lark *_HEADER tokens
+TOP_LEVEL_SECTION_NAMES: Tuple[str, ...] = (
+    "Benchmark",
+    "Charts",
+    "Combined",
+    "Data",
+    "Graphs",
+    "Import",
+    "Include",
+    "Library",
+    "Namespace",
+    "Notes",
+    "OrderInclude",
+    "OrderSettings",
+    "Parameters",
+    "Results",
+    "Scan",
+    "ScanInclude",
+    "ScanSettings",
+    "Settings",
+    "Strategy",
+    "Template",
+    "TestData",
+    "TestSettings",
+    "Trades",
+    "WalkForward",
+)
+
+SECTION_RULE_TO_NAME: Dict[str, str] = {
+    "benchmark_section": "Benchmark",
+    "charts_section": "Charts",
+    "combined_section": "Combined",
+    "data_section": "Data",
+    "graphs_section": "Graphs",
+    "import_section": "Import",
+    "include_section": "Include",
+    "library_section": "Library",
+    "namespace_section": "Namespace",
+    "notes_section": "Notes",
+    "order_include_section": "OrderInclude",
+    "order_settings_section": "OrderSettings",
+    "parameters_section": "Parameters",
+    "results_section": "Results",
+    "scan_section": "Scan",
+    "scan_include_section": "ScanInclude",
+    "scan_settings_section": "ScanSettings",
+    "settings_section": "Settings",
+    "strategy_section": "Strategy",
+    "template_section": "Template",
+    "testdata_section": "TestData",
+    "testsettings_section": "TestSettings",
+    "trades_section": "Trades",
+    "walkforward_section": "WalkForward",
+}
+
+SECTION_HEADER_PATTERN = re.compile(
+    r"^\s*(" + "|".join(re.escape(name) for name in TOP_LEVEL_SECTION_NAMES) + r")\s*:"
+)
+
 
 def load_grammar(grammar_path_str="lark/realtest.lark"):
     """Load the Lark grammar from the specified path"""
@@ -59,101 +118,69 @@ def find_rts_files(samples_dir: Path):
 
 
 def extract_sections_from_text(content: str) -> List[Tuple[str, int]]:
-    """
-    Extract section headers from raw text using regex.
-    Returns list of (section_name, line_number) tuples.
-    """
-    # Pattern to match section headers at start of line
-    # Matches known section names followed by colon
-    section_pattern = r'^(Notes|Parameters|Import|Strategy|Data|Template|Settings|Charts|Include|Library|Scan|TestData|Combined|Benchmark|OptimizeSettings|OrderSettings|ScanSettings|TestSettings|WalkForward|StatsGroup|StratData|Namespace)\s*:'
-    
-    sections = []
-    lines = content.splitlines()
-    
-    for line_num, line in enumerate(lines, 1):
-        match = re.match(section_pattern, line.strip())
+    """Extract top-level section headers from raw text via direct matching."""
+    sections: List[Tuple[str, int]] = []
+    for line_num, line in enumerate(content.splitlines(), 1):
+        match = SECTION_HEADER_PATTERN.match(line)
         if match:
-            section_name = match.group(1)
-            sections.append((section_name, line_num))
-    
+            sections.append((match.group(1), line_num))
     return sections
 
 
 def extract_sections_from_tree(tree: Tree) -> List[str]:
-    """
-    Extract section names from the parse tree.
-    Returns list of section names found in the parsed tree.
-    """
-    sections = []
-    
-    def walk_tree(node):
-        if isinstance(node, Tree):
-            # Check for different section types
-            if node.data == 'notes_section':
-                sections.append('Notes')
-            elif node.data == 'parameters_section':
-                sections.append('Parameters')
-            elif node.data == 'charts_section':
-                sections.append('Charts')
-            elif node.data == 'benchmark_section':
-                sections.append('Benchmark')
-            elif node.data == 'strategy_section':
-                sections.append('Strategy')
-            elif node.data == 'generic_section':
-                # For generic sections, we need to find the section name
-                for child in node.children:
-                    if hasattr(child, 'type') and child.type == 'SECTION_NAME':
-                        sections.append(str(child))
-                        break
-            
-            # Recursively walk children
-            for child in node.children:
-                walk_tree(child)
-    
-    walk_tree(tree)
+    """Extract ordered top-level section names from the parse tree."""
+    sections: List[str] = []
+
+    if not isinstance(tree, Tree):
+        return sections
+
+    for node in tree.children:
+        if not isinstance(node, Tree):
+            continue
+        if node.data != "section":
+            # Defensive fallback: handle grammars that skip the wrapper
+            mapped = SECTION_RULE_TO_NAME.get(node.data)
+            if mapped:
+                sections.append(mapped)
+            continue
+
+        for child in node.children:
+            if not isinstance(child, Tree):
+                continue
+            mapped = SECTION_RULE_TO_NAME.get(child.data)
+            if mapped:
+                sections.append(mapped)
+                break
+
     return sections
 
 
-def validate_section_parsing(file_path: Path, content: str, tree: Tree) -> Tuple[bool, List[str]]:
-    """
-    Validate that all sections found in text are properly parsed.
-    Returns (is_valid, list_of_issues).
-    """
-    issues = []
-    
-    # Get sections from both sources
-    text_sections = extract_sections_from_text(content)
-    tree_sections = extract_sections_from_tree(tree)
-    
-    # Convert to sets for comparison (section names only)
-    text_section_names = {name for name, _ in text_sections}
-    tree_section_names = set(tree_sections)
-    
-    # Check for missing sections in parse tree
-    missing_in_tree = text_section_names - tree_section_names
-    if missing_in_tree:
-        issues.append(f"Sections found in text but missing from parse tree: {sorted(missing_in_tree)}")
-    
-    # Check for extra sections in parse tree (less likely but possible)
-    extra_in_tree = tree_section_names - text_section_names
-    if extra_in_tree:
-        issues.append(f"Sections found in parse tree but not in text: {sorted(extra_in_tree)}")
-    
-    # Check section counts match
-    text_section_counts = {}
-    for name, _ in text_sections:
-        text_section_counts[name] = text_section_counts.get(name, 0) + 1
-    
-    tree_section_counts = {}
-    for name in tree_sections:
-        tree_section_counts[name] = tree_section_counts.get(name, 0) + 1
-    
-    for section_name in text_section_names | tree_section_names:
-        text_count = text_section_counts.get(section_name, 0)
-        tree_count = tree_section_counts.get(section_name, 0)
-        if text_count != tree_count:
-            issues.append(f"Section '{section_name}' count mismatch: text={text_count}, tree={tree_count}")
-    
+def validate_section_parsing(
+    manual_sections: List[Tuple[str, int]],
+    tree_sections: List[str],
+) -> Tuple[bool, List[str]]:
+    """Validate that parser-derived sections match the manually extracted list."""
+    issues: List[str] = []
+
+    manual_names = [name for name, _ in manual_sections]
+
+    if manual_names != tree_sections:
+        issues.append(
+            "Top-level sections mismatch. "
+            f"Manual={manual_names} Parsed={tree_sections}"
+        )
+
+    manual_set = set(manual_names)
+    tree_set = set(tree_sections)
+
+    missing = sorted(manual_set - tree_set)
+    extra = sorted(tree_set - manual_set)
+
+    if missing:
+        issues.append(f"Missing in parse tree: {missing}")
+    if extra:
+        issues.append(f"Unexpected in parse tree: {extra}")
+
     return len(issues) == 0, issues
 
 
@@ -178,8 +205,8 @@ def check_notes_section_consumption(content: str, tree: Tree) -> Tuple[bool, Lis
     # Find all sections after Notes
     sections_after_notes = []
     for i in range(notes_line + 1, len(lines)):
-        line = lines[i].strip()
-        match = re.match(r'^(Notes|Parameters|Import|Strategy|Data|Template|Settings|Charts|Include|Library|Scan|TestData|Combined|Benchmark|OptimizeSettings|OrderSettings|ScanSettings|TestSettings|WalkForward|StatsGroup|StratData|Namespace)\s*:', line)
+        line = lines[i]
+        match = SECTION_HEADER_PATTERN.match(line)
         if match:
             sections_after_notes.append((match.group(1), i + 1))
     
@@ -200,25 +227,58 @@ def check_notes_section_consumption(content: str, tree: Tree) -> Tuple[bool, Lis
     return len(issues) == 0, issues
 
 
+def dump_sections_and_tree(
+    file_path: Path,
+    manual_sections: List[Tuple[str, int]],
+    tree_sections: List[str],
+    tree: Tree,
+):
+    """Print manual vs parsed section lists and the parse tree for a file."""
+    print(f"\n🔍 Section extraction for {file_path.name}")
+    print("-" * 60)
+    print("Manual sections (order preserved):")
+    for name, line in manual_sections:
+        print(f"  - {name} (line {line})")
+    if not manual_sections:
+        print("  (none)")
+
+    print("\nParsed sections (order preserved):")
+    if tree_sections:
+        for name in tree_sections:
+            print(f"  - {name}")
+    else:
+        print("  (none)")
+
+    print("\nParse tree:")
+    print("=" * 60)
+    print(tree.pretty())
+    print("=" * 60)
+
+
 def validate_file(parser, file_path):
     """Validate a single .rts file using the parser with enhanced section checking"""
     content = None
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             content = f.read()
-        
+
         # Try to parse the content
         tree = parser.parse(content)
-        
+
+        manual_sections = extract_sections_from_text(content)
+        tree_sections = extract_sections_from_tree(tree)
+
+        dump_sections_and_tree(file_path, manual_sections, tree_sections, tree)
+
         # Enhanced validation: check section parsing
-        sections_valid, section_issues = validate_section_parsing(file_path, content, tree)
+        sections_valid, section_issues = validate_section_parsing(manual_sections, tree_sections)
         notes_valid, notes_issues = check_notes_section_consumption(content, tree)
-        
+
         all_issues = section_issues + notes_issues
         enhanced_valid = sections_valid and notes_valid
-        
+
         return True, None, content, tree, enhanced_valid, all_issues
-        
+
     except FileNotFoundError:
         return False, f"File not found: {file_path}", content, None, False, []
     except (ParseError, LexError, UnexpectedInput) as e:

@@ -24,13 +24,14 @@ Prerequisites:
 
 Progress Log:
 - 2025-10-10: Updated both validators with `--samples-dir`, generated `data.json` baseline (113/113 pass), no failing files currently identified for grammar fixes.
+- 2025-10-10: Reset `data.json` and reran full baseline validation with updated enhanced validator; 112/113 samples pass, `mr_sample_debug.rts` flagged for missing `TestSettings` section in parse tree.
 
 Detailed Plan:
 1. Activate the realtestextract virtual environment from the repository root (`source realtestextract/bin/activate`) to guarantee a consistent Python toolchain.
 2. Work from the bnf/ directory and leave bnf/samples/ untouched; treat those inputs strictly as read-only fixtures.
 3. Generate or refresh bnf/data.json by scanning bnf/samples/*.rts, inserting any new filenames with status `"fail"` and pruning entries without a backing sample file.
-4. Use the validation section rules above to establish the baseline pass/fail set and confirm bnf/data.json captures the results.
-5. Re-run the validator with `--early` to capture detailed diagnostics for the first failing sample; stash the error context for targeted grammar fixes.
+4. Run a full baseline validation pass (validate_rts.py and validate_rts_enhanced.py for every sample) without attempting fixes; record each file's result in bnf/data.json as `"pass"` or `"fail"` based on the combined outcome.
+5. Review bnf/data.json after the baseline pass to identify the first failing sample (file-name order) and capture diagnostics with `--early` when deeper context is needed.
 6. Iterate over failing samples in data.json order: inspect the offending snippet, cross-reference bnf/lark/realtest.lark and the latest extracted manual text (create it under versions/.../manual.txt first if missing), then apply the minimal grammar tweak needed to parse the construct without regressing earlier passes.
-7. After each grammar adjustment, run both validator scripts to ensure section boundaries stay intact; flip the corresponding data.json entry to `"pass"` only when the sample succeeds.
+7. After each grammar adjustment, re-run both validator scripts for the affected file (with any necessary smoke checks) to ensure section boundaries stay intact; flip the corresponding data.json entry to `"pass"` only when the sample succeeds.
 8. Continue until validate_rts.py reports all PASS, then record the changes and open questions in bnf/AGENTS.md to inform downstream LLM-context packaging.
